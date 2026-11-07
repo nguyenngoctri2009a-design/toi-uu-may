@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initAnimatedCounters();
     initXmlGenerator();
     initCommandCopier();
+    initMockupBoost();
 });
 
 /**
@@ -430,5 +431,40 @@ function initCommandCopier() {
                 });
             }
         });
+    });
+}
+
+
+/**
+ * 10. T??ng t?c gi? l?p Boost FPS ngay tr?n c?a s? ph?n m?m (Interactive Mockup Boost)
+ */
+function initMockupBoost() {
+    const btnBoost = document.getElementById('btn-mockup-boost');
+    const fpsDisplay = document.getElementById('monitor-fps');
+    const ramDisplay = document.getElementById('monitor-ram');
+    if (!btnBoost || !fpsDisplay) return;
+
+    btnBoost.addEventListener('click', () => {
+        btnBoost.innerHTML = '<i class="fa-solid fa-arrows-rotate fa-spin"></i> ?ANG T?I ?U H?A...';
+        btnBoost.classList.remove('t1-btn-primary');
+        btnBoost.classList.add('t1-btn-success');
+
+        let currentFps = 124;
+        const targetFps = 144;
+        const interval = setInterval(() => {
+            if (currentFps < targetFps) {
+                currentFps += 2;
+                fpsDisplay.textContent = currentFps;
+            } else {
+                clearInterval(interval);
+                if (ramDisplay) ramDisplay.textContent = '4.65';
+                btnBoost.innerHTML = '<i class="fa-solid fa-check text-white"></i> ?? B?T PH? 144 FPS!';
+                setTimeout(() => {
+                    btnBoost.innerHTML = '<i class="fa-solid fa-bolt text-xs"></i> <span>K?CH HO?T 1-CLICK BOOST</span>';
+                    btnBoost.classList.remove('t1-btn-success');
+                    btnBoost.classList.add('t1-btn-primary');
+                }, 3500);
+            }
+        }, 30);
     });
 }
