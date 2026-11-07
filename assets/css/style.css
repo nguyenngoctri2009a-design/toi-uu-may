@@ -331,27 +331,117 @@ h1, h2, h3, h4, .font-heading {
 }
 
 /* ==========================================================================
-   HỆ THỐNG CARD 3D & NEUMORPHISM CHIỀU SÂU
+   HỆ THỐNG GLASSMORPHISM CAO CẤP & CHIỀU SÂU 3D (LIGHT THEME LUXURY GLASS)
    ========================================================================== */
 .t1-card {
-  background: var(--surface);
+  background: rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: 22px;
-  border: 1.5px solid var(--border);
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
   box-shadow: 
-    0 4px 20px rgba(21, 34, 56, 0.04),
-    0 1px 3px rgba(21, 34, 56, 0.02),
-    inset 0 1px 2px #FFFFFF;
+    0 10px 30px -5px rgba(7, 150, 229, 0.06),
+    0 4px 16px rgba(21, 34, 56, 0.03),
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.95);
   padding: 26px 28px;
   transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
 }
 
-.t1-card-hover:hover {
-  transform: translateY(-4px);
-  border-color: #BEE3F8;
+.t1-card-hover:hover, .t1-card:hover {
+  border-color: rgba(56, 189, 248, 0.6);
   box-shadow: 
-    0 16px 36px rgba(7, 150, 229, 0.08),
-    0 4px 12px rgba(21, 34, 56, 0.03),
+    0 16px 36px rgba(7, 150, 229, 0.1),
+    0 4px 12px rgba(21, 34, 56, 0.04),
+    inset 0 1.5px 2px #FFFFFF;
+}
+
+/* Thẻ Kính Phụ (Sub-Glass Card) Dành Cho 3 Card Phần Cứng */
+.t1-subglass-card {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 20px;
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 
+    0 4px 16px rgba(7, 150, 229, 0.04),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9);
+  padding: 20px 22px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.t1-subglass-card:hover {
+  transform: translateY(-3.5px);
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(56, 189, 248, 0.55);
+  box-shadow: 
+    0 12px 28px rgba(7, 150, 229, 0.12),
+    inset 0 1px 2px #FFFFFF;
+}
+
+/* Banner Đánh Giá Kính Mờ Ánh Sáng Xanh Ngọc */
+.t1-glass-banner {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(240, 253, 250, 0.68) 50%,
+    rgba(236, 253, 245, 0.82) 100%
+  );
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(167, 243, 208, 0.8);
+  border-radius: 20px;
+  box-shadow: 
+    0 8px 25px -5px rgba(16, 185, 129, 0.12),
+    inset 0 1.5px 2px #FFFFFF;
+  padding: 22px 26px;
+  transition: all 0.25s ease;
+}
+
+/* Glass Select Dropdown */
+.t1-glass-select {
+  width: 100%;
+  padding: 11px 16px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #152238;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(186, 230, 253, 0.7);
+  border-radius: 14px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(7, 150, 229, 0.04), inset 0 1px 1px #FFFFFF;
+}
+.t1-glass-select:focus {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: #0284c7;
+  box-shadow: 0 0 0 3.5px rgba(14, 165, 233, 0.15);
+}
+
+/* Thẻ Glass Card Tổng Thể (Dành Cho Leaderboard) */
+.t1-glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  border-radius: 22px;
+  box-shadow: 
+    0 8px 24px rgba(7, 150, 229, 0.06),
+    inset 0 1px 2px rgba(255, 255, 255, 0.95);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+.t1-glass-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(56, 189, 248, 0.6);
+  box-shadow: 
+    0 16px 36px rgba(7, 150, 229, 0.12),
     inset 0 1px 2px #FFFFFF;
 }
 
