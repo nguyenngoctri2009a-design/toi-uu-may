@@ -198,20 +198,19 @@ function initFaqAccordion() {
 function triggerDirectDownload(e) {
     if (e && e.preventDefault) e.preventDefault();
 
+    // Sử dụng link trực tiếp file GTA5VN-System.exe
     const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     const downloadUrl = isLocal 
-        ? 'downloads/Check_Cau_Hinh.exe' 
-        : 'https://github.com/nguyenngoctri2009a-design/toi-uu-may/releases/download/v2.5.0/Check_Cau_Hinh.exe';
+        ? 'downloads/GTA5VN-System.exe' 
+        : 'https://github.com/nguyenngoctri2009a-design/toi-uu-may/releases/download/v2.5.0/GTA5VN-System.exe';
 
-    // Tạo thẻ link ẩn và kích hoạt tải ngầm
     const a = document.createElement('a');
     a.href = downloadUrl;
-    a.setAttribute('download', 'Check Cấu Hình.exe');
+    a.setAttribute('download', 'GTA5VN-System.exe');
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
 
-    // Hiển thị toast thông báo đang tải xuống
     showDownloadToast();
 }
 
@@ -227,7 +226,7 @@ function showDownloadToast() {
             <i class="fa-solid fa-arrow-down"></i>
         </div>
         <div>
-            <h5 class="text-xs font-black text-textPrimary">Đang Tải File Check Cấu Hình .exe (71.8 MB)...</h5>
+            <h5 class="text-xs font-black text-textPrimary">Đang Tải File GTA5VN-System.exe (71.8 MB)...</h5>
             <p class="text-[11px] text-textSecondary font-medium">File đang được tải trực tiếp về thư mục Downloads của bạn.</p>
         </div>
     `;
