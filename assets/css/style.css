@@ -182,42 +182,41 @@ h1, h2, h3, h4, .font-heading {
   transform: translateY(1.5px);
 }
 
-/* 1. Primary Glass Button (Kính Xanh Dương Trong Suốt - Sky/Cyan Glass) */
+/* 1. Primary Glass Button (Kính Xanh Dương Trong Suốt Thực Sự - Crystal Cyan Glass) */
 .t1-btn-primary {
   background: linear-gradient(
     135deg,
-    rgba(224, 242, 254, 0.78) 0%,
-    rgba(186, 230, 253, 0.58) 50%,
-    rgba(125, 211, 252, 0.45) 100%
+    rgba(255, 255, 255, 0.42) 0%,
+    rgba(186, 230, 253, 0.22) 50%,
+    rgba(56, 189, 248, 0.16) 100%
   ) !important;
-  color: #0369a1 !important;
-  border: 1.5px solid rgba(56, 189, 248, 0.75) !important;
+  backdrop-filter: blur(14px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(180%) !important;
+  color: #0284c7 !important;
+  border: 1.5px solid rgba(56, 189, 248, 0.55) !important;
   box-shadow: 
-    0 4px 0 rgba(2, 132, 199, 0.26),
-    0 8px 20px -2px rgba(2, 132, 199, 0.16),
+    0 4px 14px rgba(7, 150, 229, 0.1),
     inset 0 1.5px 1.5px rgba(255, 255, 255, 0.95),
-    inset 0 -1.5px 2px rgba(2, 132, 199, 0.12);
+    inset 0 -1px 2px rgba(2, 132, 199, 0.1) !important;
 }
 .t1-btn-primary:hover {
   background: linear-gradient(
     135deg,
-    rgba(240, 249, 255, 0.9) 0%,
-    rgba(186, 230, 253, 0.75) 100%
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(186, 230, 253, 0.35) 100%
   ) !important;
-  border-color: rgba(14, 165, 233, 0.9) !important;
-  color: #0284c7 !important;
+  border-color: rgba(14, 165, 233, 0.85) !important;
+  color: #0369a1 !important;
   box-shadow: 
-    0 6px 0 rgba(2, 132, 199, 0.32),
-    0 16px 30px -4px rgba(2, 132, 199, 0.25),
+    0 8px 24px -2px rgba(7, 150, 229, 0.2),
     inset 0 1.5px 1.5px #FFFFFF,
-    inset 0 -1px 2px rgba(2, 132, 199, 0.18);
+    inset 0 -1px 2px rgba(2, 132, 199, 0.15) !important;
 }
 .t1-btn-primary:active {
-  background: rgba(186, 230, 253, 0.65) !important;
+  background: rgba(186, 230, 253, 0.3) !important;
   box-shadow: 
-    0 1.5px 0 rgba(2, 132, 199, 0.28),
-    0 4px 8px rgba(2, 132, 199, 0.12),
-    inset 0 2px 4px rgba(2, 132, 199, 0.22);
+    0 2px 6px rgba(7, 150, 229, 0.1),
+    inset 0 2px 4px rgba(2, 132, 199, 0.2) !important;
 }
 
 /* Nhịp Thở Hào Quang Kính Cho Nút Tải Chính */
@@ -227,137 +226,138 @@ h1, h2, h3, h4, .font-heading {
 @keyframes t1-glass-aura {
   0%, 100% {
     box-shadow: 
-      0 4px 0 rgba(2, 132, 199, 0.26),
-      0 8px 22px rgba(2, 132, 199, 0.18),
-      0 0 0 0 rgba(14, 165, 233, 0.35),
+      0 4px 14px rgba(7, 150, 229, 0.12),
+      0 0 0 0 rgba(14, 165, 233, 0.3),
       inset 0 1.5px 1.5px rgba(255, 255, 255, 0.95);
   }
   50% {
     box-shadow: 
-      0 4px 0 rgba(2, 132, 199, 0.26),
-      0 14px 30px rgba(2, 132, 199, 0.3),
+      0 6px 20px rgba(7, 150, 229, 0.22),
       0 0 0 8px rgba(14, 165, 233, 0),
       inset 0 1.5px 1.5px #FFFFFF;
   }
 }
 
-/* 2. Success Glass Button (Kính Xanh Ngọc Trong Suốt - Emerald Glass) */
+/* 2. Success Glass Button (Kính Xanh Ngọc Trong Suốt Thực Sự - Crystal Emerald Glass) */
 .t1-btn-success {
   background: linear-gradient(
     135deg,
-    rgba(209, 250, 229, 0.78) 0%,
-    rgba(167, 243, 208, 0.58) 50%,
-    rgba(110, 231, 183, 0.45) 100%
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(167, 243, 208, 0.22) 50%,
+    rgba(52, 211, 153, 0.16) 100%
   ) !important;
+  backdrop-filter: blur(14px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(180%) !important;
   color: #047857 !important;
-  border: 1.5px solid rgba(52, 211, 153, 0.75) !important;
+  border: 1.5px solid rgba(16, 185, 129, 0.55) !important;
   box-shadow: 
-    0 4px 0 rgba(5, 150, 105, 0.26),
-    0 8px 20px -2px rgba(5, 150, 105, 0.16),
+    0 4px 14px rgba(16, 185, 129, 0.1),
     inset 0 1.5px 1.5px rgba(255, 255, 255, 0.95),
-    inset 0 -1.5px 2px rgba(5, 150, 105, 0.12);
+    inset 0 -1px 2px rgba(5, 150, 105, 0.1) !important;
 }
 .t1-btn-success:hover {
   background: linear-gradient(
     135deg,
-    rgba(236, 253, 245, 0.9) 0%,
-    rgba(167, 243, 208, 0.75) 100%
+    rgba(255, 255, 255, 0.65) 0%,
+    rgba(167, 243, 208, 0.38) 100%
   ) !important;
-  border-color: rgba(16, 185, 129, 0.9) !important;
-  color: #059669 !important;
+  border-color: rgba(16, 185, 129, 0.85) !important;
+  color: #065f46 !important;
   box-shadow: 
-    0 6px 0 rgba(5, 150, 105, 0.32),
-    0 16px 30px -4px rgba(16, 185, 129, 0.25),
-    inset 0 1.5px 1.5px #FFFFFF;
+    0 8px 24px -2px rgba(16, 185, 129, 0.2),
+    inset 0 1.5px 1.5px #FFFFFF !important;
 }
 .t1-btn-success:active {
-  background: rgba(167, 243, 208, 0.65) !important;
+  background: rgba(167, 243, 208, 0.3) !important;
   box-shadow: 
-    0 1.5px 0 rgba(5, 150, 105, 0.28),
-    0 4px 8px rgba(5, 150, 105, 0.12),
-    inset 0 2px 4px rgba(5, 150, 105, 0.22);
+    0 2px 6px rgba(16, 185, 129, 0.1),
+    inset 0 2px 4px rgba(5, 150, 105, 0.2) !important;
 }
 
-/* 3. Surface / Secondary Glass Button (Kính Pha Lê Trong Suốt - Crystal Glass) */
+/* 3. Surface / Secondary Glass Button (Kính Pha Lê Trong Suốt Thực Sự - Crystal White Glass) */
 .t1-btn-surface, .t1-btn-secondary {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.75) 0%,
-    rgba(248, 250, 252, 0.55) 100%
-  ) !important;
+  background: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(14px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(180%) !important;
   color: #1e293b !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.9) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.8) !important;
   box-shadow: 
-    0 4px 0 rgba(203, 213, 225, 0.55),
-    0 6px 16px rgba(15, 23, 42, 0.05),
-    inset 0 1.5px 1.5px #FFFFFF,
-    inset 0 -1px 2px rgba(148, 163, 184, 0.12);
+    0 4px 14px rgba(15, 23, 42, 0.04),
+    inset 0 1.5px 1.5px rgba(255, 255, 255, 0.95),
+    inset 0 -1px 2px rgba(148, 163, 184, 0.1) !important;
 }
 .t1-btn-surface:hover, .t1-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.9) !important;
-  border-color: rgba(56, 189, 248, 0.7) !important;
+  background: rgba(255, 255, 255, 0.48) !important;
+  border-color: rgba(56, 189, 248, 0.6) !important;
   color: #0284c7 !important;
   box-shadow: 
-    0 6px 0 rgba(148, 163, 184, 0.55),
-    0 12px 24px rgba(7, 150, 229, 0.14),
-    inset 0 1.5px 1.5px #FFFFFF;
+    0 8px 20px rgba(7, 150, 229, 0.1),
+    inset 0 1.5px 1.5px #FFFFFF !important;
 }
 .t1-btn-surface:active, .t1-btn-secondary:active {
+  background: rgba(255, 255, 255, 0.18) !important;
   box-shadow: 
-    0 1.5px 0 rgba(203, 213, 225, 0.55),
-    0 3px 6px rgba(0, 0, 0, 0.04),
-    inset 0 2px 3px rgba(0, 0, 0, 0.08);
+    0 2px 6px rgba(15, 23, 42, 0.04),
+    inset 0 2px 3px rgba(0, 0, 0, 0.06) !important;
 }
 
-/* 4. Warning Glass Button (Kính Hổ Phách / Vàng Trong Suốt - Amber Glass) */
+/* 4. Warning Glass Button (Kính Hổ Phách Trong Suốt - Crystal Amber Glass) */
 .t1-btn-warning {
   background: linear-gradient(
     135deg,
-    rgba(254, 243, 199, 0.78) 0%,
-    rgba(253, 230, 138, 0.55) 100%
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(253, 230, 138, 0.22) 100%
   ) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
   color: #b45309 !important;
-  border: 1.5px solid rgba(245, 158, 11, 0.65) !important;
+  border: 1.5px solid rgba(245, 158, 11, 0.55) !important;
   box-shadow: 
-    0 4px 0 rgba(217, 119, 6, 0.28),
-    0 8px 18px rgba(245, 158, 11, 0.16),
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.9);
+    0 4px 14px rgba(245, 158, 11, 0.1),
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.9) !important;
 }
 .t1-btn-warning:hover {
-  background: rgba(254, 243, 199, 0.9) !important;
+  background: rgba(254, 243, 199, 0.55) !important;
   border-color: #f59e0b !important;
-  box-shadow: 0 6px 0 rgba(217, 119, 6, 0.32), 0 12px 24px rgba(245, 158, 11, 0.25);
-}
-.t1-btn-warning:active {
-  box-shadow: 0 1.5px 0 rgba(217, 119, 6, 0.28), inset 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
-/* 5. Danger Glass Button (Kính Đỏ Hồng Trong Suốt - Ruby Glass) */
+/* 5. Danger Glass Button (Kính Đỏ Hồng Trong Suốt - Crystal Ruby Glass) */
 .t1-btn-danger {
   background: linear-gradient(
     135deg,
-    rgba(254, 226, 226, 0.78) 0%,
-    rgba(254, 202, 202, 0.55) 100%
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(254, 202, 202, 0.22) 100%
   ) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
   color: #b91c1c !important;
-  border: 1.5px solid rgba(239, 68, 68, 0.65) !important;
+  border: 1.5px solid rgba(239, 68, 68, 0.55) !important;
   box-shadow: 
-    0 4px 0 rgba(220, 38, 38, 0.28),
-    0 8px 18px rgba(239, 68, 68, 0.16),
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.9);
+    0 4px 14px rgba(239, 68, 68, 0.1),
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.9) !important;
 }
 .t1-btn-danger:hover {
-  background: rgba(254, 226, 226, 0.9) !important;
+  background: rgba(254, 226, 226, 0.55) !important;
   border-color: #ef4444 !important;
-  box-shadow: 0 6px 0 rgba(220, 38, 38, 0.32), 0 12px 24px rgba(239, 68, 68, 0.25);
-}
-.t1-btn-danger:active {
-  box-shadow: 0 1.5px 0 rgba(220, 38, 38, 0.28), inset 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 /* Nút Sao Chép Lệnh Kính Trong Suốt (Copy Command Glass Buttons) */
 .btn-copy-cmd {
-  background: rgba(255, 255, 255, 0.7) !important;
+  background: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(10px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(180%) !important;
+  border: 1.5px solid rgba(186, 230, 253, 0.5) !important;
+  color: #0369a1 !important;
+  font-weight: 800;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(7, 150, 229, 0.03), inset 0 1px 1px #FFFFFF !important;
+}
+.btn-copy-cmd:hover {
+  background: rgba(224, 242, 254, 0.5) !important;
+  border-color: #38bdf8 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(7, 150, 229, 0.12), inset 0 1px 1px #FFFFFF !important;
+}
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
   border: 1.5px solid rgba(186, 230, 253, 0.7) !important;
@@ -407,15 +407,15 @@ h1, h2, h3, h4, .font-heading {
    HỆ THỐNG GLASSMORPHISM CAO CẤP & CHIỀU SÂU 3D (LIGHT THEME LUXURY GLASS)
    ========================================================================== */
 .t1-card {
-  background: rgba(255, 255, 255, 0.76);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
   border-radius: 22px;
-  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  border: 1.5px solid rgba(255, 255, 255, 0.85) !important;
   box-shadow: 
-    0 10px 30px -5px rgba(7, 150, 229, 0.06),
-    0 4px 16px rgba(21, 34, 56, 0.03),
-    inset 0 1.5px 2px rgba(255, 255, 255, 0.95);
+    0 12px 36px rgba(7, 150, 229, 0.06),
+    0 4px 16px rgba(21, 34, 56, 0.02),
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.95) !important;
   padding: 26px 28px;
   transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
@@ -431,14 +431,14 @@ h1, h2, h3, h4, .font-heading {
 
 /* Thẻ Kính Phụ (Sub-Glass Card) Dành Cho 3 Card Phần Cứng */
 .t1-subglass-card {
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.32) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
   border-radius: 20px;
-  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  border: 1.5px solid rgba(255, 255, 255, 0.75) !important;
   box-shadow: 
-    0 4px 16px rgba(7, 150, 229, 0.04),
-    inset 0 1px 2px rgba(255, 255, 255, 0.9);
+    0 6px 20px rgba(7, 150, 229, 0.04),
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.95) !important;
   padding: 20px 22px;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
@@ -458,17 +458,17 @@ h1, h2, h3, h4, .font-heading {
 .t1-glass-banner {
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.85) 0%,
-    rgba(240, 253, 250, 0.68) 50%,
-    rgba(236, 253, 245, 0.82) 100%
-  );
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1.5px solid rgba(167, 243, 208, 0.8);
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(236, 253, 245, 0.28) 50%,
+    rgba(209, 250, 229, 0.20) 100%
+  ) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  border: 1.5px solid rgba(167, 243, 208, 0.65) !important;
   border-radius: 20px;
   box-shadow: 
-    0 8px 25px -5px rgba(16, 185, 129, 0.12),
-    inset 0 1.5px 2px #FFFFFF;
+    0 8px 24px -4px rgba(16, 185, 129, 0.08),
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.95) !important;
   padding: 22px 26px;
   transition: all 0.25s ease;
 }
@@ -476,19 +476,19 @@ h1, h2, h3, h4, .font-heading {
 /* Glass Select Dropdown */
 .t1-glass-select {
   width: 100%;
-  padding: 11px 16px;
+  padding: 11px 18px;
   font-size: 13.5px;
-  font-weight: 700;
-  color: #152238;
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1.5px solid rgba(186, 230, 253, 0.7);
+  font-weight: 750;
+  color: #0f172a !important;
+  background: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(14px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(180%) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.85) !important;
   border-radius: 14px;
   outline: none;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(7, 150, 229, 0.04), inset 0 1px 1px #FFFFFF;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03), inset 0 1.5px 2px rgba(255, 255, 255, 0.95) !important;
 }
 .t1-glass-select:focus {
   background: rgba(255, 255, 255, 0.95);
