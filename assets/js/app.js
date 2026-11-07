@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initFaqAccordion();
     initFpsCalculator();
     initDownloadModal();
+    init3DTiltEffects();
+    initAnimatedCounters();
 });
 
 /**
@@ -191,4 +193,57 @@ function initDownloadModal() {
             });
         });
     }
+}
+
+/**
+ * 5. Hiệu Ứng Nghiêng 3D Xúc Giác (Interactive 3D Tilt On Cards)
+ */
+function init3DTiltEffects() {
+    const cards = document.querySelectorAll('.t1-kpi-card, .t1-card-hover');
+    
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = ((y - centerY) / centerY) * -5;
+            const rotateY = ((x - centerX) / centerX) * 5;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+            card.style.transition = 'transform 0.4s ease';
+        });
+
+        card.addEventListener('mouseenter', () => {
+            card.style.transition = 'none';
+        });
+    });
+}
+
+/**
+ * 6. Hiệu Ứng Số Nhảy Sống Động (Animated Counters)
+ */
+function initAnimatedCounters() {
+    const playersEl = document.querySelector('.t1-kpi-card:nth-child(4) .t1-kpi-number');
+    if (!playersEl) return;
+
+    let target = 25840;
+    let current = 24000;
+    let step = Math.ceil((target - current) / 40);
+
+    const timer = setInterval(() => {
+        current += step;
+        if (current >= target) {
+            current = target;
+            clearInterval(timer);
+        }
+        playersEl.textContent = current.toLocaleString('vi-VN') + '+';
+    }, 30);
 }

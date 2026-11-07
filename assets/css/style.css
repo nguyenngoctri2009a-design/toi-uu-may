@@ -25,9 +25,84 @@ body, .t1-bg-grid {
   background-size: 24px 24px;
   color: var(--t1-text);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
 }
 
-/* 1. NÚT BẤM 3D XÚC GIÁC (3D TACTILE BUTTONS) */
+/* HIỆU ỨNG ÁNH SÁNG NỀN AURORA TRÔI NỔI (FLOATING AURORA GLOW) */
+.aurora-glow-1 {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.18) 0%, rgba(16, 185, 129, 0.12) 50%, transparent 75%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  animation: auroraPulse 8s ease-in-out infinite alternate;
+}
+
+.aurora-glow-2 {
+  position: absolute;
+  top: 25%;
+  right: 5%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, transparent 70%);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+  animation: floatOrb 10s ease-in-out infinite;
+}
+
+@keyframes auroraPulse {
+  0% { transform: translateX(-50%) scale(0.9); opacity: 0.7; }
+  100% { transform: translateX(-50%) scale(1.15); opacity: 1; }
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(15deg); }
+}
+
+/* HIỆU ỨNG CHỮ GRADIENT CHẢY ÁNH KIM (SHIMMER TEXT GRADIENT) */
+.t1-shimmer-text {
+  background: linear-gradient(90deg, #0284c7 0%, #0ea5e9 25%, #10b981 50%, #0284c7 75%, #0ea5e9 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: textShimmer 5s linear infinite;
+}
+
+@keyframes textShimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* FLOATING 3D GLASS BADGES */
+.t1-float-badge {
+  animation: floatBadge 4s ease-in-out infinite;
+  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.12), inset 0 1px 1px #ffffff;
+}
+
+.t1-float-badge-delayed {
+  animation: floatBadge 4.5s ease-in-out 1.5s infinite;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.12), inset 0 1px 1px #ffffff;
+}
+
+@keyframes floatBadge {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* 1. NÚT BẤM 3D XÚC GIÁC (3D TACTILE BUTTONS CÓ VỆT SÁNG QUÉT) */
 .t1-btn {
   display: inline-flex;
   align-items: center;
@@ -40,14 +115,33 @@ body, .t1-bg-grid {
   border: 1.5px solid transparent;
   cursor: pointer;
   user-select: none;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
+  position: relative;
+  overflow: hidden;
 }
 .t1-btn:hover {
   transform: translateY(-2px);
 }
 .t1-btn:active {
   transform: translateY(1px);
+}
+
+/* Vệt sáng chạy qua nút khi hover */
+.t1-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: skewX(-20deg);
+  transition: none;
+}
+.t1-btn:hover::after {
+  left: 150%;
+  transition: all 0.6s ease-in-out;
 }
 
 /* Nút Cyan / Primary 3D */
@@ -58,10 +152,10 @@ body, .t1-bg-grid {
   box-shadow: 0 4px 14px rgba(2, 132, 199, 0.18), inset 0 1px 1px #ffffff;
 }
 .t1-btn-primary:hover {
-  box-shadow: 0 8px 22px rgba(2, 132, 199, 0.32);
+  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.32), inset 0 1px 1px #ffffff;
 }
 .t1-btn-primary:active {
-  box-shadow: inset 0 2px 4px rgba(2, 132, 199, 0.28);
+  box-shadow: inset 0 2px 5px rgba(2, 132, 199, 0.28);
 }
 
 /* Nút Xanh Lá / Success 3D */
@@ -72,10 +166,10 @@ body, .t1-bg-grid {
   box-shadow: 0 4px 14px rgba(16, 185, 129, 0.18), inset 0 1px 1px #ffffff;
 }
 .t1-btn-success:hover {
-  box-shadow: 0 8px 22px rgba(16, 185, 129, 0.32);
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.32), inset 0 1px 1px #ffffff;
 }
 .t1-btn-success:active {
-  box-shadow: inset 0 2px 4px rgba(16, 185, 129, 0.28);
+  box-shadow: inset 0 2px 5px rgba(16, 185, 129, 0.28);
 }
 
 /* Nút Vàng Gold / Top 1 */
@@ -86,7 +180,7 @@ body, .t1-bg-grid {
   box-shadow: 0 4px 14px rgba(245, 158, 11, 0.2), inset 0 1px 1px #ffffff;
 }
 .t1-btn-gold:hover {
-  box-shadow: 0 8px 22px rgba(245, 158, 11, 0.35);
+  box-shadow: 0 10px 25px rgba(245, 158, 11, 0.35);
 }
 
 /* Nút Trắng Secondary 3D */
@@ -108,31 +202,35 @@ body, .t1-bg-grid {
 /* 2. CARD & CONTAINER 3D NEUMORPHIC-GLASS */
 .t1-card {
   background: #ffffff;
-  border-radius: 22px;
+  border-radius: 24px;
   border: 1.5px solid #e2e8f0;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04), inset 0 1px 2px #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03), inset 0 1px 2px #ffffff;
   padding: 24px 28px;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .t1-card-hover:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08), inset 0 1px 2px #ffffff;
+  transform: translateY(-4px);
+  border-color: #bae6fd;
+  box-shadow: 0 14px 34px rgba(2, 132, 199, 0.08), inset 0 1px 2px #ffffff;
 }
 
 /* 3. CARD THỐNG KÊ (KPI METRICS CARD) */
 .t1-kpi-card {
   background: #ffffff;
-  border-radius: 20px;
+  border-radius: 22px;
   border: 1.5px solid #e2e8f0;
   padding: 20px 22px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04), inset 0 1px 2px #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03), inset 0 1px 2px #ffffff;
   display: flex;
   flex-direction: column;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
 }
 .t1-kpi-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.07);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07), inset 0 1px 2px #ffffff;
+  border-color: #cbd5e1;
 }
 .t1-kpi-title {
   font-size: 12px;
@@ -146,7 +244,7 @@ body, .t1-bg-grid {
   margin-bottom: 8px;
 }
 .t1-kpi-number {
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 900;
   color: #0f172a;
   letter-spacing: -0.6px;
@@ -175,7 +273,7 @@ body, .t1-bg-grid {
 }
 .t1-input:focus, .t1-select:focus {
   border-color: #0ea5e9;
-  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15), inset 0 1px 2px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 0 0 3.5px rgba(14, 165, 233, 0.16), inset 0 1px 2px rgba(0, 0, 0, 0.02);
 }
 
 /* 5. HUY HIỆU & STATUS PILLS */
@@ -214,10 +312,10 @@ body, .t1-bg-grid {
 .t1-table-wrap {
   width: 100%;
   overflow-x: auto;
-  border-radius: 20px;
+  border-radius: 22px;
   border: 1.5px solid #e2e8f0;
   background: #ffffff;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03), inset 0 1px 2px #ffffff;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.03), inset 0 1px 2px #ffffff;
 }
 .t1-table {
   width: 100%;
@@ -235,40 +333,52 @@ body, .t1-bg-grid {
   letter-spacing: 0.3px;
 }
 .t1-table th, .t1-table td {
-  padding: 14px 18px;
+  padding: 15px 18px;
 }
 .t1-table tbody tr {
   border-bottom: 1px solid #f1f5f9;
-  transition: background 0.15s ease;
+  transition: all 0.15s ease;
 }
 .t1-table tbody tr:hover {
-  background: #f8fafc;
+  background: #f0f9ff;
 }
 
 /* 7. MODAL THỦY TINH MỜ (LUXURY GLASS MODAL) */
 .t1-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.38);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(15, 23, 42, 0.42);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   z-index: 99999;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 16px;
+  animation: fadeIn 0.25s ease;
 }
 .t1-modal-box {
   background: #ffffff;
-  border-radius: 24px;
+  border-radius: 26px;
   border: 1.5px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.16), 0 4px 16px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.2), 0 4px 18px rgba(0, 0, 0, 0.06);
   width: 100%;
   max-width: 540px;
-  padding: 28px;
+  padding: 30px;
   position: relative;
   max-height: 90vh;
   overflow-y: auto;
+  animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.94); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 /* Custom Scrollbar */

@@ -107,29 +107,44 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-24">
 
         <!-- Hero Section -->
-        <section class="py-12 sm:py-16 text-center max-w-4xl mx-auto">
+        <section class="py-12 sm:py-16 text-center max-w-4xl mx-auto relative">
+            <!-- Aurora Background Glow Orbs -->
+            <div class="aurora-glow-1"></div>
+            <div class="aurora-glow-2"></div>
+
+            <!-- Floating 3D Micro-Badges Around Hero (Parallax Float Effect) -->
+            <div class="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-2xl bg-white/90 backdrop-blur-md border border-slate-200/90 shadow-lg text-[11px] font-black text-slate-800 absolute -top-2 left-0 t1-float-badge z-20">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]"></span>
+                <span>⚡ Khóa 144Hz Chống Drop</span>
+            </div>
+
+            <div class="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-2xl bg-white/90 backdrop-blur-md border border-slate-200/90 shadow-lg text-[11px] font-black text-slate-800 absolute top-12 right-0 t1-float-badge-delayed z-20">
+                <span class="w-2.5 h-2.5 rounded-full bg-sky-500 shadow-[0_0_8px_#0ea5e9]"></span>
+                <span>🛡️ Input Lag: 0.5ms Chuẩn</span>
+            </div>
+
             <!-- Badge Top -->
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-[0_2px_8px_rgba(0,0,0,0.04)] mb-6">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-[0_2px_10px_rgba(0,0,0,0.04)] mb-6 relative z-10">
                 <span class="t1-pill t1-pill-success py-0 px-2 text-[10px]">ONLINE</span>
                 <span class="text-xs font-bold text-slate-700">Tương Thích Mọi Server FiveM VN 2026</span>
                 <span class="text-amber-500 font-bold text-xs">🥇 Top 1</span>
             </div>
 
-            <!-- Big Title -->
-            <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight leading-tight mb-6">
+            <!-- Big Title with Animated Shimmer Gradient -->
+            <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight leading-tight mb-6 relative z-10">
                 Tối Ưu Máy Hóa Giải Giật Lag <br class="hidden sm:inline">
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-sky-500 to-emerald-500">
+                <span class="t1-shimmer-text">
                     Chiến Mượt GTA 5 Roleplay
                 </span>
             </h1>
 
             <!-- Subtitle -->
-            <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
+            <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed font-medium relative z-10">
                 Ứng dụng tối ưu hóa phần cứng thông minh với triết lý thiết kế <strong>T1 3D Neumorphic-Glass</strong>: Nâng FPS từ 30 lên 80+, tự động thu hồi RAM ảo, dọn sạch cache FiveM và khóa khung hình ổn định khi combat.
             </p>
 
             <!-- 3D Action Buttons -->
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14 relative z-10">
                 <button id="btn-hero-download" class="t1-btn t1-btn-primary w-full sm:w-auto text-sm px-8 py-4 shadow-[0_6px_20px_rgba(2,132,199,0.25)]">
                     <i class="fa-brands fa-windows text-lg"></i>
                     <span>Tải Bản Cài Đặt (.EXE)</span>
@@ -525,23 +540,23 @@
 
             <!-- Download Links -->
             <div class="space-y-3 mb-5">
-                <a href="https://github.com/yourusername/gta5-vn-optimizer/releases" target="_blank" rel="noopener noreferrer" class="p-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-sky-500 hover:bg-sky-50/50 transition flex items-center justify-between group">
+                <a href="dist/t1-optimizer-v2.5.zip" download="t1-gta5-optimizer-v2.5.zip" class="p-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-sky-500 hover:bg-sky-50/50 transition flex items-center justify-between group">
                     <div class="flex items-center gap-3">
-                        <i class="fa-brands fa-github text-2xl text-slate-700 group-hover:text-sky-600"></i>
+                        <i class="fa-solid fa-file-zipper text-2xl text-sky-600"></i>
                         <div>
-                            <span class="font-black text-sm text-slate-900 block">Link 1: GitHub Official Release</span>
-                            <span class="text-[11px] text-slate-500 font-bold">Bản Installer (.exe) • Tốc độ cao • 15.2 MB</span>
+                            <span class="font-black text-sm text-slate-900 block">Tải Trực Tiếp Bản Portable (.ZIP)</span>
+                            <span class="text-[11px] text-slate-500 font-bold">Bao gồm Tool Tối Ưu 1-Click + Hướng Dẫn • Tải tức thì</span>
                         </div>
                     </div>
                     <i class="fa-solid fa-arrow-down-to-bracket text-slate-400 group-hover:text-sky-600"></i>
                 </a>
 
-                <a href="https://drive.google.com" target="_blank" rel="noopener noreferrer" class="p-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/50 transition flex items-center justify-between group">
+                <a href="https://github.com/yourusername/gta5-vn-optimizer/releases" target="_blank" rel="noopener noreferrer" class="p-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/50 transition flex items-center justify-between group">
                     <div class="flex items-center gap-3">
-                        <i class="fa-brands fa-google-drive text-2xl text-emerald-600"></i>
+                        <i class="fa-brands fa-github text-2xl text-slate-700 group-hover:text-emerald-600"></i>
                         <div>
-                            <span class="font-black text-sm text-slate-900 block">Link 2: Google Drive Dự Phòng (VN Fast)</span>
-                            <span class="text-[11px] text-slate-500 font-bold">Bản Nén (.zip) không cần cài đặt • 14.8 MB</span>
+                            <span class="font-black text-sm text-slate-900 block">Link 2: GitHub Releases (Bản Cài Đặt .EXE)</span>
+                            <span class="text-[11px] text-slate-500 font-bold">Phiên bản chính thức trên GitHub Repo</span>
                         </div>
                     </div>
                     <i class="fa-solid fa-arrow-down-to-bracket text-slate-400 group-hover:text-emerald-600"></i>
