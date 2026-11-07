@@ -368,8 +368,82 @@ h1, h2, h3, h4, .font-heading {
 }
 
 /* ==========================================================================
-   BIỂU TƯỢNG LOGO T1 & HIỆU ỨNG LASER SCANLINE
+   WORDMARK LOGO: FIVEM VN ENGINE (TYPOGRAPHY CHUYÊN NGHIỆP)
    ========================================================================== */
+.t1-wordmark-logo {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  text-decoration: none;
+  user-select: none;
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 4px 0;
+}
+.t1-wordmark-logo:hover {
+  transform: translateY(-1px);
+}
+
+/* Phần chữ FiveM: In Đậm, Màu Đen Đậm Xanh Dương */
+.t1-wordmark-fivem {
+  font-size: 22px;
+  font-weight: 900;
+  color: #152238;
+  letter-spacing: -0.5px;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+.t1-wordmark-logo:hover .t1-wordmark-fivem {
+  color: #0875C1;
+}
+
+/* Phần chữ VN: Nổi Bật Bằng Xanh Ngọc Gradient */
+.t1-wordmark-vn {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.3px;
+  line-height: 1;
+  background: linear-gradient(135deg, #0796E5 0%, #00A88A 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Chấm Xanh Ngọc Nhỏ Tạo Điểm Nhấn (Accent Dot) */
+.t1-wordmark-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #00A88A;
+  box-shadow: 0 0 8px rgba(0, 168, 138, 0.6);
+  margin-left: 2px;
+  margin-bottom: 2px;
+  vertical-align: middle;
+}
+
+/* Phần chữ Engine: Màu Xám Trung Bình, Kích Thước Nhỏ Hơn */
+.t1-wordmark-engine {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #64748B;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-left: 2px;
+  transition: color 0.2s ease;
+}
+.t1-wordmark-logo:hover .t1-wordmark-engine {
+  color: #0796E5;
+}
+
+/* Mobile responsive wordmark */
+@media (max-width: 640px) {
+  .t1-wordmark-fivem { font-size: 19px; }
+  .t1-wordmark-vn { font-size: 19px; }
+  .t1-wordmark-engine { font-size: 11.5px; }
+}
 .t1-logo-box {
   width: 44px;
   height: 44px;
