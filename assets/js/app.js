@@ -387,25 +387,25 @@ function initXmlGenerator() {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'settings.xml';
+        a.download = 'gta5_settings.xml';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
 
-        btnDownload.innerHTML = '<i class="fa-solid fa-check text-success"></i> Đã Tải settings.xml';
+        btnDownload.innerHTML = '<i class="fa-solid fa-check text-success"></i> Đã Tải gta5_settings.xml';
         setTimeout(() => {
-            btnDownload.innerHTML = '<i class="fa-solid fa-download"></i> Tải File settings.xml';
+            btnDownload.innerHTML = '<i class="fa-solid fa-download"></i> Tải File gta5_settings.xml';
         }, 2500);
     });
 
     if (btnCopyPath) {
         btnCopyPath.addEventListener('click', () => {
-            const targetPath = '%USERPROFILE%\\Documents\\Rockstar Games\\GTA5 VN';
+            const targetPath = '%appdata%\\CitizenFX';
             navigator.clipboard.writeText(targetPath).then(() => {
-                btnCopyPath.innerHTML = '<i class="fa-solid fa-check text-success"></i> Đã Copy Đường Dẫn GTA5 VN!';
+                btnCopyPath.innerHTML = '<i class="fa-solid fa-check text-success"></i> Đã Copy %appdata%\\CitizenFX!';
                 setTimeout(() => {
-                    btnCopyPath.innerHTML = '<i class="fa-regular fa-copy"></i> Copy Thư Mục Dán File';
+                    btnCopyPath.innerHTML = '<i class="fa-regular fa-copy"></i> Copy Thư Mục CitizenFX';
                 }, 2000);
             });
         });
