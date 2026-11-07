@@ -112,7 +112,7 @@ h1, h2, h3, h4, .font-heading {
 }
 
 /* ==========================================================================
-   HỆ THỐNG NÚT BẤM 3D (3D TACTILE BUTTONS) - ƯU TIÊN CAO NHẤT
+   HỆ THỐNG NÚT BẤM 3D (3D TACTILE BUTTONS) - CHUẨN T1 LUXURY HYBRID
    ========================================================================== */
 .t1-btn-3d {
   display: inline-flex;
@@ -121,97 +121,179 @@ h1, h2, h3, h4, .font-heading {
   gap: 10px;
   padding: 13px 26px;
   font-size: 14.5px;
-  font-weight: 800;
+  font-weight: 850;
   border-radius: 14px;
   cursor: pointer;
   user-select: none;
   text-decoration: none;
   position: relative;
+  overflow: hidden;
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   border: 1px solid transparent;
   outline: none;
+  letter-spacing: 0.2px;
 }
 
-/* Hiệu ứng Nâng 3D khi Hover và Lún thật khi Active */
+/* Tia Quét Sáng Lướt Qua Mặt Nút Khi Hover (Laser Shimmer Sweep) */
+.t1-btn-3d::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -120%;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+  transition: none;
+}
+.t1-btn-3d:hover::after {
+  left: 160%;
+  transition: left 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Micro-Interaction: Icon Nhúc Nhích Sống Động */
+.t1-btn-3d i, .t1-btn-3d svg {
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.t1-btn-3d:hover i, .t1-btn-3d:hover svg {
+  transform: scale(1.18);
+}
+.t1-btn-primary:hover i.fa-download, 
+.t1-btn-primary:hover svg {
+  transform: translateY(2px) scale(1.15);
+}
+
+/* Hiệu ứng Nâng 3D khi Hover và Lún Thật khi Active */
 .t1-btn-3d:hover {
-  transform: translateY(-3px);
+  transform: translateY(-3.5px);
 }
 .t1-btn-3d:active {
-  transform: translateY(1px);
+  transform: translateY(2px);
 }
 
-/* 1. Primary Button 3D (Xanh Dương) */
+/* 1. Primary Button 3D (Xanh Dương Luminous) */
 .t1-btn-primary {
-  background: var(--btn-primary-bg);
+  background: linear-gradient(180deg, #18A9FE 0%, #0796E5 60%, #067EC2 100%);
   color: #FFFFFF !important;
-  border: 1px solid #38B8FF;
+  border: 1px solid #70C9FF;
   box-shadow: 
-    0 4px 0 #0672AF,
-    0 8px 18px rgba(7, 150, 229, 0.32),
-    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+    0 4.5px 0 #05699F,
+    0 8px 20px rgba(7, 150, 229, 0.32),
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.75),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.1);
 }
 .t1-btn-primary:hover {
-  background: linear-gradient(180deg, #2BB0FD 0%, #088ADB 100%);
+  background: linear-gradient(180deg, #30B4FF 0%, #089BEB 60%, #0784CC 100%);
+  border-color: #A3DDFF;
   box-shadow: 
-    0 6px 0 #0672AF,
-    0 12px 24px rgba(7, 150, 229, 0.4),
-    inset 0 1px 1px rgba(255, 255, 255, 0.5);
+    0 6.5px 0 #05699F,
+    0 16px 32px rgba(7, 150, 229, 0.45),
+    inset 0 1.5px 1px #FFFFFF,
+    inset 0 -1px 2px rgba(0, 0, 0, 0.1);
 }
 .t1-btn-primary:active {
+  background: linear-gradient(180deg, #0796E5 0%, #067EC2 100%);
   box-shadow: 
-    0 2px 0 #0672AF,
-    0 4px 8px rgba(7, 150, 229, 0.25),
-    inset 0 2px 4px rgba(0, 0, 0, 0.15);
+    0 1.5px 0 #05699F,
+    0 4px 10px rgba(7, 150, 229, 0.25),
+    inset 0 2.5px 5px rgba(0, 0, 0, 0.25);
 }
 
-/* 2. Success Button 3D (Xanh Ngọc) */
+/* Nhịp Thở Phát Sáng Aura Cho Nút Tải Chính (Breathing Aura Glow) */
+#btn-hero-download {
+  animation: t1-primary-pulse 3.5s ease-in-out infinite;
+}
+@keyframes t1-primary-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 4.5px 0 #05699F,
+      0 8px 20px rgba(7, 150, 229, 0.35),
+      0 0 0 0 rgba(7, 150, 229, 0.4),
+      inset 0 1.5px 1px rgba(255, 255, 255, 0.75);
+  }
+  50% {
+    box-shadow: 
+      0 4.5px 0 #05699F,
+      0 12px 28px rgba(7, 150, 229, 0.5),
+      0 0 0 8px rgba(7, 150, 229, 0),
+      inset 0 1.5px 1px rgba(255, 255, 255, 0.9);
+  }
+}
+
+/* 2. Success Button 3D (Xanh Ngọc Emerald Luminous) */
 .t1-btn-success {
-  background: var(--btn-secondary-bg);
+  background: linear-gradient(180deg, #18DDB6 0%, #00A88A 60%, #008F75 100%);
   color: #FFFFFF !important;
-  border: 1px solid #14D0AC;
+  border: 1px solid #5EEAD4;
   box-shadow: 
-    0 4px 0 #007D67,
-    0 8px 18px rgba(0, 168, 138, 0.3),
-    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+    0 4.5px 0 #006D5A,
+    0 8px 20px rgba(0, 168, 138, 0.32),
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.75),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.1);
 }
 .t1-btn-success:hover {
-  background: linear-gradient(180deg, #10CBA8 0%, #00997D 100%);
+  background: linear-gradient(180deg, #2AE5BF 0%, #05B897 60%, #00997D 100%);
+  border-color: #99F6E4;
   box-shadow: 
-    0 6px 0 #007D67,
-    0 12px 24px rgba(0, 168, 138, 0.38),
-    inset 0 1px 1px rgba(255, 255, 255, 0.5);
+    0 6.5px 0 #006D5A,
+    0 16px 32px rgba(0, 168, 138, 0.42),
+    inset 0 1.5px 1px #FFFFFF,
+    inset 0 -1px 2px rgba(0, 0, 0, 0.1);
 }
 .t1-btn-success:active {
+  background: linear-gradient(180deg, #00A88A 0%, #008F75 100%);
   box-shadow: 
-    0 2px 0 #007D67,
-    0 4px 8px rgba(0, 168, 138, 0.2),
-    inset 0 2px 4px rgba(0, 0, 0, 0.15);
+    0 1.5px 0 #006D5A,
+    0 4px 10px rgba(0, 168, 138, 0.22),
+    inset 0 2.5px 5px rgba(0, 0, 0, 0.25);
 }
 
-/* 3. Secondary Button 3D (Trắng Nổi) */
-.t1-btn-secondary {
-  background: var(--btn-white-bg);
-  color: var(--text-primary) !important;
-  border: 1.5px solid var(--border);
+/* 3. Surface / Secondary Button 3D (Trắng Sứ Nổi Khối T1) */
+.t1-btn-surface, .t1-btn-secondary {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+  color: #152238 !important;
+  border: 1.5px solid #CBD5E1;
   box-shadow: 
     0 4px 0 #CBD5E1,
-    0 6px 14px rgba(0, 0, 0, 0.05),
-    inset 0 1px 1px #FFFFFF;
+    0 6px 14px rgba(21, 34, 56, 0.05),
+    inset 0 1.5px 1px #FFFFFF;
 }
-.t1-btn-secondary:hover {
+.t1-btn-surface:hover, .t1-btn-secondary:hover {
   background: #FFFFFF;
-  border-color: #94A3B8;
-  color: var(--primary) !important;
+  border-color: #38BDF8;
+  color: #0284C7 !important;
   box-shadow: 
-    0 6px 0 #CBD5E1,
-    0 8px 18px rgba(0, 0, 0, 0.08),
-    inset 0 1px 1px #FFFFFF;
+    0 6px 0 #94A3B8,
+    0 12px 24px rgba(7, 150, 229, 0.15),
+    inset 0 1.5px 1px #FFFFFF;
 }
-.t1-btn-secondary:active {
+.t1-btn-surface:active, .t1-btn-secondary:active {
   box-shadow: 
-    0 2px 0 #CBD5E1,
+    0 1.5px 0 #CBD5E1,
     0 3px 6px rgba(0, 0, 0, 0.04),
-    inset 0 2px 3px rgba(0, 0, 0, 0.06);
+    inset 0 2px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* Hiệu ứng Sóng Tác Động Khi Nhấn Nút (Click Ripple Wave) */
+.t1-ripple-wave {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  transform: scale(0);
+  animation: t1-ripple-anim 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+@keyframes t1-ripple-anim {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
 }
 
 /* 4. Warning Button 3D (Cam Nhạt) */

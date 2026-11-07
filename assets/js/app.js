@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initXmlGenerator();
     initCommandCopier();
     initMockupBoost();
+    initButtonRipple();
 });
 
 /**
@@ -466,5 +467,34 @@ function initMockupBoost() {
                 }, 3500);
             }
         }, 30);
+    });
+}
+
+
+/**
+ * 11. Hi?u ?ng s?ng lan t?a x?c gi?c khi click chu?t (Button Click Ripple Wave)
+ */
+function initButtonRipple() {
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.t1-btn-3d');
+        if (!btn) return;
+
+        const rect = btn.getBoundingClientRect();
+        const ripple = document.createElement('span');
+        ripple.className = 't1-ripple-wave';
+        
+        const size = Math.max(rect.width, rect.height) * 1.6;
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        ripple.style.width = `${size}px`;
+        ripple.style.height = `${size}px`;
+        ripple.style.left = `${x}px`;
+        ripple.style.top = `${y}px`;
+
+        btn.appendChild(ripple);
+        setTimeout(() => {
+            ripple.remove();
+        }, 650);
     });
 }
