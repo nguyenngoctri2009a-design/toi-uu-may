@@ -79,3 +79,4 @@ Gắn mác chiêu thức tương tự Liên Minh Huyền Thoại:
 4. Xây dựng Hero Section với tiêu đề giật tít, vầng hào quang đỏ nhạt làm nền.
 5. Tạo khối Bộ Kỹ Năng T1 (Q-W-E-R).
 6. Tích hợp thanh Benchmark so sánh trước/sau tối ưu.
+

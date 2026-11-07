@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initHardwareScanner();
     initFaqAccordion();
     initFpsCalculator();
+    initThemeSwitcher();
+    initDownloadModal();
+    initLiveDownloadCounter();
 });
 
 /**
@@ -152,5 +155,96 @@ function initFaqAccordion() {
             }
         });
     });
+}
+
+/**
+ * Bộ chuyển đổi Theme Sáng (White Edition) / Tối (Carbon Dark)
+ */
+function initThemeSwitcher() {
+    const toggleBtn = document.getElementById('theme-toggle');
+    const icon = document.getElementById('theme-icon');
+    const label = document.getElementById('theme-label');
+    if (!toggleBtn) return;
+
+    let isDark = localStorage.getItem('t1-theme') === 'dark';
+
+    function applyTheme() {
+        if (isDark) {
+            document.documentElement.classList.add('dark');
+            document.body.classList.replace('bg-t1bg', 'bg-slate-950');
+            if (icon) icon.className = 'fa-solid fa-sun text-amber-400';
+            if (label) label.textContent = 'Bản Sáng';
+        } else {
+            document.documentElement.classList.remove('dark');
+            document.body.classList.replace('bg-slate-950', 'bg-t1bg');
+            if (icon) icon.className = 'fa-solid fa-moon text-slate-600';
+            if (label) label.textContent = 'Bản Tối';
+        }
+    }
+
+    applyTheme();
+
+    toggleBtn.addEventListener('click', () => {
+        isDark = !isDark;
+        localStorage.setItem('t1-theme', isDark ? 'dark' : 'light');
+        applyTheme();
+    });
+}
+
+/**
+ * Modal Tải App & Sao Chép Hash SHA-256
+ */
+function initDownloadModal() {
+    const modal = document.getElementById('download-modal');
+    const openBtn = document.getElementById('btn-open-download-modal');
+    const closeBtn = document.getElementById('btn-close-modal');
+    const doneBtn = document.getElementById('btn-modal-done');
+    const copyHashBtn = document.getElementById('btn-copy-hash');
+    const hashText = document.getElementById('hash-text');
+
+    if (!modal) return;
+
+    function openModal() {
+        modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+        modal.classList.add('hidden');
+    }
+
+    if (openBtn) openBtn.addEventListener('click', openModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (doneBtn) doneBtn.addEventListener('click', closeModal);
+
+    // Đóng khi click ngoài hộp modal
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    // Sao chép mã SHA-256
+    if (copyHashBtn && hashText) {
+        copyHashBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(hashText.textContent.trim()).then(() => {
+                copyHashBtn.innerHTML = '<i class="fa-solid fa-check text-emerald-600"></i> Đã sao chép!';
+                setTimeout(() => {
+                    copyHashBtn.innerHTML = '<i class="fa-regular fa-copy"></i> Sao chép';
+                }, 2000);
+            });
+        });
+    }
+}
+
+/**
+ * Tăng lượt tải giả lập sống động theo thời gian thực
+ */
+function initLiveDownloadCounter() {
+    const counterEl = document.getElementById('live-download-counter');
+    if (!counterEl) return;
+
+    let count = 1428;
+    setInterval(() => {
+        count += Math.floor(Math.random() * 2) + 1;
+        counterEl.textContent = `${count.toLocaleString('vi-VN')} lượt tải hôm nay`;
+    }, 18000);
 }
 
