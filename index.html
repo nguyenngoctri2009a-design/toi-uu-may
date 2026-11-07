@@ -205,97 +205,52 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-24">
 
         <!-- ======================================================================
-             V. HERO SECTION (REDESIGN SVG PREMIUM COMBINED WITH HTML/CSS)
+             V. HERO SECTION (TINH GỌN THỊ GIÁC - TRỰC QUAN GIAO DIỆN APP NGAY)
              ====================================================================== -->
-        <section class="relative pt-12 pb-20 text-center max-w-5xl mx-auto overflow-hidden">
-            <!-- Nền SVG Vector Trang Trí Công Nghệ Cao Cấp (Lightweight & Zero Lag) -->
+        <section class="relative pt-6 sm:pt-8 pb-16 text-center max-w-5xl mx-auto">
+            <!-- Nền Ambient Radial Nhẹ -->
             <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center">
-                <svg viewBox="0 0 1000 500" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" class="w-full h-full opacity-60">
-                    <defs>
-                        <!-- Radial Ambient Glow -->
-                        <radialGradient id="heroTechGlow" cx="50%" cy="40%" r="50%">
-                            <stop offset="0%" stop-color="#0796E5" stop-opacity="0.12" />
-                            <stop offset="50%" stop-color="#00A88A" stop-opacity="0.06" />
-                            <stop offset="100%" stop-color="#F4F8FC" stop-opacity="0" />
-                        </radialGradient>
-
-                        <!-- Gradient Cho Đường Nối Vector -->
-                        <linearGradient id="lineGradCyan" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stop-color="#0796E5" stop-opacity="0" />
-                            <stop offset="30%" stop-color="#0796E5" stop-opacity="0.4" />
-                            <stop offset="70%" stop-color="#00A88A" stop-opacity="0.4" />
-                            <stop offset="100%" stop-color="#00A88A" stop-opacity="0" />
-                        </linearGradient>
-
-                        <!-- Pattern Chấm Vector SVG Nhẹ Nhàng -->
-                        <pattern id="svgDotGrid" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
-                            <circle cx="12" cy="12" r="0.8" fill="#CBD5E1" opacity="0.6" />
-                        </pattern>
-                    </defs>
-
-                    <!-- Nền Lưới Chấm SVG -->
-                    <rect width="1000" height="500" fill="url(#svgDotGrid)" />
-
-                    <!-- Quầng Sáng Trung Tâm -->
-                    <rect width="1000" height="500" fill="url(#heroTechGlow)" />
-
-                    <!-- Đường Cong SVG Mềm Mại & Kết Nối Công Nghệ -->
-                    <path d="M50 250 C 250 120, 750 120, 950 250" fill="none" stroke="url(#lineGradCyan)" stroke-width="1.5" />
-                    <path d="M120 280 C 320 380, 680 380, 880 280" fill="none" stroke="url(#lineGradCyan)" stroke-width="1" stroke-dasharray="6 4" opacity="0.7" />
-
-                    <!-- Các Điểm Nút Chấm Sáng Công Nghệ (Glowing Circuit Nodes) -->
-                    <circle cx="250" cy="170" r="3.5" fill="#0796E5" opacity="0.75" />
-                    <circle cx="250" cy="170" r="8" fill="#0796E5" opacity="0.15" />
-
-                    <circle cx="750" cy="170" r="3.5" fill="#00A88A" opacity="0.75" />
-                    <circle cx="750" cy="170" r="8" fill="#00A88A" opacity="0.15" />
-
-                    <circle cx="500" cy="120" r="2.5" fill="#0796E5" opacity="0.6" />
-                    <circle cx="500" cy="380" r="2.5" fill="#00A88A" opacity="0.6" />
-                </svg>
+                <div class="w-[600px] h-[300px] bg-gradient-to-b from-sky-100/40 via-emerald-50/30 to-transparent blur-3xl rounded-full"></div>
             </div>
 
-            <!-- 3. Badge Phiên Bản (Pill Trắng, Viền Xanh Nhạt, Shadow Nhẹ) -->
-            <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-[#DFEAF4] shadow-[0_2px_10px_rgba(21,34,56,0.04)] mb-7 transition-transform hover:scale-105 duration-200">
+            <!-- Badge Nhỏ Gọn Cân Đối -->
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-[#DFEAF4] shadow-[0_2px_8px_rgba(21,34,56,0.04)] mb-4">
                 <span class="flex h-2 w-2 relative">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-success"></span>
                 </span>
-                <span class="text-xs font-bold text-textPrimary tracking-wide">FiveM VN Engine 2026</span>
+                <span class="text-xs font-bold text-textPrimary">FiveM VN Engine 2026</span>
                 <span class="h-3 w-[1px] bg-[#DFEAF4]"></span>
                 <span class="text-xs font-black text-primary">v2.5.0 Stable</span>
             </div>
 
-            <!-- 1. Tiêu Đề Chính HTML Kèm Typography Hiện Đại & Gradient Sắc Nét -->
-            <div class="max-w-3xl mx-auto px-4 mb-6">
-                <!-- Dòng 1: Tối Ưu Máy Hóa Giải Giật Lag -->
-                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-textPrimary tracking-tight leading-[1.15] mb-2">
+            <!-- Tiêu Đề Gọn Gàng - Không Bao Giờ Rớt Chữ "Lag" Lẻ Loi -->
+            <div class="max-w-2xl mx-auto px-4 mb-4">
+                <h1 class="text-2xl sm:text-4xl lg:text-[42px] font-black text-textPrimary tracking-tight leading-tight mb-1">
                     Tối Ưu Máy Hóa Giải Giật Lag
                 </h1>
-
-                <!-- Dòng 2: Chiến Mượt GTA 5 Roleplay (Gradient Xanh Dương Sang Xanh Ngọc) -->
-                <div class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15]">
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#0796E5] via-[#0888D1] to-[#00A88A] drop-shadow-[0_2px_12px_rgba(7,150,229,0.15)]">
+                <div class="text-2xl sm:text-4xl lg:text-[42px] font-black tracking-tight leading-tight">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#0875C1] to-secondary">
                         Chiến Mượt GTA 5 Roleplay
                     </span>
                 </div>
             </div>
 
-            <!-- Mô Tả Cân Đối -->
-            <p class="text-sm sm:text-base text-textSecondary max-w-2xl mx-auto mb-10 leading-relaxed font-medium px-4">
-                Công cụ tối ưu hóa phần cứng chuyên sâu cho cộng đồng FiveM Việt Nam. Giúp cải thiện hiệu suất, quản lý tài nguyên hệ thống và nâng cao trải nghiệm chơi game.
+            <!-- Mô Tả 1 Dòng Tinh Tế (Không Dài Dòng Toàn Chữ) -->
+            <p class="text-xs sm:text-sm text-textSecondary max-w-xl mx-auto mb-6 font-medium px-4">
+                Giải pháp phần cứng thông minh cho game thủ FiveM Việt Nam. Nâng cao FPS, dọn RAM ảo và giảm 85% độ trễ chuột.
             </p>
 
-            <!-- Nút Tải Chính 3D Nổi Khối -->
-            <div class="flex items-center justify-center mb-16">
-                <button id="btn-hero-download" class="t1-btn-3d t1-btn-primary text-sm sm:text-base px-8 sm:px-10 py-3.5 sm:py-4">
-                    <i class="fa-solid fa-download text-lg"></i>
+            <!-- Nút Tải 3D Nổi Khối Đặt Ngay Tầm Mắt -->
+            <div class="flex items-center justify-center mb-10">
+                <button id="btn-hero-download" class="t1-btn-3d t1-btn-primary text-sm sm:text-base px-8 sm:px-10 py-3 sm:py-3.5 shadow-md hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-download text-base"></i>
                     <span>Tải Bản Tối Ưu Miễn Phí (.ZIP / .EXE)</span>
                 </button>
             </div>
 
             <!-- ======================================================================
-                 VI. DASHBOARD MÔ PHỎNG PHẦN MỀM (THEO TIÊU CHUẨN THIẾT KẾ CHÍNH)
+                 VI. DASHBOARD MÔ PHỎNG PHẦN MỀM (ĐƯỢC ĐẨY LÊN NGAY TẦM MẮT NGƯỜI DÙNG)
                  ====================================================================== -->
             <div class="t1-window-mockup text-left mb-16">
                 <!-- Thanh Tiêu Đề Cửa Sổ -->
