@@ -4,6 +4,8 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    initAntiZoom();
+    initThreadingEngine();
     initMobileMenu();
     initHardwareScanner();
     initFaqAccordion();
@@ -139,26 +141,43 @@ function initFpsCalculator() {
 
     if (!resSelect || !presetSelect || !resultEl) return;
 
+    function applyFpsDisplay(minFps, maxFps) {
+        window.requestAnimationFrame(() => {
+            const valEl = document.getElementById('calc-fps-val');
+            if (valEl) valEl.textContent = `${minFps} - ${maxFps}`;
+            resultEl.textContent = `~ ${minFps} - ${maxFps} FPS`;
+        });
+    }
+
     function updateFps() {
         const cores = navigator.hardwareConcurrency || 4;
         const resMult = parseFloat(resSelect.value) || 1.0;
         const presetMult = parseFloat(presetSelect.value) || 1.0;
 
-        let baseFps = 55;
-        if (cores >= 12) baseFps = 125;
-        else if (cores >= 8) baseFps = 100;
-        else if (cores >= 6) baseFps = 80;
-        else if (cores < 4) baseFps = 38;
+        if (appBgWorker) {
+            // Phân luồng tính toán qua Background Web Worker ngoài CPU Core phụ
+            appBgWorker.onmessage = function(e) {
+                if (e.data && e.data.type === 'CALCULATE_FPS') {
+                    applyFpsDisplay(e.data.result.minFps, e.data.result.maxFps);
+                }
+            };
+            appBgWorker.postMessage({
+                type: 'CALCULATE_FPS',
+                payload: { cores, resMult, presetMult }
+            });
+        } else {
+            // Fallback Main Thread
+            let baseFps = 55;
+            if (cores >= 12) baseFps = 125;
+            else if (cores >= 8) baseFps = 100;
+            else if (cores >= 6) baseFps = 80;
+            else if (cores < 4) baseFps = 38;
 
-        const calculated = Math.round(baseFps * resMult * presetMult);
-        const minFps = Math.max(25, calculated - 8);
-        const maxFps = calculated + 12;
-
-        const valEl = document.getElementById('calc-fps-val');
-        if (valEl) {
-            valEl.textContent = `${minFps} - ${maxFps}`;
+            const calculated = Math.round(baseFps * resMult * presetMult);
+            const minFps = Math.max(25, calculated - 8);
+            const maxFps = calculated + 12;
+            applyFpsDisplay(minFps, maxFps);
         }
-        resultEl.textContent = `~ ${minFps} - ${maxFps} FPS`;
     }
 
     resSelect.addEventListener('change', updateFps);
@@ -315,18 +334,26 @@ function initAnimatedCounters() {
     const usersEl = document.getElementById('stat-counter-users');
     if (!usersEl) return;
 
-    let target = 25840;
-    let current = 24500;
-    let step = Math.ceil((target - current) / 35);
+    const startVal = 24500;
+    const targetVal = 25840;
+    const duration = 1200; // 1.2s smooth animation
+    let startTime = null;
 
-    const timer = setInterval(() => {
-        current += step;
-        if (current >= target) {
-            current = target;
-            clearInterval(timer);
-        }
+    function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        // Easing cubic out
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        const current = Math.floor(startVal + (targetVal - startVal) * easeProgress);
         usersEl.textContent = current.toLocaleString('vi-VN') + '+';
-    }, 30);
+
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        } else {
+            usersEl.textContent = targetVal.toLocaleString('vi-VN') + '+';
+        }
+    }
+    window.requestAnimationFrame(step);
 }
 
 /**
@@ -487,14 +514,21 @@ function initMockupBoost() {
         btnBoost.classList.remove('t1-btn-primary');
         btnBoost.classList.add('t1-btn-success');
 
-        let currentFps = 124;
+        const startFps = 124;
         const targetFps = 144;
-        const interval = setInterval(() => {
-            if (currentFps < targetFps) {
-                currentFps += 2;
-                fpsDisplay.textContent = currentFps;
+        const duration = 600;
+        let startTime = null;
+
+        function animateBoost(timestamp) {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            const val = Math.floor(startFps + (targetFps - startFps) * progress);
+            fpsDisplay.textContent = val;
+
+            if (progress < 1) {
+                window.requestAnimationFrame(animateBoost);
             } else {
-                clearInterval(interval);
+                fpsDisplay.textContent = targetFps;
                 if (ramDisplay) ramDisplay.textContent = '4.65';
                 btnBoost.innerHTML = '<i class="fa-solid fa-check"></i> <span>ĐÃ BẬT KHÓA 144 FPS!</span>';
                 setTimeout(() => {
@@ -503,7 +537,8 @@ function initMockupBoost() {
                     btnBoost.classList.add('t1-btn-primary');
                 }, 3500);
             }
-        }, 30);
+        }
+        window.requestAnimationFrame(animateBoost);
     });
 }
 
@@ -721,3 +756,81 @@ function showReviewToast(name) {
     }, 4000);
 }
 
+
+/**
+ * ======================================================================
+ * HỆ THỐNG CHỐNG PHÓNG TO / THU NHỎ & PHÂN LUỒNG TRÁNH LAG (THREADING ENGINE)
+ * ======================================================================
+ */
+
+// 1. Chống Phóng To / Thu Nhỏ Toàn Diện (Anti-Zoom Lock)
+function initAntiZoom() {
+    // Chặn cử chỉ zoom trên iOS Safari & trình duyệt di động
+    document.addEventListener('gesturestart', (e) => e.preventDefault(), { passive: false });
+    document.addEventListener('gesturechange', (e) => e.preventDefault(), { passive: false });
+    document.addEventListener('gestureend', (e) => e.preventDefault(), { passive: false });
+
+    // Chặn pinch-to-zoom đa điểm chạm (2 ngón trở lên)
+    document.addEventListener('touchstart', (e) => {
+        if (e.touches && e.touches.length > 1) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+
+    // Chặn Double-Tap to Zoom (< 300ms)
+    let lastTouchTime = 0;
+    document.addEventListener('touchend', (e) => {
+        const currentTime = new Date().getTime();
+        const tapInterval = currentTime - lastTouchTime;
+        if (tapInterval < 300 && tapInterval > 0) {
+            e.preventDefault();
+        }
+        lastTouchTime = currentTime;
+    }, { passive: false });
+
+    // Chặn Ctrl + Lăn chuột (Pinch / Zoom chuột trên Desktop)
+    window.addEventListener('wheel', (e) => {
+        if (e.ctrlKey) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+
+    // Chặn phím tắt zoom bàn phím: Ctrl +, Ctrl -, Ctrl 0, Ctrl =
+    window.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0')) {
+            e.preventDefault();
+        }
+    });
+}
+
+// 2. Hệ Thống Phân Luồng Tránh Lag (Background Web Worker & Task Scheduler)
+let appBgWorker = null;
+
+function initThreadingEngine() {
+    try {
+        // Tạo Web Worker nội tuyến qua Blob URL chạy trên luồng CPU riêng biệt
+        const workerScript = `
+            self.onmessage = function(e) {
+                const { type, id, payload } = e.data;
+                if (type === 'CALCULATE_FPS') {
+                    const { cores, resMult, presetMult } = payload;
+                    let baseFps = 55;
+                    if (cores >= 12) baseFps = 125;
+                    else if (cores >= 8) baseFps = 100;
+                    else if (cores >= 6) baseFps = 80;
+                    else if (cores < 4) baseFps = 38;
+
+                    const calculated = Math.round(baseFps * resMult * presetMult);
+                    const minFps = Math.max(25, calculated - 8);
+                    const maxFps = calculated + 12;
+                    self.postMessage({ id, type, result: { minFps, maxFps } });
+                }
+            };
+        `;
+        const blob = new Blob([workerScript], { type: 'application/javascript' });
+        appBgWorker = new Worker(URL.createObjectURL(blob));
+        console.log('[GTA5VN-System] Background Web Worker Thread Initialized.');
+    } catch (err) {
+        console.warn('[GTA5VN-System] Web Worker fallback to Main Thread scheduler.', err);
+    }
+}

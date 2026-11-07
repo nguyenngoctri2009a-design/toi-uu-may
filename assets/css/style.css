@@ -1018,3 +1018,26 @@ h1, h2, h3, h4, .font-heading {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary);
 }
+
+/* ==========================================================================
+   KHÓA CỨNG CHỐNG PHÓNG TO THU NHỎ & GPU THREAD ACCELERATION (PHÂN LUỒNG MƯỢT)
+   ========================================================================== */
+html, body {
+  touch-action: pan-x pan-y !important;
+  -webkit-text-size-adjust: 100% !important;
+  text-size-adjust: 100% !important;
+  overscroll-behavior-y: none;
+}
+
+/* Chống double-tap zoom trên tất cả nút bấm và liên kết */
+button, a, input, select, textarea, .t1-btn-3d {
+  touch-action: manipulation !important;
+}
+
+/* Phân luồng tăng tốc phần cứng GPU (Hardware Acceleration Layer) */
+.t1-card, .t1-glass-card, .t1-btn-3d, .t1-window-mockup, header {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
