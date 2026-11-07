@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCommandCopier();
     initMockupBoost();
     initButtonRipple();
+    initReviewModal();
 });
 
 /**
@@ -500,5 +501,22 @@ function initButtonRipple() {
         setTimeout(() => {
             ripple.remove();
         }, 650);
+    });
+}
+
+/**
+ * 12. Gửi Đánh Giá Của Game Thủ (Community Review Action)
+ */
+function initReviewModal() {
+    const btn = document.getElementById('btn-open-review-modal');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+        const name = prompt('Nhập tên hoặc nickname nhân vật Roleplay của bạn:', 'Game Thủ FiveM');
+        if (name && name.trim()) {
+            const comment = prompt('Chia sẻ cảm nhận sau khi dùng FiveM VN Engine (FPS tăng bao nhiêu, độ mượt):', 'Phần mềm tối ưu rất tốt, hết hẳn drop FPS khi combat!');
+            if (comment && comment.trim()) {
+                alert(`Cảm ơn ${name.trim()}! Đánh giá 5 sao của bạn đã được gửi thành công vào hệ thống FiveM VN.`);
+            }
+        }
     });
 }
