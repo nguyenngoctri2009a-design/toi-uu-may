@@ -143,17 +143,12 @@
                 Ứng dụng tối ưu hóa phần cứng thông minh với triết lý thiết kế <strong>T1 3D Neumorphic-Glass</strong>: Nâng FPS từ 30 lên 80+, tự động thu hồi RAM ảo, dọn sạch cache FiveM và khóa khung hình ổn định khi combat.
             </p>
 
-            <!-- 3D Action Buttons -->
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14 relative z-10">
-                <button id="btn-hero-download" class="t1-btn t1-btn-primary w-full sm:w-auto text-sm px-8 py-4 shadow-[0_6px_20px_rgba(2,132,199,0.25)]">
-                    <i class="fa-brands fa-windows text-lg"></i>
-                    <span>Tải Bản Cài Đặt (.EXE)</span>
-                    <span class="text-[11px] bg-sky-200/60 text-sky-900 px-2 py-0.5 rounded-full font-black">v2.5</span>
-                </button>
-
-                <button id="btn-hero-zip" class="t1-btn t1-btn-secondary w-full sm:w-auto text-sm px-8 py-4">
-                    <i class="fa-solid fa-file-zipper text-slate-500"></i>
-                    <span>Bản Portable (.ZIP)</span>
+            <!-- Single 3D Action Button Hero -->
+            <div class="flex items-center justify-center mb-14 relative z-10">
+                <button id="btn-hero-download" class="t1-btn t1-btn-primary text-base px-10 py-4 shadow-[0_8px_25px_rgba(2,132,199,0.3)] hover:scale-105 transition-transform duration-200">
+                    <i class="fa-solid fa-download text-lg"></i>
+                    <span>Tải Phần Mềm T1 Optimizer (Bản Đầy Đủ)</span>
+                    <span class="text-xs bg-sky-200/80 text-sky-950 px-2.5 py-0.5 rounded-full font-black">v2.5.0 Pro</span>
                 </button>
             </div>
 
@@ -538,28 +533,25 @@
                 </button>
             </div>
 
-            <!-- Download Links -->
-            <div class="space-y-3 mb-5">
-                <a href="dist/t1-optimizer-v2.5.zip" download="t1-gta5-optimizer-v2.5.zip" class="p-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-sky-500 hover:bg-sky-50/50 transition flex items-center justify-between group">
-                    <div class="flex items-center gap-3">
-                        <i class="fa-solid fa-file-zipper text-2xl text-sky-600"></i>
+            <!-- Single Direct Download Card (Chỉ 1 Link Tải Duy Nhất) -->
+            <div class="mb-5">
+                <a href="dist/t1-optimizer-v2.5.zip" download="t1-gta5-optimizer-v2.5.zip" class="p-5 rounded-2xl bg-gradient-to-r from-sky-50 via-white to-emerald-50 border-2 border-sky-400 hover:border-sky-600 shadow-[0_8px_20px_rgba(2,132,199,0.15)] hover:shadow-[0_12px_28px_rgba(2,132,199,0.25)] transition-all duration-200 flex items-center justify-between group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-sky-600 to-sky-400 flex items-center justify-center text-white text-xl shadow-md group-hover:scale-105 transition-transform">
+                            <i class="fa-solid fa-download animate-bounce"></i>
+                        </div>
                         <div>
-                            <span class="font-black text-sm text-slate-900 block">Tải Trực Tiếp Bản Portable (.ZIP)</span>
-                            <span class="text-[11px] text-slate-500 font-bold">Bao gồm Tool Tối Ưu 1-Click + Hướng Dẫn • Tải tức thì</span>
+                            <span class="font-black text-base text-slate-900 block group-hover:text-sky-600 transition-colors">
+                                Tải Ngay Bản Chính Thức (Tốc Độ Cao)
+                            </span>
+                            <span class="text-xs text-slate-500 font-bold block mt-0.5">
+                                Bản Đầy Đủ v2.5.0 Pro • Đã Kèm Tool 1-Click + Hướng Dẫn • 15.2 MB
+                            </span>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-down-to-bracket text-slate-400 group-hover:text-sky-600"></i>
-                </a>
-
-                <a href="https://github.com/yourusername/gta5-vn-optimizer/releases" target="_blank" rel="noopener noreferrer" class="p-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/50 transition flex items-center justify-between group">
-                    <div class="flex items-center gap-3">
-                        <i class="fa-brands fa-github text-2xl text-slate-700 group-hover:text-emerald-600"></i>
-                        <div>
-                            <span class="font-black text-sm text-slate-900 block">Link 2: GitHub Releases (Bản Cài Đặt .EXE)</span>
-                            <span class="text-[11px] text-slate-500 font-bold">Phiên bản chính thức trên GitHub Repo</span>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-arrow-down-to-bracket text-slate-400 group-hover:text-emerald-600"></i>
+                    <span class="t1-pill t1-pill-success text-xs font-black py-1 px-3">
+                        TẢI NGAY
+                    </span>
                 </a>
             </div>
 
