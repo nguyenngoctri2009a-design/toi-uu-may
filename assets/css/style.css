@@ -142,7 +142,7 @@ h1, h2, h3, h4, .font-heading {
   text-decoration: none;
   position: relative;
   outline: none;
-  font-family: 'Space Mono', 'Courier Prime', 'SF Mono', monospace !important;
+  font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif !important;
   letter-spacing: 0.4px;
   transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
@@ -150,7 +150,7 @@ h1, h2, h3, h4, .font-heading {
 
 /* Kiểu Chữ Máy Đánh Chữ Typewriter (some preview text style) */
 .t1-typewriter, .font-mono {
-  font-family: 'Space Mono', 'Courier Prime', 'SF Mono', monospace !important;
+  font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif !important;
 }
 
 /* Ánh Sáng Phản Quang Laser Chạy Ngang Khi Hover (Glass Laser Shimmer) */
@@ -779,11 +779,11 @@ h1, h2, h3, h4, .font-heading {
   -webkit-text-fill-color: transparent;
   display: inline-flex;
   align-items: center;
-  animation: t1-wordmark-scan 4s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.16s, t1-vn-neon 2.8s ease-in-out infinite alternate;
+  animation: t1-wordmark-scan 4s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.16s;
   will-change: background-position, filter;
 }
 .t1-wordmark-logo:hover .t1-wordmark-vn {
-  animation: t1-wordmark-scan 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.08s, t1-vn-neon 1.2s ease-in-out infinite alternate;
+  animation: t1-wordmark-scan 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.08s;
 }
 
 /* Dấu Chấm Xanh Ngọc: Hiệu Ứng Neon Glow & Pulse Tinh Tế */

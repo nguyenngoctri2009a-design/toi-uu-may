@@ -148,76 +148,76 @@
 <body class="t1-dot-matrix antialiased selection:bg-sky-500 selection:text-white">
 
     <!-- ======================================================================
-         IV. HEADER VÀ NAVIGATION (LIGHT MODE CAO CẤP)
+         IV. HEADER VÀ NAVIGATION (LIGHT MODE CAO CẤP - BỐ CỤC CHUẨN CÂN ĐỐI)
          ====================================================================== -->
-    <header class="sticky top-0 z-50 backdrop-blur-xl bg-white/50 border-b border-white/75 shadow-[0_2px_12px_rgba(21,34,56,0.03)]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Bên Trái: Logo Biểu Tượng Icon GTA Chính Thức + Cụm Chữ "GTA5VN-System" -->
-            <a href="#" class="t1-wordmark-logo group">
-                <!-- Biểu Tượng Logo GTA Chính Thức Của Đại Ca -->
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-white/80 border-b border-slate-200/80 shadow-[0_2px_14px_rgba(15,23,42,0.04)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            
+            <!-- Bên Trái: Logo Thương Hiệu Sắc Nét 100% (Không Còn Vết Mờ Lem Nhem) -->
+            <a href="#" class="flex items-center gap-3 flex-shrink-0 group select-none">
                 <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white border border-[#DFEAF4] shadow-[0_3px_10px_rgba(21,34,56,0.06)] flex items-center justify-center p-1 overflow-hidden group-hover:scale-105 transition-transform duration-200">
                     <img src="assets/images/logo.jpg?v=2026.5" alt="GTA5VN-System Logo" class="w-full h-full object-contain filter drop-shadow-sm">
                 </div>
-
-                <!-- Cụm Chữ Logo -->
-                <div class="flex items-baseline gap-1 sm:gap-1.5">
-                    <span class="t1-wordmark-fivem text-lg sm:text-xl font-black">GTA5</span>
-                    <span class="t1-wordmark-vn text-lg sm:text-xl font-black">
-                        VN<span class="t1-wordmark-dot"></span>
-                    </span>
-                    <span class="t1-wordmark-engine hidden sm:inline text-xs sm:text-sm font-bold">System</span>
+                <div class="flex flex-col">
+                    <div class="flex items-baseline gap-1.5">
+                        <span class="text-lg sm:text-xl font-black text-slate-900 tracking-tight leading-none">GTA5</span>
+                        <span class="text-lg sm:text-xl font-black bg-gradient-to-r from-sky-600 to-emerald-500 bg-clip-text text-transparent leading-none">VN</span>
+                        <span class="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest leading-none">System</span>
+                    </div>
+                    <span class="text-[9px] font-mono text-sky-600 font-bold mt-0.5">v2.5.0 Stable</span>
                 </div>
-
-                <span class="t1-pill t1-pill-primary py-0.5 px-2 text-[10px] font-mono ml-1 hidden sm:inline-flex">
-                    v2.5
-                </span>
             </a>
 
-            <!-- Menu Điều Hướng Desktop -->
-            <nav class="hidden md:flex items-center gap-7 text-xs font-black uppercase tracking-wider text-textSecondary">
-                <a href="#thong-ke" class="hover:text-primary transition-colors">THỐNG KÊ</a>
-                <a href="#checker" class="hover:text-primary transition-colors flex items-center gap-1.5 text-textPrimary">
-                    <span class="w-2 h-2 rounded-full bg-success animate-ping"></span>
-                    CHECK CẤU HÌNH
+            <!-- Giữa: Menu Điều Hướng 1 Hàng Ngang Cân Đối (Không Bao Giờ Bị Rớt 2 Dòng) -->
+            <nav class="hidden xl:flex items-center gap-7 text-xs font-black uppercase tracking-wider text-slate-600 whitespace-nowrap">
+                <a href="#thong-ke" class="hover:text-primary transition-colors py-1">Tính Năng</a>
+                <a href="#checker" class="hover:text-primary transition-colors py-1 flex items-center gap-1.5 text-slate-900">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>Check Máy</span>
                 </a>
-                <a href="#cong-cu" class="hover:text-primary transition-colors flex items-center gap-1">
-                    <i class="fa-solid fa-wrench text-primary"></i> CÔNG CỤ
+                <a href="#cong-cu" class="hover:text-primary transition-colors py-1 flex items-center gap-1">
+                    <i class="fa-solid fa-wrench text-primary text-[11px]"></i>
+                    <span>Công Cụ</span>
                 </a>
-                <a href="#bang-xep-hang" class="hover:text-primary transition-colors">BẢNG XẾP HẠNG</a>
-                <a href="#danh-gia" class="hover:text-primary transition-colors">ĐÁNH GIÁ</a>
-                <a href="#hoi-dap" class="hover:text-primary transition-colors">HỎI ĐÁP</a>
+                <a href="#bang-xep-hang" class="hover:text-primary transition-colors py-1">Xếp Hạng</a>
+                <a href="#danh-gia" class="hover:text-primary transition-colors py-1">Đánh Giá</a>
+                <a href="#hoi-dap" class="hover:text-primary transition-colors py-1">Hỏi Đáp</a>
             </nav>
 
-            <!-- Bên Phải: Nút Tải App Miễn Phí 3D & Hamburger Menu Mobile -->
+            <!-- Bên Phải: Cụm Nút Bấm Chuẩn T1 Nổi Khối Đẳng Cấp -->
             <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-                <!-- Nút Discord VN Chính Thức -->
-                <a href="https://discord.gg/gtavn" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#5865F2]/10 hover:bg-[#5865F2]/20 text-[#5865F2] border border-[#5865F2]/25 font-black text-xs transition-all shadow-2xs hover:scale-105" title="Tham Gia Discord GTA5VN: discord.gg/gtavn">
+                <!-- Nút Discord VN (discord.gg/gtavn) -->
+                <a href="https://discord.gg/gtavn" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex t1-btn-3d t1-btn-discord !py-2 !px-3.5" title="Cộng Đồng Discord: discord.gg/gtavn">
                     <i class="fa-brands fa-discord text-sm"></i>
                     <span>DISCORD</span>
                 </a>
-                <button id="btn-open-download-modal" class="t1-btn-3d t1-btn-primary text-xs !py-2 !px-3 sm:!py-2.5 sm:!px-5 whitespace-nowrap flex items-center gap-1.5 shadow-sm">
+
+                <!-- Nút Tải App Miễn Phí Chính -->
+                <button id="btn-open-download-modal" class="t1-btn-3d t1-btn-primary !py-2 !px-3.5 sm:!py-2.5 sm:!px-5 whitespace-nowrap flex items-center gap-1.5 shadow-sm">
                     <i class="fa-solid fa-download text-xs"></i>
                     <span class="hidden sm:inline">Tải App Miễn Phí</span>
                     <span class="sm:hidden font-black text-xs">Tải App</span>
                 </button>
 
                 <!-- Hamburger Button (Mobile Only) -->
-                <button id="btn-mobile-menu" class="md:hidden w-9 h-9 flex items-center justify-center rounded-xl border border-t1border bg-white text-textPrimary hover:border-primary transition shadow-2xs" title="Menu">
+                <button id="btn-mobile-menu" class="xl:hidden w-10 h-10 flex items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-800 hover:border-primary transition shadow-2xs" title="Menu">
                     <i class="fa-solid fa-bars text-sm"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Menu Drawer (Dropdown Sáng Sạch) -->
-        <div id="mobile-menu-drawer" class="hidden md:hidden px-4 pt-3 pb-5 bg-white border-b border-t1border shadow-lg">
-            <nav class="flex flex-col gap-3 text-sm font-black text-textPrimary">
-                <a href="#thong-ke" class="py-2 px-3 rounded-lg hover:bg-surfaceSoft transition">THỐNG KÊ</a>
-                <a href="#checker" class="py-2 px-3 rounded-lg hover:bg-surfaceSoft transition flex items-center justify-between">
+        <div id="mobile-menu-drawer" class="hidden xl:hidden px-4 pt-3 pb-5 bg-white border-b border-slate-200 shadow-lg">
+            <nav class="flex flex-col gap-2.5 text-xs font-black text-slate-800 uppercase tracking-wider">
+                <a href="#thong-ke" class="py-2.5 px-3 rounded-xl hover:bg-slate-50 transition">TÍNH NĂNG</a>
+                <a href="#checker" class="py-2.5 px-3 rounded-xl hover:bg-slate-50 transition flex items-center justify-between text-sky-600">
                     <span>CHECK CẤU HÌNH</span>
                     <span class="t1-pill t1-pill-success text-[10px]">LIVE</span>
                 </a>
-                <a href="#bang-xep-hang" class="py-2 px-3 rounded-lg hover:bg-surfaceSoft transition">BẢNG XẾP HẠNG</a>
-                <a href="#hoi-dap" class="py-2 px-3 rounded-lg hover:bg-surfaceSoft transition">HỎI ĐÁP</a>
+                <a href="#cong-cu" class="py-2.5 px-3 rounded-xl hover:bg-slate-50 transition">BỘ CÔNG CỤ</a>
+                <a href="#bang-xep-hang" class="py-2.5 px-3 rounded-xl hover:bg-slate-50 transition">BẢNG XẾP HẠNG</a>
+                <a href="#danh-gia" class="py-2.5 px-3 rounded-xl hover:bg-slate-50 transition">ĐÁNH GIÁ</a>
+                <a href="#hoi-dap" class="py-2.5 px-3 rounded-xl hover:bg-slate-50 transition">HỎI ĐÁP</a>
                 <a href="https://discord.gg/gtavn" target="_blank" rel="noopener noreferrer" class="py-2.5 px-3 rounded-xl bg-[#5865F2]/10 text-[#5865F2] font-black text-xs flex items-center justify-between border border-[#5865F2]/20 mt-1">
                     <span class="flex items-center gap-2"><i class="fa-brands fa-discord text-base"></i> THAM GIA DISCORD</span>
                     <span class="text-[10px] font-mono bg-[#5865F2] text-white px-2 py-0.5 rounded-full font-bold">discord.gg/gtavn</span>
