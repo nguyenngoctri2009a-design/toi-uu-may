@@ -450,7 +450,7 @@ function initMockupBoost() {
     if (!btnBoost || !fpsDisplay) return;
 
     btnBoost.addEventListener('click', () => {
-        btnBoost.innerHTML = '<i class="fa-solid fa-arrows-rotate fa-spin"></i> ?ANG T?I ?U H?A...';
+        btnBoost.innerHTML = '<i class="fa-solid fa-arrows-rotate fa-spin"></i> <span>ĐANG TỐI ƯU HÓA...</span>';
         btnBoost.classList.remove('t1-btn-primary');
         btnBoost.classList.add('t1-btn-success');
 
@@ -463,9 +463,9 @@ function initMockupBoost() {
             } else {
                 clearInterval(interval);
                 if (ramDisplay) ramDisplay.textContent = '4.65';
-                btnBoost.innerHTML = '<i class="fa-solid fa-check text-white"></i> ?? B?T PH? 144 FPS!';
+                btnBoost.innerHTML = '<i class="fa-solid fa-check"></i> <span>ĐÃ BẬT KHÓA 144 FPS!</span>';
                 setTimeout(() => {
-                    btnBoost.innerHTML = '<i class="fa-solid fa-bolt text-xs"></i> <span>K?CH HO?T 1-CLICK BOOST</span>';
+                    btnBoost.innerHTML = '<i class="fa-solid fa-bolt text-xs"></i> <span>KÍCH HOẠT 1-CLICK BOOST</span>';
                     btnBoost.classList.remove('t1-btn-success');
                     btnBoost.classList.add('t1-btn-primary');
                 }, 3500);
