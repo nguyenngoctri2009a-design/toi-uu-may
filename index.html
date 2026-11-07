@@ -155,11 +155,14 @@
             </a>
 
             <!-- Menu Điều Hướng Desktop -->
-            <nav class="hidden md:flex items-center gap-8 text-xs font-black uppercase tracking-wider text-textSecondary">
+            <nav class="hidden md:flex items-center gap-7 text-xs font-black uppercase tracking-wider text-textSecondary">
                 <a href="#thong-ke" class="hover:text-primary transition-colors">THỐNG KÊ</a>
                 <a href="#checker" class="hover:text-primary transition-colors flex items-center gap-1.5 text-textPrimary">
                     <span class="w-2 h-2 rounded-full bg-success animate-ping"></span>
                     CHECK CẤU HÌNH
+                </a>
+                <a href="#cong-cu" class="hover:text-primary transition-colors flex items-center gap-1">
+                    <i class="fa-solid fa-wrench text-primary"></i> CÔNG CỤ
                 </a>
                 <a href="#bang-xep-hang" class="hover:text-primary transition-colors">BẢNG XẾP HẠNG</a>
                 <a href="#hoi-dap" class="hover:text-primary transition-colors">HỎI ĐÁP</a>
@@ -757,7 +760,198 @@
         </section>
 
         <!-- ======================================================================
-             XI. HỎI ĐÁP VÀ HƯỚNG DẪN (FAQ ACCORDION)
+             XI. BỘ CÔNG CỤ TỐI ƯU THỰC CHIẾN (CHỐNG LAG & TẠO SETTINGS.XML CHUYÊN SÂU)
+             ====================================================================== -->
+        <section id="cong-cu" class="mb-20">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="t1-pill t1-pill-primary mb-2">TIỆN ÍCH TRỰC TUYẾN MIỄN PHÍ</span>
+                <h2 class="text-3xl font-black text-textPrimary tracking-tight">Bộ Công Cụ Chống Lag &amp; Dọn Rác FiveM</h2>
+                <p class="text-textSecondary text-sm mt-2">Các công cụ thực chiến giúp game thủ tự tinh chỉnh cấu hình máy ngay trên trình duyệt mà không cần cài phần mềm phức tạp.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <!-- Công Cụ 1: Trình Tạo File Cấu Hình settings.xml Đồ Họa 1-Click -->
+                <div class="t1-card flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between pb-4 mb-5 border-b border-t1border">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-9 h-9 rounded-xl bg-sky-50 text-primary border border-sky-100 flex items-center justify-center text-base">
+                                    <i class="fa-solid fa-file-code"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-black text-base text-textPrimary">Trình Xuất File settings.xml Tối Ưu</h3>
+                                    <span class="text-[11px] text-textSecondary font-medium">Tự động cấu hình đồ họa chuẩn theo phần cứng</span>
+                                </div>
+                            </div>
+                            <span class="t1-pill t1-pill-success text-[10px]">TẢI TỨC THÌ</span>
+                        </div>
+
+                        <!-- Chọn Cấu Hình Máy -->
+                        <div class="space-y-4 mb-5">
+                            <div>
+                                <label class="block text-xs font-black uppercase text-textSecondary mb-1.5">Chọn Phân Khúc Máy Của Bạn:</label>
+                                <select id="xml-profile-select" class="t1-select text-xs">
+                                    <option value="potato">Máy Rất Yếu (GTX 750Ti / iGPU) - Tối Ưu Khử Bóng Tuyệt Đối (+90% FPS)</option>
+                                    <option value="net" selected>Máy Phổ Thông / Quán Net (GTX 1050Ti / 1650) - Ổn Định 60-90 FPS</option>
+                                    <option value="high">Máy Khá / Gaming Pro (RTX 2060 / 3060) - Khóa Màn 144Hz Sắc Nét</option>
+                                </select>
+                            </div>
+
+                            <!-- Preview Thông Số Xuất Ra -->
+                            <div class="p-3.5 rounded-xl bg-surfaceSoft border border-t1border text-xs font-mono text-textSecondary space-y-1">
+                                <div class="flex justify-between"><span>Độ phân giải:</span> <span id="xml-stat-res" class="font-bold text-textPrimary">1920x1080 (16:9)</span></div>
+                                <div class="flex justify-between"><span>Chất lượng bóng (Shadows):</span> <span id="xml-stat-shadow" class="font-bold text-secondary">Tắt Hoàn Toàn [0]</span></div>
+                                <div class="flex justify-between"><span>Khử răng cưa (FXAA/MSAA):</span> <span id="xml-stat-aa" class="font-bold text-textPrimary">FXAA Bật, MSAA Tắt</span></div>
+                                <div class="flex justify-between"><span>V-Sync &amp; Khóa Khung Hình:</span> <span id="xml-stat-vsync" class="font-bold text-primary">Tắt Chống Delay Chuột</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nút Tải settings.xml & Hướng Dẫn -->
+                    <div class="pt-4 border-t border-t1border space-y-3">
+                        <div class="flex flex-col sm:flex-row items-center gap-3">
+                            <button id="btn-download-xml" class="t1-btn-3d t1-btn-primary w-full sm:w-auto flex-1 text-xs py-3">
+                                <i class="fa-solid fa-download"></i>
+                                <span>Tải File settings.xml</span>
+                            </button>
+                            <button id="btn-copy-xml-path" class="t1-btn-3d t1-btn-secondary w-full sm:w-auto text-xs py-3" title="Copy đường dẫn thư mục cài">
+                                <i class="fa-regular fa-copy"></i>
+                                <span>Copy Thư Mục Dán File</span>
+                            </button>
+                        </div>
+                        <span class="text-[11px] text-textSecondary block text-center font-medium">
+                            <i class="fa-solid fa-circle-info text-primary mr-1"></i> Tải về và dán đè vào: <span class="font-mono text-textPrimary bg-slate-100 px-1 py-0.5 rounded">Documents\Rockstar Games\GTA V</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Công Cụ 2: Bộ Dọn Rác & Fix Lỗi Crash FiveM Tức Thì (1-Click Clean Scripts) -->
+                <div class="t1-card flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between pb-4 mb-5 border-b border-t1border">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-9 h-9 rounded-xl bg-emerald-50 text-secondary border border-emerald-100 flex items-center justify-center text-base">
+                                    <i class="fa-solid fa-broom-ball"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-black text-base text-textPrimary">Lệnh Dọn Rác &amp; Fix Crash FiveM</h3>
+                                    <span class="text-[11px] text-textSecondary font-medium">Sao chép lệnh PowerShell tự động quét sạch rác hệ thống</span>
+                                </div>
+                            </div>
+                            <span class="t1-pill t1-pill-primary text-[10px]">FIX CRASH</span>
+                        </div>
+
+                        <!-- 3 Thẻ Lệnh Sao Chép Nhanh -->
+                        <div class="space-y-3 mb-5">
+                            <!-- Command 1: Xóa Cache Server FiveM -->
+                            <div class="p-3.5 rounded-xl bg-surfaceSoft border border-t1border flex items-center justify-between gap-3">
+                                <div>
+                                    <span class="font-bold text-xs text-textPrimary block">1. Xóa Sạch Cache Server Tồn Đọng</span>
+                                    <span class="text-[11px] text-textSecondary font-mono truncate block max-w-[260px] sm:max-w-xs">Xóa 10-30GB cache texture mod cũ</span>
+                                </div>
+                                <button class="btn-copy-cmd t1-btn-3d t1-btn-secondary text-[11px] py-1.5 px-3" data-cmd="Remove-Item -Recurse -Force $env:LocalAppData\FiveM\FiveM.app\data\cache\* -ErrorAction SilentlyContinue">
+                                    <i class="fa-regular fa-copy"></i> <span>Sao chép</span>
+                                </button>
+                            </div>
+
+                            <!-- Command 2: Xóa File Nhật Ký Crash -->
+                            <div class="p-3.5 rounded-xl bg-surfaceSoft border border-t1border flex items-center justify-between gap-3">
+                                <div>
+                                    <span class="font-bold text-xs text-textPrimary block">2. Xóa Lịch Sử Nhật Ký Crash Dump</span>
+                                    <span class="text-[11px] text-textSecondary font-mono truncate block max-w-[260px] sm:max-w-xs">Giải phóng dung lượng ổ C bị đầy</span>
+                                </div>
+                                <button class="btn-copy-cmd t1-btn-3d t1-btn-secondary text-[11px] py-1.5 px-3" data-cmd="Remove-Item -Recurse -Force $env:LocalAppData\FiveM\FiveM.app\crashes\* -ErrorAction SilentlyContinue">
+                                    <i class="fa-regular fa-copy"></i> <span>Sao chép</span>
+                                </button>
+                            </div>
+
+                            <!-- Command 3: Thu Hồi RAM Standby Bằng PowerShell -->
+                            <div class="p-3.5 rounded-xl bg-surfaceSoft border border-t1border flex items-center justify-between gap-3">
+                                <div>
+                                    <span class="font-bold text-xs text-textPrimary block">3. Lệnh Ép Thu Hồi 100% RAM Ảo</span>
+                                    <span class="text-[11px] text-textSecondary font-mono truncate block max-w-[260px] sm:max-w-xs">Xóa nghẽn bộ nhớ đệm trước khi vào game</span>
+                                </div>
+                                <button class="btn-copy-cmd t1-btn-3d t1-btn-secondary text-[11px] py-1.5 px-3" data-cmd="[System.GC]::Collect(); [System.GC]::WaitForPendingFinalizers()">
+                                    <i class="fa-regular fa-copy"></i> <span>Sao chép</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cách Sử Dụng -->
+                    <div class="pt-3 border-t border-t1border text-[11px] text-textSecondary flex items-center justify-between">
+                        <span><i class="fa-solid fa-terminal text-secondary mr-1"></i> Mở <strong>PowerShell</strong> hoặc <strong>Run (Win + R)</strong> và dán lệnh vào.</span>
+                        <span class="t1-pill t1-pill-success text-[10px] py-0 px-2">An Toàn 100%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bảng Check-List 6 Bước Chống Lag Triệt Để Trong Windows -->
+            <div class="t1-card bg-white">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-5 border-b border-t1border gap-3">
+                    <div>
+                        <span class="t1-pill t1-pill-warning mb-1">WINDOWS TUNING GUIDE</span>
+                        <h3 class="text-xl font-black text-textPrimary tracking-tight">Check-list 6 Thiết Lập Windows Chống Tụt FPS 1% Low</h3>
+                    </div>
+                    <div class="text-xs font-black text-secondary flex items-center gap-1.5">
+                        <i class="fa-solid fa-circle-check"></i> <span>Hiệu Quả Đã Kiểm Chứng</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs font-medium text-textPrimary">
+                    <div class="p-3.5 rounded-xl bg-surfaceSoft border border-t1border flex items-start gap-3">
+                        <i class="fa-solid fa-square-check text-primary text-base mt-0.5"></i>
+                        <div>
+                            <span class="font-black block text-textPrimary mb-0.5">Bật Ultimate Performance Plan</span>
+                            <span class="text-[11px] text-textSecondary">Mở khóa 100% xung nhịp tối đa của CPU, ngăn Windows hạ xung tiết kiệm điện.</span>
+                        </div>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-surfaceSoft border border-t1border flex items-start gap-3">
+                        <i class="fa-solid fa-square-check text-primary text-base mt-0.5"></i>
+                        <div>
+                            <span class="font-black block text-textPrimary mb-0.5">Tắt Xbox Game Bar &amp; DVR</span>
+                            <span class="text-[11px] text-textSecondary">Chặn tính năng quay màn hình ngầm gây khựng giật 5-10 giây một lần khi combat.</span>
+                        </div>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-surfaceSoft border border-t1border flex items-start gap-3">
+                        <i class="fa-solid fa-square-check text-primary text-base mt-0.5"></i>
+                        <div>
+                            <span class="font-black block text-textPrimary mb-0.5">Đặt Timer Resolution 0.5ms</span>
+                            <span class="text-[11px] text-textSecondary">Rút ngắn chu kỳ phản hồi của chuột và bàn phím, vẩy súng chuẩn xác tức thì.</span>
+                        </div>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-surfaceSoft border border-t1border flex items-start gap-3">
+                        <i class="fa-solid fa-square-check text-secondary text-base mt-0.5"></i>
+                        <div>
+                            <span class="font-black block text-textPrimary mb-0.5">Bật TCP NoDelay Giảm Ping</span>
+                            <span class="text-[11px] text-textSecondary">Gửi gói tin mạng lập tức không chờ gom packet, lái xe không bị lùi giật hình.</span>
+                        </div>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-surfaceSoft border border-t1border flex items-start gap-3">
+                        <i class="fa-solid fa-square-check text-secondary text-base mt-0.5"></i>
+                        <div>
+                            <span class="font-black block text-textPrimary mb-0.5">Tắt Hardware Acceleration Discord</span>
+                            <span class="text-[11px] text-textSecondary">Trả lại 10-15% GPU cho GTA 5 kết xuất hình ảnh thay vì chia cho Discord.</span>
+                        </div>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-surfaceSoft border border-t1border flex items-start gap-3">
+                        <i class="fa-solid fa-square-check text-secondary text-base mt-0.5"></i>
+                        <div>
+                            <span class="font-black block text-textPrimary mb-0.5">Khóa FPS Trùng Tần Số Màn Hình</span>
+                            <span class="text-[11px] text-textSecondary">Màn 60Hz khóa 60 FPS, màn 144Hz khóa 144 FPS để giữ card đồ họa luôn mát.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+             XII. HỎI ĐÁP VÀ HƯỚNG DẪN (FAQ ACCORDION)
              ====================================================================== -->
         <section id="hoi-dap" class="mb-20 max-w-3xl mx-auto">
             <div class="text-center mb-10">

@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initDownloadModal();
     initPingTester();
     initAnimatedCounters();
+    initXmlGenerator();
+    initCommandCopier();
 });
 
 /**
@@ -286,4 +288,147 @@ function initAnimatedCounters() {
         }
         usersEl.textContent = current.toLocaleString('vi-VN') + '+';
     }, 30);
+}
+
+/**
+ * 8. Trình Tạo & Tải File settings.xml Tối Ưu Tức Thì (In-Browser XML Generator)
+ */
+function initXmlGenerator() {
+    const select = document.getElementById('xml-profile-select');
+    const btnDownload = document.getElementById('btn-download-xml');
+    const btnCopyPath = document.getElementById('btn-copy-xml-path');
+    const statRes = document.getElementById('xml-stat-res');
+    const statShadow = document.getElementById('xml-stat-shadow');
+    const statAa = document.getElementById('xml-stat-aa');
+    const statVsync = document.getElementById('xml-stat-vsync');
+
+    if (!select || !btnDownload) return;
+
+    const profiles = {
+        potato: {
+            res: '1280x720 (Khuyên dùng iGPU)',
+            shadow: 'Khử Toàn Bộ Bóng Đổ [Tối Đa FPS]',
+            aa: 'FXAA Tắt, MSAA Tắt',
+            vsync: 'Tắt 100% (Giảm Delay)',
+            shadowQuality: 0,
+            textureQuality: 0,
+            shaderQuality: 0,
+            screenWidth: 1280,
+            screenHeight: 720
+        },
+        net: {
+            res: '1920x1080 (Chuẩn Quán Net)',
+            shadow: 'Bóng Mờ Tối Ưu [1]',
+            aa: 'FXAA Bật, MSAA Tắt',
+            vsync: 'Tắt (Khóa Màn 75-100 FPS)',
+            shadowQuality: 1,
+            textureQuality: 1,
+            shaderQuality: 1,
+            screenWidth: 1920,
+            screenHeight: 1080
+        },
+        high: {
+            res: '1920x1080 / 2K Sắc Nét',
+            shadow: 'Bóng Mềm Tự Nhiên [2]',
+            aa: 'FXAA Bật, TXAA Tắt',
+            vsync: 'Khóa Chuẩn Màn 144Hz',
+            shadowQuality: 2,
+            textureQuality: 2,
+            shaderQuality: 2,
+            screenWidth: 1920,
+            screenHeight: 1080
+        }
+    };
+
+    select.addEventListener('change', () => {
+        const val = select.value;
+        const p = profiles[val];
+        if (statRes) statRes.textContent = p.res;
+        if (statShadow) statShadow.textContent = p.shadow;
+        if (statAa) statAa.textContent = p.aa;
+        if (statVsync) statVsync.textContent = p.vsync;
+    });
+
+    btnDownload.addEventListener('click', () => {
+        const val = select.value;
+        const p = profiles[val];
+
+        const xmlContent = `<?xml version="1.0" encoding="UTF-8"?>
+<Settings>
+  <version value="27" />
+  <graphics>
+    <ResolutionWidth value="${p.screenWidth}" />
+    <ResolutionHeight value="${p.screenHeight}" />
+    <RefreshRate value="60" />
+    <Windowed value="0" />
+    <VSync value="0" />
+    <ShadowQuality value="${p.shadowQuality}" />
+    <TextureQuality value="${p.textureQuality}" />
+    <ShaderQuality value="${p.shaderQuality}" />
+    <ReflectionQuality value="0" />
+    <WaterQuality value="0" />
+    <GrassQuality value="0" />
+    <ParticlesQuality value="0" />
+    <PostFX value="0" />
+    <AnisotropicFiltering value="0" />
+    <CityDensity value="0.000000" />
+    <PedVarietyMultiplier value="0.000000" />
+    <VehicleVarietyMultiplier value="0.000000" />
+    <Shadow_Distance value="0.000000" />
+    <Shadow_LongShadows value="false" />
+    <Tessellation value="0" />
+  </graphics>
+  <system>
+    <Stereo value="0" />
+  </system>
+</Settings>`;
+
+        const blob = new Blob([xmlContent], { type: 'text/xml' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'settings.xml';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        btnDownload.innerHTML = '<i class="fa-solid fa-check text-success"></i> Đã Tải settings.xml';
+        setTimeout(() => {
+            btnDownload.innerHTML = '<i class="fa-solid fa-download"></i> Tải File settings.xml';
+        }, 2500);
+    });
+
+    if (btnCopyPath) {
+        btnCopyPath.addEventListener('click', () => {
+            const targetPath = '%USERPROFILE%\\Documents\\Rockstar Games\\GTA V';
+            navigator.clipboard.writeText(targetPath).then(() => {
+                btnCopyPath.innerHTML = '<i class="fa-solid fa-check text-success"></i> Đã Copy Đường Dẫn!';
+                setTimeout(() => {
+                    btnCopyPath.innerHTML = '<i class="fa-regular fa-copy"></i> Copy Thư Mục Dán File';
+                }, 2000);
+            });
+        });
+    }
+}
+
+/**
+ * 9. Bộ Sao Chép Lệnh Dọn Rác & Fix Crash (One-Click Command Copier)
+ */
+function initCommandCopier() {
+    const copyBtns = document.querySelectorAll('.btn-copy-cmd');
+    copyBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const cmd = btn.getAttribute('data-cmd');
+            if (cmd) {
+                navigator.clipboard.writeText(cmd).then(() => {
+                    const originalHtml = btn.innerHTML;
+                    btn.innerHTML = '<i class="fa-solid fa-check text-success"></i> Đã chép!';
+                    setTimeout(() => {
+                        btn.innerHTML = originalHtml;
+                    }, 2000);
+                });
+            }
+        });
+    });
 }
