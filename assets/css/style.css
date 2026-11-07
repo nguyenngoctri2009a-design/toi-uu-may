@@ -1,6 +1,99 @@
 /* ==========================================================================
-   T1 UNIVERSAL 3D NEUMORPHIC-GLASS DESIGN SYSTEM CORE
+   HIỆU ỨNG LASER SCANLINE QUÉT QUA LOGO & CARD (HIGH-TECH SCANNER SWEEP)
    ========================================================================== */
+
+/* Khung chứa Logo SVG có hiệu ứng quét */
+.t1-logo-container {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+  border: 1.5px solid #bae6fd;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.16), inset 0 1px 2px #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.t1-logo-container:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 24px rgba(2, 132, 199, 0.3), inset 0 1px 2px #ffffff;
+  border-color: #38bdf8;
+}
+
+/* Thanh Laser Quét Qua (Laser Scanner Beam) */
+.t1-laser-beam {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(14, 165, 233, 0.15) 30%,
+    rgba(56, 189, 248, 0.8) 50%,
+    rgba(16, 185, 129, 0.8) 55%,
+    rgba(16, 185, 129, 0.15) 70%,
+    transparent 100%
+  );
+  filter: drop-shadow(0 0 6px rgba(14, 165, 233, 0.7));
+  transform: skewX(-25deg);
+  animation: laserScan 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes laserScan {
+  0% {
+    left: -120%;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    left: 140%;
+    opacity: 0;
+  }
+}
+
+/* Laser Quét Ngang Trên Khối Phần Cứng (Horizontal Diagnostic Scanner) */
+.t1-card-scanner-wrap {
+  position: relative;
+  overflow: hidden;
+}
+.t1-card-scanner-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #0ea5e9, #10b981, transparent);
+  box-shadow: 0 0 12px #0ea5e9, 0 0 24px #10b981;
+  opacity: 0.75;
+  animation: verticalScanLine 4s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@keyframes verticalScanLine {
+  0% {
+    top: 0%;
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    top: 99%;
+    opacity: 0.3;
+  }
+}
 :root {
   --t1-bg: #f8fafc;
   --t1-card-bg: #ffffff;

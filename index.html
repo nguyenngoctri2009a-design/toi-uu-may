@@ -101,19 +101,40 @@
     <!-- Top Navigation Bar (T1 Floating Glass Nav) -->
     <header class="sticky top-0 z-40 backdrop-blur-md bg-white/85 border-b border-slate-200/80 shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
+            <!-- Brand Logo (Biểu Tượng SVG T1 Cao Cấp Kèm Thanh Laser Quét Qua) -->
             <a href="#" class="flex items-center gap-3.5 group">
-                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-sky-600 to-sky-400 p-[1.5px] shadow-[0_4px_14px_rgba(2,132,199,0.25)] group-hover:scale-105 transition-transform duration-200">
-                    <div class="w-full h-full bg-white rounded-[14px] flex items-center justify-center">
-                        <span class="font-black text-xl text-sky-600 tracking-tighter">T1</span>
-                    </div>
+                <div class="t1-logo-container">
+                    <!-- SVG Vector Logo T1 Esports Precision -->
+                    <svg viewBox="0 0 40 40" width="30" height="30" class="relative z-10 filter drop-shadow-[0_2px_4px_rgba(2,132,199,0.2)]">
+                        <defs>
+                            <linearGradient id="t1SvgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#0284c7" />
+                                <stop offset="50%" stop-color="#0ea5e9" />
+                                <stop offset="100%" stop-color="#10b981" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Stylized Geometric T1 Glyph -->
+                        <path d="M6 10 L34 10 L34 16 L23 16 L23 32 L17 32 L17 16 L6 16 Z" fill="url(#t1SvgGrad)" />
+                        <!-- 1 Wing Accent -->
+                        <path d="M26 18 L34 18 L34 32 L28 32 L28 24 L26 24 Z" fill="#0284c7" opacity="0.95" />
+                    </svg>
+
+                    <!-- Thanh Laser Quét Qua Biểu Tượng SVG -->
+                    <div class="t1-laser-beam"></div>
                 </div>
+
                 <div>
                     <div class="flex items-center gap-2">
-                        <span class="text-xl font-black text-slate-900 tracking-tight leading-none">GTA 5 VN</span>
-                        <span class="t1-pill t1-pill-cyan py-0.5 px-2 text-[10px]">PRO V2.5</span>
+                        <span class="text-xl font-black text-slate-900 tracking-tight leading-none group-hover:text-sky-600 transition-colors">
+                            GTA 5 VN
+                        </span>
+                        <span class="t1-pill t1-pill-cyan py-0.5 px-2 text-[10px] font-mono">
+                            PRO V2.5
+                        </span>
                     </div>
-                    <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mt-0.5">T1 3D Neumorphic Hybrid</span>
+                    <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mt-0.5">
+                        T1 3D Neumorphic Hybrid
+                    </span>
                 </div>
             </a>
 
@@ -312,9 +333,12 @@
             </div>
         </section>
 
-        <!-- Live Hardware Checker Tool (Card 3D Neumorphic-Glass) -->
+        <!-- Live Hardware Checker Tool (Card 3D Neumorphic-Glass Kèm Laser Quét) -->
         <section id="checker" class="mb-16">
-            <div class="t1-card relative overflow-hidden">
+            <div class="t1-card t1-card-scanner-wrap relative overflow-hidden">
+                <!-- Thanh Laser Quét Ngang Chẩn Đoán (Laser Scanning Line) -->
+                <div class="t1-card-scanner-line"></div>
+
                 <!-- Section Header Inside Card -->
                 <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 mb-6 border-b border-slate-200/80 gap-4">
                     <div>
