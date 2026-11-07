@@ -764,39 +764,16 @@ function showReviewToast(name) {
  * ======================================================================
  */
 
-// 1. Chống Phóng To / Thu Nhỏ Toàn Diện (Anti-Zoom Lock)
+// 1. Chống Phóng To / Thu Nhỏ Toàn Diện (Không Chặn Lướt Web / Scroll)
 function initAntiZoom() {
-    // Chặn cử chỉ zoom trên iOS Safari & trình duyệt di động
-    document.addEventListener('gesturestart', (e) => e.preventDefault(), { passive: false });
-    document.addEventListener('gesturechange', (e) => e.preventDefault(), { passive: false });
-    document.addEventListener('gestureend', (e) => e.preventDefault(), { passive: false });
-
-    // Chặn pinch-to-zoom đa điểm chạm (2 ngón trở lên)
-    document.addEventListener('touchstart', (e) => {
-        if (e.touches && e.touches.length > 1) {
-            e.preventDefault();
-        }
-    }, { passive: false });
-
-    // Chặn Double-Tap to Zoom (< 300ms)
-    let lastTouchTime = 0;
-    document.addEventListener('touchend', (e) => {
-        const currentTime = new Date().getTime();
-        const tapInterval = currentTime - lastTouchTime;
-        if (tapInterval < 300 && tapInterval > 0) {
-            e.preventDefault();
-        }
-        lastTouchTime = currentTime;
-    }, { passive: false });
-
-    // Chặn Ctrl + Lăn chuột (Pinch / Zoom chuột trên Desktop)
+    // Chỉ chặn Ctrl + Lăn chuột (Pinch / Zoom chuột trên Desktop)
     window.addEventListener('wheel', (e) => {
         if (e.ctrlKey) {
             e.preventDefault();
         }
     }, { passive: false });
 
-    // Chặn phím tắt zoom bàn phím: Ctrl +, Ctrl -, Ctrl 0, Ctrl =
+    // Chỉ chặn phím tắt zoom bàn phím: Ctrl +, Ctrl -, Ctrl 0, Ctrl =
     window.addEventListener('keydown', (e) => {
         if (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0')) {
             e.preventDefault();
