@@ -160,12 +160,12 @@
                 </div>
 
                 <!-- Cụm Chữ Logo -->
-                <div class="flex items-baseline gap-1.5">
-                    <span class="t1-wordmark-fivem">GTA5</span>
-                    <span class="t1-wordmark-vn">
+                <div class="flex items-baseline gap-1 sm:gap-1.5">
+                    <span class="t1-wordmark-fivem text-lg sm:text-xl font-black">GTA5</span>
+                    <span class="t1-wordmark-vn text-lg sm:text-xl font-black">
                         VN<span class="t1-wordmark-dot"></span>
                     </span>
-                    <span class="t1-wordmark-engine">System</span>
+                    <span class="t1-wordmark-engine hidden sm:inline text-xs sm:text-sm font-bold">System</span>
                 </div>
 
                 <span class="t1-pill t1-pill-primary py-0.5 px-2 text-[10px] font-mono ml-1 hidden sm:inline-flex">
@@ -189,15 +189,16 @@
             </nav>
 
             <!-- Bên Phải: Nút Tải App Miễn Phí 3D & Hamburger Menu Mobile -->
-            <div class="flex items-center gap-3">
-                <button id="btn-open-download-modal" class="t1-btn-3d t1-btn-primary text-xs py-2.5 px-5">
-                    <i class="fa-solid fa-download"></i>
-                    <span>Tải App Miễn Phí</span>
+            <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+                <button id="btn-open-download-modal" class="t1-btn-3d t1-btn-primary text-xs !py-2 !px-3 sm:!py-2.5 sm:!px-5 whitespace-nowrap flex items-center gap-1.5 shadow-sm">
+                    <i class="fa-solid fa-download text-xs"></i>
+                    <span class="hidden sm:inline">Tải App Miễn Phí</span>
+                    <span class="sm:hidden font-black text-xs">Tải App</span>
                 </button>
 
                 <!-- Hamburger Button (Mobile Only) -->
-                <button id="btn-mobile-menu" class="md:hidden p-2.5 rounded-xl border border-t1border bg-white text-textPrimary hover:border-primary transition" title="Menu">
-                    <i class="fa-solid fa-bars text-lg"></i>
+                <button id="btn-mobile-menu" class="md:hidden w-9 h-9 flex items-center justify-center rounded-xl border border-t1border bg-white text-textPrimary hover:border-primary transition shadow-2xs" title="Menu">
+                    <i class="fa-solid fa-bars text-sm"></i>
                 </button>
             </div>
         </div>
@@ -217,12 +218,12 @@
     </header>
 
     <!-- Nội Dung Chính Toàn Bộ Website -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-8">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-8 overflow-x-hidden">
 
         <!-- ======================================================================
              V. HERO SECTION (T1 LUXURY GAMING SAAS - SÁNG, SẮC NÉT & ĐỈNH CAO)
              ====================================================================== -->
-        <section class="relative pt-6 sm:pt-8 pb-14 text-center max-w-5xl mx-auto">
+        <section class="relative pt-6 sm:pt-8 pb-14 text-center max-w-5xl mx-auto overflow-hidden">
             <!-- Nền Ambient Radial Gradient Siêu Mịn -->
             <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center">
                 <div class="w-[700px] h-[360px] bg-gradient-to-b from-sky-200/40 via-emerald-100/30 to-transparent blur-3xl rounded-full"></div>
@@ -299,9 +300,9 @@
 
             <!-- Nút Tải 3D Nổi Khối Đặt Ngay Tầm Mắt -->
             <div class="flex items-center justify-center mb-10">
-                <button id="btn-hero-download" class="t1-btn-3d t1-btn-primary text-sm sm:text-base px-8 sm:px-12 py-3.5 sm:py-4 shadow-lg hover:scale-105 transition-transform">
+                <button id="btn-hero-download" class="t1-btn-3d t1-btn-primary text-xs sm:text-base !px-5 sm:!px-12 !py-3 sm:!py-4 shadow-lg hover:scale-105 transition-transform max-w-full">
                     <i class="fa-solid fa-download text-base"></i>
-                    <span>Tải Bản Tối Ưu Miễn Phí (.ZIP / .EXE)</span>
+                    <span class="hidden sm:inline">Tải Bản Tối Ưu Miễn Phí (.ZIP / .EXE)</span><span class="sm:hidden font-black">Tải Bản Tối Ưu (.EXE)</span>
                 </button>
             </div>
 
@@ -310,14 +311,14 @@
                  ====================================================================== -->
             <div class="t1-window-mockup text-left mb-16 shadow-[0_25px_60px_-15px_rgba(7,150,229,0.18),0_10px_25px_rgba(21,34,56,0.06)] border border-[#BAE6FD]">
                 <!-- Thanh Tiêu Đề Cửa Sổ Kiểu Desktop Client Cao Cấp -->
-                <div class="t1-window-header flex items-center justify-between px-4 py-3 bg-gradient-to-r from-slate-100 via-sky-50 to-emerald-50 border-b border-[#DFEAF4]">
+                <div class="t1-window-header flex flex-wrap sm:flex-nowrap items-center justify-between gap-2 px-3 sm:px-4 py-2.5 sm:py-3 bg-gradient-to-r from-slate-100 via-sky-50 to-emerald-50 border-b border-[#DFEAF4]">
                     <div class="flex items-center gap-2.5">
                         <span class="w-3.5 h-3.5 rounded-full bg-[#FF5F56] border border-[#E0443E] shadow-2xs inline-block"></span>
                         <span class="w-3.5 h-3.5 rounded-full bg-[#FFBD2E] border border-[#DEA123] shadow-2xs inline-block"></span>
                         <span class="w-3.5 h-3.5 rounded-full bg-[#27C93F] border border-[#1AAB29] shadow-2xs inline-block"></span>
                         <span class="text-xs font-black text-textPrimary ml-3 font-mono flex items-center gap-1.5">
                             <i class="fa-solid fa-gamepad text-primary"></i>
-                            GTA5VN-System_v2.5.exe &bull; [Active Session]
+                            <span class="truncate max-w-[170px] sm:max-w-none">GTA5VN-System_v2.5.exe</span> <span class="hidden sm:inline">&bull; [Active Session]</span>
                         </span>
                     </div>
                     <span class="t1-pill t1-pill-success text-[11px] font-black shadow-xs">
