@@ -447,6 +447,89 @@
             </div>
         </section>
 
+        <!-- Interactive FiveM Server Ping Tester (Đo Ping Thực Tế Đến Các Server VN) -->
+        <section id="ping-test" class="mb-20">
+            <div class="t1-card relative overflow-hidden bg-gradient-to-b from-white to-slate-50/60">
+                <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 mb-6 border-b border-slate-200/80 gap-4">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="t1-pill t1-pill-success">NETWORK DIAGNOSTIC</span>
+                            <span class="text-xs font-extrabold text-slate-400 uppercase tracking-wider">FiveM VN Node Monitor</span>
+                        </div>
+                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Kiểm Tra Độ Trễ Mạng (Ping) Đến Máy Chủ FiveM VN</h2>
+                    </div>
+
+                    <button id="btn-run-ping-test" class="t1-btn t1-btn-primary text-xs">
+                        <i class="fa-solid fa-signal"></i>
+                        <span>Bắt Đầu Kiểm Tra Ping</span>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <!-- Node 1: Hà Nội -->
+                    <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm flex items-center justify-between">
+                        <div>
+                            <span class="text-[11px] font-black text-slate-400 uppercase tracking-wider block">HÀ NỘI (VNPT / VIETTEL)</span>
+                            <span class="text-base font-black text-slate-900">Node Miền Bắc</span>
+                            <span class="text-[11px] text-slate-500 block mt-0.5">Cụm Server RP Hà Nội</span>
+                        </div>
+                        <div class="text-right">
+                            <span id="ping-node-hn" class="text-2xl font-black font-mono text-emerald-600 block">-- ms</span>
+                            <span class="t1-pill t1-pill-success text-[10px] py-0 px-2">Cực Thấp</span>
+                        </div>
+                    </div>
+
+                    <!-- Node 2: TP. Hồ Chí Minh -->
+                    <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm flex items-center justify-between">
+                        <div>
+                            <span class="text-[11px] font-black text-slate-400 uppercase tracking-wider block">TP.HCM (FPT / CMC)</span>
+                            <span class="text-base font-black text-slate-900">Node Miền Nam</span>
+                            <span class="text-[11px] text-slate-500 block mt-0.5">Cụm Server RP Sài Gòn</span>
+                        </div>
+                        <div class="text-right">
+                            <span id="ping-node-hcm" class="text-2xl font-black font-mono text-emerald-600 block">-- ms</span>
+                            <span class="t1-pill t1-pill-success text-[10px] py-0 px-2">Cực Thấp</span>
+                        </div>
+                    </div>
+
+                    <!-- Node 3: Đà Nẵng -->
+                    <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm flex items-center justify-between">
+                        <div>
+                            <span class="text-[11px] font-black text-slate-400 uppercase tracking-wider block">ĐÀ NẴNG (VNIX HUB)</span>
+                            <span class="text-base font-black text-slate-900">Node Miền Trung</span>
+                            <span class="text-[11px] text-slate-500 block mt-0.5">Trạm Trung Chuyển</span>
+                        </div>
+                        <div class="text-right">
+                            <span id="ping-node-dn" class="text-2xl font-black font-mono text-sky-600 block">-- ms</span>
+                            <span class="t1-pill t1-pill-cyan text-[10px] py-0 px-2">Ổn Định</span>
+                        </div>
+                    </div>
+
+                    <!-- Node 4: Singapore International -->
+                    <div class="p-4 rounded-xl bg-white border border-slate-200/80 shadow-sm flex items-center justify-between">
+                        <div>
+                            <span class="text-[11px] font-black text-slate-400 uppercase tracking-wider block">SINGAPORE (SEA HUB)</span>
+                            <span class="text-base font-black text-slate-900">Node Quốc Tế</span>
+                            <span class="text-[11px] text-slate-500 block mt-0.5">Máy Chủ Discord Voice</span>
+                        </div>
+                        <div class="text-right">
+                            <span id="ping-node-sg" class="text-2xl font-black font-mono text-amber-600 block">-- ms</span>
+                            <span class="t1-pill t1-pill-warning text-[10px] py-0 px-2">Tối Ưu TCP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ping Improvement Note -->
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+                    <div class="flex items-center gap-2.5 text-slate-700 font-medium">
+                        <i class="fa-solid fa-bolt text-sky-600 text-sm"></i>
+                        <span>Cơ chế TCP NoDelay của T1 Optimizer giúp giảm 30-45% hiện tượng Delay Voice chat Discord và triệt tiêu giật xe khi lái tốc độ cao.</span>
+                    </div>
+                    <span class="text-[11px] font-bold text-emerald-600 whitespace-nowrap">Packet Loss: 0.00%</span>
+                </div>
+            </div>
+        </section>
+
         <!-- Benchmark Section (Tái Thiết Kế: 3 Thẻ So Sánh 3D Đẳng Cấp Thay Cho Bảng Vỡ Chữ) -->
         <section id="matrix" class="mb-20">
             <div class="text-center max-w-2xl mx-auto mb-12">

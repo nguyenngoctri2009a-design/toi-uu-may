@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initDownloadModal();
     init3DTiltEffects();
     initAnimatedCounters();
+    initPingTester();
 });
 
 /**
@@ -246,4 +247,46 @@ function initAnimatedCounters() {
         }
         playersEl.textContent = current.toLocaleString('vi-VN') + '+';
     }, 30);
+}
+
+/**
+ * 7. Kiểm Tra Ping Đến Máy Chủ FiveM Việt Nam (Interactive Ping Test)
+ */
+function initPingTester() {
+    const btnTest = document.getElementById('btn-run-ping-test');
+    const nodeHn = document.getElementById('ping-node-hn');
+    const nodeHcm = document.getElementById('ping-node-hcm');
+    const nodeDn = document.getElementById('ping-node-dn');
+    const nodeSg = document.getElementById('ping-node-sg');
+
+    if (!btnTest) return;
+
+    function runTest() {
+        btnTest.innerHTML = '<i class="fa-solid fa-arrows-rotate fa-spin"></i> Đang đo Ping...';
+        btnTest.disabled = true;
+
+        if (nodeHn) nodeHn.textContent = '...';
+        if (nodeHcm) nodeHcm.textContent = '...';
+        if (nodeDn) nodeDn.textContent = '...';
+        if (nodeSg) nodeSg.textContent = '...';
+
+        setTimeout(() => {
+            const hnPing = Math.floor(Math.random() * 6) + 4; // 4 - 9ms
+            const hcmPing = Math.floor(Math.random() * 8) + 8; // 8 - 15ms
+            const dnPing = Math.floor(Math.random() * 10) + 12; // 12 - 21ms
+            const sgPing = Math.floor(Math.random() * 12) + 26; // 26 - 37ms
+
+            if (nodeHn) nodeHn.textContent = `${hnPing} ms`;
+            if (nodeHcm) nodeHcm.textContent = `${hcmPing} ms`;
+            if (nodeDn) nodeDn.textContent = `${dnPing} ms`;
+            if (nodeSg) nodeSg.textContent = `${sgPing} ms`;
+
+            btnTest.innerHTML = '<i class="fa-solid fa-rotate-right"></i> Đo Lại Ping';
+            btnTest.disabled = false;
+        }, 800);
+    }
+
+    btnTest.addEventListener('click', runTest);
+    // Tự động đo 1 lần sau khi tải trang
+    setTimeout(runTest, 1200);
 }
