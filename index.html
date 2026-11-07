@@ -423,74 +423,139 @@
             </div>
         </section>
 
-        <!-- Pro Table (Bảng Xếp Hạng & Benchmark Chuẩn T1) -->
-        <section id="matrix" class="mb-16">
-            <div class="text-center max-w-2xl mx-auto mb-10">
-                <span class="t1-pill t1-pill-cyan mb-2">BENCHMARK LAB</span>
-                <h2 class="text-3xl font-black text-slate-900 tracking-tight">Hiệu Quả Thực Tế Trên Các Cấu Hình Phổ Biến</h2>
-                <p class="text-slate-600 text-sm mt-2">Dữ liệu kiểm thử thực tế trên các server FiveM Việt Nam có số lượng người chơi đông đảo.</p>
+        <!-- Benchmark Section (Tái Thiết Kế: 3 Thẻ So Sánh 3D Đẳng Cấp Thay Cho Bảng Vỡ Chữ) -->
+        <section id="matrix" class="mb-20">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="t1-pill t1-pill-cyan mb-3">BENCHMARK LAB 2026</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">Hiệu Quả Thực Tế Trên Từng Dòng Máy</h2>
+                <p class="text-slate-600 text-sm mt-2 font-medium">Đo kiểm trực tiếp trên các server FiveM Việt Nam đông người chơi nhất.</p>
             </div>
 
-            <div class="t1-table-wrap">
-                <table class="t1-table">
-                    <thead>
-                        <tr>
-                            <th>Hạng</th>
-                            <th>Phân Khúc Máy</th>
-                            <th>Thông Số Phần Cứng</th>
-                            <th>FPS Mặc Định</th>
-                            <th>FPS Sau Tối Ưu T1</th>
-                            <th>Hiệu Quả</th>
-                            <th>Trạng Thái</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Row 1 -->
-                        <tr>
-                            <td><span class="text-base font-bold">🥇 Top 1</span></td>
-                            <td class="font-extrabold text-slate-900">Máy Văn Phòng / Yếu</td>
-                            <td class="text-xs text-slate-600 font-mono">Core i3 • GTX 750Ti • 8GB RAM</td>
-                            <td class="font-bold text-red-500 font-mono">28 - 35 FPS</td>
-                            <td class="font-black text-emerald-600 font-mono text-base">58 - 65 FPS</td>
-                            <td>
-                                <div class="w-28 bg-slate-100 h-2 rounded-full overflow-hidden">
-                                    <div class="bg-emerald-500 h-full w-[85%]"></div>
-                                </div>
-                            </td>
-                            <td><span class="t1-pill t1-pill-success">+85% FPS</span></td>
-                        </tr>
+            <!-- 3 Luxury Benchmark Cards (Không Bao Giờ Bị Lỗi Xuống Dòng Vỡ Chữ) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1: Máy Yếu / Văn Phòng -->
+                <div class="t1-card t1-card-hover flex flex-col justify-between relative overflow-hidden border-slate-200">
+                    <div>
+                        <!-- Header Rank -->
+                        <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-black">
+                                🥉 PHÂN KHÚC PHỔ THÔNG
+                            </span>
+                            <span class="t1-pill t1-pill-success text-xs font-black">+85% FPS</span>
+                        </div>
 
-                        <!-- Row 2 -->
-                        <tr>
-                            <td><span class="text-base font-bold">🥈 Top 2</span></td>
-                            <td class="font-extrabold text-slate-900">Máy Quán Net / Phổ Thông</td>
-                            <td class="text-xs text-slate-600 font-mono">Core i5 • GTX 1650 • 16GB RAM</td>
-                            <td class="font-bold text-red-500 font-mono">52 - 60 FPS</td>
-                            <td class="font-black text-emerald-600 font-mono text-base">85 - 105 FPS</td>
-                            <td>
-                                <div class="w-28 bg-slate-100 h-2 rounded-full overflow-hidden">
-                                    <div class="bg-emerald-500 h-full w-[65%]"></div>
-                                </div>
-                            </td>
-                            <td><span class="t1-pill t1-pill-success">+65% FPS</span></td>
-                        </tr>
+                        <h3 class="text-xl font-black text-slate-900 mb-1">Máy Văn Phòng &amp; Yếu</h3>
+                        <p class="text-xs font-mono font-bold text-slate-500 mb-6">Core i3 • GTX 750Ti • 8GB RAM</p>
 
-                        <!-- Row 3 -->
-                        <tr>
-                            <td><span class="text-base font-bold">🥉 Top 3</span></td>
-                            <td class="font-extrabold text-slate-900">Máy Gaming Cao Cấp</td>
-                            <td class="text-xs text-slate-600 font-mono">Ryzen 5 • RTX 3060 • 32GB RAM</td>
-                            <td class="font-bold text-slate-500 font-mono">90 - 110 FPS</td>
-                            <td class="font-black text-sky-600 font-mono text-base">144 - 170 FPS</td>
-                            <td>
-                                <div class="w-28 bg-slate-100 h-2 rounded-full overflow-hidden">
-                                    <div class="bg-sky-500 h-full w-[50%]"></div>
-                                </div>
-                            </td>
-                            <td><span class="t1-pill t1-pill-cyan">Khóa 144Hz</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+                        <!-- FPS Stats Comparison -->
+                        <div class="space-y-4 mb-6">
+                            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/60 flex items-center justify-between">
+                                <span class="text-xs font-bold text-slate-500">Mặc định (Chưa tối ưu):</span>
+                                <span class="text-base font-black font-mono text-rose-500">28 - 35 FPS</span>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 flex items-center justify-between shadow-sm">
+                                <span class="text-xs font-black text-emerald-900">Sau Tối Ưu T1:</span>
+                                <span class="text-2xl font-black font-mono text-emerald-600">58 - 65 FPS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visual Progress Bar -->
+                    <div>
+                        <div class="flex justify-between text-[11px] font-bold text-slate-500 mb-1.5">
+                            <span>Độ ổn định khi giao tranh</span>
+                            <span class="text-emerald-600 font-extrabold">Rất Mượt (60Hz)</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                            <div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full w-[85%] rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Máy Quán Net (NỔI BẬT NHẤT / KHUYÊN DÙNG) -->
+                <div class="t1-card flex flex-col justify-between relative overflow-hidden border-2 border-sky-400 shadow-[0_12px_35px_rgba(2,132,199,0.14)] -translate-y-2 bg-gradient-to-b from-white to-sky-50/30">
+                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-0.5 rounded-full bg-gradient-to-r from-sky-600 to-sky-500 text-white text-[11px] font-black uppercase tracking-wider shadow-md">
+                        ⭐ CẤU HÌNH PHỔ BIẾN NHẤT
+                    </div>
+
+                    <div>
+                        <!-- Header Rank -->
+                        <div class="flex items-center justify-between pb-4 border-b border-sky-100 mb-5 pt-2">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-100 text-sky-800 text-xs font-black">
+                                🥇 PHÂN KHÚC QUÁN NET
+                            </span>
+                            <span class="t1-pill t1-pill-success text-xs font-black">+65% FPS</span>
+                        </div>
+
+                        <h3 class="text-xl font-black text-slate-900 mb-1">Máy Quán Net &amp; Tầm Trung</h3>
+                        <p class="text-xs font-mono font-bold text-slate-500 mb-6">Core i5 • GTX 1650 • 16GB RAM</p>
+
+                        <!-- FPS Stats Comparison -->
+                        <div class="space-y-4 mb-6">
+                            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/60 flex items-center justify-between">
+                                <span class="text-xs font-bold text-slate-500">Mặc định (Chưa tối ưu):</span>
+                                <span class="text-base font-black font-mono text-rose-500">52 - 60 FPS</span>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-gradient-to-r from-sky-50 via-white to-emerald-50 border-2 border-sky-300 flex items-center justify-between shadow-sm">
+                                <span class="text-xs font-black text-sky-950">Sau Tối Ưu T1:</span>
+                                <span class="text-2xl font-black font-mono text-sky-600">85 - 105 FPS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visual Progress Bar -->
+                    <div>
+                        <div class="flex justify-between text-[11px] font-bold text-slate-600 mb-1.5">
+                            <span>Khả năng kéo xe chợ xe</span>
+                            <span class="text-sky-600 font-extrabold">Không Rớt Khung Hình</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                            <div class="bg-gradient-to-r from-sky-500 to-emerald-500 h-full w-[95%] rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Máy Cao Cấp -->
+                <div class="t1-card t1-card-hover flex flex-col justify-between relative overflow-hidden border-slate-200">
+                    <div>
+                        <!-- Header Rank -->
+                        <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-black">
+                                🥈 PHÂN KHÚC GAMING PRO
+                            </span>
+                            <span class="t1-pill t1-pill-cyan text-xs font-black">Khóa 144Hz</span>
+                        </div>
+
+                        <h3 class="text-xl font-black text-slate-900 mb-1">Máy Gaming Cao Cấp</h3>
+                        <p class="text-xs font-mono font-bold text-slate-500 mb-6">Ryzen 5 • RTX 3060 • 32GB RAM</p>
+
+                        <!-- FPS Stats Comparison -->
+                        <div class="space-y-4 mb-6">
+                            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/60 flex items-center justify-between">
+                                <span class="text-xs font-bold text-slate-500">Mặc định (Chưa tối ưu):</span>
+                                <span class="text-base font-black font-mono text-slate-600">90 - 110 FPS</span>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-gradient-to-r from-indigo-50 to-sky-50 border border-indigo-200 flex items-center justify-between shadow-sm">
+                                <span class="text-xs font-black text-indigo-950">Sau Tối Ưu T1:</span>
+                                <span class="text-2xl font-black font-mono text-indigo-600">144 - 170 FPS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visual Progress Bar -->
+                    <div>
+                        <div class="flex justify-between text-[11px] font-bold text-slate-500 mb-1.5">
+                            <span>Tần số quét màn hình</span>
+                            <span class="text-indigo-600 font-extrabold">Chuẩn 144Hz - 240Hz</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                            <div class="bg-gradient-to-r from-indigo-500 to-sky-400 h-full w-[100%] rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
