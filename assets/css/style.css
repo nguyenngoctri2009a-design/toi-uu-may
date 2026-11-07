@@ -28,78 +28,12 @@ body, .t1-bg-grid {
   overflow-x: hidden;
 }
 
-/* HIỆU ỨNG ÁNH SÁNG NỀN AURORA TRÔI NỔI (FLOATING AURORA GLOW) */
-.aurora-glow-1 {
-  position: absolute;
-  top: 5%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 600px;
-  height: 350px;
-  background: radial-gradient(circle, rgba(14, 165, 233, 0.18) 0%, rgba(16, 185, 129, 0.12) 50%, transparent 75%);
-  filter: blur(80px);
-  pointer-events: none;
-  z-index: 0;
-  animation: auroraPulse 8s ease-in-out infinite alternate;
-}
-
-.aurora-glow-2 {
-  position: absolute;
-  top: 25%;
-  right: 5%;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, transparent 70%);
-  filter: blur(90px);
-  pointer-events: none;
-  z-index: 0;
-  animation: floatOrb 10s ease-in-out infinite;
-}
-
-@keyframes auroraPulse {
-  0% { transform: translateX(-50%) scale(0.9); opacity: 0.7; }
-  100% { transform: translateX(-50%) scale(1.15); opacity: 1; }
-}
-
-@keyframes floatOrb {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-30px) rotate(15deg); }
-}
-
-/* HIỆU ỨNG CHỮ GRADIENT CHẢY ÁNH KIM (SHIMMER TEXT GRADIENT) */
+/* HIỆU ỨNG ÁNH SÁNG NỀN CAO CẤP (CLEAN LUXURY SAAS GLOW) */
 .t1-shimmer-text {
-  background: linear-gradient(90deg, #0284c7 0%, #0ea5e9 25%, #10b981 50%, #0284c7 75%, #0ea5e9 100%);
-  background-size: 200% auto;
-  color: transparent;
+  background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 40%, #10b981 100%);
   -webkit-background-clip: text;
   background-clip: text;
-  animation: textShimmer 5s linear infinite;
-}
-
-@keyframes textShimmer {
-  to {
-    background-position: 200% center;
-  }
-}
-
-/* FLOATING 3D GLASS BADGES */
-.t1-float-badge {
-  animation: floatBadge 4s ease-in-out infinite;
-  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.12), inset 0 1px 1px #ffffff;
-}
-
-.t1-float-badge-delayed {
-  animation: floatBadge 4.5s ease-in-out 1.5s infinite;
-  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.12), inset 0 1px 1px #ffffff;
-}
-
-@keyframes floatBadge {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+  color: transparent;
 }
 
 /* 1. NÚT BẤM 3D XÚC GIÁC (3D TACTILE BUTTONS CÓ VỆT SÁNG QUÉT) */
