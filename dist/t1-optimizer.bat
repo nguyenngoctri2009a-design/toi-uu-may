@@ -45,3 +45,4 @@ echo  Hay khoi dong FiveM hoac GTA 5 de cam nhan do muot va tang FPS.
 echo =====================================================================
 echo.
 pause
+
