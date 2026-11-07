@@ -114,8 +114,8 @@ h1, h2, h3, h4, .font-heading {
 }
 
 /* ==========================================================================
-   HỆ THỐNG TRANSPARENT GLASS BUTTONS (NÚT KÍNH TRONG SUỐT CAO CẤP 3D)
-   100% LIGHT THEME - KHÔNG MÀU ĐẶC - BACKDROP BLUR 14PX - ĐỘ PHẢN CHIẾU KÍNH
+   HỆ THỐNG NÚT BẤM 3D XÚC GIÁC T1 (T1 3D TACTILE PRESSABLE BUTTONS)
+   100% LIGHT THEME - GỜ ĐÁY 3D DÀY DẶN - BẤM LÚN THẬT 3PX CỰC ĐÃ TAY
    ========================================================================== */
 .t1-btn-3d {
   display: inline-flex;
@@ -125,23 +125,20 @@ h1, h2, h3, h4, .font-heading {
   flex-shrink: 0;
   gap: 10px;
   padding: 12px 26px;
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 850;
   border-radius: 14px;
   cursor: pointer;
   user-select: none;
   text-decoration: none;
   position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   outline: none;
-  letter-spacing: 0.25px;
-  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.3px;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
 }
 
-/* Ánh Sáng Phản Quang Kính Chạy Ngang Khi Hover (Glass Laser Shimmer) */
+/* Ánh Sáng Phản Quang Laser Chạy Ngang Khi Hover (Glass Laser Shimmer) */
 .t1-btn-3d::after {
   content: '';
   position: absolute;
@@ -152,12 +149,11 @@ h1, h2, h3, h4, .font-heading {
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.65) 50%,
+    rgba(255, 255, 255, 0.6) 50%,
     rgba(255, 255, 255, 0) 100%
   );
   transform: rotate(25deg);
   pointer-events: none;
-  transition: none;
 }
 .t1-btn-3d:hover::after {
   left: 160%;
@@ -166,7 +162,7 @@ h1, h2, h3, h4, .font-heading {
 
 /* Micro-Interaction: Icon Nhúc Nhích Sống Động */
 .t1-btn-3d i, .t1-btn-3d svg {
-  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .t1-btn-3d:hover i, .t1-btn-3d:hover svg {
   transform: scale(1.15);
@@ -176,173 +172,136 @@ h1, h2, h3, h4, .font-heading {
   transform: translateY(2px) scale(1.15);
 }
 
-/* Hiệu ứng Nâng 3D khi Hover và Lún Cơ Học khi Click */
-.t1-btn-3d:hover {
-  transform: translateY(-2.5px);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-}
-.t1-btn-3d:active {
-  transform: translateY(1.5px);
-}
-
-/* 1. Primary Glass Button (Kính Xanh Dương Trong Suốt Thực Sự - Crystal Cyan Glass) */
+/* 1. NÚT PRIMARY 3D (Xanh Cyan / Sky Blue Đậm Đà với Gờ Đáy 3D 4px) */
 .t1-btn-primary {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.42) 0%,
-    rgba(186, 230, 253, 0.22) 50%,
-    rgba(56, 189, 248, 0.16) 100%
-  ) !important;
-  backdrop-filter: blur(14px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(14px) saturate(180%) !important;
-  color: #0284c7 !important;
-  border: 1.5px solid rgba(56, 189, 248, 0.55) !important;
+  background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid #38bdf8 !important;
   box-shadow: 
-    0 4px 14px rgba(7, 150, 229, 0.1),
-    inset 0 1.5px 1.5px rgba(255, 255, 255, 0.95),
-    inset 0 -1px 2px rgba(2, 132, 199, 0.1) !important;
+    0 4px 0 #075985,
+    0 7px 18px rgba(2, 132, 199, 0.35),
+    inset 0 1.5px 0.5px rgba(255, 255, 255, 0.45) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 .t1-btn-primary:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.6) 0%,
-    rgba(186, 230, 253, 0.35) 100%
-  ) !important;
-  border-color: rgba(14, 165, 233, 0.85) !important;
-  color: #0369a1 !important;
+  transform: translateY(-2px);
+  background: linear-gradient(180deg, #0ea5e9 0%, #0284c7 100%) !important;
+  border-color: #7dd3fc !important;
+  color: #ffffff !important;
   box-shadow: 
-    0 8px 24px -2px rgba(7, 150, 229, 0.2),
-    inset 0 1.5px 1.5px #FFFFFF,
-    inset 0 -1px 2px rgba(2, 132, 199, 0.15) !important;
+    0 6px 0 #075985,
+    0 11px 24px rgba(2, 132, 199, 0.45),
+    inset 0 1.5px 0.5px rgba(255, 255, 255, 0.65) !important;
 }
 .t1-btn-primary:active {
-  background: rgba(186, 230, 253, 0.3) !important;
+  transform: translateY(3px) !important;
   box-shadow: 
-    0 2px 6px rgba(7, 150, 229, 0.1),
-    inset 0 2px 4px rgba(2, 132, 199, 0.2) !important;
+    0 1px 0 #075985,
+    0 2px 6px rgba(2, 132, 199, 0.25),
+    inset 0 2px 4px rgba(0, 0, 0, 0.25) !important;
 }
 
-/* Nhịp Thở Hào Quang Kính Cho Nút Tải Chính */
-#btn-hero-download {
-  animation: t1-glass-aura 3.5s ease-in-out infinite;
-}
-@keyframes t1-glass-aura {
-  0%, 100% {
-    box-shadow: 
-      0 4px 14px rgba(7, 150, 229, 0.12),
-      0 0 0 0 rgba(14, 165, 233, 0.3),
-      inset 0 1.5px 1.5px rgba(255, 255, 255, 0.95);
-  }
-  50% {
-    box-shadow: 
-      0 6px 20px rgba(7, 150, 229, 0.22),
-      0 0 0 8px rgba(14, 165, 233, 0),
-      inset 0 1.5px 1.5px #FFFFFF;
-  }
-}
-
-/* 2. Success Glass Button (Kính Xanh Ngọc Trong Suốt Thực Sự - Crystal Emerald Glass) */
+/* 2. NÚT SUCCESS 3D (Xanh Ngọc Lục Bảo Emerald với Gờ Đáy 3D 4px) */
 .t1-btn-success {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.45) 0%,
-    rgba(167, 243, 208, 0.22) 50%,
-    rgba(52, 211, 153, 0.16) 100%
-  ) !important;
-  backdrop-filter: blur(14px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(14px) saturate(180%) !important;
-  color: #047857 !important;
-  border: 1.5px solid rgba(16, 185, 129, 0.55) !important;
+  background: linear-gradient(180deg, #059669 0%, #047857 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid #34d399 !important;
   box-shadow: 
-    0 4px 14px rgba(16, 185, 129, 0.1),
-    inset 0 1.5px 1.5px rgba(255, 255, 255, 0.95),
-    inset 0 -1px 2px rgba(5, 150, 105, 0.1) !important;
+    0 4px 0 #064e3b,
+    0 7px 18px rgba(5, 150, 105, 0.35),
+    inset 0 1.5px 0.5px rgba(255, 255, 255, 0.45) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 .t1-btn-success:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.65) 0%,
-    rgba(167, 243, 208, 0.38) 100%
-  ) !important;
-  border-color: rgba(16, 185, 129, 0.85) !important;
-  color: #065f46 !important;
+  transform: translateY(-2px);
+  background: linear-gradient(180deg, #10b981 0%, #059669 100%) !important;
+  border-color: #6ee7b7 !important;
+  color: #ffffff !important;
   box-shadow: 
-    0 8px 24px -2px rgba(16, 185, 129, 0.2),
-    inset 0 1.5px 1.5px #FFFFFF !important;
+    0 6px 0 #064e3b,
+    0 11px 24px rgba(5, 150, 105, 0.45),
+    inset 0 1.5px 0.5px rgba(255, 255, 255, 0.65) !important;
 }
 .t1-btn-success:active {
-  background: rgba(167, 243, 208, 0.3) !important;
+  transform: translateY(3px) !important;
   box-shadow: 
-    0 2px 6px rgba(16, 185, 129, 0.1),
-    inset 0 2px 4px rgba(5, 150, 105, 0.2) !important;
+    0 1px 0 #064e3b,
+    0 2px 6px rgba(5, 150, 105, 0.25),
+    inset 0 2px 4px rgba(0, 0, 0, 0.25) !important;
 }
 
-/* 3. Surface / Secondary Glass Button (Kính Pha Lê Trong Suốt Thực Sự - Crystal White Glass) */
+/* 3. NÚT SECONDARY / SURFACE 3D (Trắng Sứ Neumorphic Nổi Khối Cao Cấp) */
 .t1-btn-surface, .t1-btn-secondary {
-  background: rgba(255, 255, 255, 0.25) !important;
-  backdrop-filter: blur(14px) saturate(180%) !important;
-  -webkit-backdrop-filter: blur(14px) saturate(180%) !important;
-  color: #1e293b !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.8) !important;
+  background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%) !important;
+  color: #0f172a !important;
+  border: 1.5px solid #cbd5e1 !important;
   box-shadow: 
-    0 4px 14px rgba(15, 23, 42, 0.04),
-    inset 0 1.5px 1.5px rgba(255, 255, 255, 0.95),
-    inset 0 -1px 2px rgba(148, 163, 184, 0.1) !important;
+    0 3.5px 0 #94a3b8,
+    0 6px 14px rgba(0, 0, 0, 0.08),
+    inset 0 1.5px 1px #ffffff !important;
 }
 .t1-btn-surface:hover, .t1-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.48) !important;
-  border-color: rgba(56, 189, 248, 0.6) !important;
+  transform: translateY(-2px);
+  background: #ffffff !important;
+  border-color: #64748b !important;
   color: #0284c7 !important;
   box-shadow: 
-    0 8px 20px rgba(7, 150, 229, 0.1),
-    inset 0 1.5px 1.5px #FFFFFF !important;
+    0 5.5px 0 #64748b,
+    0 10px 20px rgba(0, 0, 0, 0.12),
+    inset 0 1.5px 1px #ffffff !important;
 }
 .t1-btn-surface:active, .t1-btn-secondary:active {
-  background: rgba(255, 255, 255, 0.18) !important;
+  transform: translateY(2.5px) !important;
   box-shadow: 
-    0 2px 6px rgba(15, 23, 42, 0.04),
-    inset 0 2px 3px rgba(0, 0, 0, 0.06) !important;
+    0 1px 0 #94a3b8,
+    inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* 4. Warning Glass Button (Kính Hổ Phách Trong Suốt - Crystal Amber Glass) */
+/* 4. NÚT DISCORD 3D (Tím Xanh Blurple Đặc Trưng 3D) */
+.t1-btn-discord, a[href*="discord.gg"] {
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* 5. NÚT WARNING 3D (Vàng Hổ Phách / Amber VIP) */
 .t1-btn-warning {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.45) 0%,
-    rgba(253, 230, 138, 0.22) 100%
-  ) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-  color: #b45309 !important;
-  border: 1.5px solid rgba(245, 158, 11, 0.55) !important;
+  background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid #fcd34d !important;
   box-shadow: 
-    0 4px 14px rgba(245, 158, 11, 0.1),
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.9) !important;
+    0 4px 0 #92400e,
+    0 7px 18px rgba(245, 158, 11, 0.35),
+    inset 0 1.5px 0.5px rgba(255, 255, 255, 0.45) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 .t1-btn-warning:hover {
-  background: rgba(254, 243, 199, 0.55) !important;
-  border-color: #f59e0b !important;
+  transform: translateY(-2px);
+  background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 100%) !important;
+  box-shadow: 0 6px 0 #92400e, 0 11px 24px rgba(245, 158, 11, 0.45) !important;
+}
+.t1-btn-warning:active {
+  transform: translateY(3px) !important;
+  box-shadow: 0 1px 0 #92400e, inset 0 2px 4px rgba(0, 0, 0, 0.25) !important;
 }
 
-/* 5. Danger Glass Button (Kính Đỏ Hồng Trong Suốt - Crystal Ruby Glass) */
+/* 6. NÚT DANGER 3D (Đỏ Ruby Cảnh Báo) */
 .t1-btn-danger {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.45) 0%,
-    rgba(254, 202, 202, 0.22) 100%
-  ) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-  color: #b91c1c !important;
-  border: 1.5px solid rgba(239, 68, 68, 0.55) !important;
+  background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid #fca5a5 !important;
   box-shadow: 
-    0 4px 14px rgba(239, 68, 68, 0.1),
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.9) !important;
+    0 4px 0 #991b1b,
+    0 7px 18px rgba(239, 68, 68, 0.35),
+    inset 0 1.5px 0.5px rgba(255, 255, 255, 0.45) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 .t1-btn-danger:hover {
-  background: rgba(254, 226, 226, 0.55) !important;
-  border-color: #ef4444 !important;
+  transform: translateY(-2px);
+  background: linear-gradient(180deg, #f87171 0%, #ef4444 100%) !important;
+  box-shadow: 0 6px 0 #991b1b, 0 11px 24px rgba(239, 68, 68, 0.45) !important;
+}
+.t1-btn-danger:active {
+  transform: translateY(3px) !important;
+  box-shadow: 0 1px 0 #991b1b, inset 0 2px 4px rgba(0, 0, 0, 0.25) !important;
 }
 
 /* Nút Sao Chép Lệnh Kính Trong Suốt (Copy Command Glass Buttons) */
@@ -395,17 +354,7 @@ h1, h2, h3, h4, .font-heading {
     opacity: 0;
   }
 }
-  box-shadow: 
-    0 4px 0 #AF313B,
-    0 8px 18px rgba(227, 77, 89, 0.3),
-    inset 0 1px 1px rgba(255, 255, 255, 0.4);
-}
-.t1-btn-danger:hover {
-  box-shadow: 0 6px 0 #AF313B, 0 12px 24px rgba(227, 77, 89, 0.4);
-}
-.t1-btn-danger:active {
-  box-shadow: 0 2px 0 #AF313B, inset 0 2px 4px rgba(0, 0, 0, 0.15);
-}
+
 
 /* ==========================================================================
    HỆ THỐNG GLASSMORPHISM CAO CẤP & CHIỀU SÂU 3D (LIGHT THEME LUXURY GLASS)
