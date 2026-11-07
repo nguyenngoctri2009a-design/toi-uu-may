@@ -152,7 +152,7 @@
          ====================================================================== -->
     <header class="sticky top-0 z-50 backdrop-blur-xl bg-white/50 border-b border-white/75 shadow-[0_2px_12px_rgba(21,34,56,0.03)]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Bên Trái: Logo Biểu Tượng Icon GTA Chính Thức + Cụm Chữ "FiveM VN Engine" -->
+            <!-- Bên Trái: Logo Biểu Tượng Icon GTA Chính Thức + Cụm Chữ "GTA5VN-System" -->
             <a href="#" class="t1-wordmark-logo group">
                 <!-- Biểu Tượng Logo GTA Chính Thức Của Đại Ca -->
                 <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white border border-[#DFEAF4] shadow-[0_3px_10px_rgba(21,34,56,0.06)] flex items-center justify-center p-1 overflow-hidden group-hover:scale-105 transition-transform duration-200">
@@ -235,7 +235,7 @@
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500 shadow-[0_0_8px_#10b981]"></span>
                 </span>
-                <span class="text-xs font-black tracking-wider text-textPrimary uppercase">FiveM VN Engine 2026</span>
+                <span class="text-xs font-black tracking-wider text-textPrimary uppercase">GTA5VN-System 2026</span>
                 <span class="h-3 w-[1px] bg-[#BAE6FD]"></span>
                 <span class="text-xs font-black text-primary font-mono">v2.5.0 Stable</span>
             </div>
@@ -723,10 +723,10 @@
                         </div>
                         <div class="flex items-center gap-3 text-xs font-bold">
                             <span class="flex items-center gap-1.5 text-secondary">
-                                <span class="w-3 h-1 bg-secondary rounded-full inline-block"></span> FiveM VN Engine
+                                <span class="w-3 h-1 bg-secondary rounded-full inline-block"></span> GTA5VN-System (144Hz Ổn Định)
                             </span>
                             <span class="flex items-center gap-1.5 text-danger">
-                                <span class="w-3 h-1 bg-danger rounded-full inline-block"></span> Mặc Định (Lag)
+                                <span class="w-3 h-1 bg-danger rounded-full inline-block"></span> Mặc Định (Giật Lag & Tụt FPS)
                             </span>
                         </div>
                     </div>
@@ -746,17 +746,17 @@
                             <line x1="0" y1="150" x2="600" y2="150" stroke="#DFEAF4" stroke-dasharray="4" />
 
                             <!-- T1 Optimized Line & Area (Khóa Ổn Định ~ 120-144 FPS) -->
-                            <path d="M0,45 Q50,42 100,44 T200,43 T300,46 T400,44 T500,42 T600,45 L600,195 L0,195 Z" fill="url(#chartGradT1)" />
-                            <path d="M0,45 Q50,42 100,44 T200,43 T300,46 T400,44 T500,42 T600,45" fill="none" stroke="#00A88A" stroke-width="3" stroke-linecap="round" />
+                            <path d="M 0,44 C 100,42 200,46 300,43 C 400,41 500,45 600,43 L 600,200 L 0,200 Z" fill="url(#chartGradT1)" />
+                            <path d="M 0,44 C 100,42 200,46 300,43 C 400,41 500,45 600,43" fill="none" stroke="#00A88A" stroke-width="3" stroke-linecap="round" />
 
                             <!-- Unoptimized Lag Line (Dao Động Trong Phạm Vi An Toàn, Đỉnh Đáy Đều Nằm Trong Khung) -->
-                            <path d="M0,125 Q40,110 80,145 T160,110 T240,155 T320,85 T400,165 T480,95 T560,150 L600,130" fill="none" stroke="#E34D59" stroke-width="2.5" stroke-linecap="round" />
+                            <path d="M 0,110 C 35,110 55,125 90,135 C 120,145 135,168 170,165 C 205,160 225,120 260,110 C 295,100 315,145 350,168 C 385,178 405,145 440,135 C 475,125 495,165 530,162 C 560,158 575,130 600,120" fill="none" stroke="#E34D59" stroke-width="2.5" stroke-linecap="round" />
                         </svg>
 
                         <!-- Labels Y-axis -->
-                        <div class="absolute left-3 top-3 text-[10px] font-mono font-black text-secondary bg-white/80 px-1.5 py-0.5 rounded shadow-xs">144 FPS</div>
-                        <div class="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-mono font-bold text-textSecondary bg-white/80 px-1.5 py-0.5 rounded shadow-xs">60 FPS</div>
-                        <div class="absolute left-3 bottom-3 text-[10px] font-mono font-bold text-danger bg-white/80 px-1.5 py-0.5 rounded shadow-xs">24 FPS (Drop)</div>
+                        <div class="absolute left-3 top-3 text-[10px] font-mono font-black text-secondary bg-white/80 px-1.5 py-0.5 rounded shadow-xs">144 FPS (Khóa Cứng)</div>
+                        <div class="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-mono font-bold text-textSecondary bg-white/80 px-1.5 py-0.5 rounded shadow-xs">60 FPS (Trung Bình)</div>
+                        <div class="absolute left-3 bottom-3 text-[10px] font-mono font-bold text-danger bg-white/80 px-1.5 py-0.5 rounded shadow-xs">24 FPS (Tụt Khung Hình)</div>
                     </div>
                 </div>
 
@@ -1208,7 +1208,7 @@
                         </div>
 
                         <p class="text-xs text-textSecondary leading-relaxed font-medium mb-4">
-                            &ldquo;Server mình hơn 500 slot, nhiều anh em kêu lag do mạng buổi tối bị bóp băng thông. Mình ghim luôn link tool FiveM VN Engine cho cả Discord server tải, giảm hẳn 80% ticket kêu giật xe lùi desync. Đáng đồng tiền bát gạo cho cộng đồng GTA 5 VN!&rdquo;
+                            &ldquo;Server mình hơn 500 slot, nhiều anh em kêu lag do mạng buổi tối bị bóp băng thông. Mình ghim luôn link tool GTA5VN-System cho cả Discord server tải, giảm hẳn 80% ticket kêu giật xe lùi desync. Đáng đồng tiền bát gạo cho cộng đồng GTA 5 VN!&rdquo;
                         </p>
                     </div>
 
@@ -1541,7 +1541,7 @@
                 <!-- Nội Dung Nhận Xét -->
                 <div>
                     <label for="review-content" class="block text-[11px] font-black uppercase text-textSecondary mb-1.5">Cảm Nhận Thực Tế Của Bạn <span class="text-danger">*</span></label>
-                    <textarea id="review-content" required rows="3" placeholder="Chia sẻ số FPS tăng thêm, độ mượt khi combat hoặc cảm giác sau khi bật FiveM VN Engine..." class="t1-input text-xs resize-none"></textarea>
+                    <textarea id="review-content" required rows="3" placeholder="Chia sẻ số FPS tăng thêm, độ mượt khi combat hoặc cảm giác sau khi bật GTA5VN-System..." class="t1-input text-xs resize-none"></textarea>
                 </div>
 
                 <!-- Footer Buttons -->
