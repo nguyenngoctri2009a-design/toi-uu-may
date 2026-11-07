@@ -133,9 +133,15 @@ h1, h2, h3, h4, .font-heading {
   text-decoration: none;
   position: relative;
   outline: none;
-  letter-spacing: 0.3px;
+  font-family: 'Space Mono', 'Courier Prime', 'SF Mono', monospace !important;
+  letter-spacing: 0.4px;
   transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
+}
+
+/* Kiểu Chữ Máy Đánh Chữ Typewriter (some preview text style) */
+.t1-typewriter, .font-mono {
+  font-family: 'Space Mono', 'Courier Prime', 'SF Mono', monospace !important;
 }
 
 /* Ánh Sáng Phản Quang Laser Chạy Ngang Khi Hover (Glass Laser Shimmer) */
@@ -603,6 +609,8 @@ h1, h2, h3, h4, .font-heading {
    HỆ THỐNG HUY HIỆU & STATUS PILLS (LIGHT ONLY)
    ========================================================================== */
 .t1-pill {
+  font-family: 'Space Mono', 'Courier Prime', monospace !important;
+  letter-spacing: 0.4px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
