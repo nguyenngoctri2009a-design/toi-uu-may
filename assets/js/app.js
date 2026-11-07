@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMockupBoost();
     initButtonRipple();
     initReviewModal();
+    initFpsChartEngine();
 });
 
 /**
@@ -833,4 +834,303 @@ function initThreadingEngine() {
     } catch (err) {
         console.warn('[GTA5VN-System] Web Worker fallback to Main Thread scheduler.', err);
     }
+}
+
+
+/**
+ * 15. Bộ Khởi Chạy Biểu Đồ Đo Khung Hình Thời Gian Thực 60FPS (Realtime Telemetry Chart Engine)
+ */
+function initFpsChartEngine() {
+    const canvas = document.getElementById('fpsTelemetryCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const valGreen = document.getElementById('chart-live-fps-green');
+    const valRed = document.getElementById('chart-live-fps-red');
+    const badgeDrop = document.getElementById('chart-live-drop-red');
+
+    let width = 0;
+    let height = 0;
+    let dpr = window.devicePixelRatio || 1;
+    let time = 0;
+    let scanPos = 0.5; // 0 to 1
+    let isHovered = false;
+    let mouseX = 0;
+    let isVisible = true;
+    let animationFrameId = null;
+
+    function resize() {
+        const rect = canvas.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return;
+        width = rect.width;
+        height = rect.height;
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        ctx.setTransform(1, 0, 0, 1, 0, 0); // Reset scale
+        ctx.scale(dpr, dpr);
+    }
+
+    window.addEventListener('resize', resize, { passive: true });
+    resize();
+
+    // Tương tác chuột / cảm ứng
+    canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        isHovered = true;
+    }, { passive: true });
+
+    canvas.addEventListener('touchmove', (e) => {
+        if (e.touches && e.touches[0]) {
+            const rect = canvas.getBoundingClientRect();
+            mouseX = e.touches[0].clientX - rect.left;
+            isHovered = true;
+        }
+    }, { passive: true });
+
+    canvas.addEventListener('mouseleave', () => {
+        isHovered = false;
+    });
+
+    canvas.addEventListener('touchend', () => {
+        isHovered = false;
+    });
+
+    // Mapping FPS -> Tọa độ Y
+    function fpsToY(fps) {
+        const topY = 28;
+        const botY = height - 32;
+        const minFps = 15;
+        const maxFps = 155;
+        const ratio = (fps - minFps) / (maxFps - minFps);
+        return botY - ratio * (botY - topY);
+    }
+
+    // GTA5VN Lock Line: 144 FPS chuẩn eSports
+    function getGreenFps(x, t) {
+        const microPulse = Math.sin(x * 0.02 + t * 3) * 0.8 + Math.cos(x * 0.05 - t * 2) * 0.4;
+        return 144.0 + microPulse;
+    }
+
+    // Mặc định giật lag: Sóng dao động hỗn loạn, tụt dốc sâu khi combat
+    function getRedFps(x, t) {
+        const base = 42;
+        const wave1 = Math.sin(x * 0.012 - t * 1.5) * 16;
+        const wave2 = Math.cos(x * 0.025 + t * 2.2) * 11;
+        const stutter = Math.sin(x * 0.08 - t * 4) * Math.sin(x * 0.03 + t) * 14;
+        let val = base + wave1 + wave2 + stutter;
+        if (val < 22) val = 22;
+        if (val > 64) val = 64;
+        return val;
+    }
+
+    let lastTime = performance.now();
+
+    function render(now) {
+        if (!isVisible) {
+            animationFrameId = requestAnimationFrame(render);
+            return;
+        }
+
+        const dt = Math.min((now - lastTime) / 1000, 0.1);
+        lastTime = now;
+        time += dt || 0.016;
+
+        if (!isHovered) {
+            scanPos = (scanPos + dt * 0.22) % 1.0;
+        } else {
+            scanPos = Math.max(0, Math.min(1, mouseX / width));
+        }
+
+        ctx.clearRect(0, 0, width, height);
+
+        // 1. Grid Lines
+        ctx.save();
+        ctx.strokeStyle = '#DFEAF4';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([4, 4]);
+
+        const y144 = fpsToY(144);
+        ctx.beginPath();
+        ctx.moveTo(0, y144);
+        ctx.lineTo(width, y144);
+        ctx.stroke();
+
+        const y60 = fpsToY(60);
+        ctx.beginPath();
+        ctx.moveTo(0, y60);
+        ctx.lineTo(width, y60);
+        ctx.stroke();
+
+        const y24 = fpsToY(24);
+        ctx.beginPath();
+        ctx.moveTo(0, y24);
+        ctx.lineTo(width, y24);
+        ctx.stroke();
+
+        for (let i = 1; i <= 3; i++) {
+            const vx = (width / 4) * i;
+            ctx.beginPath();
+            ctx.moveTo(vx, 15);
+            ctx.lineTo(vx, height - 25);
+            ctx.stroke();
+        }
+        ctx.restore();
+
+        // 2. Green Area & Stroke (144 FPS)
+        const step = 4;
+        const pointsGreen = [];
+        for (let x = 0; x <= width + step; x += step) {
+            const fps = getGreenFps(x, time);
+            pointsGreen.push({ x, y: fpsToY(fps), fps });
+        }
+
+        ctx.save();
+        const gradGreen = ctx.createLinearGradient(0, y144, 0, height);
+        gradGreen.addColorStop(0, 'rgba(0, 168, 138, 0.28)');
+        gradGreen.addColorStop(0.5, 'rgba(0, 168, 138, 0.08)');
+        gradGreen.addColorStop(1, 'rgba(0, 168, 138, 0)');
+
+        ctx.beginPath();
+        ctx.moveTo(0, height);
+        ctx.lineTo(pointsGreen[0].x, pointsGreen[0].y);
+        for (let i = 1; i < pointsGreen.length; i++) {
+            ctx.lineTo(pointsGreen[i].x, pointsGreen[i].y);
+        }
+        ctx.lineTo(width, height);
+        ctx.closePath();
+        ctx.fillStyle = gradGreen;
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.moveTo(pointsGreen[0].x, pointsGreen[0].y);
+        for (let i = 1; i < pointsGreen.length; i++) {
+            ctx.lineTo(pointsGreen[i].x, pointsGreen[i].y);
+        }
+        ctx.strokeStyle = '#00A88A';
+        ctx.lineWidth = 3;
+        ctx.lineCap = 'round';
+        ctx.shadowColor = 'rgba(0, 168, 138, 0.4)';
+        ctx.shadowBlur = 8;
+        ctx.stroke();
+        ctx.restore();
+
+        // 3. Red Area & Stroke (Giật Lag)
+        const pointsRed = [];
+        for (let x = 0; x <= width + step; x += step) {
+            const fps = getRedFps(x, time);
+            pointsRed.push({ x, y: fpsToY(fps), fps });
+        }
+
+        ctx.save();
+        const gradRed = ctx.createLinearGradient(0, y60, 0, height);
+        gradRed.addColorStop(0, 'rgba(227, 77, 89, 0.12)');
+        gradRed.addColorStop(1, 'rgba(227, 77, 89, 0)');
+
+        ctx.beginPath();
+        ctx.moveTo(0, height);
+        ctx.lineTo(pointsRed[0].x, pointsRed[0].y);
+        for (let i = 1; i < pointsRed.length; i++) {
+            ctx.lineTo(pointsRed[i].x, pointsRed[i].y);
+        }
+        ctx.lineTo(width, height);
+        ctx.closePath();
+        ctx.fillStyle = gradRed;
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.moveTo(pointsRed[0].x, pointsRed[0].y);
+        for (let i = 1; i < pointsRed.length; i++) {
+            ctx.lineTo(pointsRed[i].x, pointsRed[i].y);
+        }
+        ctx.strokeStyle = '#E34D59';
+        ctx.lineWidth = 2.5;
+        ctx.lineCap = 'round';
+        ctx.shadowColor = 'rgba(227, 77, 89, 0.35)';
+        ctx.shadowBlur = 6;
+        ctx.stroke();
+        ctx.restore();
+
+        // 4. Laser Scanline & Target Reticles
+        const scanX = scanPos * width;
+        const currentGreenFps = getGreenFps(scanX, time);
+        const currentRedFps = getRedFps(scanX, time);
+        const currentGreenY = fpsToY(currentGreenFps);
+        const currentRedY = fpsToY(currentRedFps);
+
+        ctx.save();
+        const scanGrad = ctx.createLinearGradient(0, 15, 0, height - 20);
+        scanGrad.addColorStop(0, 'rgba(7, 150, 229, 0.0)');
+        scanGrad.addColorStop(0.2, 'rgba(7, 150, 229, 0.6)');
+        scanGrad.addColorStop(0.8, 'rgba(7, 150, 229, 0.6)');
+        scanGrad.addColorStop(1, 'rgba(7, 150, 229, 0.0)');
+
+        ctx.beginPath();
+        ctx.moveTo(scanX, 15);
+        ctx.lineTo(scanX, height - 25);
+        ctx.strokeStyle = scanGrad;
+        ctx.lineWidth = 2;
+        ctx.shadowColor = 'rgba(7, 150, 229, 0.8)';
+        ctx.shadowBlur = 10;
+        ctx.stroke();
+
+        // Green Reticle Point
+        ctx.beginPath();
+        ctx.arc(scanX, currentGreenY, 5, 0, Math.PI * 2);
+        ctx.fillStyle = '#10B981';
+        ctx.shadowColor = '#10B981';
+        ctx.shadowBlur = 12;
+        ctx.fill();
+        ctx.strokeStyle = '#FFFFFF';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Red Reticle Point
+        ctx.beginPath();
+        ctx.arc(scanX, currentRedY, 5, 0, Math.PI * 2);
+        ctx.fillStyle = '#EF4444';
+        ctx.shadowColor = '#EF4444';
+        ctx.shadowBlur = 12;
+        ctx.fill();
+        ctx.strokeStyle = '#FFFFFF';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.restore();
+
+        // 5. Update HUD Indicators
+        if (valGreen) {
+            valGreen.textContent = currentGreenFps.toFixed(1) + ' FPS';
+        }
+        if (valRed) {
+            valRed.textContent = currentRedFps.toFixed(1) + ' FPS';
+        }
+        if (badgeDrop) {
+            if (currentRedFps < 32) {
+                badgeDrop.textContent = 'STUTTER 1% LOW!';
+                badgeDrop.className = 'text-[9px] font-mono font-black text-white bg-rose-600 px-1.5 py-0.5 rounded shadow-[0_0_8px_#e11d48] animate-bounce';
+            } else {
+                badgeDrop.textContent = 'DROP 1% LOW';
+                badgeDrop.className = 'text-[9px] font-mono font-bold text-rose-700 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-100 animate-pulse';
+            }
+        }
+
+        animationFrameId = requestAnimationFrame(render);
+    }
+
+    // Tự động tạm dừng render khi người dùng cuộn ra ngoài màn hình để tiết kiệm 100% pin & CPU
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                isVisible = entry.isIntersecting;
+                if (isVisible) {
+                    resize();
+                    lastTime = performance.now();
+                }
+            });
+        }, { threshold: 0.1 });
+        observer.observe(canvas);
+    }
+
+    animationFrameId = requestAnimationFrame(render);
 }

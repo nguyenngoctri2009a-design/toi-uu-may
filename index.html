@@ -731,32 +731,55 @@
                         </div>
                     </div>
 
-                    <!-- SVG Chart Responsive (Đã Khóa Tràn Viền 100% Không Bao Giờ Chém Ra Ngoài) -->
-                    <div class="w-full h-56 sm:h-64 relative rounded-xl bg-slate-50/50 border border-t1border/60 overflow-hidden p-2">
-                        <svg viewBox="0 0 600 200" preserveAspectRatio="none" class="w-full h-full overflow-hidden">
-                            <defs>
-                                <linearGradient id="chartGradT1" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stop-color="#00A88A" stop-opacity="0.22" />
-                                    <stop offset="100%" stop-color="#00A88A" stop-opacity="0.0" />
-                                </linearGradient>
-                            </defs>
-                            <!-- Grid lines -->
-                            <line x1="0" y1="40" x2="600" y2="40" stroke="#DFEAF4" stroke-dasharray="4" />
-                            <line x1="0" y1="95" x2="600" y2="95" stroke="#DFEAF4" stroke-dasharray="4" />
-                            <line x1="0" y1="150" x2="600" y2="150" stroke="#DFEAF4" stroke-dasharray="4" />
+                    <!-- Realtime Animated Telemetry Graph (T1 3D Neumorphic-Glass Live Engine) -->
+                    <div class="w-full h-64 sm:h-72 relative rounded-2xl bg-gradient-to-b from-white to-[#F8FAFC] border border-[#DFEAF4] shadow-[0_8px_25px_rgba(7,150,229,0.06)] overflow-hidden p-2 select-none group">
+                        <!-- Live Telemetry Status & Indicators (Góc Trên Phải) -->
+                        <div class="absolute top-3 right-3 z-20 flex flex-wrap items-center justify-end gap-2">
+                            <!-- Badge Xanh: GTA5VN-System -->
+                            <div class="flex items-center gap-1.5 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-xl border border-emerald-200 shadow-[0_2px_8px_rgba(16,185,129,0.12)]">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                <span class="text-[10px] font-black uppercase text-textSecondary hidden sm:inline">GTA5VN:</span>
+                                <span id="chart-live-fps-green" class="font-mono font-black text-xs sm:text-sm text-emerald-600">144.0 FPS</span>
+                                <span class="text-[9px] font-mono font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-100">6.9ms</span>
+                            </div>
 
-                            <!-- T1 Optimized Line & Area (Khóa Ổn Định ~ 120-144 FPS) -->
-                            <path d="M 0,44 C 100,42 200,46 300,43 C 400,41 500,45 600,43 L 600,200 L 0,200 Z" fill="url(#chartGradT1)" />
-                            <path d="M 0,44 C 100,42 200,46 300,43 C 400,41 500,45 600,43" fill="none" stroke="#00A88A" stroke-width="3" stroke-linecap="round" />
+                            <!-- Badge Đỏ: Mặc định (Giật Lag) -->
+                            <div class="flex items-center gap-1.5 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-xl border border-rose-200 shadow-[0_2px_8px_rgba(225,29,72,0.12)]">
+                                <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+                                <span class="text-[10px] font-black uppercase text-textSecondary hidden sm:inline">Mặc Định:</span>
+                                <span id="chart-live-fps-red" class="font-mono font-black text-xs sm:text-sm text-rose-600">32.8 FPS</span>
+                                <span id="chart-live-drop-red" class="text-[9px] font-mono font-bold text-rose-700 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-100 animate-pulse">DROP 1% LOW</span>
+                            </div>
+                        </div>
 
-                            <!-- Unoptimized Lag Line (Dao Động Trong Phạm Vi An Toàn, Đỉnh Đáy Đều Nằm Trong Khung) -->
-                            <path d="M 0,110 C 35,110 55,125 90,135 C 120,145 135,168 170,165 C 205,160 225,120 260,110 C 295,100 315,145 350,168 C 385,178 405,145 440,135 C 475,125 495,165 530,162 C 560,158 575,130 600,120" fill="none" stroke="#E34D59" stroke-width="2.5" stroke-linecap="round" />
-                        </svg>
+                        <!-- Canvas Khởi Chạy Engine 60FPS -->
+                        <canvas id="fpsTelemetryCanvas" class="w-full h-full block relative z-10 cursor-crosshair"></canvas>
 
-                        <!-- Labels Y-axis -->
-                        <div class="absolute left-3 top-3 text-[10px] font-mono font-black text-secondary bg-white/80 px-1.5 py-0.5 rounded shadow-xs">144 FPS (Khóa Cứng)</div>
-                        <div class="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-mono font-bold text-textSecondary bg-white/80 px-1.5 py-0.5 rounded shadow-xs">60 FPS (Trung Bình)</div>
-                        <div class="absolute left-3 bottom-3 text-[10px] font-mono font-bold text-danger bg-white/80 px-1.5 py-0.5 rounded shadow-xs">24 FPS (Tụt Khung Hình)</div>
+                        <!-- Các Mốc Trục Y (Labels Cố Định Cực Đẹp) -->
+                        <div class="absolute left-3 top-3 z-20 text-[10px] font-mono font-black text-emerald-700 bg-white/95 backdrop-blur-md border border-emerald-200 px-2 py-0.5 rounded-lg shadow-xs flex items-center gap-1.5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> 144 FPS (Khóa Cứng)
+                        </div>
+                        <div class="absolute left-3 top-1/2 -translate-y-1/2 z-20 text-[10px] font-mono font-bold text-slate-600 bg-white/95 backdrop-blur-md border border-slate-200 px-2 py-0.5 rounded-lg shadow-xs">
+                            60 FPS (Trung Bình)
+                        </div>
+                        <div class="absolute left-3 bottom-7 z-20 text-[10px] font-mono font-bold text-rose-600 bg-white/95 backdrop-blur-md border border-rose-200 px-2 py-0.5 rounded-lg shadow-xs flex items-center gap-1.5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span> 24 FPS (Tụt Khung Hình)
+                        </div>
+
+                        <!-- Trục Thời Gian X & Badge Trạng Thái -->
+                        <div class="absolute bottom-2 left-3 right-3 z-20 flex items-center justify-between text-[10px] font-mono text-slate-400 pointer-events-none px-1">
+                            <div class="flex items-center gap-4 sm:gap-8">
+                                <span>-60s</span>
+                                <span>-45s</span>
+                                <span>-30s</span>
+                                <span>-15s</span>
+                                <span class="font-bold text-primary">0s (Hiện tại)</span>
+                            </div>
+                            <div class="flex items-center gap-1.5 text-secondary font-bold bg-white/80 px-2 py-0.5 rounded-md border border-emerald-100 shadow-2xs">
+                                <i class="fa-solid fa-wave-square text-xs text-secondary animate-pulse"></i>
+                                <span class="text-[9px] uppercase tracking-wider">TELEMETRY LIVE 60FPS</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -1658,6 +1681,6 @@
     </div>
 
     <!-- Scripts JavaScript Hoạt Động -->
-    <script src="assets/js/app.js?v=2.6.5"></script>
+    <script src="assets/js/app.js?v=2026.6"></script>
 </body>
 </html>
