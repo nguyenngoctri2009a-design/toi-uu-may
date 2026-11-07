@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="60%" stop-color="#F8FAFC" />
+      <stop offset="100%" stop-color="#EDF2F7" />
+    </linearGradient>
+    <radialGradient id="glowRedLight" cx="50%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="#E2012D" stop-opacity="0.12" />
+      <stop offset="100%" stop-color="#E2012D" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  <rect width="1200" height="630" fill="url(#glowRedLight)"/>
+
+  <!-- Cyber Grid Lines (Light Slate) -->
+  <g stroke="rgba(15,23,42,0.05)" stroke-width="1">
+    <line x1="0" y1="100" x2="1200" y2="100" />
+    <line x1="0" y1="200" x2="1200" y2="200" />
+    <line x1="0" y1="300" x2="1200" y2="300" />
+    <line x1="0" y1="400" x2="1200" y2="400" />
+    <line x1="0" y1="500" x2="1200" y2="500" />
+    <line x1="200" y1="0" x2="200" y2="630" />
+    <line x1="400" y1="0" x2="400" y2="630" />
+    <line x1="600" y1="0" x2="600" y2="630" />
+    <line x1="800" y1="0" x2="800" y2="630" />
+    <line x1="1000" y1="0" x2="1000" y2="630" />
+  </g>
+
+  <!-- T1 Red Accent Box Badge -->
+  <g transform="translate(100, 110)">
+    <rect width="80" height="80" fill="#E2012D" rx="6" />
+    <text x="40" y="55" fill="#FFFFFF" font-family="monospace, sans-serif" font-weight="900" font-size="44" text-anchor="middle">T1</text>
+    
+    <text x="105" y="42" fill="#0F172A" font-family="sans-serif" font-weight="900" font-size="34" letter-spacing="2">GTA 5 VN</text>
+    <text x="105" y="70" fill="#E2012D" font-family="monospace, sans-serif" font-weight="700" font-size="18" letter-spacing="4">WHITE EDITION PRO</text>
+  </g>
+
+  <!-- Main Headline -->
+  <text x="100" y="270" fill="#0F172A" font-family="sans-serif" font-weight="900" font-size="54" letter-spacing="-1">
+    BỨT PHÁ KHUNG HÌNH FPS
+  </text>
+  <text x="100" y="340" fill="#E2012D" font-family="sans-serif" font-weight="900" font-size="54" letter-spacing="-1">
+    CHIẾN MƯỢT FIVEM ROLEPLAY
+  </text>
+
+  <!-- Subtitle -->
+  <text x="100" y="410" fill="#64748B" font-family="sans-serif" font-weight="500" font-size="24">
+    Tự động dọn Cache, giải phóng RAM, khóa 60-120 FPS &amp; Check cấu hình PC trực tiếp
+  </text>
+
+  <!-- Feature Tags Pills (White Cards with subtle shadows) -->
+  <g transform="translate(100, 470)">
+    <!-- Pill 1 -->
+    <rect width="260" height="50" fill="#FFFFFF" stroke="#E2E8F0" rx="4" />
+    <text x="130" y="32" fill="#0F172A" font-family="monospace, sans-serif" font-weight="700" font-size="16" text-anchor="middle">⚡ TĂNG 40 - 80 FPS</text>
+    
+    <!-- Pill 2 -->
+    <g transform="translate(280, 0)">
+      <rect width="280" height="50" fill="#FFFFFF" stroke="#E2E8F0" rx="4" />
+      <text x="140" y="32" fill="#0F172A" font-family="monospace, sans-serif" font-weight="700" font-size="16" text-anchor="middle">🛡️ 100% SẠCH MÃ ĐỘC</text>
+    </g>
+
+    <!-- Pill 3 -->
+    <g transform="translate(580, 0)">
+      <rect width="280" height="50" fill="#E2012D" rx="4" />
+      <text x="140" y="32" fill="#FFFFFF" font-family="monospace, sans-serif" font-weight="700" font-size="16" text-anchor="middle">🔥 TẢI MIỄN PHÍ V2.5</text>
+    </g>
+  </g>
+</svg>
