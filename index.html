@@ -213,16 +213,41 @@
                 <span class="text-xs font-black text-primary">v2.5.0 Stable</span>
             </div>
 
-            <!-- Tiêu Đề Chính -->
-            <h1 class="text-4xl sm:text-6xl font-black text-textPrimary tracking-tight leading-tight mb-4">
-                Tối Ưu Máy Hóa Giải Giật Lag
-            </h1>
+            <!-- Tiêu Đề Chính & Gradient Biến Thành SVG Vector Đỉnh Cao Kèm Hiệu Ứng Mù Mịt Khói Sương (Zero Lag) -->
+            <div class="t1-hero-mist-wrap">
+                <!-- Lớp Khói Mù Mịt Chiều Sâu 3D Tinh Tế (GPU Optimized) -->
+                <div class="t1-fog-layer"></div>
 
-            <!-- Tiêu Đề Gradient (Xanh Dương Sang Xanh Ngọc) -->
-            <div class="text-4xl sm:text-6xl font-black tracking-tight leading-tight mb-6">
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-                    Chiến Mượt GTA 5 Roleplay
-                </span>
+                <!-- Thẻ H1 Chuẩn SEO Cho Google Đọc (Search Engine Accessible) -->
+                <h1 class="sr-only">Tối Ưu Máy Hóa Giải Giật Lag Chiến Mượt GTA 5 Roleplay</h1>
+
+                <!-- Biểu Tượng Chữ SVG Vector Đẳng Cấp Gaming SaaS -->
+                <svg viewBox="0 0 920 160" class="t1-hero-svg-title select-none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <!-- Gradient Cyan Sang Xanh Ngọc Siêu Nét -->
+                        <linearGradient id="heroTitleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#0796E5" />
+                            <stop offset="45%" stop-color="#0875C1" />
+                            <stop offset="75%" stop-color="#02BA99" />
+                            <stop offset="100%" stop-color="#00A88A" />
+                        </linearGradient>
+
+                        <!-- Đổ Bóng Mềm Chuyên Nghiệp -->
+                        <filter id="softGlowShadow" x="-10%" y="-10%" width="120%" height="120%">
+                            <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0796E5" flood-opacity="0.18" />
+                        </filter>
+                    </defs>
+
+                    <!-- Dòng 1: Tối Ưu Máy Hóa Giải Giật Lag (Đậm Nét, Cân Đối) -->
+                    <text x="50%" y="58" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="52" fill="#152238" letter-spacing="-0.8">
+                        Tối Ưu Máy Hóa Giải Giật Lag
+                    </text>
+
+                    <!-- Dòng 2: Chiến Mượt GTA 5 Roleplay (Gradient Chảy Ánh Sáng) -->
+                    <text x="50%" y="132" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="62" fill="url(#heroTitleGrad)" filter="url(#softGlowShadow)" letter-spacing="-1.2">
+                        Chiến Mượt GTA 5 Roleplay
+                    </text>
+                </svg>
             </div>
 
             <!-- Mô Tả -->
@@ -555,9 +580,108 @@
         </section>
 
         <!-- ======================================================================
-             X. THỐNG KÊ VÀ BIỂU ĐỒ (HIỆU SUẤT MẠNG PING FIVEM VN)
+             X. THỐNG KÊ VÀ BIỂU ĐỒ (HIỆU SUẤT MẠNG & BIỂU ĐỒ KHUNG HÌNH LIVE)
              ====================================================================== -->
         <section id="bieu-do" class="mb-20">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                <!-- Cột Trái & Giữa: Biểu Đồ Hiệu Suất FPS SVG Trực Quan -->
+                <div class="lg:col-span-2 t1-card bg-white">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-5 border-b border-t1border gap-3">
+                        <div>
+                            <span class="t1-pill t1-pill-primary mb-1">FPS STABILITY GRAPH</span>
+                            <h2 class="text-xl font-black text-textPrimary tracking-tight">Biểu Đồ So Sánh Dao Động Khung Hình (60 Giây Giao Tranh)</h2>
+                        </div>
+                        <div class="flex items-center gap-3 text-xs font-bold">
+                            <span class="flex items-center gap-1.5 text-secondary">
+                                <span class="w-3 h-1 bg-secondary rounded-full inline-block"></span> T1 Optimizer
+                            </span>
+                            <span class="flex items-center gap-1.5 text-danger">
+                                <span class="w-3 h-1 bg-danger rounded-full inline-block"></span> Mặc Định (Lag)
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- SVG Chart Responsive -->
+                    <div class="w-full h-56 sm:h-64 relative">
+                        <svg viewBox="0 0 600 200" preserveAspectRatio="none" class="w-full h-full overflow-visible">
+                            <defs>
+                                <linearGradient id="chartGradT1" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#00A88A" stop-opacity="0.25" />
+                                    <stop offset="100%" stop-color="#00A88A" stop-opacity="0.0" />
+                                </linearGradient>
+                            </defs>
+                            <!-- Grid lines -->
+                            <line x1="0" y1="40" x2="600" y2="40" stroke="#DFEAF4" stroke-dasharray="4" />
+                            <line x1="0" y1="90" x2="600" y2="90" stroke="#DFEAF4" stroke-dasharray="4" />
+                            <line x1="0" y1="140" x2="600" y2="140" stroke="#DFEAF4" stroke-dasharray="4" />
+
+                            <!-- Unoptimized Lag Line (Dao động dữ dội) -->
+                            <path d="M0,130 Q50,110 100,165 T200,120 T300,175 T400,105 T500,180 T600,140" fill="none" stroke="#E34D59" stroke-width="2.5" />
+
+                            <!-- T1 Optimized Line (Khóa mượt trên 120 FPS) -->
+                            <path d="M0,45 Q50,42 100,44 T200,43 T300,46 T400,44 T500,42 T600,45" fill="none" stroke="#00A88A" stroke-width="3" />
+                            <path d="M0,45 Q50,42 100,44 T200,43 T300,46 T400,44 T500,42 T600,45 L600,200 L0,200 Z" fill="url(#chartGradT1)" />
+                        </svg>
+
+                        <!-- Labels Y-axis -->
+                        <div class="absolute left-1 top-2 text-[10px] font-mono font-bold text-secondary">144 FPS</div>
+                        <div class="absolute left-1 top-1/2 -translate-y-1/2 text-[10px] font-mono font-bold text-textSecondary">60 FPS</div>
+                        <div class="absolute left-1 bottom-1 text-[10px] font-mono font-bold text-danger">24 FPS (Drop)</div>
+                    </div>
+                </div>
+
+                <!-- Cột Phải: Hoạt Động Tải Xuống Theo Thời Gian Thực (Live Download Stream) -->
+                <div class="t1-card bg-white flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between pb-3 mb-4 border-b border-t1border">
+                            <span class="text-xs font-black uppercase text-textSecondary tracking-wider">HOẠT ĐỘNG GẦN ĐÂY</span>
+                            <span class="t1-pill t1-pill-success text-[10px] py-0 px-2">REAL-TIME</span>
+                        </div>
+
+                        <div class="space-y-3.5 text-xs" id="activity-stream">
+                            <div class="p-2.5 rounded-xl bg-surfaceSoft border border-t1border flex items-center justify-between">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-7 h-7 rounded-lg bg-sky-100 text-primary font-black text-xs flex items-center justify-center">HN</div>
+                                    <div>
+                                        <span class="font-bold text-textPrimary block">Game thủ tại Hà Nội</span>
+                                        <span class="text-[10px] text-textSecondary font-mono">Tối ưu Core i5 + GTX 1650</span>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] font-mono text-secondary font-bold">Vừa xong</span>
+                            </div>
+
+                            <div class="p-2.5 rounded-xl bg-surfaceSoft border border-t1border flex items-center justify-between">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-7 h-7 rounded-lg bg-emerald-100 text-secondary font-black text-xs flex items-center justify-center">SG</div>
+                                    <div>
+                                        <span class="font-bold text-textPrimary block">Người chơi tại TP.HCM</span>
+                                        <span class="text-[10px] text-textSecondary font-mono">Xóa 4.2 GB Cache FiveM</span>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] font-mono text-secondary font-bold">1 phút trước</span>
+                            </div>
+
+                            <div class="p-2.5 rounded-xl bg-surfaceSoft border border-t1border flex items-center justify-between">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-7 h-7 rounded-lg bg-indigo-100 text-accent font-black text-xs flex items-center justify-center">ĐN</div>
+                                    <div>
+                                        <span class="font-bold text-textPrimary block">Quán Net Đà Nẵng</span>
+                                        <span class="text-[10px] text-textSecondary font-mono">Khóa 144Hz Server RP</span>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] font-mono text-secondary font-bold">3 phút trước</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-t1border mt-4 flex items-center justify-between text-xs font-bold text-textSecondary">
+                        <span>Lượt tải trong ngày:</span>
+                        <span class="text-primary font-black font-mono text-sm">1,482 lượt</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Khối Đo Độ Trễ Mạng Ping Server FiveM VN -->
             <div class="t1-card bg-white">
                 <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 mb-6 border-b border-t1border gap-4">
                     <div>

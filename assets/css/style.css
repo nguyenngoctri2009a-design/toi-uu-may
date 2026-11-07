@@ -52,6 +52,61 @@ html, body {
 }
 
 /* ==========================================================================
+   HIỆU ỨNG MÙ MỊT KHÔNG GÂY LAG (GPU-ACCELERATED ATMOSPHERIC MIST & GLOW)
+   Sử dụng translate3d và opacity tối ưu phần cứng 60-120fps mượt mà
+   ========================================================================== */
+.t1-hero-mist-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto 24px auto;
+  perspective: 1000px;
+}
+
+/* Làn Khói Mù Mịt Mờ Ảo Phía Sau Chữ (Zero-Lag Fog) */
+.t1-fog-layer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 110%;
+  height: 140%;
+  transform: translate3d(-50%, -50%, 0);
+  background: 
+    radial-gradient(ellipse at 30% 45%, rgba(7, 150, 229, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 55%, rgba(0, 168, 138, 0.16) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 50%, rgba(102, 85, 238, 0.08) 0%, transparent 70%);
+  filter: blur(55px);
+  pointer-events: none;
+  z-index: 0;
+  will-change: opacity, transform;
+  animation: gentleMistDrift 10s ease-in-out infinite alternate;
+}
+
+@keyframes gentleMistDrift {
+  0% {
+    transform: translate3d(-50%, -50%, 0) scale(0.95);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate3d(-48%, -52%, 0) scale(1.05);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate3d(-52%, -48%, 0) scale(1);
+    opacity: 0.75;
+  }
+}
+
+/* SVG Text Container */
+.t1-hero-svg-title {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 4px 14px rgba(7, 150, 229, 0.1));
+}
+
+/* ==========================================================================
    HỆ THỐNG NÚT BẤM 3D (3D TACTILE BUTTONS) - ƯU TIÊN CAO NHẤT
    ========================================================================== */
 .t1-btn-3d {
