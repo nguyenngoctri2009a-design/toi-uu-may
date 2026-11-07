@@ -191,43 +191,77 @@ function initFaqAccordion() {
 /**
  * 5. Luxury Glass Modal Tải App
  */
+
+/**
+ * 5. Tải File Trực Tiếp 1-Click - Tuyệt Đối Không Chuyển Trang / Không Mở Link
+ */
+function triggerDirectDownload(e) {
+    if (e && e.preventDefault) e.preventDefault();
+
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const downloadUrl = isLocal 
+        ? 'downloads/Check_Cau_Hinh.exe' 
+        : 'https://github.com/nguyenngoctri2009a-design/toi-uu-may/releases/download/v2.5.0/Check_Cau_Hinh.exe';
+
+    // Tạo thẻ link ẩn và kích hoạt tải ngầm
+    const a = document.createElement('a');
+    a.href = downloadUrl;
+    a.setAttribute('download', 'Check Cấu Hình.exe');
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    // Hiển thị toast thông báo đang tải xuống
+    showDownloadToast();
+}
+
+function showDownloadToast() {
+    const oldToast = document.getElementById('direct-dl-toast');
+    if (oldToast) oldToast.remove();
+
+    const toast = document.createElement('div');
+    toast.id = 'direct-dl-toast';
+    toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-5 py-3.5 rounded-2xl bg-white/95 backdrop-blur-xl border border-sky-300 shadow-[0_15px_35px_rgba(7,150,229,0.22)] flex items-center gap-3 transition-all duration-300';
+    toast.innerHTML = `
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-primary to-secondary text-white flex items-center justify-center text-sm shadow-xs animate-bounce">
+            <i class="fa-solid fa-arrow-down"></i>
+        </div>
+        <div>
+            <h5 class="text-xs font-black text-textPrimary">Đang Tải File Check Cấu Hình .exe (71.8 MB)...</h5>
+            <p class="text-[11px] text-textSecondary font-medium">File đang được tải trực tiếp về thư mục Downloads của bạn.</p>
+        </div>
+    `;
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translate(-50%, 20px)';
+        setTimeout(() => toast.remove(), 400);
+    }, 4500);
+}
+
 function initDownloadModal() {
-    const modal = document.getElementById('download-modal');
-    const openBtns = [
+    const downloadBtns = [
         document.getElementById('btn-open-download-modal'),
         document.getElementById('btn-hero-download'),
-        document.getElementById('btn-quick-optimize')
+        document.getElementById('btn-quick-optimize'),
+        document.getElementById('btn-direct-dl-modal')
     ];
-    const closeBtn = document.getElementById('btn-close-modal');
-    const doneBtn = document.getElementById('btn-modal-done');
+
+    downloadBtns.forEach(btn => {
+        if (btn) {
+            btn.addEventListener('click', (e) => {
+                triggerDirectDownload(e);
+            });
+        }
+    });
+
     const copyHashBtn = document.getElementById('btn-copy-hash');
     const hashText = document.getElementById('hash-text');
-
-    if (!modal) return;
-
-    function openModal() {
-        modal.classList.remove('hidden');
-    }
-
-    function closeModal() {
-        modal.classList.add('hidden');
-    }
-
-    openBtns.forEach(btn => {
-        if (btn) btn.addEventListener('click', openModal);
-    });
-
-    if (closeBtn) closeBtn.addEventListener('click', closeModal);
-    if (doneBtn) doneBtn.addEventListener('click', closeModal);
-
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    });
-
     if (copyHashBtn && hashText) {
         copyHashBtn.addEventListener('click', () => {
             navigator.clipboard.writeText(hashText.textContent.trim()).then(() => {
-                copyHashBtn.innerHTML = '<i class="fa-solid fa-check text-success"></i> Đã sao chép!';
+                copyHashBtn.innerHTML = '<i class="fa-solid fa-check text-success"></i> Đã chép';
                 setTimeout(() => {
                     copyHashBtn.innerHTML = '<i class="fa-regular fa-copy"></i> Sao chép';
                 }, 2000);
@@ -235,7 +269,6 @@ function initDownloadModal() {
         });
     }
 }
-
 /**
  * 6. Interactive FiveM Ping Tester (Đo Ping Thực Tế)
  */
