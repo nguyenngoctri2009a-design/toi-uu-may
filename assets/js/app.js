@@ -153,6 +153,10 @@ function initFpsCalculator() {
         const minFps = Math.max(25, calculated - 8);
         const maxFps = calculated + 12;
 
+        const valEl = document.getElementById('calc-fps-val');
+        if (valEl) {
+            valEl.textContent = `${minFps} - ${maxFps}`;
+        }
         resultEl.textContent = `~ ${minFps} - ${maxFps} FPS`;
     }
 
