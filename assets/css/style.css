@@ -368,12 +368,51 @@ h1, h2, h3, h4, .font-heading {
 }
 
 /* ==========================================================================
-   WORDMARK LOGO: FIVEM VN ENGINE (TYPOGRAPHY CHUYÊN NGHIỆP)
+   WORDMARK LOGO & BRAND ICON: FIVEM VN ENGINE
    ========================================================================== */
+/* Khung Biểu Tượng Icon Đứng Trước Chữ */
+.t1-brand-icon-wrap {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #FFFFFF 0%, #EDF6FF 100%);
+  border: 1.5px solid #BAE6FD;
+  box-shadow: 0 4px 14px rgba(7, 150, 229, 0.16), inset 0 1px 2px #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.t1-wordmark-logo:hover .t1-brand-icon-wrap {
+  transform: scale(1.06) rotate(3deg);
+  border-color: #38BDF8;
+  box-shadow: 0 6px 18px rgba(7, 150, 229, 0.28), inset 0 1px 2px #FFFFFF;
+}
+
+/* Vệt Laser Quét Nhẹ Qua Icon */
+.t1-brand-icon-laser {
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(7, 150, 229, 0.25), rgba(0, 168, 138, 0.35), transparent);
+  transform: skewX(-20deg);
+  animation: iconLaserSweep 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes iconLaserSweep {
+  0% { left: -120%; }
+  25%, 100% { left: 140%; }
+}
+
 .t1-wordmark-logo {
   display: inline-flex;
-  align-items: baseline;
-  gap: 6px;
+  align-items: center;
+  gap: 10px;
   text-decoration: none;
   user-select: none;
   font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;

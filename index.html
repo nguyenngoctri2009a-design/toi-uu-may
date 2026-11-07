@@ -129,14 +129,35 @@
          ====================================================================== -->
     <header class="sticky top-0 z-50 backdrop-blur-md bg-white/90 border-b border-t1border shadow-[0_2px_12px_rgba(21,34,56,0.03)]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Bên Trái: Logo Chữ (Wordmark) Hiện Đại "FiveM VN Engine" -->
+            <!-- Bên Trái: Logo Biểu Tượng Icon + Cụm Chữ (Wordmark) "FiveM VN Engine" -->
             <a href="#" class="t1-wordmark-logo group">
-                <span class="t1-wordmark-fivem">FiveM</span>
-                <span class="t1-wordmark-vn">
-                    VN<span class="t1-wordmark-dot"></span>
-                </span>
-                <span class="t1-wordmark-engine">Engine</span>
-                <span class="t1-pill t1-pill-primary py-0.5 px-2 text-[10px] font-mono ml-2 hidden sm:inline-flex">
+                <!-- Biểu Tượng Icon Thương Hiệu Sắc Nét -->
+                <div class="t1-brand-icon-wrap">
+                    <svg viewBox="0 0 32 32" width="22" height="22" class="relative z-10">
+                        <defs>
+                            <linearGradient id="brandLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#0796E5" />
+                                <stop offset="100%" stop-color="#00A88A" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Stylized Engine Wings & V Symbol -->
+                        <path d="M5 8 L13 8 L18 20 L16 25 L5 8 Z" fill="url(#brandLogoGrad)" />
+                        <path d="M27 8 L19 8 L14 20 L16 25 L27 8 Z" fill="#00A88A" opacity="0.9" />
+                        <circle cx="16" cy="11" r="3" fill="#0796E5" />
+                    </svg>
+                    <div class="t1-brand-icon-laser"></div>
+                </div>
+
+                <!-- Cụm Chữ Logo -->
+                <div class="flex items-baseline gap-1.5">
+                    <span class="t1-wordmark-fivem">FiveM</span>
+                    <span class="t1-wordmark-vn">
+                        VN<span class="t1-wordmark-dot"></span>
+                    </span>
+                    <span class="t1-wordmark-engine">Engine</span>
+                </div>
+
+                <span class="t1-pill t1-pill-primary py-0.5 px-2 text-[10px] font-mono ml-1 hidden sm:inline-flex">
                     v2.5
                 </span>
             </a>
