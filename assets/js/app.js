@@ -505,18 +505,187 @@ function initButtonRipple() {
 }
 
 /**
- * 12. Gửi Đánh Giá Của Game Thủ (Community Review Action)
+ * 12. Bảng Modal Gửi Đánh Giá Thủy Tinh Kính Mờ (Glass Review Modal)
  */
 function initReviewModal() {
-    const btn = document.getElementById('btn-open-review-modal');
-    if (!btn) return;
-    btn.addEventListener('click', () => {
-        const name = prompt('Nhập tên hoặc nickname nhân vật Roleplay của bạn:', 'Game Thủ FiveM');
-        if (name && name.trim()) {
-            const comment = prompt('Chia sẻ cảm nhận sau khi dùng FiveM VN Engine (FPS tăng bao nhiêu, độ mượt):', 'Phần mềm tối ưu rất tốt, hết hẳn drop FPS khi combat!');
-            if (comment && comment.trim()) {
-                alert(`Cảm ơn ${name.trim()}! Đánh giá 5 sao của bạn đã được gửi thành công vào hệ thống FiveM VN.`);
-            }
+    const btnOpen = document.getElementById('btn-open-review-modal');
+    const modal = document.getElementById('review-modal');
+    const btnClose = document.getElementById('btn-close-review-modal');
+    const btnCancel = document.getElementById('btn-cancel-review');
+    const form = document.getElementById('form-review');
+    const starsWrap = document.getElementById('review-stars-wrap');
+    const starsLabel = document.getElementById('review-stars-label');
+    const cardsGrid = document.getElementById('review-cards-grid');
+
+    if (!btnOpen || !modal || !form) return;
+
+    let selectedRating = 5;
+
+    // Mở Modal
+    function openModal() {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Đóng Modal
+    function closeModal() {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    btnOpen.addEventListener('click', openModal);
+    if (btnClose) btnClose.addEventListener('click', closeModal);
+    if (btnCancel) btnCancel.addEventListener('click', closeModal);
+
+    // Đóng khi click ngoài backdrop
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    // Rating Star Selector
+    if (starsWrap && starsLabel) {
+        const stars = starsWrap.querySelectorAll('.review-star');
+        const labels = {
+            1: '1.0 / 5.0 - Chưa hài lòng',
+            2: '2.0 / 5.0 - Tạm ổn',
+            3: '3.0 / 5.0 - Khá mượt',
+            4: '4.0 / 5.0 - Rất mượt mà!',
+            5: '5.0 / 5.0 - Cực kỳ hài lòng, chuẩn 144Hz!'
+        };
+
+        function updateStarsVisual(rating) {
+            stars.forEach(s => {
+                const val = parseInt(s.dataset.val, 10);
+                if (val <= rating) {
+                    s.classList.remove('text-slate-300');
+                    s.classList.add('text-amber-400');
+                } else {
+                    s.classList.remove('text-amber-400');
+                    s.classList.add('text-slate-300');
+                }
+            });
+            starsLabel.textContent = labels[rating] || `${rating}.0 / 5.0`;
         }
+
+        stars.forEach(s => {
+            s.addEventListener('mouseenter', () => {
+                const hoverVal = parseInt(s.dataset.val, 10);
+                updateStarsVisual(hoverVal);
+            });
+            s.addEventListener('click', () => {
+                selectedRating = parseInt(s.dataset.val, 10);
+                updateStarsVisual(selectedRating);
+            });
+        });
+
+        starsWrap.addEventListener('mouseleave', () => {
+            updateStarsVisual(selectedRating);
+        });
+    }
+
+    // Xử lý nộp form đánh giá
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const nameInput = document.getElementById('review-name');
+        const serverInput = document.getElementById('review-server');
+        const specsInput = document.getElementById('review-specs');
+        const contentInput = document.getElementById('review-content');
+
+        const name = (nameInput?.value || 'Game Thủ FiveM').trim();
+        const server = serverInput?.value || 'Mixi City Roleplay';
+        const specs = (specsInput?.value || 'PC Gaming • FiveM VN').trim();
+        const content = (contentInput?.value || '').trim();
+
+        if (!content) return;
+
+        // Sinh 2 ký tự viết tắt cho Avatar
+        const words = name.split(' ');
+        const initials = words.length > 1 
+            ? (words[0][0] + words[words.length - 1][0]).toUpperCase()
+            : name.slice(0, 2).toUpperCase();
+
+        // Tạo thẻ đánh giá mới chèn ngay lên đầu danh sách
+        if (cardsGrid) {
+            let starHtml = '';
+            for (let i = 1; i <= 5; i++) {
+                starHtml += i <= selectedRating 
+                    ? '<i class="fa-solid fa-star text-amber-400"></i>' 
+                    : '<i class="fa-solid fa-star text-slate-300"></i>';
+            }
+
+            const newCard = document.createElement('div');
+            newCard.className = 't1-card p-6 flex flex-col justify-between hover:-translate-y-1.5 transition-all duration-300 border-2 border-primary/50 shadow-lg';
+            newCard.innerHTML = `
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-primary to-emerald-400 text-white font-black text-sm flex items-center justify-center shadow-xs">
+                                ${initials}
+                            </div>
+                            <div>
+                                <h4 class="font-black text-sm text-textPrimary flex items-center gap-1.5">
+                                    ${name}
+                                    <i class="fa-solid fa-circle-check text-primary text-xs" title="Đã xác minh game thủ"></i>
+                                </h4>
+                                <span class="text-[11px] font-bold text-textSecondary">${server}</span>
+                            </div>
+                        </div>
+                        <div class="flex text-xs">
+                            ${starHtml}
+                        </div>
+                    </div>
+
+                    <p class="text-xs text-textSecondary leading-relaxed font-medium mb-4">
+                        &ldquo;${content}&rdquo;
+                    </p>
+                </div>
+
+                <div class="pt-3 border-t border-sky-100/70 flex items-center justify-between text-[11px]">
+                    <span class="text-textSecondary font-mono font-semibold">${specs}</span>
+                    <span class="t1-pill t1-pill-success text-[10px] py-0.5 px-2 font-black">VỪA ĐÁNH GIÁ MỚI</span>
+                </div>
+            `;
+
+            cardsGrid.prepend(newCard);
+            // Cuộn nhẹ tới đánh giá vừa thêm
+            newCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Đóng modal và reset form
+        closeModal();
+        form.reset();
+        selectedRating = 5;
+
+        // Hiển thị toast thông báo thủy tinh mờ
+        showReviewToast(name);
     });
 }
+
+/**
+ * Toast Thông Báo Thủy Tinh Mờ Khi Đăng Đánh Giá
+ */
+function showReviewToast(name) {
+    const toast = document.createElement('div');
+    toast.className = 'fixed bottom-6 right-6 z-50 p-4 rounded-2xl bg-white/90 backdrop-blur-xl border border-emerald-300 shadow-xl flex items-center gap-3 transition-all duration-300 transform translate-y-10 opacity-0';
+    toast.innerHTML = `
+        <div class="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-lg shadow-sm">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div>
+            <h5 class="text-xs font-black text-textPrimary">Đăng Đánh Giá Thành Công!</h5>
+            <p class="text-[11px] text-textSecondary font-medium">Cảm ơn ${name}, bài đánh giá đã hiển thị trên trang web.</p>
+        </div>
+    `;
+    document.body.appendChild(toast);
+
+    requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-10', 'opacity-0');
+    });
+
+    setTimeout(() => {
+        toast.classList.add('translate-y-10', 'opacity-0');
+        setTimeout(() => toast.remove(), 400);
+    }, 4000);
+}
+

@@ -103,7 +103,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Custom T1 Master Design System Stylesheet -->
-    <link rel="stylesheet" href="assets/css/style.css?v=2.6.3">
+    <link rel="stylesheet" href="assets/css/style.css?v=2.6.4">
 
     <script>
         tailwind.config = {
@@ -1104,7 +1104,7 @@
             </div>
 
             <!-- Grid 6 Thẻ Đánh Giá Game Thủ Thực Chiến (3 Cột Chuẩn Glassmorphism) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div id="review-cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- REVIEW 1: Streamer / Cảnh Sát Roleplay -->
                 <div class="t1-card p-6 flex flex-col justify-between hover:-translate-y-1.5 transition-transform duration-250">
                     <div>
@@ -1459,7 +1459,89 @@
         </div>
     </div>
 
+    
+    <!-- ======================================================================
+         MODAL GỬI ĐÁNH GIÁ (LUXURY GLASS REVIEW MODAL)
+         ====================================================================== -->
+    <div id="review-modal" class="t1-modal-backdrop hidden">
+        <div class="t1-modal-container max-w-lg w-full p-6 sm:p-7 relative">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between pb-4 border-b border-sky-100/80 mb-5">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary to-sky-400 text-white flex items-center justify-center text-lg shadow-sm">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-black text-base text-textPrimary tracking-tight">Gửi Đánh Giá Trải Nghiệm</h3>
+                        <span class="text-[11px] text-textSecondary font-medium">Chia sẻ hiệu quả tối ưu với cộng đồng FiveM VN</span>
+                    </div>
+                </div>
+                <button id="btn-close-review-modal" type="button" class="w-8 h-8 rounded-xl hover:bg-slate-100 text-textSecondary hover:text-textPrimary transition flex items-center justify-center">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Form Đánh Giá -->
+            <form id="form-review" class="space-y-4">
+                <!-- Chọn Số Sao Đánh Giá -->
+                <div class="p-3.5 rounded-2xl bg-white/50 border border-white/80 shadow-2xs text-center">
+                    <label class="block text-[11px] font-black uppercase text-textSecondary tracking-wider mb-1.5">Đánh Giá Mức Độ Hài Lòng</label>
+                    <div id="review-stars-wrap" class="flex items-center justify-center gap-2 text-2xl text-amber-400 cursor-pointer select-none py-1">
+                        <i class="fa-solid fa-star review-star transition-transform hover:scale-125" data-val="1"></i>
+                        <i class="fa-solid fa-star review-star transition-transform hover:scale-125" data-val="2"></i>
+                        <i class="fa-solid fa-star review-star transition-transform hover:scale-125" data-val="3"></i>
+                        <i class="fa-solid fa-star review-star transition-transform hover:scale-125" data-val="4"></i>
+                        <i class="fa-solid fa-star review-star transition-transform hover:scale-125" data-val="5"></i>
+                    </div>
+                    <span id="review-stars-label" class="text-xs font-bold text-success mt-1 block">5.0 / 5.0 - Cực kỳ hài lòng!</span>
+                </div>
+
+                <!-- 2 Cột: Tên + Server -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label for="review-name" class="block text-[11px] font-black uppercase text-textSecondary mb-1.5">Tên / Nickname Roleplay <span class="text-danger">*</span></label>
+                        <input id="review-name" type="text" required placeholder="VD: Nam Còi RP" class="t1-input text-xs" />
+                    </div>
+                    <div>
+                        <label for="review-server" class="block text-[11px] font-black text-textSecondary uppercase mb-1.5">Máy Chủ Đang Chơi</label>
+                        <select id="review-server" class="t1-select text-xs">
+                            <option value="Mixi City">Mixi City Roleplay</option>
+                            <option value="Độ Tộc RP">Độ Tộc Server</option>
+                            <option value="GVN Roleplay">GVN Roleplay</option>
+                            <option value="V-Town City">V-Town City</option>
+                            <option value="Sài Gòn Phố">Sài Gòn Phố RP</option>
+                            <option value="Server FiveM Khác">Server FiveM Khác</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Cấu Hình Máy (CPU + GPU) -->
+                <div>
+                    <label for="review-specs" class="block text-[11px] font-black uppercase text-textSecondary mb-1.5">Cấu Hình Máy Của Bạn (Tùy chọn)</label>
+                    <input id="review-specs" type="text" placeholder="VD: Core i5-10400F • GTX 1660 Super" class="t1-input text-xs" />
+                </div>
+
+                <!-- Nội Dung Nhận Xét -->
+                <div>
+                    <label for="review-content" class="block text-[11px] font-black uppercase text-textSecondary mb-1.5">Cảm Nhận Thực Tế Của Bạn <span class="text-danger">*</span></label>
+                    <textarea id="review-content" required rows="3" placeholder="Chia sẻ số FPS tăng thêm, độ mượt khi combat hoặc cảm giác sau khi bật FiveM VN Engine..." class="t1-input text-xs resize-none"></textarea>
+                </div>
+
+                <!-- Footer Buttons -->
+                <div class="pt-3 border-t border-sky-100/80 flex items-center justify-end gap-3">
+                    <button type="button" id="btn-cancel-review" class="t1-btn-3d t1-btn-surface text-xs py-2.5 px-5">
+                        Hủy
+                    </button>
+                    <button type="submit" class="t1-btn-3d t1-btn-success text-xs py-2.5 px-6 shadow-md flex items-center gap-2">
+                        <i class="fa-solid fa-paper-plane text-xs"></i>
+                        <span>Đăng Đánh Giá Ngay</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Scripts JavaScript Hoạt Động -->
-    <script src="assets/js/app.js?v=2.6.3"></script>
+    <script src="assets/js/app.js?v=2.6.4"></script>
 </body>
 </html>
