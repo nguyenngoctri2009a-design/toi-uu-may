@@ -199,65 +199,90 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-24">
 
         <!-- ======================================================================
-             V. HERO SECTION
+             V. HERO SECTION (REDESIGN SVG PREMIUM COMBINED WITH HTML/CSS)
              ====================================================================== -->
-        <section class="py-12 sm:py-16 text-center max-w-4xl mx-auto relative">
-            <!-- Nhãn Phía Trên -->
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-t1border shadow-[0_2px_8px_rgba(21,34,56,0.04)] mb-8">
+        <section class="relative pt-12 pb-20 text-center max-w-5xl mx-auto overflow-hidden">
+            <!-- Nền SVG Vector Trang Trí Công Nghệ Cao Cấp (Lightweight & Zero Lag) -->
+            <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center">
+                <svg viewBox="0 0 1000 500" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" class="w-full h-full opacity-60">
+                    <defs>
+                        <!-- Radial Ambient Glow -->
+                        <radialGradient id="heroTechGlow" cx="50%" cy="40%" r="50%">
+                            <stop offset="0%" stop-color="#0796E5" stop-opacity="0.12" />
+                            <stop offset="50%" stop-color="#00A88A" stop-opacity="0.06" />
+                            <stop offset="100%" stop-color="#F4F8FC" stop-opacity="0" />
+                        </radialGradient>
+
+                        <!-- Gradient Cho Đường Nối Vector -->
+                        <linearGradient id="lineGradCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#0796E5" stop-opacity="0" />
+                            <stop offset="30%" stop-color="#0796E5" stop-opacity="0.4" />
+                            <stop offset="70%" stop-color="#00A88A" stop-opacity="0.4" />
+                            <stop offset="100%" stop-color="#00A88A" stop-opacity="0" />
+                        </linearGradient>
+
+                        <!-- Pattern Chấm Vector SVG Nhẹ Nhàng -->
+                        <pattern id="svgDotGrid" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+                            <circle cx="12" cy="12" r="0.8" fill="#CBD5E1" opacity="0.6" />
+                        </pattern>
+                    </defs>
+
+                    <!-- Nền Lưới Chấm SVG -->
+                    <rect width="1000" height="500" fill="url(#svgDotGrid)" />
+
+                    <!-- Quầng Sáng Trung Tâm -->
+                    <rect width="1000" height="500" fill="url(#heroTechGlow)" />
+
+                    <!-- Đường Cong SVG Mềm Mại & Kết Nối Công Nghệ -->
+                    <path d="M50 250 C 250 120, 750 120, 950 250" fill="none" stroke="url(#lineGradCyan)" stroke-width="1.5" />
+                    <path d="M120 280 C 320 380, 680 380, 880 280" fill="none" stroke="url(#lineGradCyan)" stroke-width="1" stroke-dasharray="6 4" opacity="0.7" />
+
+                    <!-- Các Điểm Nút Chấm Sáng Công Nghệ (Glowing Circuit Nodes) -->
+                    <circle cx="250" cy="170" r="3.5" fill="#0796E5" opacity="0.75" />
+                    <circle cx="250" cy="170" r="8" fill="#0796E5" opacity="0.15" />
+
+                    <circle cx="750" cy="170" r="3.5" fill="#00A88A" opacity="0.75" />
+                    <circle cx="750" cy="170" r="8" fill="#00A88A" opacity="0.15" />
+
+                    <circle cx="500" cy="120" r="2.5" fill="#0796E5" opacity="0.6" />
+                    <circle cx="500" cy="380" r="2.5" fill="#00A88A" opacity="0.6" />
+                </svg>
+            </div>
+
+            <!-- 3. Badge Phiên Bản (Pill Trắng, Viền Xanh Nhạt, Shadow Nhẹ) -->
+            <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-[#DFEAF4] shadow-[0_2px_10px_rgba(21,34,56,0.04)] mb-7 transition-transform hover:scale-105 duration-200">
                 <span class="flex h-2 w-2 relative">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-success"></span>
                 </span>
                 <span class="text-xs font-bold text-textPrimary tracking-wide">FiveM VN Engine 2026</span>
-                <span class="h-3 w-[1px] bg-t1border"></span>
+                <span class="h-3 w-[1px] bg-[#DFEAF4]"></span>
                 <span class="text-xs font-black text-primary">v2.5.0 Stable</span>
             </div>
 
-            <!-- Tiêu Đề Chính & Gradient Biến Thành SVG Vector Đỉnh Cao Kèm Hiệu Ứng Mù Mịt Khói Sương (Zero Lag) -->
-            <div class="t1-hero-mist-wrap">
-                <!-- Lớp Khói Mù Mịt Chiều Sâu 3D Tinh Tế (GPU Optimized) -->
-                <div class="t1-fog-layer"></div>
+            <!-- 1. Tiêu Đề Chính HTML Kèm Typography Hiện Đại & Gradient Sắc Nét -->
+            <div class="max-w-3xl mx-auto px-4 mb-6">
+                <!-- Dòng 1: Tối Ưu Máy Hóa Giải Giật Lag -->
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-textPrimary tracking-tight leading-[1.15] mb-2">
+                    Tối Ưu Máy Hóa Giải Giật Lag
+                </h1>
 
-                <!-- Thẻ H1 Chuẩn SEO Cho Google Đọc (Search Engine Accessible) -->
-                <h1 class="sr-only">Tối Ưu Máy Hóa Giải Giật Lag Chiến Mượt GTA 5 Roleplay</h1>
-
-                <!-- Biểu Tượng Chữ SVG Vector Đẳng Cấp Gaming SaaS -->
-                <svg viewBox="0 0 920 160" class="t1-hero-svg-title select-none" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <!-- Gradient Cyan Sang Xanh Ngọc Siêu Nét -->
-                        <linearGradient id="heroTitleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stop-color="#0796E5" />
-                            <stop offset="45%" stop-color="#0875C1" />
-                            <stop offset="75%" stop-color="#02BA99" />
-                            <stop offset="100%" stop-color="#00A88A" />
-                        </linearGradient>
-
-                        <!-- Đổ Bóng Mềm Chuyên Nghiệp -->
-                        <filter id="softGlowShadow" x="-10%" y="-10%" width="120%" height="120%">
-                            <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0796E5" flood-opacity="0.18" />
-                        </filter>
-                    </defs>
-
-                    <!-- Dòng 1: Tối Ưu Máy Hóa Giải Giật Lag (Đậm Nét, Cân Đối) -->
-                    <text x="50%" y="58" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="52" fill="#152238" letter-spacing="-0.8">
-                        Tối Ưu Máy Hóa Giải Giật Lag
-                    </text>
-
-                    <!-- Dòng 2: Chiến Mượt GTA 5 Roleplay (Gradient Chảy Ánh Sáng) -->
-                    <text x="50%" y="132" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="62" fill="url(#heroTitleGrad)" filter="url(#softGlowShadow)" letter-spacing="-1.2">
+                <!-- Dòng 2: Chiến Mượt GTA 5 Roleplay (Gradient Xanh Dương Sang Xanh Ngọc) -->
+                <div class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15]">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#0796E5] via-[#0888D1] to-[#00A88A] drop-shadow-[0_2px_12px_rgba(7,150,229,0.15)]">
                         Chiến Mượt GTA 5 Roleplay
-                    </text>
-                </svg>
+                    </span>
+                </div>
             </div>
 
-            <!-- Mô Tả -->
-            <p class="text-base sm:text-lg text-textSecondary max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
+            <!-- Mô Tả Cân Đối -->
+            <p class="text-sm sm:text-base text-textSecondary max-w-2xl mx-auto mb-10 leading-relaxed font-medium px-4">
                 Công cụ tối ưu hóa phần cứng chuyên sâu cho cộng đồng FiveM Việt Nam. Giúp cải thiện hiệu suất, quản lý tài nguyên hệ thống và nâng cao trải nghiệm chơi game.
             </p>
 
-            <!-- Nút Chính 3D -->
+            <!-- Nút Tải Chính 3D Nổi Khối -->
             <div class="flex items-center justify-center mb-16">
-                <button id="btn-hero-download" class="t1-btn-3d t1-btn-primary text-base px-10 py-4">
+                <button id="btn-hero-download" class="t1-btn-3d t1-btn-primary text-sm sm:text-base px-8 sm:px-10 py-3.5 sm:py-4">
                     <i class="fa-solid fa-download text-lg"></i>
                     <span>Tải Bản Tối Ưu Miễn Phí (.ZIP / .EXE)</span>
                 </button>
@@ -601,32 +626,32 @@
                         </div>
                     </div>
 
-                    <!-- SVG Chart Responsive -->
-                    <div class="w-full h-56 sm:h-64 relative">
-                        <svg viewBox="0 0 600 200" preserveAspectRatio="none" class="w-full h-full overflow-visible">
+                    <!-- SVG Chart Responsive (Đã Khóa Tràn Viền 100% Không Bao Giờ Chém Ra Ngoài) -->
+                    <div class="w-full h-56 sm:h-64 relative rounded-xl bg-slate-50/50 border border-t1border/60 overflow-hidden p-2">
+                        <svg viewBox="0 0 600 200" preserveAspectRatio="none" class="w-full h-full overflow-hidden">
                             <defs>
                                 <linearGradient id="chartGradT1" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stop-color="#00A88A" stop-opacity="0.25" />
+                                    <stop offset="0%" stop-color="#00A88A" stop-opacity="0.22" />
                                     <stop offset="100%" stop-color="#00A88A" stop-opacity="0.0" />
                                 </linearGradient>
                             </defs>
                             <!-- Grid lines -->
                             <line x1="0" y1="40" x2="600" y2="40" stroke="#DFEAF4" stroke-dasharray="4" />
-                            <line x1="0" y1="90" x2="600" y2="90" stroke="#DFEAF4" stroke-dasharray="4" />
-                            <line x1="0" y1="140" x2="600" y2="140" stroke="#DFEAF4" stroke-dasharray="4" />
+                            <line x1="0" y1="95" x2="600" y2="95" stroke="#DFEAF4" stroke-dasharray="4" />
+                            <line x1="0" y1="150" x2="600" y2="150" stroke="#DFEAF4" stroke-dasharray="4" />
 
-                            <!-- Unoptimized Lag Line (Dao động dữ dội) -->
-                            <path d="M0,130 Q50,110 100,165 T200,120 T300,175 T400,105 T500,180 T600,140" fill="none" stroke="#E34D59" stroke-width="2.5" />
+                            <!-- T1 Optimized Line & Area (Khóa Ổn Định ~ 120-144 FPS) -->
+                            <path d="M0,45 Q50,42 100,44 T200,43 T300,46 T400,44 T500,42 T600,45 L600,195 L0,195 Z" fill="url(#chartGradT1)" />
+                            <path d="M0,45 Q50,42 100,44 T200,43 T300,46 T400,44 T500,42 T600,45" fill="none" stroke="#00A88A" stroke-width="3" stroke-linecap="round" />
 
-                            <!-- T1 Optimized Line (Khóa mượt trên 120 FPS) -->
-                            <path d="M0,45 Q50,42 100,44 T200,43 T300,46 T400,44 T500,42 T600,45" fill="none" stroke="#00A88A" stroke-width="3" />
-                            <path d="M0,45 Q50,42 100,44 T200,43 T300,46 T400,44 T500,42 T600,45 L600,200 L0,200 Z" fill="url(#chartGradT1)" />
+                            <!-- Unoptimized Lag Line (Dao Động Trong Phạm Vi An Toàn, Đỉnh Đáy Đều Nằm Trong Khung) -->
+                            <path d="M0,125 Q40,110 80,145 T160,110 T240,155 T320,85 T400,165 T480,95 T560,150 L600,130" fill="none" stroke="#E34D59" stroke-width="2.5" stroke-linecap="round" />
                         </svg>
 
                         <!-- Labels Y-axis -->
-                        <div class="absolute left-1 top-2 text-[10px] font-mono font-bold text-secondary">144 FPS</div>
-                        <div class="absolute left-1 top-1/2 -translate-y-1/2 text-[10px] font-mono font-bold text-textSecondary">60 FPS</div>
-                        <div class="absolute left-1 bottom-1 text-[10px] font-mono font-bold text-danger">24 FPS (Drop)</div>
+                        <div class="absolute left-3 top-3 text-[10px] font-mono font-black text-secondary bg-white/80 px-1.5 py-0.5 rounded shadow-xs">144 FPS</div>
+                        <div class="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] font-mono font-bold text-textSecondary bg-white/80 px-1.5 py-0.5 rounded shadow-xs">60 FPS</div>
+                        <div class="absolute left-3 bottom-3 text-[10px] font-mono font-bold text-danger bg-white/80 px-1.5 py-0.5 rounded shadow-xs">24 FPS (Drop)</div>
                     </div>
                 </div>
 
