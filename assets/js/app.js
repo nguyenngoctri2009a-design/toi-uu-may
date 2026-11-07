@@ -401,9 +401,9 @@ function initXmlGenerator() {
 
     if (btnCopyPath) {
         btnCopyPath.addEventListener('click', () => {
-            const targetPath = '%USERPROFILE%\\Documents\\Rockstar Games\\GTA V';
+            const targetPath = '%USERPROFILE%\\Documents\\Rockstar Games\\GTA5 VN';
             navigator.clipboard.writeText(targetPath).then(() => {
-                btnCopyPath.innerHTML = '<i class="fa-solid fa-check text-success"></i> Đã Copy Đường Dẫn!';
+                btnCopyPath.innerHTML = '<i class="fa-solid fa-check text-success"></i> Đã Copy Đường Dẫn GTA5 VN!';
                 setTimeout(() => {
                     btnCopyPath.innerHTML = '<i class="fa-regular fa-copy"></i> Copy Thư Mục Dán File';
                 }, 2000);
