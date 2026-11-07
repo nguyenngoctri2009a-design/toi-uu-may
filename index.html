@@ -119,7 +119,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Custom T1 Master Design System Stylesheet -->
-    <link rel="stylesheet" href="assets/css/style.css?v=2026.7">
+    <link rel="stylesheet" href="assets/css/style.css?v=2026.8">
 
     <script>
         tailwind.config = {
@@ -843,60 +843,83 @@
                 </div>
             </div>
 
-            <!-- Khối Đo Độ Trễ Mạng Ping Server FiveM VN -->
-            <div class="t1-card">
-                <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 mb-6 border-b border-t1border gap-4">
+            <!-- Khối Đo Độ Trễ Mạng Ping Server FiveM VN (Khung Kính Trong Suốt Nổi Khối 3D Chuẩn T1) -->
+            <div class="t1-card p-6 sm:p-8">
+                <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 mb-6 border-b border-slate-200/80 gap-4">
                     <div>
-                        <span class="t1-pill t1-pill-success mb-1">NETWORK OPTIMIZATION</span>
-                        <h2 class="text-2xl font-black text-textPrimary tracking-tight">Đo Lường Độ Trễ Mạng (Ping) Đến Cụm Server FiveM VN</h2>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/80 text-[11px] font-black t1-pill mb-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            NETWORK OPTIMIZATION
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-textPrimary tracking-tight">
+                            Đo Lường Độ Trễ Mạng (Ping) Đến Cụm Server FiveM VN
+                        </h2>
                     </div>
 
-                    <button id="btn-run-ping-test" class="t1-btn-3d t1-btn-primary text-xs">
-                        <i class="fa-solid fa-signal"></i>
+                    <button id="btn-run-ping-test" class="t1-btn-3d t1-btn-primary">
+                        <i class="fa-solid fa-signal text-xs"></i>
                         <span>Đo Độ Trễ Real-time</span>
                     </button>
                 </div>
 
+                <!-- 4 Node Cards (Kính Trong Suốt Nổi Khối 3D Như Nút Bấm) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                    <div class="p-4 rounded-xl bg-surfaceSoft border border-t1border flex items-center justify-between">
+                    <!-- Node 1: Hà Nội -->
+                    <div class="t1-node-glass p-4 flex items-center justify-between group">
                         <div>
-                            <span class="text-[10px] font-black text-textSecondary uppercase block">NODE MIỀN BẮC</span>
-                            <span class="text-base font-black text-textPrimary">Hà Nội (VNPT)</span>
+                            <div class="flex items-center gap-1.5 mb-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                <span class="text-[10px] font-black text-textSecondary uppercase tracking-wider block">NODE MIỀN BẮC</span>
+                            </div>
+                            <span class="text-sm font-black text-textPrimary group-hover:text-primary transition-colors">Hà Nội (VNPT)</span>
                         </div>
-                        <span id="ping-node-hn" class="text-2xl font-black font-mono text-secondary">6 ms</span>
+                        <span id="ping-node-hn" class="text-2xl font-black font-mono text-secondary whitespace-nowrap pl-2">6 ms</span>
                     </div>
 
-                    <div class="p-4 rounded-xl bg-surfaceSoft border border-t1border flex items-center justify-between">
+                    <!-- Node 2: TP.HCM -->
+                    <div class="t1-node-glass p-4 flex items-center justify-between group">
                         <div>
-                            <span class="text-[10px] font-black text-textSecondary uppercase block">NODE MIỀN NAM</span>
-                            <span class="text-base font-black text-textPrimary">TP.HCM (FPT)</span>
+                            <div class="flex items-center gap-1.5 mb-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                <span class="text-[10px] font-black text-textSecondary uppercase tracking-wider block">NODE MIỀN NAM</span>
+                            </div>
+                            <span class="text-sm font-black text-textPrimary group-hover:text-primary transition-colors">TP.HCM (FPT)</span>
                         </div>
-                        <span id="ping-node-hcm" class="text-2xl font-black font-mono text-secondary">10 ms</span>
+                        <span id="ping-node-hcm" class="text-2xl font-black font-mono text-secondary whitespace-nowrap pl-2">10 ms</span>
                     </div>
 
-                    <div class="p-4 rounded-xl bg-surfaceSoft border border-t1border flex items-center justify-between">
+                    <!-- Node 3: Đà Nẵng (Khóa Không Bao Giờ Rớt Dòng ms) -->
+                    <div class="t1-node-glass p-4 flex items-center justify-between group">
                         <div>
-                            <span class="text-[10px] font-black text-textSecondary uppercase block">NODE MIỀN TRUNG</span>
-                            <span class="text-base font-black text-textPrimary">Đà Nẵng (VNIX)</span>
+                            <div class="flex items-center gap-1.5 mb-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span>
+                                <span class="text-[10px] font-black text-textSecondary uppercase tracking-wider block">NODE MIỀN TRUNG</span>
+                            </div>
+                            <span class="text-sm font-black text-textPrimary group-hover:text-primary transition-colors">Đà Nẵng (VNIX)</span>
                         </div>
-                        <span id="ping-node-dn" class="text-2xl font-black font-mono text-primary">14 ms</span>
+                        <span id="ping-node-dn" class="text-2xl font-black font-mono text-primary whitespace-nowrap pl-2">14 ms</span>
                     </div>
 
-                    <div class="p-4 rounded-xl bg-surfaceSoft border border-t1border flex items-center justify-between">
+                    <!-- Node 4: Singapore Discord -->
+                    <div class="t1-node-glass p-4 flex items-center justify-between group">
                         <div>
-                            <span class="text-[10px] font-black text-textSecondary uppercase block">NODE QUỐC TẾ</span>
-                            <span class="text-base font-black text-textPrimary">Singapore Discord</span>
+                            <div class="flex items-center gap-1.5 mb-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                                <span class="text-[10px] font-black text-textSecondary uppercase tracking-wider block">NODE QUỐC TẾ</span>
+                            </div>
+                            <span class="text-sm font-black text-textPrimary group-hover:text-warning transition-colors">Singapore Discord</span>
                         </div>
-                        <span id="ping-node-sg" class="text-2xl font-black font-mono text-warning">28 ms</span>
+                        <span id="ping-node-sg" class="text-2xl font-black font-mono text-warning whitespace-nowrap pl-2">28 ms</span>
                     </div>
                 </div>
 
-                <div class="p-3.5 rounded-xl bg-bg border border-t1border text-xs text-textSecondary flex items-center gap-2">
-                    <i class="fa-solid fa-bolt text-primary"></i>
-                    <span>Cơ chế TCP NoDelay tự động điều chỉnh MTU Packet giúp triệt tiêu 100% hiện tượng desync xe giật lùi khi đua tốc độ cao.</span>
+                <!-- Footer Tip (Ribbon Kính Trong Suốt 3D Nổi Khối) -->
+                <div class="p-3.5 rounded-xl bg-white/60 backdrop-blur-md border border-white/90 shadow-[0_2px_0_#DFEAF4] text-xs text-textSecondary flex items-center gap-2">
+                    <i class="fa-solid fa-bolt text-primary text-sm flex-shrink-0"></i>
+                    <span class="font-medium">Cơ chế TCP NoDelay tự động điều chỉnh MTU Packet giúp triệt tiêu 100% hiện tượng desync xe giật lùi khi đua tốc độ cao.</span>
                 </div>
             </div>
-        </section>
+</section>
 
         <!-- ======================================================================
              XI. BỘ CÔNG CỤ TỐI ƯU THỰC CHIẾN (CHỐNG LAG & TẠO SETTINGS.XML CHUYÊN SÂU)
@@ -1704,6 +1727,6 @@
     </div>
 
     <!-- Scripts JavaScript Hoạt Động -->
-    <script src="assets/js/app.js?v=2026.7"></script>
+    <script src="assets/js/app.js?v=2026.8"></script>
 </body>
 </html>
