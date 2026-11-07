@@ -1,18 +1,17 @@
 /**
- * T1 GTA 5 VN OPTIMIZER - LIVE HARDWARE CHECKER & UI LOGIC
+ * T1 GTA 5 VN OPTIMIZER - JAVASCRIPT CORE
+ * Thiết Kế T1 3D Neumorphic-Glass Hybrid
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     initHardwareScanner();
     initFaqAccordion();
     initFpsCalculator();
-    initThemeSwitcher();
     initDownloadModal();
-    initLiveDownloadCounter();
 });
 
 /**
- * Quét phần cứng người dùng qua Web API & WebGL
+ * 1. Quét Cấu Hình Phần Cứng Trực Tiếp (Hardware Diagnostic)
  */
 function initHardwareScanner() {
     const cpuEl = document.getElementById('spec-cpu');
@@ -24,24 +23,28 @@ function initHardwareScanner() {
     const btnRescan = document.getElementById('btn-rescan');
 
     function performScan() {
-        // Trạng thái chờ
+        if (!cpuEl || !ramEl || !gpuEl) return;
+
         cpuEl.textContent = 'Đang đọc...';
         ramEl.textContent = 'Đang đọc...';
         gpuEl.textContent = 'Đang đọc...';
-        evalBadge.className = 'px-3 py-1 bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 text-xs font-mono font-bold uppercase rounded animate-pulse';
-        evalBadge.textContent = 'Đang quét...';
-        evalTitle.textContent = 'Hệ thống đang đối chiếu dữ liệu GTA 5 VN...';
+        
+        if (evalBadge) {
+            evalBadge.className = 't1-pill t1-pill-warning animate-pulse';
+            evalBadge.textContent = 'ĐANG PHÂN TÍCH';
+        }
+        if (evalTitle) evalTitle.textContent = 'Hệ thống đang đối chiếu dữ liệu FiveM VN...';
 
         setTimeout(() => {
-            // 1. Kiểm tra luồng CPU
+            // CPU Cores
             const cores = navigator.hardwareConcurrency || 4;
             cpuEl.textContent = `${cores} Cores / Threads`;
 
-            // 2. Kiểm tra bộ nhớ RAM (ước tính qua Device Memory API)
+            // RAM
             const ram = navigator.deviceMemory || 8;
-            ramEl.textContent = ram >= 8 ? `≥ ${ram} GB` : `${ram} GB`;
+            ramEl.textContent = ram >= 8 ? `≥ ${ram} GB RAM` : `${ram} GB RAM`;
 
-            // 3. Kiểm tra GPU qua WebGL unmasked renderer
+            // GPU qua WebGL
             let gpuName = 'Card Tích Hợp (iGPU)';
             try {
                 const canvas = document.createElement('canvas');
@@ -49,9 +52,8 @@ function initHardwareScanner() {
                 if (gl) {
                     const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
                     if (debugInfo) {
-                        const rawRenderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
-                        // Rút gọn tên GPU để không tràn layout
-                        gpuName = rawRenderer.replace(/ANGLE \(|Direct3D11 vs_5_0 ps_5_0\)|vs_\d+_\d+ ps_\d+_\d+|\)/g, '').trim();
+                        const raw = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+                        gpuName = raw.replace(/ANGLE \(|Direct3D11 vs_5_0 ps_5_0\)|vs_\d+_\d+ ps_\d+_\d+|\)/g, '').trim();
                     }
                 }
             } catch (e) {
@@ -59,31 +61,26 @@ function initHardwareScanner() {
             }
             gpuEl.textContent = gpuName;
 
-            // 4. Đánh giá khả năng chiến FiveM VN
-            evaluateSystem(cores, ram, gpuName);
-        }, 600);
-    }
-
-    function evaluateSystem(cores, ram, gpu) {
-        const isLowEnd = cores < 4 || ram < 8;
-        const isMidEnd = cores >= 4 && ram >= 8 && cores < 8;
-        
-        if (isLowEnd) {
-            evalBadge.className = 'px-3 py-1 bg-red-500/20 text-red-400 border border-red-500/30 text-xs font-mono font-bold uppercase rounded';
-            evalBadge.textContent = 'Cấu Hình Yếu (Cần Tối Ưu)';
-            evalTitle.textContent = 'Cảnh báo: Dễ bị nghẽn RAM & tụt FPS ở khu vực đông người!';
-            evalDesc.textContent = 'Hệ thống của bạn cần áp dụng ngay bản tối ưu T1 Optimizer để khóa khung hình 45-60 FPS và dọn cache RAM ảo định kỳ.';
-        } else if (isMidEnd) {
-            evalBadge.className = 'px-3 py-1 bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 text-xs font-mono font-bold uppercase rounded';
-            evalBadge.textContent = 'Cấu Hình Đạt Chuẩn (Khuyên Dùng Tool)';
-            evalTitle.textContent = 'Khả quan: Máy bạn có thể chiến FiveM ổn định ở mức 60-80 FPS.';
-            evalDesc.textContent = 'Kích hoạt bản tối ưu T1 để triệt tiêu hiện tượng drop FPS 1% Low khi đua xe tốc độ cao hoặc đọ súng đông người.';
-        } else {
-            evalBadge.className = 'px-3 py-1 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-mono font-bold uppercase rounded';
-            evalBadge.textContent = 'Cấu Hình Mạnh (Sẵn Sàng Chiến)';
-            evalTitle.textContent = 'Rất Tốt: Máy bạn đủ sức gánh mức thiết lập đồ họa cao và FPS trên 100.';
-            evalDesc.textContent = 'Sử dụng T1 Optimizer để tối ưu mạng TCP/Ping thấp và kích hoạt texture mượt mà nhất.';
-        }
+            // Đánh giá
+            if (evalBadge && evalTitle && evalDesc) {
+                if (cores < 4 || ram < 8) {
+                    evalBadge.className = 't1-pill t1-pill-danger';
+                    evalBadge.textContent = 'CẤU HÌNH YẾU (CẦN TỐI ƯU GẤP)';
+                    evalTitle.textContent = 'Cảnh báo: Dễ bị nghẽn RAM & tụt FPS sâu khi vào chợ xe!';
+                    evalDesc.textContent = 'Cấu hình của bạn cần áp dụng ngay bản tối ưu T1 để khóa khung hình 45-60 FPS và dọn RAM ảo liên tục.';
+                } else if (cores < 8) {
+                    evalBadge.className = 't1-pill t1-pill-cyan';
+                    evalBadge.textContent = 'CẤU HÌNH ĐẠT CHUẨN FIVEM';
+                    evalTitle.textContent = 'Khả quan: Máy bạn có thể chiến FiveM mượt mà ở mức 70-95 FPS.';
+                    evalDesc.textContent = 'Áp dụng T1 Optimizer để triệt tiêu hoàn toàn giật khựng 1% Low khi sấy súng đông người.';
+                } else {
+                    evalBadge.className = 't1-pill t1-pill-success';
+                    evalBadge.textContent = 'CẤU HÌNH MẠNH (CHIẾN TỐT 144HZ)';
+                    evalTitle.textContent = 'Rất Tốt: Máy bạn đủ sức gánh đồ họa cao và FPS trên 120.';
+                    evalDesc.textContent = 'Sử dụng T1 Optimizer để tối ưu mạng TCP/MTU ping thấp và khử hoàn toàn độ trễ chuột.';
+                }
+            }
+        }, 500);
     }
 
     performScan();
@@ -94,7 +91,7 @@ function initHardwareScanner() {
 }
 
 /**
- * Khởi tạo Bộ Giả Lập Khung Hình Dự Kiến (FPS Simulator)
+ * 2. Bộ Giả Lập Khung Hình Dự Kiến (FPS Simulator)
  */
 function initFpsCalculator() {
     const resSelect = document.getElementById('calc-res');
@@ -108,15 +105,10 @@ function initFpsCalculator() {
         const resMult = parseFloat(resSelect.value) || 1.0;
         const presetMult = parseFloat(presetSelect.value) || 1.0;
 
-        // Base FPS estimate dựa theo số luồng CPU
         let baseFps = 55;
-        if (cores >= 8) {
-            baseFps = 100;
-        } else if (cores >= 6) {
-            baseFps = 80;
-        } else if (cores < 4) {
-            baseFps = 38;
-        }
+        if (cores >= 8) baseFps = 105;
+        else if (cores >= 6) baseFps = 82;
+        else if (cores < 4) baseFps = 38;
 
         const calculated = Math.round(baseFps * resMult * presetMult);
         const minFps = Math.max(25, calculated - 8);
@@ -127,76 +119,42 @@ function initFpsCalculator() {
 
     resSelect.addEventListener('change', updateFps);
     presetSelect.addEventListener('change', updateFps);
-    
-    // Gọi tính toán khởi tạo sau khi phần cứng quét xong
-    setTimeout(updateFps, 700);
+    setTimeout(updateFps, 600);
 }
 
 /**
- * Khởi tạo Accordion cho phần FAQ
+ * 3. FAQ Accordion
  */
 function initFaqAccordion() {
-    const faqButtons = document.querySelectorAll('.faq-toggle');
-    
-    faqButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const content = button.nextElementSibling;
-            const icon = button.querySelector('i');
-            
-            const isOpen = !content.classList.contains('hidden');
-            
-            // Đóng tất cả tab khác
+    const buttons = document.querySelectorAll('.faq-toggle');
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const content = btn.nextElementSibling;
+            const icon = btn.querySelector('i');
+            const isHidden = content.classList.contains('hidden');
+
             document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
-            document.querySelectorAll('.faq-toggle i').forEach(ic => ic.style.transform = 'rotate(0deg)');
-            
-            if (!isOpen) {
+            document.querySelectorAll('.faq-toggle i').forEach(i => i.style.transform = 'rotate(0deg)');
+
+            if (isHidden) {
                 content.classList.remove('hidden');
-                icon.style.transform = 'rotate(180deg)';
+                if (icon) icon.style.transform = 'rotate(180deg)';
             }
         });
     });
 }
 
 /**
- * Bộ chuyển đổi Theme Sáng (White Edition) / Tối (Carbon Dark)
- */
-function initThemeSwitcher() {
-    const toggleBtn = document.getElementById('theme-toggle');
-    const icon = document.getElementById('theme-icon');
-    const label = document.getElementById('theme-label');
-    if (!toggleBtn) return;
-
-    let isDark = localStorage.getItem('t1-theme') === 'dark';
-
-    function applyTheme() {
-        if (isDark) {
-            document.documentElement.classList.add('dark');
-            document.body.classList.replace('bg-t1bg', 'bg-slate-950');
-            if (icon) icon.className = 'fa-solid fa-sun text-amber-400';
-            if (label) label.textContent = 'Bản Sáng';
-        } else {
-            document.documentElement.classList.remove('dark');
-            document.body.classList.replace('bg-slate-950', 'bg-t1bg');
-            if (icon) icon.className = 'fa-solid fa-moon text-slate-600';
-            if (label) label.textContent = 'Bản Tối';
-        }
-    }
-
-    applyTheme();
-
-    toggleBtn.addEventListener('click', () => {
-        isDark = !isDark;
-        localStorage.setItem('t1-theme', isDark ? 'dark' : 'light');
-        applyTheme();
-    });
-}
-
-/**
- * Modal Tải App & Sao Chép Hash SHA-256
+ * 4. Luxury Glass Modal Tải App
  */
 function initDownloadModal() {
     const modal = document.getElementById('download-modal');
-    const openBtn = document.getElementById('btn-open-download-modal');
+    const openBtns = [
+        document.getElementById('btn-open-download-modal'),
+        document.getElementById('btn-hero-download'),
+        document.getElementById('btn-hero-zip'),
+        document.getElementById('btn-quick-optimize')
+    ];
     const closeBtn = document.getElementById('btn-close-modal');
     const doneBtn = document.getElementById('btn-modal-done');
     const copyHashBtn = document.getElementById('btn-copy-hash');
@@ -212,16 +170,17 @@ function initDownloadModal() {
         modal.classList.add('hidden');
     }
 
-    if (openBtn) openBtn.addEventListener('click', openModal);
+    openBtns.forEach(btn => {
+        if (btn) btn.addEventListener('click', openModal);
+    });
+
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
     if (doneBtn) doneBtn.addEventListener('click', closeModal);
 
-    // Đóng khi click ngoài hộp modal
     modal.addEventListener('click', (e) => {
         if (e.target === modal) closeModal();
     });
 
-    // Sao chép mã SHA-256
     if (copyHashBtn && hashText) {
         copyHashBtn.addEventListener('click', () => {
             navigator.clipboard.writeText(hashText.textContent.trim()).then(() => {
@@ -233,18 +192,3 @@ function initDownloadModal() {
         });
     }
 }
-
-/**
- * Tăng lượt tải giả lập sống động theo thời gian thực
- */
-function initLiveDownloadCounter() {
-    const counterEl = document.getElementById('live-download-counter');
-    if (!counterEl) return;
-
-    let count = 1428;
-    setInterval(() => {
-        count += Math.floor(Math.random() * 2) + 1;
-        counterEl.textContent = `${count.toLocaleString('vi-VN')} lượt tải hôm nay`;
-    }, 18000);
-}
-
