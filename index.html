@@ -119,7 +119,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Custom T1 Master Design System Stylesheet -->
-    <link rel="stylesheet" href="assets/css/style.css?v=2026.30">
+    <link rel="stylesheet" href="assets/css/style.css?v=2026.35">
 
     <script>
         tailwind.config = {
@@ -1849,7 +1849,8 @@
     </div>
 
     <!-- Scripts JavaScript Hoạt Động -->
-    <script src="assets/js/app.js?v=2026.30"></script>
+    <script src="assets/js/app.js?v=2026.35"></script>
+    <script src="assets/js/bunnies.js?v=2026.35"></script>
     <!-- ======================================================================
          PRO FLOATING HUD & BACK-TO-TOP DOCK (T1 GAMING SAAS TELEMETRY)
          ====================================================================== -->
@@ -1948,6 +1949,15 @@
                 <span>ĐÃ HIỂU</span>
             </button>
         </div>
+    </div>
+
+    <!-- ======================================================================
+         DUAL ANIMATED MASCOT BUNNIES (SNOWY & COCO) - ZERO INTERFERENCE
+         ====================================================================== -->
+    <div id="bunny-playground" class="pointer-events-none fixed inset-0 z-40 overflow-hidden select-none" aria-hidden="true">
+        <div id="bunny-dust-layer"></div>
+        <div id="bunny-snowy" class="bunny-actor hopping"></div>
+        <div id="bunny-coco" class="bunny-actor hopping"></div>
     </div>
 
     <!-- ======================================================================
