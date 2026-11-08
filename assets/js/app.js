@@ -869,12 +869,7 @@ function showReviewToast(name) {
 
 // 1. Chống Phóng To / Thu Nhỏ Toàn Diện (Không Chặn Lướt Web / Scroll)
 function initAntiZoom() {
-    // Chỉ chặn Ctrl + Lăn chuột (Pinch / Zoom chuột trên Desktop)
-    window.addEventListener('wheel', (e) => {
-        if (e.ctrlKey) {
-            e.preventDefault();
-        }
-    }, { passive: false });
+    // Scroll blocking wheel listener removed for 120Hz smooth scrolling
 
     // Chỉ chặn phím tắt zoom bàn phím: Ctrl +, Ctrl -, Ctrl 0, Ctrl =
     window.addEventListener('keydown', (e) => {
@@ -937,7 +932,7 @@ function initFpsChartEngine() {
     let scanPos = 0.5; // 0 to 1
     let isHovered = false;
     let mouseX = 0;
-    let isVisible = true;
+    let isVisible = false;
     let animationFrameId = null;
 
     function resize() {
@@ -1006,6 +1001,8 @@ function initFpsChartEngine() {
     }
 
     let lastTime = performance.now();
+    let lastDomTime = 0;
+    let lastStutter = null;
 
     function render(now) {
         if (!isVisible) { return; }
@@ -1175,20 +1172,20 @@ function initFpsChartEngine() {
         ctx.stroke();
         ctx.restore();
 
-        // 5. Update HUD Indicators
-        if (valGreen) {
-            valGreen.textContent = currentGreenFps.toFixed(1) + ' FPS';
-        }
-        if (valRed) {
-            valRed.textContent = currentRedFps.toFixed(1) + ' FPS';
-        }
-        if (badgeDrop) {
-            if (currentRedFps < 32) {
-                badgeDrop.textContent = 'STUTTER 1% LOW!';
-                badgeDrop.className = 'text-[9px] font-mono font-black text-white bg-rose-600 px-1.5 py-0.5 rounded shadow-[0_0_8px_#e11d48] animate-bounce';
-            } else {
-                badgeDrop.textContent = 'DROP 1% LOW';
-                badgeDrop.className = 'text-[9px] font-mono font-bold text-rose-700 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-100 animate-pulse';
+        // 5. Throttled HUD Indicators (avoid layout thrashing)
+        if (now - lastDomTime > 120) {
+            lastDomTime = now;
+            if (valGreen) valGreen.textContent = currentGreenFps.toFixed(1) + ' FPS';
+            if (valRed) valRed.textContent = currentRedFps.toFixed(1) + ' FPS';
+            if (badgeDrop) {
+                const isStutter = currentRedFps < 32;
+                if (isStutter !== lastStutter) {
+                    lastStutter = isStutter;
+                    badgeDrop.textContent = isStutter ? 'STUTTER 1% LOW!' : 'DROP 1% LOW';
+                    badgeDrop.className = isStutter 
+                        ? 'text-[9px] font-mono font-black text-white bg-rose-600 px-1.5 py-0.5 rounded shadow-[0_0_8px_#e11d48]'
+                        : 'text-[9px] font-mono font-bold text-rose-700 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-100';
+                }
             }
         }
 
@@ -1375,15 +1372,21 @@ function initTactileAudio() {
  * 19. Interactive Cursor Spotlight Shader Effect
  */
 function initSpotlightEffect() {
-    const spotlights = document.querySelectorAll('.t1-spotlight, .t1-card, .t1-node-glass');
+    const spotlights = document.querySelectorAll('.t1-spotlight');
+    if (!spotlights.length) return;
     spotlights.forEach(el => {
+        let ticking = false;
         el.addEventListener('mousemove', (e) => {
-            const rect = el.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            el.style.setProperty('--mouse-x', `${x}px`);
-            el.style.setProperty('--mouse-y', `${y}px`);
-        });
+            if (!ticking) {
+                ticking = true;
+                requestAnimationFrame(() => {
+                    const rect = el.getBoundingClientRect();
+                    el.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+                    el.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+                    ticking = false;
+                });
+            }
+        }, { passive: true });
     });
 }
 
@@ -1453,11 +1456,16 @@ function initBackToTop() {
     const btnTop = document.getElementById('btn-back-to-top');
     if (!dock || !btnTop) return;
 
+    let dockVisible = false;
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 350) {
-            dock.classList.remove('opacity-0', 'pointer-events-none');
-        } else {
-            dock.classList.add('opacity-0', 'pointer-events-none');
+        const visible = window.scrollY > 350;
+        if (visible !== dockVisible) {
+            dockVisible = visible;
+            if (visible) {
+                dock.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                dock.classList.add('opacity-0', 'pointer-events-none');
+            }
         }
     }, { passive: true });
 
@@ -1775,14 +1783,18 @@ function initNavbarScroll() {
     const header = document.getElementById('main-header');
     if (!header) return;
 
+    let isScrolled = false;
     function handleScroll() {
-        if (window.scrollY > 25) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+        const scrolled = window.scrollY > 25;
+        if (scrolled !== isScrolled) {
+            isScrolled = scrolled;
+            if (scrolled) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         }
     }
-
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 }
