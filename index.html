@@ -168,26 +168,46 @@
                 </div>
             </a>
 
-            <!-- Giữa: Menu Điều Hướng 1 Hàng Ngang Cân Đối (Không Bao Giờ Bị Rớt 2 Dòng) -->
-            <nav class="hidden xl:flex items-center gap-7 text-xs font-black uppercase tracking-wider text-slate-600 whitespace-nowrap">
-                <a href="#thong-ke" class="hover:text-primary transition-colors py-1">Tính Năng</a>
-                <a href="#checker" class="hover:text-primary transition-colors py-1 flex items-center gap-1.5 text-slate-900">
+            <!-- Giữa: Menu Điều Hướng 1 Hàng Ngang Cân Đối (Chuẩn Nút Bấm 3D Tactile Nổi Khối T1) -->
+            <nav class="hidden xl:flex items-center gap-2 text-xs font-black uppercase tracking-wider text-slate-700 whitespace-nowrap">
+                <a href="#thong-ke" class="t1-nav-btn">
+                    <i class="fa-solid fa-chart-simple text-sky-500 text-[11px]"></i>
+                    <span>THỐNG KÊ</span>
+                </a>
+                <a href="#checker" class="t1-nav-btn active-tab">
                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span>Check Máy</span>
+                    <span>CHECK CẤU HÌNH</span>
                 </a>
-                <a href="#cong-cu" class="hover:text-primary transition-colors py-1 flex items-center gap-1">
-                    <i class="fa-solid fa-wrench text-primary text-[11px]"></i>
-                    <span>Công Cụ</span>
+                <a href="#cong-cu" class="t1-nav-btn">
+                    <i class="fa-solid fa-wrench text-sky-500 text-[11px]"></i>
+                    <span>CÔNG CỤ</span>
                 </a>
-                <a href="#bang-xep-hang" class="hover:text-primary transition-colors py-1">Xếp Hạng</a>
-                <a href="#danh-gia" class="hover:text-primary transition-colors py-1">Đánh Giá</a>
-                <a href="#hoi-dap" class="hover:text-primary transition-colors py-1">Hỏi Đáp</a>
+                <a href="#bang-xep-hang" class="t1-nav-btn">
+                    <i class="fa-solid fa-trophy text-amber-500 text-[11px]"></i>
+                    <span>BẢNG XẾP HẠNG</span>
+                </a>
+                <a href="#danh-gia" class="t1-nav-btn">
+                    <i class="fa-solid fa-star text-amber-400 text-[11px]"></i>
+                    <span>ĐÁNH GIÁ</span>
+                </a>
+                <a href="#hoi-dap" class="t1-nav-btn">
+                    <i class="fa-solid fa-circle-question text-slate-400 text-[11px]"></i>
+                    <span>HỎI ĐÁP</span>
+                </a>
             </nav>
 
             <!-- Bên Phải: Cụm Nút Bấm Chuẩn T1 Nổi Khối Đẳng Cấp -->
             <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
                 <!-- Nút Discord VN (discord.gg/gtavn) -->
-                <a href="https://discord.gg/gtavn" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex t1-btn-3d t1-btn-discord !py-2 !px-3.5" title="Cộng Đồng Discord: discord.gg/gtavn">
+                <!-- Nút Chuông Báo Cập Nhật Mới -->
+                <button id="btn-open-announcement" class="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white border border-slate-200 hover:border-primary text-slate-700 hover:text-primary transition-all flex items-center justify-center shadow-2xs hover:scale-105 flex-shrink-0" title="Bảng Thông Báo Hệ Thống">
+                    <i class="fa-solid fa-bell text-sm text-slate-600"></i>
+                    <span class="absolute -top-1 -right-1 flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-500 border-2 border-white"></span>
+                    </span>
+                </button>
+                <a href="https://discord.gg/gtavn" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex t1-btn-3d t1-btn-discord !py-2 !px-3.5"  title="Cộng Đồng Discord: discord.gg/gtavn">
                     <i class="fa-brands fa-discord text-sm"></i>
                     <span>DISCORD</span>
                 </a>
@@ -206,21 +226,39 @@
             </div>
         </div>
 
-        <!-- Mobile Menu Drawer (Dropdown Sáng Sạch) -->
-        <div id="mobile-menu-drawer" class="hidden xl:hidden px-4 pt-3 pb-5 bg-white border-b border-slate-200 shadow-lg">
-            <nav class="flex flex-col gap-2.5 text-xs font-black text-slate-800 uppercase tracking-wider">
-                <a href="#thong-ke" class="py-2.5 px-3 rounded-xl hover:bg-slate-50 transition">TÍNH NĂNG</a>
-                <a href="#checker" class="py-2.5 px-3 rounded-xl hover:bg-slate-50 transition flex items-center justify-between text-sky-600">
-                    <span>CHECK CẤU HÌNH</span>
+        <!-- Mobile Menu Drawer (Dropdown Sáng Sạch với Hệ Thống Nút Bấm 3D) -->
+        <div id="mobile-menu-drawer" class="hidden xl:hidden px-4 pt-3 pb-5 bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-xl">
+            <nav class="flex flex-col gap-2 text-xs font-black text-slate-800 uppercase tracking-wider">
+                <a href="#thong-ke" class="t1-nav-btn !w-full !justify-start !py-2.5">
+                    <i class="fa-solid fa-chart-simple text-sky-500 text-xs"></i>
+                    <span>THỐNG KÊ HIỆU NĂNG</span>
+                </a>
+                <a href="#checker" class="t1-nav-btn active-tab !w-full !justify-between !py-2.5">
+                    <span class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span>CHECK CẤU HÌNH MÁY</span>
+                    </span>
                     <span class="t1-pill t1-pill-success text-[10px]">LIVE</span>
                 </a>
-                <a href="#cong-cu" class="py-2.5 px-3 rounded-xl hover:bg-slate-50 transition">BỘ CÔNG CỤ</a>
-                <a href="#bang-xep-hang" class="py-2.5 px-3 rounded-xl hover:bg-slate-50 transition">BẢNG XẾP HẠNG</a>
-                <a href="#danh-gia" class="py-2.5 px-3 rounded-xl hover:bg-slate-50 transition">ĐÁNH GIÁ</a>
-                <a href="#hoi-dap" class="py-2.5 px-3 rounded-xl hover:bg-slate-50 transition">HỎI ĐÁP</a>
-                <a href="https://discord.gg/gtavn" target="_blank" rel="noopener noreferrer" class="py-2.5 px-3 rounded-xl bg-[#5865F2]/10 text-[#5865F2] font-black text-xs flex items-center justify-between border border-[#5865F2]/20 mt-1">
+                <a href="#cong-cu" class="t1-nav-btn !w-full !justify-start !py-2.5">
+                    <i class="fa-solid fa-wrench text-sky-500 text-xs"></i>
+                    <span>BỘ CÔNG CỤ TỐI ƯU</span>
+                </a>
+                <a href="#bang-xep-hang" class="t1-nav-btn !w-full !justify-start !py-2.5">
+                    <i class="fa-solid fa-trophy text-amber-500 text-xs"></i>
+                    <span>BẢNG XẾP HẠNG TOP</span>
+                </a>
+                <a href="#danh-gia" class="t1-nav-btn !w-full !justify-start !py-2.5">
+                    <i class="fa-solid fa-star text-amber-400 text-xs"></i>
+                    <span>ĐÁNH GIÁ TỪ GAMER</span>
+                </a>
+                <a href="#hoi-dap" class="t1-nav-btn !w-full !justify-start !py-2.5">
+                    <i class="fa-solid fa-circle-question text-slate-400 text-xs"></i>
+                    <span>HỎI ĐÁP &amp; HƯỚNG DẪN</span>
+                </a>
+                <a href="https://discord.gg/gtavn" target="_blank" rel="noopener noreferrer" class="t1-btn-3d t1-btn-discord !w-full !py-2.5 !justify-between text-xs mt-1">
                     <span class="flex items-center gap-2"><i class="fa-brands fa-discord text-base"></i> THAM GIA DISCORD</span>
-                    <span class="text-[10px] font-mono bg-[#5865F2] text-white px-2 py-0.5 rounded-full font-bold">discord.gg/gtavn</span>
+                    <span class="text-[10px] font-mono bg-white/20 text-white px-2 py-0.5 rounded-full font-bold">discord.gg/gtavn</span>
                 </a>
             </nav>
         </div>
@@ -741,7 +779,7 @@
                     </div>
 
                     <!-- Realtime Animated Telemetry Graph (T1 3D Neumorphic-Glass Live Engine) -->
-                    <div class="w-full h-64 sm:h-72 relative rounded-2xl bg-gradient-to-b from-white to-[#F8FAFC] border border-[#DFEAF4] shadow-[0_8px_25px_rgba(7,150,229,0.06)] overflow-hidden p-2 select-none group">
+                    <div class="w-full h-64 sm:h-72 relative rounded-2xl t1-node-glass border border-white/95 shadow-[0_4px_0_#DFEAF4,0_12px_28px_rgba(7,150,229,0.08),inset_0_1.5px_1px_#ffffff] overflow-hidden p-2 select-none group">
                         <!-- Live Telemetry Status & Indicators (Góc Trên Phải) -->
                         <div class="absolute top-3 right-3 z-20 flex flex-wrap items-center justify-end gap-2">
                             <!-- Badge Xanh: GTA5VN-System -->
@@ -1565,6 +1603,94 @@
     </footer>
 
     <!-- ======================================================================
+         BẢNG THÔNG BÁO HỆ THỐNG MỚI (T1 3D LUXURY GLASS ANNOUNCEMENT MODAL)
+         ====================================================================== -->
+    <div id="announcement-modal" class="t1-modal-backdrop hidden">
+        <div class="max-w-lg w-full bg-white/95 backdrop-blur-2xl rounded-3xl p-6 sm:p-7 border border-white shadow-[0_20px_60px_rgba(7,150,229,0.18)] relative m-4 select-none">
+            
+            <!-- Header Thông Báo -->
+            <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-sky-400 to-primary text-white flex items-center justify-center text-xl shadow-[0_4px_14px_rgba(7,150,229,0.35)] flex-shrink-0">
+                        <i class="fa-solid fa-bullhorn animate-pulse"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h3 class="text-base sm:text-lg font-black text-slate-900 tracking-tight">THÔNG BÁO HỆ THỐNG</h3>
+                            <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-black font-mono">
+                                v2.5.2
+                            </span>
+                        </div>
+                        <span class="text-xs font-semibold text-slate-400 block mt-0.5">Bản Cập Nhật Khóa Khung Hình 144Hz & Sửa Lỗi FiveM</span>
+                    </div>
+                </div>
+                <button id="btn-close-announcement" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition flex-shrink-0" title="Đóng">
+                    <i class="fa-solid fa-xmark text-sm"></i>
+                </button>
+            </div>
+
+            <!-- Danh Sách 3 Điểm Cập Nhật Mới -->
+            <div class="space-y-3 mb-6">
+                <!-- Điểm 1: 144Hz -->
+                <div class="p-3.5 rounded-2xl t1-node-glass flex items-start gap-3">
+                    <div class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100 flex items-center justify-center text-sm flex-shrink-0 mt-0.5 shadow-2xs">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-black text-slate-800 block">Khóa 144Hz &amp; Khử 100% Drop 1% Low</span>
+                        <p class="text-[11px] text-slate-500 font-medium leading-relaxed mt-0.5">
+                            Cải tiến phân luồng CPU giúp giữ vững 144 FPS khi sấy súng đông người hoặc đua xe tốc độ cao.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Điểm 2: Standby RAM -->
+                <div class="p-3.5 rounded-2xl t1-node-glass flex items-start gap-3">
+                    <div class="w-8 h-8 rounded-xl bg-sky-50 text-sky-600 border border-sky-100 flex items-center justify-center text-sm flex-shrink-0 mt-0.5 shadow-2xs">
+                        <i class="fa-solid fa-broom-ball"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-black text-slate-800 block">Thu Hồi Standby RAM Chống Crash Game</span>
+                        <p class="text-[11px] text-slate-500 font-medium leading-relaxed mt-0.5">
+                            Tự động dọn sạch cache rác texture mod khi qua showroom xe, triệt tiêu lỗi Out of Memory.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Điểm 3: Discord Server -->
+                <div class="p-3.5 rounded-2xl t1-node-glass flex items-start gap-3">
+                    <div class="w-8 h-8 rounded-xl bg-[#5865F2]/10 text-[#5865F2] border border-[#5865F2]/20 flex items-center justify-center text-sm flex-shrink-0 mt-0.5 shadow-2xs">
+                        <i class="fa-brands fa-discord"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-black text-slate-800 block">Server Discord Chính Thức (discord.gg/gtavn)</span>
+                        <p class="text-[11px] text-slate-500 font-medium leading-relaxed mt-0.5">
+                            Hỗ trợ kỹ thuật 24/7, cập nhật file settings.xml mới và nhận thông báo event sớm nhất.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Actions -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-100">
+                <div class="flex items-center gap-2 w-full sm:w-auto">
+                    <a href="https://discord.gg/gtavn" target="_blank" rel="noopener noreferrer" class="t1-btn-3d t1-btn-discord flex-1 sm:flex-initial text-xs py-2 px-3.5">
+                        <i class="fa-brands fa-discord text-sm"></i>
+                        <span>VÀO DISCORD</span>
+                    </a>
+                    <button id="btn-announcement-download" class="t1-btn-3d t1-btn-primary flex-1 sm:flex-initial text-xs py-2 px-4">
+                        <i class="fa-solid fa-download text-xs"></i>
+                        <span>TẢI BẢN V2.5.2</span>
+                    </button>
+                </div>
+                <button id="btn-dismiss-announcement" class="text-xs font-bold text-slate-400 hover:text-slate-600 transition py-1">
+                    Đã hiểu, đóng lại
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================================================
          MODAL THỦY TINH MỜ (LUXURY GLASS MODAL - 1 LINK TẢI DUY NHẤT)
          ====================================================================== -->
     <div id="download-modal" class="t1-modal-backdrop hidden">
@@ -1723,6 +1849,6 @@
     </div>
 
     <!-- Scripts JavaScript Hoạt Động -->
-    <script src="assets/js/app.js?v=2026.9"></script>
+    <script src="assets/js/app.js?v=2026.11"></script>
 </body>
 </html>

@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initButtonRipple();
     initReviewModal();
     initFpsChartEngine();
+    initAnnouncementModal();
+    initNavTabs();
 });
 
 /**
@@ -1110,4 +1112,70 @@ function initFpsChartEngine() {
     }
 
     animationFrameId = requestAnimationFrame(render);
+}
+
+
+/**
+ * 16. Bảng Thông Báo Hệ Thống Mới (System Announcement Modal Controller)
+ */
+function initAnnouncementModal() {
+    const modal = document.getElementById('announcement-modal');
+    const btnOpen = document.getElementById('btn-open-announcement');
+    const btnClose = document.getElementById('btn-close-announcement');
+    const btnDismiss = document.getElementById('btn-dismiss-announcement');
+    const btnDl = document.getElementById('btn-announcement-download');
+
+    if (!modal) return;
+
+    function openModal() {
+        modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+        modal.classList.add('hidden');
+        try {
+            sessionStorage.setItem('gta5vn_notice_read_v252', '1');
+        } catch (e) {}
+    }
+
+    if (btnOpen) btnOpen.addEventListener('click', openModal);
+    if (btnClose) btnClose.addEventListener('click', closeModal);
+    if (btnDismiss) btnDismiss.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    if (btnDl) {
+        btnDl.addEventListener('click', (e) => {
+            closeModal();
+            triggerDirectDownload(e);
+        });
+    }
+
+    // Tự động mở thông báo khi vào trang nếu chưa đọc trong phiên hiện tại
+    try {
+        const read = sessionStorage.getItem('gta5vn_notice_read_v252');
+        if (!read) {
+            setTimeout(openModal, 800);
+        }
+    } catch (e) {
+        setTimeout(openModal, 800);
+    }
+}
+
+
+/**
+ * 17. T1 3D Navigation Tab Active State Controller
+ */
+function initNavTabs() {
+    const navLinks = document.querySelectorAll('.t1-nav-btn');
+    if (!navLinks.length) return;
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.forEach(l => l.classList.remove('active-tab'));
+            link.classList.add('active-tab');
+        });
+    });
 }
