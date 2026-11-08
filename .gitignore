@@ -1,7 +1,6 @@
 # Downloads and Archives
-downloads/
+!downloads/GTA5VN-System.exe
 *.zip
-*.exe
 
 # Rust Build Artifacts
 target/
