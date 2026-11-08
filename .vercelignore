@@ -1,0 +1,6 @@
+# Vercel Ignore Configuration
+api/*.rs
+Cargo.lock
+target/
+*.log
+scratch/
