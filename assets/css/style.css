@@ -1658,3 +1658,113 @@ header.t1-navbar .t1-btn-discord {
     display: none !important;
   }
 }
+
+
+/* ==========================================================================
+   T1 HERO TITLE CINEMATIC TEXT REVEAL & SHIMMER GLEAM
+   ========================================================================== */
+.hero-title-reveal {
+  font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  user-select: none;
+  overflow: visible;
+}
+
+.hero-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.hero-word-navy {
+  color: #0f172a;
+}
+
+.hero-word-gradient {
+  display: inline-block;
+  position: relative;
+  background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 45%, #059669 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-word-gradient .hero-char {
+  color: inherit;
+  -webkit-text-fill-color: inherit;
+}
+
+.hero-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(22px) scale(0.96);
+  animation: heroCharReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: calc(var(--char-i) * 0.042s + 0.12s);
+  will-change: transform, opacity;
+}
+
+.hero-char-space {
+  display: inline-block;
+  width: 0.28em;
+}
+
+@keyframes heroCharReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(22px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Vệt sáng lướt qua sau khi toàn bộ chữ xuất hiện */
+.hero-title-shimmer-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-title-shimmer {
+  position: absolute;
+  top: -10%;
+  left: -100%;
+  width: 50%;
+  height: 120%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(56, 189, 248, 0.45) 45%,
+    rgba(16, 185, 129, 0.55) 55%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+  opacity: 0;
+  animation: shimmerSweep 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards 1.35s;
+}
+
+@keyframes shimmerSweep {
+  0% {
+    left: -70%;
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  80% {
+    opacity: 0.9;
+  }
+  100% {
+    left: 140%;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-char {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .hero-title-shimmer {
+    display: none !important;
+  }
+}
