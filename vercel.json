@@ -3,7 +3,8 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "functions": {
-    "api/*.rs": {
+    "api/**/*.rs": {
+      "runtime": "vercel-rust",
       "memory": 1024,
       "maxDuration": 10
     }
