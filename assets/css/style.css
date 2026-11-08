@@ -1362,53 +1362,79 @@ kbd.t1-keycap {
 
 
 /* ==========================================================================
-   T1 FLOATING LUXURY GLASS NAVBAR (SLIM, COMPACT, DYNAMIC SCROLL)
+   T1 FLOATING LUXURY GLASS NAVBAR (ULTRA-SLIM LOW-PROFILE DOCK)
    ========================================================================== */
 header.t1-navbar {
   position: sticky;
   top: 0;
   z-index: 50;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(226, 232, 240, 0.85);
 }
 
 .t1-navbar-inner {
-  height: 64px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  height: 48px !important;
+  min-height: 48px !important;
+  max-height: 48px !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Khi lướt cuộn xuống: Biến thành thanh Dock Kính nổi siêu mỏng gọn, sang trọng */
+/* Khi lướt cuộn xuống: Biến thành thanh Dock Kính nổi siêu mảnh gọn, sang trọng */
 header.t1-navbar.scrolled {
   background: transparent !important;
   border-bottom: none !important;
   box-shadow: none !important;
-  padding-top: 10px;
+  padding-top: 5px !important;
 }
 
 header.t1-navbar.scrolled .t1-navbar-inner {
-  height: 54px;
-  max-width: 1240px;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-radius: 20px;
-  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  height: 42px !important;
+  min-height: 42px !important;
+  max-height: 42px !important;
+  max-width: 1200px !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border-radius: 12px !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
   box-shadow: 
-    0 4px 0 #DFEAF4,
-    0 14px 34px rgba(7, 150, 229, 0.09),
-    inset 0 1px 1px #ffffff;
-  padding-left: 20px;
-  padding-right: 20px;
+    0 3px 0 #DFEAF4,
+    0 10px 24px rgba(7, 150, 229, 0.08),
+    inset 0 1px 1px #ffffff !important;
+  padding-left: 14px !important;
+  padding-right: 14px !important;
 }
 
-/* Tinh chỉnh tab điều hướng gọn gàng, vừa vặn */
+/* Tinh chỉnh tab điều hướng siêu gọn gàng, tinh tế */
 .t1-nav-btn {
-  padding: 5.5px 9.5px !important;
-  font-size: 10.5px !important;
-  gap: 4.5px !important;
-  border-radius: 10px !important;
-  letter-spacing: 0.2px !important;
+  height: 28px !important;
+  padding: 3px 8px !important;
+  font-size: 10px !important;
+  gap: 4px !important;
+  border-radius: 8px !important;
+  letter-spacing: 0.3px !important;
+}
+
+/* Nút bấm trong header luôn slim chuẩn low-profile */
+header.t1-navbar .t1-btn-3d {
+  height: 30px !important;
+  min-height: 30px !important;
+  max-height: 30px !important;
+  padding: 0 10px !important;
+  font-size: 11px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2.5px 0 rgba(2, 132, 199, 0.35) !important;
+}
+
+header.t1-navbar .t1-btn-discord {
+  height: 28px !important;
+  min-height: 28px !important;
+  max-height: 28px !important;
+  padding: 0 8px !important;
+  font-size: 10px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2.5px 0 #4752c4 !important;
 }
