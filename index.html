@@ -200,17 +200,20 @@
             <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
                 <!-- Nút Discord VN (discord.gg/gtavn) -->
                 <!-- Nút Chuông Báo Cập Nhật Mới -->
-                <button id="btn-toggle-sfx" class="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white border border-slate-200 hover:border-primary text-slate-600 hover:text-primary transition-all flex items-center justify-center shadow-2xs hover:scale-105 flex-shrink-0" title="Bật/Tắt Âm Thanh Tactile (Phím [M])">
+                <button id="btn-open-shortcuts" class="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white border border-slate-200 hover:border-primary text-slate-600 hover:text-primary transition-all flex items-center justify-center shadow-2xs hover:scale-105 flex-shrink-0" title="Bảng Phím Tắt Hệ Thống (Phím [?])">
+                    <i class="fa-solid fa-keyboard text-xs"></i>
+                </button>
+                <button id="btn-toggle-sfx" class="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white border border-slate-200 hover:border-primary text-slate-600 hover:text-primary transition-all flex items-center justify-center shadow-2xs hover:scale-105 flex-shrink-0" title="Bật/Tắt Âm Thanh Tactile (Phím [M])" data-tooltip="Bật/Tắt âm thanh click cơ học [M]">
                     <i id="sfx-icon" class="fa-solid fa-volume-high text-xs"></i>
                 </button>
-                <button id="btn-open-announcement" class="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white border border-slate-200 hover:border-primary text-slate-700 hover:text-primary transition-all flex items-center justify-center shadow-2xs hover:scale-105 flex-shrink-0" title="Bảng Thông Báo Hệ Thống">
+                <button id="btn-open-announcement" class="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white border border-slate-200 hover:border-primary text-slate-700 hover:text-primary transition-all flex items-center justify-center shadow-2xs hover:scale-105 flex-shrink-0" title="Bảng Thông Báo Hệ Thống" data-tooltip="Xem bản cập nhật mới v2.5.2">
                     <i class="fa-solid fa-bell text-sm text-slate-600"></i>
                     <span class="absolute -top-1 -right-1 flex h-3 w-3">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-500 border-2 border-white"></span>
                     </span>
                 </button>
-                <a href="https://discord.gg/gtavn" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex t1-btn-3d t1-btn-discord !py-2 !px-3.5"  title="Cộng Đồng Discord: discord.gg/gtavn">
+                <a href="https://discord.gg/gtavn" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex t1-btn-3d t1-btn-discord !py-2 !px-3.5"  title="Cộng Đồng Discord: discord.gg/gtavn" data-tooltip="Tham gia Discord 14,000+ thành viên">
                     <i class="fa-brands fa-discord text-sm"></i>
                     <span>DISCORD</span>
                 </a>
@@ -1017,7 +1020,7 @@
                                 <i class="fa-solid fa-download"></i>
                                 <span>Tải File gta5_settings.xml</span>
                             </button>
-                            <button id="btn-copy-xml-path" class="t1-btn-3d t1-btn-secondary w-full sm:w-auto text-xs py-3" title="Copy đường dẫn thư mục cài">
+                            <button id="btn-copy-xml-path" class="t1-btn-3d t1-btn-secondary w-full sm:w-auto text-xs py-3" title="Copy đường dẫn thư mục cài" data-tooltip="Sao chép đường dẫn cài đặt FiveM">
                                 <i class="fa-regular fa-copy"></i>
                                 <span>Copy Thư Mục CitizenFX</span>
                             </button>
@@ -1843,7 +1846,7 @@
     </div>
 
     <!-- Scripts JavaScript Hoạt Động -->
-    <script src="assets/js/app.js?v=2026.12"></script>
+    <script src="assets/js/app.js?v=2026.15"></script>
     <!-- ======================================================================
          PRO FLOATING HUD & BACK-TO-TOP DOCK (T1 GAMING SAAS TELEMETRY)
          ====================================================================== -->
@@ -1862,6 +1865,86 @@
         <button id="btn-back-to-top" class="w-10 h-10 rounded-2xl bg-white border border-slate-200 text-slate-600 hover:text-primary transition-all flex items-center justify-center shadow-[0_4px_14px_rgba(0,0,0,0.06)] hover:scale-105" title="Cuộn Lên Đầu Trang">
             <i class="fa-solid fa-arrow-up text-xs"></i>
         </button>
+    </div>
+
+    <!-- ======================================================================
+         MODAL XÁC NHẬN HÀNH ĐỘNG (CONFIRMATION MODAL TRƯỚC KHI THỰC HIỆN)
+         ====================================================================== -->
+    <div id="confirm-modal" class="t1-modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="confirm-modal-title">
+        <div class="max-w-md w-full bg-white/95 backdrop-blur-2xl rounded-3xl p-6 sm:p-7 border border-white shadow-[0_20px_60px_rgba(239,68,68,0.15)] relative m-4 select-none">
+            <div class="text-center">
+                <div class="w-14 h-14 rounded-2xl bg-rose-50 text-rose-500 border border-rose-200 flex items-center justify-center text-2xl mx-auto mb-4 shadow-[0_4px_16px_rgba(244,63,94,0.18)]">
+                    <i class="fa-solid fa-triangle-exclamation animate-bounce"></i>
+                </div>
+                <h3 id="confirm-modal-title" class="text-lg font-black text-slate-900 tracking-tight mb-2">Xác Nhận Thao Tác</h3>
+                <p id="confirm-modal-desc" class="text-xs font-semibold text-slate-500 leading-relaxed mb-6">
+                    Thao tác này sẽ thực hiện thay đổi cấu hình hoặc xóa dữ liệu bộ nhớ tạm. Bạn có chắc chắn muốn tiếp tục?
+                </p>
+                <div class="flex items-center gap-3">
+                    <button id="btn-confirm-cancel" class="t1-btn-3d t1-btn-surface flex-1 text-xs py-3 justify-center">
+                        <span>Hủy Bỏ</span>
+                    </button>
+                    <button id="btn-confirm-ok" class="t1-btn-3d bg-rose-600 hover:bg-rose-500 text-white flex-1 text-xs py-3 justify-center shadow-md">
+                        <i class="fa-solid fa-check"></i>
+                        <span>Đồng Ý</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================================================
+         MODAL BẢNG PHÍM TẮT THAO TÁC PRO (KEYBOARD SHORTCUTS CHEAT SHEET)
+         ====================================================================== -->
+    <div id="shortcuts-modal" class="t1-modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="shortcuts-title">
+        <div class="max-w-md w-full bg-white/95 backdrop-blur-2xl rounded-3xl p-6 sm:p-7 border border-white shadow-[0_20px_60px_rgba(7,150,229,0.18)] relative m-4 select-none">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-sky-50 text-primary border border-sky-100 flex items-center justify-center text-base shadow-2xs">
+                        <i class="fa-solid fa-keyboard"></i>
+                    </div>
+                    <div>
+                        <h3 id="shortcuts-title" class="text-base font-black text-slate-900 tracking-tight">PHÍM TẮT HỆ THỐNG</h3>
+                        <span class="text-[11px] font-semibold text-slate-400 block">Thao tác nhanh cho Pro Gamer</span>
+                    </div>
+                </div>
+                <button id="btn-close-shortcuts" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark text-sm"></i>
+                </button>
+            </div>
+
+            <!-- Danh Sách Phím Tắt -->
+            <div class="space-y-2.5 mb-6 text-xs font-semibold text-slate-700">
+                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-between">
+                    <span>Tải nhanh bộ tối ưu (.ZIP / .EXE)</span>
+                    <kbd class="t1-keycap font-mono font-bold text-xs px-2 py-0.5">D</kbd>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-between">
+                    <span>Bật / Tắt âm thanh click Tactile</span>
+                    <kbd class="t1-keycap font-mono font-bold text-xs px-2 py-0.5">M</kbd>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-between">
+                    <span>Kiểm tra phần cứng máy tính</span>
+                    <kbd class="t1-keycap font-mono font-bold text-xs px-2 py-0.5">C</kbd>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-between">
+                    <span>Mở bảng danh sách phím tắt</span>
+                    <div class="flex items-center gap-1">
+                        <kbd class="t1-keycap font-mono font-bold text-xs px-1.5 py-0.5">?</kbd>
+                        <span class="text-slate-400">hoặc</span>
+                        <kbd class="t1-keycap font-mono font-bold text-xs px-1.5 py-0.5">K</kbd>
+                    </div>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-between">
+                    <span>Đóng các cửa sổ thông báo / Modal</span>
+                    <kbd class="t1-keycap font-mono font-bold text-xs px-2 py-0.5">ESC</kbd>
+                </div>
+            </div>
+
+            <button id="btn-dismiss-shortcuts" class="t1-btn-3d t1-btn-secondary w-full text-xs py-2.5 justify-center">
+                <span>ĐÃ HIỂU</span>
+            </button>
+        </div>
     </div>
 
 </body>

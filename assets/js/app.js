@@ -26,6 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
     initKeyboardShortcuts();
     initLaserScanner();
     initBackToTop();
+    initPageLoader();
+    initNetworkStatus();
+    initTooltips();
+    initShortcutsModal();
+    initUserPreferences();
+    initPageTransitions();
 });
 
 /**
@@ -63,9 +69,12 @@ function initHardwareScanner() {
     function performScan() {
         if (!cpuEl || !ramEl || !gpuEl) return;
 
-        cpuEl.textContent = 'Đang đọc...';
-        ramEl.textContent = 'Đang đọc...';
-        gpuEl.textContent = 'Đang đọc...';
+        cpuEl.classList.add('t1-skeleton');
+        ramEl.classList.add('t1-skeleton');
+        gpuEl.classList.add('t1-skeleton');
+        cpuEl.textContent = 'Scanning CPU Cores...';
+        ramEl.textContent = 'Scanning Memory...';
+        gpuEl.textContent = 'Scanning GPU Hardware...';
         
         if (evalBadge) {
             evalBadge.className = 't1-pill t1-pill-warning animate-pulse';
@@ -74,6 +83,9 @@ function initHardwareScanner() {
         if (evalTitle) evalTitle.textContent = 'Hệ thống đang đối chiếu dữ liệu FiveM VN...';
 
         setTimeout(() => {
+            cpuEl.classList.remove('t1-skeleton');
+            ramEl.classList.remove('t1-skeleton');
+            gpuEl.classList.remove('t1-skeleton');
             // Đọc CPU Cores
             const cores = navigator.hardwareConcurrency || 4;
             cpuEl.textContent = `${cores} Cores / Threads`;
@@ -494,14 +506,29 @@ function initCommandCopier() {
     copyBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const cmd = btn.getAttribute('data-cmd');
-            if (cmd) {
+            if (!cmd) return;
+
+            function doCopy() {
                 navigator.clipboard.writeText(cmd).then(() => {
                     const originalHtml = btn.innerHTML;
                     btn.innerHTML = '<i class="fa-solid fa-check text-success"></i> Đã chép!';
+                    if (typeof window.t1Toast === 'function') {
+                        window.t1Toast('success', 'Đã Sao Chép Lệnh', 'Mở PowerShell hoặc Run (Win + R) và nhấn Ctrl + V để dán.');
+                    }
                     setTimeout(() => {
                         btn.innerHTML = originalHtml;
                     }, 2000);
                 });
+            }
+
+            if (cmd.includes('Remove-Item') && typeof window.t1Confirm === 'function') {
+                window.t1Confirm(
+                    'Xác Nhận Dọn Rác FiveM',
+                    'Lệnh này sẽ xóa sạch tệp cache và nhật ký crash tạm thời để giải phóng 10-30GB bộ nhớ đĩa. Bạn có muốn sao chép lệnh?',
+                    doCopy
+                );
+            } else {
+                doCopy();
             }
         });
     });
@@ -1397,4 +1424,284 @@ function showToastMessage(msg) {
         toast.style.transform = 'translate(-50%, -10px)';
         setTimeout(() => toast.remove(), 300);
     }, 1800);
+}
+
+
+/**
+ * 23. Luxury Page Preloader Engine (Loading Animation Đẹp Chuẩn T1)
+ */
+function initPageLoader() {
+    const loader = document.getElementById('t1-page-loader');
+    const bar = document.getElementById('loader-bar');
+    const percent = document.getElementById('loader-percent');
+    if (!loader) return;
+
+    let p = 30;
+    const interval = setInterval(() => {
+        p += Math.floor(Math.random() * 25) + 15;
+        if (p >= 100) {
+            p = 100;
+            clearInterval(interval);
+            if (bar) bar.style.width = '100%';
+            if (percent) percent.textContent = '100%';
+
+            setTimeout(() => {
+                loader.classList.add('loader-hidden');
+                setTimeout(() => loader.remove(), 500);
+            }, 250);
+        } else {
+            if (bar) bar.style.width = `${p}%`;
+            if (percent) percent.textContent = `${p}%`;
+        }
+    }, 60);
+
+    // Safety timeout: không bao giờ treo quá 1.5s
+    setTimeout(() => {
+        if (loader && !loader.classList.contains('loader-hidden')) {
+            loader.classList.add('loader-hidden');
+            setTimeout(() => loader.remove(), 500);
+        }
+    }, 1500);
+}
+
+/**
+ * 24. Live Network Status Controller (Online / Offline Detector)
+ */
+function initNetworkStatus() {
+    const banner = document.getElementById('network-status-banner');
+    const text = document.getElementById('network-status-text');
+    if (!banner || !text) return;
+
+    function updateOnlineStatus() {
+        if (navigator.onLine) {
+            banner.className = 'banner-online banner-visible';
+            text.innerHTML = '<i class="fa-solid fa-circle-check"></i> Đã kết nối lại Internet • Toàn bộ hệ thống hoạt động ổn định';
+            if (typeof window.t1Toast === 'function') {
+                window.t1Toast('success', 'Đã Kết Nối Lại', 'Mạng Internet đã hoạt động trở lại bình thường.');
+            }
+            setTimeout(() => {
+                banner.classList.remove('banner-visible');
+            }, 3000);
+        } else {
+            banner.className = 'banner-offline banner-visible';
+            text.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Mất kết nối Internet • Website đang chạy ở chế độ Offline (Service Cache)';
+            if (typeof window.t1Toast === 'function') {
+                window.t1Toast('warning', 'Mất Kết Nối Mạng', 'Bạn đang offline. Các tính năng đã tải vẫn sử dụng tốt.');
+            }
+        }
+    }
+
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+}
+
+/**
+ * 25. Universal 3D Toast Notification System (Thành Công / Thất Bại / Cảnh Báo)
+ */
+window.t1Toast = function(type = 'success', title = 'Thông báo', message = '') {
+    let container = document.getElementById('toast-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'toast-container';
+        document.body.appendChild(container);
+    }
+
+    const toast = document.createElement('div');
+    toast.className = `t1-toast-item toast-${type}`;
+
+    let iconHtml = '<i class="fa-solid fa-circle-check text-emerald-500 text-base mt-0.5"></i>';
+    if (type === 'error') {
+        iconHtml = '<i class="fa-solid fa-circle-xmark text-rose-500 text-base mt-0.5"></i>';
+    } else if (type === 'warning') {
+        iconHtml = '<i class="fa-solid fa-triangle-exclamation text-amber-500 text-base mt-0.5"></i>';
+    } else if (type === 'info') {
+        iconHtml = '<i class="fa-solid fa-circle-info text-sky-500 text-base mt-0.5"></i>';
+    }
+
+    toast.innerHTML = `
+        ${iconHtml}
+        <div class="flex-1 pr-2">
+            <span class="text-xs font-black text-slate-900 block leading-tight mb-0.5">${title}</span>
+            <p class="text-[11px] font-semibold text-slate-500 leading-relaxed">${message}</p>
+        </div>
+        <button class="text-slate-400 hover:text-slate-600 transition text-xs p-1" title="Đóng">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="toast-progress-bar" style="animation-duration: 3.5s;"></div>
+    `;
+
+    container.appendChild(toast);
+
+    if (tactileAudio) {
+        if (type === 'success') tactileAudio.playClick('success');
+        else tactileAudio.playClick('click');
+    }
+
+    requestAnimationFrame(() => {
+        toast.classList.add('toast-visible');
+    });
+
+    const closeBtn = toast.querySelector('button');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            toast.classList.remove('toast-visible');
+            setTimeout(() => toast.remove(), 300);
+        });
+    }
+
+    setTimeout(() => {
+        if (toast.parentNode) {
+            toast.classList.remove('toast-visible');
+            setTimeout(() => toast.remove(), 300);
+        }
+    }, 3500);
+};
+
+/**
+ * 26. Modal Xác Nhận Hành Động (Confirm Modal Controller)
+ */
+window.t1Confirm = function(title, desc, onConfirm) {
+    const modal = document.getElementById('confirm-modal');
+    const titleEl = document.getElementById('confirm-modal-title');
+    const descEl = document.getElementById('confirm-modal-desc');
+
+    if (!modal) return;
+    if (titleEl) titleEl.textContent = title;
+    if (descEl) descEl.textContent = desc;
+
+    modal.classList.remove('hidden');
+
+    const btnOk = document.getElementById('btn-confirm-ok');
+    const btnCancel = document.getElementById('btn-confirm-cancel');
+
+    function cleanup() {
+        modal.classList.add('hidden');
+    }
+
+    const handleOk = () => {
+        cleanup();
+        btnOk.removeEventListener('click', handleOk);
+        btnCancel.removeEventListener('click', handleCancel);
+        if (typeof onConfirm === 'function') onConfirm();
+    };
+
+    const handleCancel = () => {
+        cleanup();
+        btnOk.removeEventListener('click', handleOk);
+        btnCancel.removeEventListener('click', handleCancel);
+    };
+
+    btnOk.addEventListener('click', handleOk);
+    btnCancel.addEventListener('click', handleCancel);
+};
+
+/**
+ * 27. Tooltip Giải Thích Chức Năng (Interactive 3D Glass Tooltip Engine)
+ */
+function initTooltips() {
+    let tooltipEl = document.querySelector('.t1-tooltip-box');
+    if (!tooltipEl) {
+        tooltipEl = document.createElement('div');
+        tooltipEl.className = 't1-tooltip-box';
+        document.body.appendChild(tooltipEl);
+    }
+
+    document.querySelectorAll('[data-tooltip]').forEach(target => {
+        target.addEventListener('mouseenter', () => {
+            const text = target.getAttribute('data-tooltip');
+            if (!text) return;
+
+            tooltipEl.textContent = text;
+            const rect = target.getBoundingClientRect();
+            const top = rect.top + window.scrollY - tooltipEl.offsetHeight - 8;
+            const left = rect.left + window.scrollX + (rect.width / 2) - (tooltipEl.offsetWidth / 2);
+
+            tooltipEl.style.top = `${Math.max(top, 10)}px`;
+            tooltipEl.style.left = `${Math.max(left, 10)}px`;
+            tooltipEl.classList.add('tooltip-active');
+        });
+
+        target.addEventListener('mouseleave', () => {
+            tooltipEl.classList.remove('tooltip-active');
+        });
+    });
+}
+
+/**
+ * 28. Modal Bảng Phím Tắt (Shortcuts Modal Controller)
+ */
+function initShortcutsModal() {
+    const modal = document.getElementById('shortcuts-modal');
+    const btnOpen = document.getElementById('btn-open-shortcuts');
+    const btnClose = document.getElementById('btn-close-shortcuts');
+    const btnDismiss = document.getElementById('btn-dismiss-shortcuts');
+
+    if (!modal) return;
+
+    function openModal() {
+        modal.classList.remove('hidden');
+        if (tactileAudio) tactileAudio.playClick('click');
+    }
+
+    function closeModal() {
+        modal.classList.add('hidden');
+    }
+
+    if (btnOpen) btnOpen.addEventListener('click', openModal);
+    if (btnClose) btnClose.addEventListener('click', closeModal);
+    if (btnDismiss) btnDismiss.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
+        if (e.key === '?' || e.key === '/' || e.key.toUpperCase() === 'K') {
+            e.preventDefault();
+            if (modal.classList.contains('hidden')) openModal();
+            else closeModal();
+        }
+    });
+}
+
+/**
+ * 29. Lưu Trữ Cài Đặt Người Dùng (Local Storage Persistence)
+ */
+function initUserPreferences() {
+    const xmlSelect = document.getElementById('xml-profile-select');
+    if (xmlSelect) {
+        const savedProfile = localStorage.getItem('gta5vn_xml_profile');
+        if (savedProfile) {
+            xmlSelect.value = savedProfile;
+            xmlSelect.dispatchEvent(new Event('change'));
+        }
+        xmlSelect.addEventListener('change', () => {
+            localStorage.setItem('gta5vn_xml_profile', xmlSelect.value);
+            if (typeof window.t1Toast === 'function') {
+                window.t1Toast('info', 'Đã Lưu Cài Đặt', `Đã ghi nhớ phân khúc máy: ${xmlSelect.options[xmlSelect.selectedIndex].text.split('-')[0]}`);
+            }
+        });
+    }
+}
+
+/**
+ * 30. Hiệu Ứng Thanh Chuyển Trang & Điều Hướng (Page Transition Progress Bar)
+ */
+function initPageTransitions() {
+    const bar = document.getElementById('t1-page-progress');
+    if (!bar) return;
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', () => {
+            bar.style.opacity = '1';
+            bar.style.width = '35%';
+            setTimeout(() => { bar.style.width = '75%'; }, 80);
+            setTimeout(() => { bar.style.width = '100%'; }, 200);
+            setTimeout(() => {
+                bar.style.opacity = '0';
+                setTimeout(() => { bar.style.width = '0%'; }, 200);
+            }, 380);
+        });
+    });
 }
