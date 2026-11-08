@@ -148,10 +148,10 @@
 <body class="t1-dot-matrix antialiased selection:bg-sky-500 selection:text-white">
 
     <!-- ======================================================================
-         IV. HEADER VÀ NAVIGATION (LIGHT MODE CAO CẤP - BỐ CỤC CHUẨN CÂN ĐỐI)
+         IV. HEADER VÀ NAVIGATION (T1 FLOATING LUXURY GLASS NAVBAR - SIÊU GỌN NÉT)
          ====================================================================== -->
-    <header class="sticky top-0 z-50 backdrop-blur-xl bg-white/80 border-b border-slate-200/80 shadow-[0_2px_14px_rgba(15,23,42,0.04)]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+    <header id="main-header" class="t1-navbar">
+        <div id="main-navbar-container" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 t1-navbar-inner flex items-center justify-between gap-2.5">
             
             <!-- Bên Trái: Logo Thương Hiệu Sắc Nét 100% (Không Còn Vết Mờ Lem Nhem) -->
             <a href="#" class="flex items-center gap-3 flex-shrink-0 group select-none">
@@ -169,7 +169,7 @@
             </a>
 
             <!-- Giữa: Menu Điều Hướng 1 Hàng Ngang Cân Đối (Chuẩn Nút Bấm 3D Tactile Nổi Khối T1) -->
-            <nav class="hidden xl:flex items-center gap-2 text-xs font-black uppercase tracking-wider text-slate-700 whitespace-nowrap">
+            <nav class="hidden lg:flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-slate-700 whitespace-nowrap">
                 <a href="#thong-ke" class="t1-nav-btn">
                     <i class="fa-solid fa-chart-simple text-sky-500 text-[11px]"></i>
                     <span>THỐNG KÊ</span>
@@ -200,12 +200,18 @@
             <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
                 <!-- Nút Discord VN (discord.gg/gtavn) -->
                 <!-- Nút Chuông Báo Cập Nhật Mới -->
-                <button id="btn-open-shortcuts" class="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white border border-slate-200 hover:border-primary text-slate-600 hover:text-primary transition-all flex items-center justify-center shadow-2xs hover:scale-105 flex-shrink-0" title="Bảng Phím Tắt Hệ Thống (Phím [?])">
-                    <i class="fa-solid fa-keyboard text-xs"></i>
-                </button>
-                <button id="btn-toggle-sfx" class="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white border border-slate-200 hover:border-primary text-slate-600 hover:text-primary transition-all flex items-center justify-center shadow-2xs hover:scale-105 flex-shrink-0" title="Bật/Tắt Âm Thanh Tactile (Phím [M])" data-tooltip="Bật/Tắt âm thanh click cơ học [M]">
-                    <i id="sfx-icon" class="fa-solid fa-volume-high text-xs"></i>
-                </button>
+                <!-- Cụm Tiện Ích Nhỏ Gọn (Âm Thanh & Phím Tắt T1 Segmented Pill) -->
+                <div class="hidden sm:inline-flex items-center rounded-xl bg-white/90 border border-slate-200/90 p-0.5 shadow-2xs">
+                    <button id="btn-toggle-sfx" class="w-8 h-8 rounded-lg hover:bg-slate-100 text-slate-600 hover:text-primary transition flex items-center justify-center text-xs" title="Bật/Tắt Âm Thanh [M]" data-tooltip="Âm thanh Click [M]">
+                        <i id="sfx-icon" class="fa-solid fa-volume-high text-xs"></i>
+                    </button>
+                    <span class="w-[1px] h-4 bg-slate-200"></span>
+                    <button id="btn-open-shortcuts" class="w-8 h-8 rounded-lg hover:bg-slate-100 text-slate-600 hover:text-primary transition flex items-center justify-center text-xs" title="Phím Tắt Hệ Thống [?]" data-tooltip="Bảng phím tắt [?]">
+                        <i class="fa-solid fa-keyboard text-xs"></i>
+                    </button>
+                </div>
+
+                <!-- Nút Chuông Thông Báo Nổi Bật -->
                 <button id="btn-open-announcement" class="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white border border-slate-200 hover:border-primary text-slate-700 hover:text-primary transition-all flex items-center justify-center shadow-2xs hover:scale-105 flex-shrink-0" title="Bảng Thông Báo Hệ Thống" data-tooltip="Xem bản cập nhật mới v2.5.2">
                     <i class="fa-solid fa-bell text-sm text-slate-600"></i>
                     <span class="absolute -top-1 -right-1 flex h-3 w-3">
@@ -213,27 +219,26 @@
                         <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-500 border-2 border-white"></span>
                     </span>
                 </button>
-                <a href="https://discord.gg/gtavn" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex t1-btn-3d t1-btn-discord !py-2 !px-3.5"  title="Cộng Đồng Discord: discord.gg/gtavn" data-tooltip="Tham gia Discord 14,000+ thành viên">
+                <a href="https://discord.gg/gtavn" target="_blank" rel="noopener noreferrer" class="hidden xl:inline-flex t1-btn-3d t1-btn-discord !py-1.5 !px-3 text-xs"  title="Cộng Đồng Discord: discord.gg/gtavn" data-tooltip="Tham gia Discord 14,000+ thành viên">
                     <i class="fa-brands fa-discord text-sm"></i>
                     <span>DISCORD</span>
                 </a>
 
                 <!-- Nút Tải App Miễn Phí Chính -->
-                <button id="btn-open-download-modal" class="t1-btn-3d t1-btn-primary !py-2 !px-3.5 sm:!py-2.5 sm:!px-5 whitespace-nowrap flex items-center gap-1.5 shadow-sm">
+                <button id="btn-open-download-modal" class="t1-btn-3d t1-btn-primary !py-1.5 !px-3 sm:!py-2 sm:!px-4 whitespace-nowrap flex items-center gap-1.5 shadow-sm">
                     <i class="fa-solid fa-download text-xs"></i>
-                    <span class="hidden sm:inline">Tải App Miễn Phí</span><kbd class="t1-keycap hidden lg:inline-flex ml-1.5 opacity-90 text-[9px]">D</kbd>
-                    <span class="sm:hidden font-black text-xs">Tải App</span>
+                    <span class="hidden 2xl:inline">Tải App Miễn Phí</span><span class="2xl:hidden font-black text-xs">Tải App</span><kbd class="t1-keycap hidden xl:inline-flex ml-1.5 opacity-90 text-[9px]">D</kbd>
                 </button>
 
                 <!-- Hamburger Button (Mobile Only) -->
-                <button id="btn-mobile-menu" class="xl:hidden w-10 h-10 flex items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-800 hover:border-primary transition shadow-2xs" title="Menu">
+                <button id="btn-mobile-menu" class="lg:hidden w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-800 hover:border-primary transition shadow-2xs" title="Menu">
                     <i class="fa-solid fa-bars text-sm"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Menu Drawer (Dropdown Sáng Sạch với Hệ Thống Nút Bấm 3D) -->
-        <div id="mobile-menu-drawer" class="hidden xl:hidden px-4 pt-3 pb-5 bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-xl">
+        <div id="mobile-menu-drawer" class="hidden lg:hidden px-4 pt-3 pb-5 bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-xl">
             <nav class="flex flex-col gap-2 text-xs font-black text-slate-800 uppercase tracking-wider">
                 <a href="#thong-ke" class="t1-nav-btn !w-full !justify-start !py-2.5">
                     <i class="fa-solid fa-chart-simple text-sky-500 text-xs"></i>
@@ -1846,7 +1851,7 @@
     </div>
 
     <!-- Scripts JavaScript Hoạt Động -->
-    <script src="assets/js/app.js?v=2026.15"></script>
+    <script src="assets/js/app.js?v=2026.17"></script>
     <!-- ======================================================================
          PRO FLOATING HUD & BACK-TO-TOP DOCK (T1 GAMING SAAS TELEMETRY)
          ====================================================================== -->

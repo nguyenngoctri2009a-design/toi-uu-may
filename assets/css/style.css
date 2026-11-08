@@ -1393,3 +1393,56 @@ kbd.t1-keycap {
   box-shadow: 0 0 10px rgba(14, 165, 233, 0.8);
   transition: width 0.2s ease, opacity 0.4s ease;
 }
+
+
+/* ==========================================================================
+   T1 FLOATING LUXURY GLASS NAVBAR (SLIM, COMPACT, DYNAMIC SCROLL)
+   ========================================================================== */
+header.t1-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+}
+
+.t1-navbar-inner {
+  height: 64px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Khi lướt cuộn xuống: Biến thành thanh Dock Kính nổi siêu mỏng gọn, sang trọng */
+header.t1-navbar.scrolled {
+  background: transparent !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  padding-top: 10px;
+}
+
+header.t1-navbar.scrolled .t1-navbar-inner {
+  height: 54px;
+  max-width: 1240px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 20px;
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 4px 0 #DFEAF4,
+    0 14px 34px rgba(7, 150, 229, 0.09),
+    inset 0 1px 1px #ffffff;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Tinh chỉnh tab điều hướng gọn gàng, vừa vặn */
+.t1-nav-btn {
+  padding: 5.5px 9.5px !important;
+  font-size: 10.5px !important;
+  gap: 4.5px !important;
+  border-radius: 10px !important;
+  letter-spacing: 0.2px !important;
+}

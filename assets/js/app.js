@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initKeyboardShortcuts();
     initLaserScanner();
     initBackToTop();
+    initNavbarScroll();
     initPageLoader();
     initNetworkStatus();
     initTooltips();
@@ -1736,4 +1737,24 @@ function initPageTransitions() {
             }, 380);
         });
     });
+}
+
+
+/**
+ * 31. T1 Floating Luxury Glass Navbar Scroll Morphing
+ */
+function initNavbarScroll() {
+    const header = document.getElementById('main-header');
+    if (!header) return;
+
+    function handleScroll() {
+        if (window.scrollY > 25) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
 }
