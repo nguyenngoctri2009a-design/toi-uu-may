@@ -21,6 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
     initFpsChartEngine();
     initAnnouncementModal();
     initNavTabs();
+    initTactileAudio();
+    initSpotlightEffect();
+    initKeyboardShortcuts();
+    initLaserScanner();
+    initBackToTop();
 });
 
 /**
@@ -1178,4 +1183,218 @@ function initNavTabs() {
             link.classList.add('active-tab');
         });
     });
+}
+
+
+/**
+ * 18. Web Audio API Tactile Sound Synthesizer (Pro Gaming Mechanical Feedback)
+ */
+let tactileAudio = null;
+
+class TactileAudioEngine {
+    constructor() {
+        this.ctx = null;
+        this.enabled = localStorage.getItem('gta5vn_sfx_enabled') !== 'false';
+    }
+
+    init() {
+        if (!this.ctx && (window.AudioContext || window.webkitAudioContext)) {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            this.ctx = new AudioCtx();
+        }
+    }
+
+    playClick(type = 'click') {
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+        if (this.ctx.state === 'suspended') {
+            this.ctx.resume();
+        }
+
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        if (type === 'click') {
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(1400, now);
+            osc.frequency.exponentialRampToValueAtTime(320, now + 0.022);
+            gain.gain.setValueAtTime(0.035, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.022);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.022);
+        } else if (type === 'success') {
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(659.25, now); // E5
+            osc.frequency.exponentialRampToValueAtTime(987.77, now + 0.06); // B5
+            gain.gain.setValueAtTime(0.04, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.07);
+        }
+    }
+
+    toggle() {
+        this.enabled = !this.enabled;
+        localStorage.setItem('gta5vn_sfx_enabled', this.enabled ? 'true' : 'false');
+        return this.enabled;
+    }
+}
+
+function initTactileAudio() {
+    tactileAudio = new TactileAudioEngine();
+
+    const sfxBtn = document.getElementById('btn-toggle-sfx');
+    const sfxIcon = document.getElementById('sfx-icon');
+
+    function updateSfxUi() {
+        if (!sfxIcon) return;
+        if (tactileAudio.enabled) {
+            sfxIcon.className = 'fa-solid fa-volume-high text-xs text-sky-600';
+            if (sfxBtn) sfxBtn.title = 'Âm thanh Tactile: BẬT (Nhấn [M] để tắt)';
+        } else {
+            sfxIcon.className = 'fa-solid fa-volume-xmark text-xs text-slate-400';
+            if (sfxBtn) sfxBtn.title = 'Âm thanh Tactile: TẮT (Nhấn [M] để bật)';
+        }
+    }
+
+    updateSfxUi();
+
+    if (sfxBtn) {
+        sfxBtn.addEventListener('click', () => {
+            const isEnabled = tactileAudio.toggle();
+            updateSfxUi();
+            if (isEnabled) tactileAudio.playClick('success');
+            showToastMessage(isEnabled ? '🔊 Âm thanh Tactile: ĐÃ BẬT' : '🔇 Âm thanh Tactile: ĐÃ TẮT');
+        });
+    }
+
+    // Gắn âm thanh click vào tất cả nút bấm 3D
+    document.addEventListener('mousedown', (e) => {
+        const btn = e.target.closest('.t1-btn-3d, .t1-nav-btn, button, a[href^="#"]');
+        if (btn) {
+            tactileAudio.playClick('click');
+        }
+    });
+}
+
+/**
+ * 19. Interactive Cursor Spotlight Shader Effect
+ */
+function initSpotlightEffect() {
+    const spotlights = document.querySelectorAll('.t1-spotlight, .t1-card, .t1-node-glass');
+    spotlights.forEach(el => {
+        el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            el.style.setProperty('--mouse-x', `${x}px`);
+            el.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
+}
+
+/**
+ * 20. Pro Keyboard Shortcuts (Phím Tắt Đẳng Cấp Pro)
+ */
+function initKeyboardShortcuts() {
+    document.addEventListener('keydown', (e) => {
+        // Không kích hoạt khi đang gõ trong input/textarea
+        if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
+
+        const key = e.key.toUpperCase();
+
+        if (key === 'D') {
+            e.preventDefault();
+            const btnDl = document.getElementById('btn-open-download-modal');
+            if (btnDl) btnDl.click();
+        } else if (key === 'M') {
+            e.preventDefault();
+            const sfxBtn = document.getElementById('btn-toggle-sfx');
+            if (sfxBtn) sfxBtn.click();
+        } else if (key === 'C') {
+            e.preventDefault();
+            const checker = document.getElementById('checker');
+            if (checker) checker.scrollIntoView({ behavior: 'smooth' });
+        } else if (e.key === 'Escape') {
+            const annModal = document.getElementById('announcement-modal');
+            const dlModal = document.getElementById('download-modal');
+            const revModal = document.getElementById('review-modal');
+            if (annModal && !annModal.classList.contains('hidden')) annModal.classList.add('hidden');
+            if (dlModal && !dlModal.classList.contains('hidden')) dlModal.classList.add('hidden');
+            if (revModal && !revModal.classList.contains('hidden')) revModal.classList.add('hidden');
+        }
+    });
+}
+
+/**
+ * 21. Diagnostic Laser Scanline Animation
+ */
+function initLaserScanner() {
+    const btnRescan = document.getElementById('btn-rescan');
+    const checkerCard = document.querySelector('#checker .t1-card');
+    if (!btnRescan || !checkerCard) return;
+
+    btnRescan.addEventListener('click', () => {
+        // Xóa tia laser cũ nếu có
+        const oldLaser = checkerCard.querySelector('.laser-scanline');
+        if (oldLaser) oldLaser.remove();
+
+        const laser = document.createElement('div');
+        laser.className = 'laser-scanline';
+        checkerCard.appendChild(laser);
+
+        if (tactileAudio) tactileAudio.playClick('success');
+
+        setTimeout(() => {
+            laser.remove();
+        }, 1800);
+    });
+}
+
+/**
+ * 22. Quick HUD Dock & Smooth Back to Top
+ */
+function initBackToTop() {
+    const dock = document.getElementById('quick-hud-dock');
+    const btnTop = document.getElementById('btn-back-to-top');
+    if (!dock || !btnTop) return;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 350) {
+            dock.classList.remove('opacity-0', 'pointer-events-none');
+        } else {
+            dock.classList.add('opacity-0', 'pointer-events-none');
+        }
+    }, { passive: true });
+
+    btnTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (tactileAudio) tactileAudio.playClick('click');
+    });
+}
+
+/**
+ * Helper: Toast thông báo nhanh nổi khối 3D
+ */
+function showToastMessage(msg) {
+    const oldToast = document.getElementById('t1-quick-toast');
+    if (oldToast) oldToast.remove();
+
+    const toast = document.createElement('div');
+    toast.id = 't1-quick-toast';
+    toast.className = 'fixed top-24 left-1/2 -translate-x-1/2 z-50 px-4 py-2.5 rounded-2xl bg-white/95 backdrop-blur-2xl border border-slate-200/90 shadow-[0_10px_30px_rgba(7,150,229,0.18)] text-xs font-black text-slate-800 flex items-center gap-2 transition-all duration-300 pointer-events-none';
+    toast.innerHTML = `<span>${msg}</span>`;
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translate(-50%, -10px)';
+        setTimeout(() => toast.remove(), 300);
+    }, 1800);
 }

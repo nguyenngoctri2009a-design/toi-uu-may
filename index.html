@@ -200,6 +200,9 @@
             <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
                 <!-- Nút Discord VN (discord.gg/gtavn) -->
                 <!-- Nút Chuông Báo Cập Nhật Mới -->
+                <button id="btn-toggle-sfx" class="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white border border-slate-200 hover:border-primary text-slate-600 hover:text-primary transition-all flex items-center justify-center shadow-2xs hover:scale-105 flex-shrink-0" title="Bật/Tắt Âm Thanh Tactile (Phím [M])">
+                    <i id="sfx-icon" class="fa-solid fa-volume-high text-xs"></i>
+                </button>
                 <button id="btn-open-announcement" class="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white border border-slate-200 hover:border-primary text-slate-700 hover:text-primary transition-all flex items-center justify-center shadow-2xs hover:scale-105 flex-shrink-0" title="Bảng Thông Báo Hệ Thống">
                     <i class="fa-solid fa-bell text-sm text-slate-600"></i>
                     <span class="absolute -top-1 -right-1 flex h-3 w-3">
@@ -215,7 +218,7 @@
                 <!-- Nút Tải App Miễn Phí Chính -->
                 <button id="btn-open-download-modal" class="t1-btn-3d t1-btn-primary !py-2 !px-3.5 sm:!py-2.5 sm:!px-5 whitespace-nowrap flex items-center gap-1.5 shadow-sm">
                     <i class="fa-solid fa-download text-xs"></i>
-                    <span class="hidden sm:inline">Tải App Miễn Phí</span>
+                    <span class="hidden sm:inline">Tải App Miễn Phí</span><kbd class="t1-keycap hidden lg:inline-flex ml-1.5 opacity-90 text-[9px]">D</kbd>
                     <span class="sm:hidden font-black text-xs">Tải App</span>
                 </button>
 
@@ -513,7 +516,7 @@
              VIII. CHECK CẤU HÌNH MÁY TÍNH (DIAGNOSTIC API - GLASSMORPHISM PREMIUM)
              ====================================================================== -->
         <section id="checker" class="mb-20">
-            <div class="t1-card relative overflow-hidden backdrop-blur-xl border border-white/80 shadow-[0_12px_40px_rgba(7,150,229,0.08)]">
+            <div class="t1-card t1-spotlight relative overflow-hidden backdrop-blur-xl border border-white/80 shadow-[0_12px_40px_rgba(7,150,229,0.08)]">
                 <!-- Header Khung Diagnostic API -->
                 <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 mb-6 border-b border-sky-100/70 gap-4">
                     <div>
@@ -762,7 +765,7 @@
         <section id="bieu-do" class="mb-20">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
                 <!-- Cột Trái & Giữa: Biểu Đồ Hiệu Suất FPS SVG Trực Quan -->
-                <div class="lg:col-span-2 t1-card">
+                <div class="lg:col-span-2 t1-card t1-spotlight">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-5 border-b border-t1border gap-3">
                         <div>
                             <span class="t1-pill t1-pill-primary mb-1">FPS STABILITY GRAPH</span>
@@ -882,7 +885,7 @@
             </div>
 
             <!-- Khối Đo Độ Trễ Mạng Ping Server FiveM VN (Khung Kính Trong Suốt Nổi Khối 3D Chuẩn T1) -->
-            <div class="t1-card p-6 sm:p-8">
+            <div class="t1-card t1-spotlight p-6 sm:p-8">
                 <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 mb-6 border-b border-slate-200/80 gap-4">
                     <div>
                         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/80 text-[11px] font-black t1-pill mb-2">
@@ -1840,6 +1843,26 @@
     </div>
 
     <!-- Scripts JavaScript Hoạt Động -->
-    <script src="assets/js/app.js?v=2026.11"></script>
+    <script src="assets/js/app.js?v=2026.12"></script>
+    <!-- ======================================================================
+         PRO FLOATING HUD & BACK-TO-TOP DOCK (T1 GAMING SAAS TELEMETRY)
+         ====================================================================== -->
+    <div id="quick-hud-dock" class="fixed bottom-6 right-6 z-40 hidden sm:flex items-center gap-2 select-none">
+        <div class="px-3.5 py-2 rounded-2xl bg-white/95 backdrop-blur-2xl border border-slate-200/90 shadow-[0_6px_20px_rgba(7,150,229,0.08)] text-[11px] font-mono font-bold text-slate-700 flex items-center gap-2.5">
+            <span class="flex h-2 w-2 relative">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span class="text-emerald-700">144Hz LOCK</span>
+            <span class="text-slate-300">&bull;</span>
+            <span class="text-sky-600">0.5ms</span>
+            <span class="text-slate-300">&bull;</span>
+            <span class="text-slate-400 text-[10px] hidden md:inline">Phím <kbd class="t1-keycap text-[8px]">D</kbd> Tải nhanh</span>
+        </div>
+        <button id="btn-back-to-top" class="w-10 h-10 rounded-2xl bg-white border border-slate-200 text-slate-600 hover:text-primary transition-all flex items-center justify-center shadow-[0_4px_14px_rgba(0,0,0,0.06)] hover:scale-105" title="Cuộn Lên Đầu Trang">
+            <i class="fa-solid fa-arrow-up text-xs"></i>
+        </button>
+    </div>
+
 </body>
 </html>
