@@ -1008,10 +1008,7 @@ function initFpsChartEngine() {
     let lastTime = performance.now();
 
     function render(now) {
-        if (!isVisible) {
-            animationFrameId = requestAnimationFrame(render);
-            return;
-        }
+        if (!isVisible) { return; }
 
         const dt = Math.min((now - lastTime) / 1000, 0.1);
         lastTime = now;
@@ -1206,6 +1203,9 @@ function initFpsChartEngine() {
                 if (isVisible) {
                     resize();
                     lastTime = performance.now();
+                    if (!animationFrameId) animationFrameId = requestAnimationFrame(render);
+                } else {
+                    if (animationFrameId) { cancelAnimationFrame(animationFrameId); animationFrameId = null; }
                 }
             });
         }, { threshold: 0.1 });
