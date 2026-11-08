@@ -522,39 +522,55 @@ function initXmlGenerator() {
 function initCommandCopier() {
     const copyBtns = document.querySelectorAll('.btn-copy-cmd');
     copyBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
             const cmd = btn.getAttribute('data-cmd');
             if (!cmd) return;
 
-            function doCopy() {
-                navigator.clipboard.writeText(cmd).then(() => {
-                    const originalHtml = btn.innerHTML;
-                    btn.innerHTML = '<i class="fa-solid fa-check text-success"></i> Đã chép!';
-                    if (typeof window.t1Toast === 'function') {
-                        window.t1Toast('success', 'Đã Sao Chép Lệnh', 'Mở PowerShell hoặc Run (Win + R) và nhấn Ctrl + V để dán.');
-                    }
-                    setTimeout(() => {
-                        btn.innerHTML = originalHtml;
-                    }, 2000);
-                });
+            const originalHtml = btn.innerHTML;
+
+            function showSuccess() {
+                btn.innerHTML = '<i class="fa-solid fa-check text-emerald-500"></i> <span>Đã chép!</span>';
+                if (typeof window.t1Toast === 'function') {
+                    window.t1Toast('success', 'Đã Sao Chép Lệnh', 'Mở PowerShell hoặc Run (Win + R) và nhấn Ctrl + V để dán.');
+                }
+                setTimeout(() => {
+                    btn.innerHTML = originalHtml;
+                }, 2000);
             }
 
-            if (cmd.includes('Remove-Item') && typeof window.t1Confirm === 'function') {
-                window.t1Confirm(
-                    'Xác Nhận Dọn Rác FiveM',
-                    'Lệnh này sẽ xóa sạch tệp cache và nhật ký crash tạm thời để giải phóng 10-30GB bộ nhớ đĩa. Bạn có muốn sao chép lệnh?',
-                    doCopy
-                );
+            function fallbackCopy(text) {
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                textArea.style.position = "fixed";
+                textArea.style.left = "-9999px";
+                textArea.style.top = "-9999px";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                } catch (err) {}
+                textArea.remove();
+            }
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(cmd).then(() => {
+                    showSuccess();
+                }).catch(() => {
+                    fallbackCopy(cmd);
+                    showSuccess();
+                });
             } else {
-                doCopy();
+                fallbackCopy(cmd);
+                showSuccess();
             }
         });
     });
 }
 
-
 /**
- * 10. T??ng t?c gi? l?p Boost FPS ngay tr?n c?a s? ph?n m?m (Interactive Mockup Boost)
+ * 10. Tương tác giả lập Boost FPS ngay trên cửa sổ phần mềm (Interactive Mockup Boost)
  */
 function initMockupBoost() {
     const btnBoost = document.getElementById('btn-mockup-boost');
@@ -1217,15 +1233,7 @@ function initAnnouncementModal() {
         });
     }
 
-    // Tự động mở thông báo khi vào trang nếu chưa đọc trong phiên hiện tại
-    try {
-        const read = sessionStorage.getItem('gta5vn_notice_read_v252');
-        if (!read) {
-            setTimeout(openModal, 800);
-        }
-    } catch (e) {
-        setTimeout(openModal, 800);
-    }
+    // Thông báo mở khi người dùng chủ động nhấn chuông thông báo trên Header
 }
 
 
@@ -1535,31 +1543,62 @@ window.t1Toast = function(type = 'success', title = 'Thông báo', message = '')
     if (!container) {
         container = document.createElement('div');
         container.id = 'toast-container';
+        container.className = 'fixed top-5 right-5 z-[999999] flex flex-col gap-3 max-w-[380px] w-[calc(100%-32px)] pointer-events-none select-none';
+        container.style.cssText = 'position: fixed; top: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; gap: 10px; max-width: 380px; width: calc(100% - 32px); pointer-events: none;';
         document.body.appendChild(container);
     }
 
     const toast = document.createElement('div');
     toast.className = `t1-toast-item toast-${type}`;
 
-    let iconHtml = '<i class="fa-solid fa-circle-check text-emerald-500 text-base mt-0.5"></i>';
+    let borderColor = '#86efac';
+    let shadowColor = '#10b981';
+    let iconHtml = '<div class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center text-sm flex-shrink-0 shadow-2xs"><i class="fa-solid fa-circle-check"></i></div>';
+
     if (type === 'error') {
-        iconHtml = '<i class="fa-solid fa-circle-xmark text-rose-500 text-base mt-0.5"></i>';
+        borderColor = '#fda4af';
+        shadowColor = '#f43f5e';
+        iconHtml = '<div class="w-8 h-8 rounded-xl bg-rose-50 text-rose-600 border border-rose-200 flex items-center justify-center text-sm flex-shrink-0 shadow-2xs"><i class="fa-solid fa-circle-xmark"></i></div>';
     } else if (type === 'warning') {
-        iconHtml = '<i class="fa-solid fa-triangle-exclamation text-amber-500 text-base mt-0.5"></i>';
+        borderColor = '#fde047';
+        shadowColor = '#eab308';
+        iconHtml = '<div class="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 border border-amber-200 flex items-center justify-center text-sm flex-shrink-0 shadow-2xs"><i class="fa-solid fa-triangle-exclamation"></i></div>';
     } else if (type === 'info') {
-        iconHtml = '<i class="fa-solid fa-circle-info text-sky-500 text-base mt-0.5"></i>';
+        borderColor = '#7dd3fc';
+        shadowColor = '#0284c7';
+        iconHtml = '<div class="w-8 h-8 rounded-xl bg-sky-50 text-sky-600 border border-sky-200 flex items-center justify-center text-sm flex-shrink-0 shadow-2xs"><i class="fa-solid fa-circle-info"></i></div>';
     }
+
+    toast.style.cssText = `
+        pointer-events: auto;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border-radius: 16px;
+        padding: 12px 14px;
+        border: 1.5px solid ${borderColor};
+        box-shadow: 0 4px 0 ${shadowColor}, 0 14px 32px rgba(15, 23, 42, 0.12), inset 0 1px 1px #ffffff;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        position: relative;
+        overflow: hidden;
+        transform: translateY(-8px) scale(0.96);
+        opacity: 0;
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        margin-bottom: 4px;
+    `;
 
     toast.innerHTML = `
         ${iconHtml}
-        <div class="flex-1 pr-2">
-            <span class="text-xs font-black text-slate-900 block leading-tight mb-0.5">${title}</span>
-            <p class="text-[11px] font-semibold text-slate-500 leading-relaxed">${message}</p>
+        <div style="flex: 1; min-width: 0; padding-right: 4px;">
+            <span style="font-size: 12px; font-weight: 850; color: #0f172a; display: block; line-height: 1.25; margin-bottom: 2px;">${title}</span>
+            <p style="font-size: 11px; font-weight: 600; color: #64748b; line-height: 1.4; margin: 0;">${message}</p>
         </div>
-        <button class="text-slate-400 hover:text-slate-600 transition text-xs p-1" title="Đóng">
+        <button style="background: none; border: none; color: #94a3b8; cursor: pointer; padding: 2px 4px; font-size: 12px; line-height: 1; border-radius: 6px;" title="Đóng">
             <i class="fa-solid fa-xmark"></i>
         </button>
-        <div class="toast-progress-bar" style="animation-duration: 3.5s;"></div>
+        <div class="toast-progress-bar" style="position: absolute; bottom: 0; left: 0; height: 3px; background: ${shadowColor}; width: 100%; transform-origin: left; animation: toastCountdown 3.5s linear forwards;"></div>
     `;
 
     container.appendChild(toast);
@@ -1570,28 +1609,28 @@ window.t1Toast = function(type = 'success', title = 'Thông báo', message = '')
     }
 
     requestAnimationFrame(() => {
-        toast.classList.add('toast-visible');
+        toast.style.transform = 'translateY(0) scale(1)';
+        toast.style.opacity = '1';
     });
 
     const closeBtn = toast.querySelector('button');
     if (closeBtn) {
         closeBtn.addEventListener('click', () => {
-            toast.classList.remove('toast-visible');
-            setTimeout(() => toast.remove(), 300);
+            toast.style.transform = 'translateY(-8px) scale(0.96)';
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 250);
         });
     }
 
     setTimeout(() => {
         if (toast.parentNode) {
-            toast.classList.remove('toast-visible');
-            setTimeout(() => toast.remove(), 300);
+            toast.style.transform = 'translateY(-8px) scale(0.96)';
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 250);
         }
     }, 3500);
 };
 
-/**
- * 26. Modal Xác Nhận Hành Động (Confirm Modal Controller)
- */
 window.t1Confirm = function(title, desc, onConfirm) {
     const modal = document.getElementById('confirm-modal');
     const titleEl = document.getElementById('confirm-modal-title');
