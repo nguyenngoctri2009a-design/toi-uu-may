@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavbarScroll();
     initPageLoader();
     initNetworkStatus();
-    initTooltips();
     initShortcutsModal();
     initUserPreferences();
     initPageTransitions();
@@ -1628,37 +1627,6 @@ window.t1Confirm = function(title, desc, onConfirm) {
     btnCancel.addEventListener('click', handleCancel);
 };
 
-/**
- * 27. Tooltip Giải Thích Chức Năng (Interactive 3D Glass Tooltip Engine)
- */
-function initTooltips() {
-    let tooltipEl = document.querySelector('.t1-tooltip-box');
-    if (!tooltipEl) {
-        tooltipEl = document.createElement('div');
-        tooltipEl.className = 't1-tooltip-box';
-        document.body.appendChild(tooltipEl);
-    }
-
-    document.querySelectorAll('[data-tooltip]').forEach(target => {
-        target.addEventListener('mouseenter', () => {
-            const text = target.getAttribute('data-tooltip');
-            if (!text) return;
-
-            tooltipEl.textContent = text;
-            const rect = target.getBoundingClientRect();
-            const top = rect.top + window.scrollY - tooltipEl.offsetHeight - 8;
-            const left = rect.left + window.scrollX + (rect.width / 2) - (tooltipEl.offsetWidth / 2);
-
-            tooltipEl.style.top = `${Math.max(top, 10)}px`;
-            tooltipEl.style.left = `${Math.max(left, 10)}px`;
-            tooltipEl.classList.add('tooltip-active');
-        });
-
-        target.addEventListener('mouseleave', () => {
-            tooltipEl.classList.remove('tooltip-active');
-        });
-    });
-}
 
 /**
  * 28. Modal Bảng Phím Tắt (Shortcuts Modal Controller)
