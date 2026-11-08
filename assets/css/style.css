@@ -1768,3 +1768,99 @@ header.t1-navbar .t1-btn-discord {
     display: none !important;
   }
 }
+
+
+/* ==========================================================================
+   T1 PREMIUM GAMING SOFT-UI GLASS DRAWER MENU (RESPONSIVE DOCK)
+   ========================================================================== */
+.t1-drawer-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.03), 0 2px 0 #edf2f7;
+  text-decoration: none !important;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.t1-drawer-card:hover {
+  background: #ffffff;
+  border-color: #7dd3fc;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.12), 0 2px 0 #bae6fd;
+  transform: translateY(-2px);
+}
+
+.t1-drawer-card:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px rgba(14, 165, 233, 0.08);
+}
+
+/* Mục active có dải chỉ báo bên trái */
+.t1-drawer-card.active-drawer-card {
+  background: #f0f9ff;
+  border-color: #38bdf8;
+  box-shadow: 0 2px 0 #0284c7, 0 6px 16px rgba(2, 132, 199, 0.08);
+}
+
+.t1-drawer-card.active-drawer-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 3.5px;
+  border-radius: 0 4px 4px 0;
+  background: #0284c7;
+}
+
+/* Vệt sáng chạy nhẹ qua khi hover */
+.t1-drawer-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  transform: skewX(-20deg);
+  transition: none;
+  pointer-events: none;
+}
+
+.t1-drawer-card:hover::after {
+  left: 150%;
+  transition: left 0.5s ease-in-out;
+}
+
+/* Nút Discord chuyên nghiệp */
+.t1-drawer-discord-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #5865F2 0%, #4752c4 100%);
+  color: #ffffff !important;
+  text-decoration: none !important;
+  box-shadow: 0 3px 0 #373e98, 0 10px 24px rgba(88, 101, 242, 0.22);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.t1-drawer-discord-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 0 #373e98, 0 14px 28px rgba(88, 101, 242, 0.32);
+}
+
+.t1-drawer-discord-btn:active {
+  transform: translateY(1.5px);
+  box-shadow: 0 1.5px 0 #373e98;
+}

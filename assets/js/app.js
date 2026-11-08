@@ -40,17 +40,41 @@ document.addEventListener('DOMContentLoaded', () => {
 function initMobileMenu() {
     const btnMobile = document.getElementById('btn-mobile-menu');
     const drawer = document.getElementById('mobile-menu-drawer');
+    const btnClose = document.getElementById('btn-close-mobile-menu');
     if (!btnMobile || !drawer) return;
 
-    btnMobile.addEventListener('click', () => {
+    function openDrawer() {
+        drawer.classList.remove('hidden');
+    }
+
+    function closeDrawer() {
+        drawer.classList.add('hidden');
+    }
+
+    btnMobile.addEventListener('click', (e) => {
+        e.stopPropagation();
         drawer.classList.toggle('hidden');
     });
+
+    if (btnClose) {
+        btnClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeDrawer();
+        });
+    }
 
     // Đóng drawer khi click vào link
     drawer.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
-            drawer.classList.add('hidden');
+            closeDrawer();
         });
+    });
+
+    // Đóng drawer khi click ra ngoài
+    document.addEventListener('click', (e) => {
+        if (!drawer.classList.contains('hidden') && !drawer.contains(e.target) && !btnMobile.contains(e.target)) {
+            closeDrawer();
+        }
     });
 }
 

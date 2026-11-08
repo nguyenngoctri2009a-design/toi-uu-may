@@ -119,7 +119,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Custom T1 Master Design System Stylesheet -->
-    <link rel="stylesheet" href="assets/css/style.css?v=2026.45">
+    <link rel="stylesheet" href="assets/css/style.css?v=2026.50">
 
     <script>
         tailwind.config = {
@@ -235,41 +235,113 @@
             </div>
         </div>
 
-        <!-- Mobile Menu Drawer (Dropdown Sáng Sạch với Hệ Thống Nút Bấm 3D) -->
-        <div id="mobile-menu-drawer" class="hidden lg:hidden px-4 pt-3 pb-5 bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-xl">
-            <nav class="flex flex-col gap-2 text-xs font-black text-slate-800 uppercase tracking-wider">
-                <a href="#thong-ke" class="t1-nav-btn !w-full !justify-start !py-2.5">
-                    <i class="fa-solid fa-chart-simple text-sky-500 text-xs"></i>
-                    <span>THỐNG KÊ HIỆU NĂNG</span>
-                </a>
-                <a href="#checker" class="t1-nav-btn active-tab !w-full !justify-between !py-2.5">
-                    <span class="flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                        <span>CHECK CẤU HÌNH MÁY</span>
-                    </span>
-                    <span class="t1-pill t1-pill-success text-[10px]">LIVE</span>
-                </a>
-                <a href="#cong-cu" class="t1-nav-btn !w-full !justify-start !py-2.5">
-                    <i class="fa-solid fa-wrench text-sky-500 text-xs"></i>
-                    <span>BỘ CÔNG CỤ TỐI ƯU</span>
-                </a>
-                <a href="#bang-xep-hang" class="t1-nav-btn !w-full !justify-start !py-2.5">
-                    <i class="fa-solid fa-trophy text-amber-500 text-xs"></i>
-                    <span>BẢNG XẾP HẠNG TOP</span>
-                </a>
-                <a href="#danh-gia" class="t1-nav-btn !w-full !justify-start !py-2.5">
-                    <i class="fa-solid fa-star text-amber-400 text-xs"></i>
-                    <span>ĐÁNH GIÁ TỪ GAMER</span>
-                </a>
-                <a href="#hoi-dap" class="t1-nav-btn !w-full !justify-start !py-2.5">
-                    <i class="fa-solid fa-circle-question text-slate-400 text-xs"></i>
-                    <span>HỎI ĐÁP &amp; HƯỚNG DẪN</span>
-                </a>
-                <a href="https://discord.gg/gtavn" target="_blank" rel="noopener noreferrer" class="t1-btn-3d t1-btn-discord !w-full !py-2.5 !justify-between text-xs mt-1">
-                    <span class="flex items-center gap-2"><i class="fa-brands fa-discord text-base"></i> THAM GIA DISCORD</span>
-                    <span class="text-[10px] font-mono bg-white/20 text-white px-2 py-0.5 rounded-full font-bold">discord.gg/gtavn</span>
-                </a>
-            </nav>
+        <!-- Mobile & Tablet Menu Drawer (Premium Gaming Soft-UI Glass Card) -->
+        <div id="mobile-menu-drawer" class="hidden lg:hidden px-3 sm:px-6 pt-2 pb-4 bg-transparent border-b border-slate-200/80 shadow-[0_16px_36px_rgba(15,23,42,0.08)]">
+            <div class="max-w-2xl mx-auto bg-white/95 backdrop-blur-2xl rounded-2xl sm:rounded-3xl p-3.5 sm:p-5 border border-white/90 shadow-[0_10px_30px_rgba(7,150,229,0.1),0_3px_0_#DFEAF4]">
+                
+                <!-- Drawer Header: Tiêu đề danh mục & nút đóng nhanh -->
+                <div class="flex items-center justify-between pb-2.5 mb-2.5 border-b border-slate-100">
+                    <div class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                        <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500">DANH MỤC ĐIỀU HƯỚNG HỆ THỐNG</span>
+                    </div>
+                    <button id="btn-close-mobile-menu" class="w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center transition text-xs" title="Đóng menu">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- Lưới Menu 3D: 1 cột trên Mobile, 2 cột cân đối trên Tablet/Laptop màn hình thu nhỏ -->
+                <nav class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-bold text-slate-800">
+                    
+                    <!-- 1. Thống Kê Hiệu Năng -->
+                    <a href="#thong-ke" class="t1-drawer-card group">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 border border-sky-100 flex items-center justify-center text-xs flex-shrink-0 group-hover:scale-105 transition-transform shadow-2xs">
+                                <i class="fa-solid fa-chart-simple"></i>
+                            </div>
+                            <span class="text-xs font-extrabold text-slate-800 group-hover:text-primary transition-colors">THỐNG KÊ HIỆU NĂNG</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-300 group-hover:text-primary group-hover:translate-x-0.5 transition-all"></i>
+                    </a>
+
+                    <!-- 2. Check Cấu Hình Máy (Kèm LIVE badge) -->
+                    <a href="#checker" class="t1-drawer-card active-drawer-card group">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 border border-emerald-100 flex items-center justify-center text-xs flex-shrink-0 group-hover:scale-105 transition-transform shadow-2xs">
+                                <i class="fa-solid fa-microchip"></i>
+                            </div>
+                            <span class="text-xs font-extrabold text-slate-800 group-hover:text-emerald-600 transition-colors">CHECK CẤU HÌNH MÁY</span>
+                        </div>
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[9px] font-black font-mono shadow-2xs">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            LIVE
+                        </span>
+                    </a>
+
+                    <!-- 3. Bộ Công Cụ Tối Ưu -->
+                    <a href="#cong-cu" class="t1-drawer-card group">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-8 h-8 rounded-lg bg-sky-50 text-sky-600 border border-sky-100 flex items-center justify-center text-xs flex-shrink-0 group-hover:scale-105 transition-transform shadow-2xs">
+                                <i class="fa-solid fa-screwdriver-wrench"></i>
+                            </div>
+                            <span class="text-xs font-extrabold text-slate-800 group-hover:text-primary transition-colors">BỘ CÔNG CỤ TỐI ƯU</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-300 group-hover:text-primary group-hover:translate-x-0.5 transition-all"></i>
+                    </a>
+
+                    <!-- 4. Bảng Xếp Hạng Top -->
+                    <a href="#bang-xep-hang" class="t1-drawer-card group">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 border border-amber-100 flex items-center justify-center text-xs flex-shrink-0 group-hover:scale-105 transition-transform shadow-2xs">
+                                <i class="fa-solid fa-trophy"></i>
+                            </div>
+                            <span class="text-xs font-extrabold text-slate-800 group-hover:text-amber-600 transition-colors">BẢNG XẾP HẠNG TOP</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-300 group-hover:text-amber-500 group-hover:translate-x-0.5 transition-all"></i>
+                    </a>
+
+                    <!-- 5. Đánh Giá Từ Gamer -->
+                    <a href="#danh-gia" class="t1-drawer-card group">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-500 border border-amber-100 flex items-center justify-center text-xs flex-shrink-0 group-hover:scale-105 transition-transform shadow-2xs">
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <span class="text-xs font-extrabold text-slate-800 group-hover:text-amber-500 transition-colors">ĐÁNH GIÁ TỪ GAMER</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-300 group-hover:text-amber-500 group-hover:translate-x-0.5 transition-all"></i>
+                    </a>
+
+                    <!-- 6. Hỏi Đáp & Hướng Dẫn -->
+                    <a href="#hoi-dap" class="t1-drawer-card group">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 border border-slate-200 flex items-center justify-center text-xs flex-shrink-0 group-hover:scale-105 transition-transform shadow-2xs">
+                                <i class="fa-solid fa-circle-question"></i>
+                            </div>
+                            <span class="text-xs font-extrabold text-slate-800 group-hover:text-primary transition-colors">HỎI ĐÁP &amp; HƯỚNG DẪN</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-300 group-hover:text-primary group-hover:translate-x-0.5 transition-all"></i>
+                    </a>
+                </nav>
+
+                <!-- 7. Khu Vực Discord Nổi Bật Ở Cuối Menu (Full width) -->
+                <div class="mt-2.5 pt-2.5 border-t border-slate-100">
+                    <a href="https://discord.gg/gtavn" target="_blank" rel="noopener noreferrer" class="t1-drawer-discord-btn group">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-8 h-8 rounded-lg bg-white/20 text-white flex items-center justify-center text-sm shadow-inner group-hover:rotate-6 transition-transform">
+                                <i class="fa-brands fa-discord"></i>
+                            </div>
+                            <div class="text-left">
+                                <span class="text-xs font-black tracking-wide block leading-none">THAM GIA DISCORD CỘNG ĐỒNG</span>
+                                <span class="text-[10px] text-sky-100 font-mono font-medium block mt-0.5 leading-none">discord.gg/gtavn &bull; Hỗ trợ 24/7</span>
+                            </div>
+                        </div>
+                        <span class="hidden sm:inline-flex text-[10px] font-black uppercase tracking-wider bg-white/25 px-2.5 py-1 rounded-lg text-white group-hover:bg-white group-hover:text-[#5865F2] transition-colors">
+                            VÀO NGAY <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </span>
+                    </a>
+                </div>
+
+            </div>
         </div>
     </header>
 
@@ -1866,7 +1938,7 @@
     </div>
 
     <!-- Scripts JavaScript Hoạt Động -->
-    <script src="assets/js/app.js?v=2026.40"></script>
+    <script src="assets/js/app.js?v=2026.50"></script>
     <script src="assets/js/bunnies.js?v=2026.40"></script>
     <script src="assets/js/scroll-draw.js?v=2026.40"></script>
     <!-- ======================================================================
