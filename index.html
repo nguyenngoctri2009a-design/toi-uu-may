@@ -119,7 +119,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Custom T1 Master Design System Stylesheet -->
-    <link rel="stylesheet" href="assets/css/style.css?v=2026.56">
+    <link rel="stylesheet" href="assets/css/style.css?v=2026.58">
 
     <script>
         tailwind.config = {
@@ -171,27 +171,27 @@
             <!-- Giữa: Menu Điều Hướng 1 Hàng Ngang Cân Đối (Chuẩn Nút Bấm 3D Tactile Nổi Khối T1) -->
             <nav class="hidden lg:flex items-center gap-1 text-[11px] font-black uppercase tracking-wider text-slate-700 whitespace-nowrap">
                 <a href="#thong-ke" class="t1-nav-btn">
-                    <i class="fa-solid fa-chart-simple text-sky-500 text-[10px]"></i>
+                    <i class="fa-solid fa-chart-simple text-sky-500 text-xs"></i>
                     <span>THỐNG KÊ</span>
                 </a>
                 <a href="#checker" class="t1-nav-btn active-tab">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                     <span>CHECK CẤU HÌNH</span>
                 </a>
                 <a href="#cong-cu" class="t1-nav-btn">
-                    <i class="fa-solid fa-wrench text-sky-500 text-[10px]"></i>
+                    <i class="fa-solid fa-wrench text-sky-500 text-xs"></i>
                     <span>CÔNG CỤ</span>
                 </a>
                 <a href="#bang-xep-hang" class="t1-nav-btn">
-                    <i class="fa-solid fa-trophy text-amber-500 text-[10px]"></i>
+                    <i class="fa-solid fa-trophy text-amber-500 text-xs"></i>
                     <span>BẢNG XẾP HẠNG</span>
                 </a>
                 <a href="#danh-gia" class="t1-nav-btn">
-                    <i class="fa-solid fa-star text-amber-400 text-[10px]"></i>
+                    <i class="fa-solid fa-star text-amber-400 text-xs"></i>
                     <span>ĐÁNH GIÁ</span>
                 </a>
                 <a href="#hoi-dap" class="t1-nav-btn">
-                    <i class="fa-solid fa-circle-question text-slate-400 text-[10px]"></i>
+                    <i class="fa-solid fa-circle-question text-slate-400 text-xs"></i>
                     <span>HỎI ĐÁP</span>
                 </a>
             </nav>
@@ -199,38 +199,40 @@
             <!-- Bên Phải: Cụm Nút Bấm Chuẩn T1 Nổi Khối Đẳng Cấp Siêu Gọn -->
             <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
                 <!-- Cụm Tiện Ích Nhỏ Gọn (Âm Thanh & Phím Tắt T1 Segmented Pill) -->
-                <div class="hidden sm:inline-flex items-center rounded-lg bg-white/90 border border-slate-200/90 p-0.5 shadow-2xs h-7">
-                    <button id="btn-toggle-sfx" class="w-6 h-6 rounded-md hover:bg-slate-100 text-slate-600 hover:text-primary transition flex items-center justify-center text-[10px]" title="Bật/Tắt Âm Thanh [M]">
+                <div class="hidden sm:inline-flex items-center rounded-lg bg-white/90 border border-slate-200/90 p-0.5 shadow-2xs h-8">
+                    <button id="btn-toggle-sfx" class="w-7 h-7 rounded-md hover:bg-slate-100 text-slate-600 hover:text-primary transition flex items-center justify-center text-xs" title="Bật/Tắt Âm Thanh [M]">
                         <i id="sfx-icon" class="fa-solid fa-volume-high"></i>
                     </button>
                     <span class="w-[1px] h-3 bg-slate-200"></span>
-                    <button id="btn-open-shortcuts" class="w-6 h-6 rounded-md hover:bg-slate-100 text-slate-600 hover:text-primary transition flex items-center justify-center text-[10px]" title="Phím Tắt Hệ Thống [?]">
+                    <button id="btn-open-shortcuts" class="w-7 h-7 rounded-md hover:bg-slate-100 text-slate-600 hover:text-primary transition flex items-center justify-center text-xs" title="Phím Tắt Hệ Thống [?]">
                         <i class="fa-solid fa-keyboard"></i>
                     </button>
                 </div>
 
                 <!-- Nút Chuông Thông Báo Nổi Bật -->
-                <button id="btn-open-announcement" class="relative w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-white border border-slate-200 hover:border-primary text-slate-700 hover:text-primary transition-all flex items-center justify-center shadow-2xs hover:scale-105 flex-shrink-0" title="Bảng Thông Báo Hệ Thống">
+                <button id="btn-open-announcement" class="relative w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white border border-slate-200 hover:border-primary text-slate-700 hover:text-primary transition-all flex items-center justify-center shadow-2xs hover:scale-105 flex-shrink-0" title="Bảng Thông Báo Hệ Thống">
                     <i class="fa-solid fa-bell text-xs text-slate-600"></i>
                     <span class="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-rose-500 border border-white"></span>
                     </span>
                 </button>
-                <a href="https://discord.gg/gtavn" target="_blank" rel="noopener noreferrer" class="hidden xl:inline-flex t1-btn-3d t1-btn-discord h-7 !py-0 !px-2.5 text-[10.5px] rounded-lg items-center gap-1.5" title="Cộng Đồng Discord: discord.gg/gtavn">
+                <a href="https://discord.gg/gtavn" target="_blank" rel="noopener noreferrer" class="hidden 2xl:inline-flex t1-btn-3d t1-btn-discord h-9 !py-0 !px-3 text-xs rounded-xl items-center gap-1.5" title="Cộng Đồng Discord: discord.gg/gtavn">
                     <i class="fa-brands fa-discord text-xs"></i>
                     <span>DISCORD</span>
                 </a>
 
                 <!-- Nút Tải App Miễn Phí Chính -->
-                <button id="btn-open-download-modal" class="t1-btn-3d t1-btn-primary h-8 !py-0 !px-2.5 sm:!px-3 whitespace-nowrap flex items-center gap-1.5 shadow-sm text-xs rounded-lg">
-                    <i class="fa-solid fa-download text-[11px]"></i>
-                    <span class="hidden 2xl:inline">Tải App Miễn Phí</span><span class="2xl:hidden font-black text-xs">Tải App</span><kbd class="t1-keycap hidden xl:inline-flex ml-1 opacity-90 text-[8px] py-0 px-1">D</kbd>
+                <button id="btn-open-download-modal" class="t1-btn-3d t1-btn-primary h-9 !py-0 !px-2.5 sm:!px-4 whitespace-nowrap flex items-center gap-1.5 sm:gap-2 shadow-sm text-xs sm:text-[13px] rounded-xl flex-shrink-0" title="Tải Bản Cài Đặt">
+                    <i class="fa-solid fa-download text-xs"></i>
+                    <span class="hidden sm:inline font-black">Tải App Miễn Phí</span>
+                    <span class="sm:hidden font-black">Tải App</span>
+                    <kbd class="t1-keycap hidden xl:inline-flex ml-0.5 opacity-90 text-[9px] py-0.5 px-1.5">D</kbd>
                 </button>
 
                 <!-- Hamburger Button (Mobile Only) -->
-                <button id="btn-mobile-menu" class="lg:hidden w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-800 hover:border-primary transition shadow-2xs" title="Menu">
-                    <i class="fa-solid fa-bars text-xs"></i>
+                <button id="btn-mobile-menu" class="lg:hidden w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-800 hover:border-primary transition shadow-2xs flex-shrink-0" title="Menu">
+                    <i class="fa-solid fa-bars text-xs sm:text-sm"></i>
                 </button>
             </div>
         </div>
@@ -261,7 +263,7 @@
                             </div>
                             <span class="text-xs font-extrabold text-slate-800 group-hover:text-primary transition-colors">THỐNG KÊ HIỆU NĂNG</span>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-300 group-hover:text-primary group-hover:translate-x-0.5 transition-all"></i>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-300 group-hover:text-primary group-hover:translate-x-0.5 transition-all"></i>
                     </a>
 
                     <!-- 2. Check Cấu Hình Máy (Kèm LIVE badge) -->
@@ -273,7 +275,7 @@
                             <span class="text-xs font-extrabold text-slate-800 group-hover:text-emerald-600 transition-colors">CHECK CẤU HÌNH MÁY</span>
                         </div>
                         <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[9px] font-black font-mono shadow-2xs">
-                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                             LIVE
                         </span>
                     </a>
@@ -286,7 +288,7 @@
                             </div>
                             <span class="text-xs font-extrabold text-slate-800 group-hover:text-primary transition-colors">BỘ CÔNG CỤ TỐI ƯU</span>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-300 group-hover:text-primary group-hover:translate-x-0.5 transition-all"></i>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-300 group-hover:text-primary group-hover:translate-x-0.5 transition-all"></i>
                     </a>
 
                     <!-- 4. Bảng Xếp Hạng Top -->
@@ -297,7 +299,7 @@
                             </div>
                             <span class="text-xs font-extrabold text-slate-800 group-hover:text-amber-600 transition-colors">BẢNG XẾP HẠNG TOP</span>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-300 group-hover:text-amber-500 group-hover:translate-x-0.5 transition-all"></i>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-300 group-hover:text-amber-500 group-hover:translate-x-0.5 transition-all"></i>
                     </a>
 
                     <!-- 5. Đánh Giá Từ Gamer -->
@@ -308,7 +310,7 @@
                             </div>
                             <span class="text-xs font-extrabold text-slate-800 group-hover:text-amber-500 transition-colors">ĐÁNH GIÁ TỪ GAMER</span>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-300 group-hover:text-amber-500 group-hover:translate-x-0.5 transition-all"></i>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-300 group-hover:text-amber-500 group-hover:translate-x-0.5 transition-all"></i>
                     </a>
 
                     <!-- 6. Hỏi Đáp & Hướng Dẫn -->
@@ -319,7 +321,7 @@
                             </div>
                             <span class="text-xs font-extrabold text-slate-800 group-hover:text-primary transition-colors">HỎI ĐÁP &amp; HƯỚNG DẪN</span>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-300 group-hover:text-primary group-hover:translate-x-0.5 transition-all"></i>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-300 group-hover:text-primary group-hover:translate-x-0.5 transition-all"></i>
                     </a>
                 </nav>
 
@@ -332,10 +334,10 @@
                             </div>
                             <div class="text-left">
                                 <span class="text-xs font-black tracking-wide block leading-none">THAM GIA DISCORD CỘNG ĐỒNG</span>
-                                <span class="text-[10px] text-sky-100 font-mono font-medium block mt-0.5 leading-none">discord.gg/gtavn &bull; Hỗ trợ 24/7</span>
+                                <span class="text-xs text-sky-100 font-mono font-medium block mt-0.5 leading-none">discord.gg/gtavn &bull; Hỗ trợ 24/7</span>
                             </div>
                         </div>
-                        <span class="hidden sm:inline-flex text-[10px] font-black uppercase tracking-wider bg-white/25 px-2.5 py-1 rounded-lg text-white group-hover:bg-white group-hover:text-[#5865F2] transition-colors">
+                        <span class="hidden sm:inline-flex text-xs font-black uppercase tracking-wider bg-white/25 px-2.5 py-1 rounded-lg text-white group-hover:bg-white group-hover:text-[#5865F2] transition-colors">
                             VÀO NGAY <i class="fa-solid fa-arrow-right ml-1"></i>
                         </span>
                     </a>
@@ -388,7 +390,7 @@
                         <i class="fa-solid fa-bolt"></i>
                     </div>
                     <div class="text-left">
-                        <span class="text-[10px] font-black text-textSecondary uppercase block leading-none">FPS BOOST</span>
+                        <span class="text-xs font-black text-textSecondary uppercase block leading-none">FPS BOOST</span>
                         <span class="text-xs font-black text-textPrimary font-mono">+80% Khung Hình</span>
                     </div>
                 </div>
@@ -399,7 +401,7 @@
                         <i class="fa-solid fa-crosshairs"></i>
                     </div>
                     <div class="text-left">
-                        <span class="text-[10px] font-black text-textSecondary uppercase block leading-none">ĐỘ TRỄ CHUỘT</span>
+                        <span class="text-xs font-black text-textSecondary uppercase block leading-none">ĐỘ TRỄ CHUỘT</span>
                         <span class="text-xs font-black text-textPrimary font-mono">0.5ms Cực Nhạy</span>
                     </div>
                 </div>
@@ -410,7 +412,7 @@
                         <i class="fa-solid fa-broom"></i>
                     </div>
                     <div class="text-left">
-                        <span class="text-[10px] font-black text-textSecondary uppercase block leading-none">THU HỒI RAM</span>
+                        <span class="text-xs font-black text-textSecondary uppercase block leading-none">THU HỒI RAM</span>
                         <span class="text-xs font-black text-textPrimary font-mono">Dọn Cache Rác</span>
                     </div>
                 </div>
@@ -421,7 +423,7 @@
                         <i class="fa-solid fa-shield-halved"></i>
                     </div>
                     <div class="text-left">
-                        <span class="text-[10px] font-black text-textSecondary uppercase block leading-none">AN TOÀN 100%</span>
+                        <span class="text-xs font-black text-textSecondary uppercase block leading-none">AN TOÀN 100%</span>
                         <span class="text-xs font-black text-textPrimary font-mono">Không Bị Ban</span>
                     </div>
                 </div>
@@ -463,7 +465,7 @@
                         <div class="p-5 rounded-2xl t1-node-glass border border-emerald-200/80 relative overflow-hidden group hover:-translate-y-1.5 transition-all">
                             <div class="flex items-center justify-between text-xs font-black text-textSecondary uppercase mb-2">
                                 <span class="flex items-center gap-1.5"><i class="fa-solid fa-gauge-high text-success"></i> FPS THỜI GIAN THỰC</span>
-                                <span class="t1-pill t1-pill-success text-[10px] py-0 px-2">+82% BOOM</span>
+                                <span class="t1-pill t1-pill-success text-xs py-0 px-2">+82% BOOM</span>
                             </div>
                             <div class="flex items-baseline gap-2 mb-2">
                                 <span id="monitor-fps" class="text-4xl font-black font-mono text-success drop-shadow-xs">124</span>
@@ -482,7 +484,7 @@
                         <div class="p-5 rounded-2xl t1-node-glass border border-sky-200/80 relative overflow-hidden group hover:-translate-y-1.5 transition-all">
                             <div class="flex items-center justify-between text-xs font-black text-textSecondary uppercase mb-2">
                                 <span class="flex items-center gap-1.5"><i class="fa-solid fa-stopwatch text-primary"></i> TIMER RESOLUTION</span>
-                                <span class="t1-pill t1-pill-primary text-[10px] py-0 px-2">ULTRA-LOW</span>
+                                <span class="t1-pill t1-pill-primary text-xs py-0 px-2">ULTRA-LOW</span>
                             </div>
                             <div class="flex items-baseline gap-2 mb-2">
                                 <span class="text-4xl font-black font-mono text-primary drop-shadow-xs">0.50</span>
@@ -501,7 +503,7 @@
                         <div class="p-5 rounded-2xl t1-node-glass border border-indigo-200/80 relative overflow-hidden group hover:-translate-y-1.5 transition-all">
                             <div class="flex items-center justify-between text-xs font-black text-textSecondary uppercase mb-2">
                                 <span class="flex items-center gap-1.5"><i class="fa-solid fa-memory text-accent"></i> RAM ĐÃ THU HỒI</span>
-                                <span class="t1-pill py-0 px-2 text-[10px] bg-indigo-50 text-accent border border-indigo-200">AUTO-CLEAN</span>
+                                <span class="t1-pill py-0 px-2 text-xs bg-indigo-50 text-accent border border-indigo-200">AUTO-CLEAN</span>
                             </div>
                             <div class="flex items-baseline gap-2 mb-2">
                                 <span id="monitor-ram" class="text-4xl font-black font-mono text-accent drop-shadow-xs">3.85</span>
@@ -633,7 +635,7 @@
                             Đang quét...
                         </div>
                         <span class="text-[11px] text-textSecondary font-medium flex items-center gap-1">
-                            <i class="fa-solid fa-circle-check text-success text-[10px]"></i> Logic Cores nhận diện tự động
+                            <i class="fa-solid fa-circle-check text-success text-xs"></i> Logic Cores nhận diện tự động
                         </span>
                     </div>
 
@@ -651,7 +653,7 @@
                             Đang quét...
                         </div>
                         <span class="text-[11px] text-textSecondary font-medium flex items-center gap-1">
-                            <i class="fa-solid fa-circle-check text-success text-[10px]"></i> Dung lượng ước tính khả dụng
+                            <i class="fa-solid fa-circle-check text-success text-xs"></i> Dung lượng ước tính khả dụng
                         </span>
                     </div>
 
@@ -669,7 +671,7 @@
                             Đang quét WebGL...
                         </div>
                         <span class="text-[11px] text-textSecondary font-medium flex items-center gap-1">
-                            <i class="fa-solid fa-circle-check text-success text-[10px]"></i> WebGL Unmasked Renderer
+                            <i class="fa-solid fa-circle-check text-success text-xs"></i> WebGL Unmasked Renderer
                         </span>
                     </div>
                 </div>
@@ -867,7 +869,7 @@
                             <!-- Badge Xanh: GTA5VN-System -->
                             <div class="flex items-center gap-1.5 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-xl border border-emerald-200 shadow-[0_2px_8px_rgba(16,185,129,0.12)]">
                                 <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                                <span class="text-[10px] font-black uppercase text-textSecondary hidden sm:inline">GTA5VN:</span>
+                                <span class="text-xs font-black uppercase text-textSecondary hidden sm:inline">GTA5VN:</span>
                                 <span id="chart-live-fps-green" class="font-mono font-black text-xs sm:text-sm text-emerald-600">144.0 FPS</span>
                                 <span class="text-[9px] font-mono font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-100">6.9ms</span>
                             </div>
@@ -875,7 +877,7 @@
                             <!-- Badge Đỏ: Mặc định (Giật Lag) -->
                             <div class="flex items-center gap-1.5 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-xl border border-rose-200 shadow-[0_2px_8px_rgba(225,29,72,0.12)]">
                                 <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
-                                <span class="text-[10px] font-black uppercase text-textSecondary hidden sm:inline">Mặc Định:</span>
+                                <span class="text-xs font-black uppercase text-textSecondary hidden sm:inline">Mặc Định:</span>
                                 <span id="chart-live-fps-red" class="font-mono font-black text-xs sm:text-sm text-rose-600">32.8 FPS</span>
                                 <span id="chart-live-drop-red" class="text-[9px] font-mono font-bold text-rose-700 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-100 animate-pulse">DROP 1% LOW</span>
                             </div>
@@ -885,18 +887,18 @@
                         <canvas id="fpsTelemetryCanvas" class="w-full h-full block relative z-10 cursor-crosshair"></canvas>
 
                         <!-- Các Mốc Trục Y (Labels Cố Định Cực Đẹp) -->
-                        <div class="absolute left-3 top-3 z-20 text-[10px] font-mono font-black text-emerald-700 bg-white/95 backdrop-blur-md border border-emerald-200 px-2 py-0.5 rounded-lg shadow-xs flex items-center gap-1.5">
+                        <div class="absolute left-3 top-3 z-20 text-xs font-mono font-black text-emerald-700 bg-white/95 backdrop-blur-md border border-emerald-200 px-2 py-0.5 rounded-lg shadow-xs flex items-center gap-1.5">
                             <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> 144 FPS (Khóa Cứng)
                         </div>
-                        <div class="absolute left-3 top-1/2 -translate-y-1/2 z-20 text-[10px] font-mono font-bold text-slate-600 bg-white/95 backdrop-blur-md border border-slate-200 px-2 py-0.5 rounded-lg shadow-xs">
+                        <div class="absolute left-3 top-1/2 -translate-y-1/2 z-20 text-xs font-mono font-bold text-slate-600 bg-white/95 backdrop-blur-md border border-slate-200 px-2 py-0.5 rounded-lg shadow-xs">
                             60 FPS (Trung Bình)
                         </div>
-                        <div class="absolute left-3 bottom-7 z-20 text-[10px] font-mono font-bold text-rose-600 bg-white/95 backdrop-blur-md border border-rose-200 px-2 py-0.5 rounded-lg shadow-xs flex items-center gap-1.5">
+                        <div class="absolute left-3 bottom-7 z-20 text-xs font-mono font-bold text-rose-600 bg-white/95 backdrop-blur-md border border-rose-200 px-2 py-0.5 rounded-lg shadow-xs flex items-center gap-1.5">
                             <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span> 24 FPS (Tụt Khung Hình)
                         </div>
 
                         <!-- Trục Thời Gian X & Badge Trạng Thái -->
-                        <div class="absolute bottom-2 left-3 right-3 z-20 flex items-center justify-between text-[10px] font-mono text-slate-400 pointer-events-none px-1">
+                        <div class="absolute bottom-2 left-3 right-3 z-20 flex items-center justify-between text-xs font-mono text-slate-400 pointer-events-none px-1">
                             <div class="flex items-center gap-4 sm:gap-8">
                                 <span>-60s</span>
                                 <span>-45s</span>
@@ -917,7 +919,7 @@
                     <div>
                         <div class="flex items-center justify-between pb-3 mb-4 border-b border-t1border">
                             <span class="text-xs font-black uppercase text-textSecondary tracking-wider">HOẠT ĐỘNG GẦN ĐÂY</span>
-                            <span class="t1-pill t1-pill-success text-[10px] py-0 px-2">REAL-TIME</span>
+                            <span class="t1-pill t1-pill-success text-xs py-0 px-2">REAL-TIME</span>
                         </div>
 
                         <div class="space-y-3.5 text-xs" id="activity-stream">
@@ -926,10 +928,10 @@
                                     <div class="w-7 h-7 rounded-lg bg-sky-100 text-primary font-black text-xs flex items-center justify-center">HN</div>
                                     <div>
                                         <span class="font-bold text-textPrimary block">Game thủ tại Hà Nội</span>
-                                        <span class="text-[10px] text-textSecondary font-mono">Tối ưu Core i5 + GTX 1650</span>
+                                        <span class="text-xs text-textSecondary font-mono">Tối ưu Core i5 + GTX 1650</span>
                                     </div>
                                 </div>
-                                <span class="text-[10px] font-mono text-secondary font-bold">Vừa xong</span>
+                                <span class="text-xs font-mono text-secondary font-bold">Vừa xong</span>
                             </div>
 
                             <div class="p-3 rounded-2xl t1-node-glass flex items-center justify-between group hover:-translate-y-0.5 transition-all">
@@ -937,10 +939,10 @@
                                     <div class="w-7 h-7 rounded-lg bg-emerald-100 text-secondary font-black text-xs flex items-center justify-center">SG</div>
                                     <div>
                                         <span class="font-bold text-textPrimary block">Người chơi tại TP.HCM</span>
-                                        <span class="text-[10px] text-textSecondary font-mono">Xóa 4.2 GB Cache FiveM</span>
+                                        <span class="text-xs text-textSecondary font-mono">Xóa 4.2 GB Cache FiveM</span>
                                     </div>
                                 </div>
-                                <span class="text-[10px] font-mono text-secondary font-bold">1 phút trước</span>
+                                <span class="text-xs font-mono text-secondary font-bold">1 phút trước</span>
                             </div>
 
                             <div class="p-3 rounded-2xl t1-node-glass flex items-center justify-between group hover:-translate-y-0.5 transition-all">
@@ -948,10 +950,10 @@
                                     <div class="w-7 h-7 rounded-lg bg-indigo-100 text-accent font-black text-xs flex items-center justify-center">ĐN</div>
                                     <div>
                                         <span class="font-bold text-textPrimary block">Quán Net Đà Nẵng</span>
-                                        <span class="text-[10px] text-textSecondary font-mono">Khóa 144Hz Server RP</span>
+                                        <span class="text-xs text-textSecondary font-mono">Khóa 144Hz Server RP</span>
                                     </div>
                                 </div>
-                                <span class="text-[10px] font-mono text-secondary font-bold">3 phút trước</span>
+                                <span class="text-xs font-mono text-secondary font-bold">3 phút trước</span>
                             </div>
                         </div>
                     </div>
@@ -989,7 +991,7 @@
                         <div>
                             <div class="flex items-center gap-1.5 mb-1">
                                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                <span class="text-[10px] font-black text-textSecondary uppercase tracking-wider block">NODE MIỀN BẮC</span>
+                                <span class="text-xs font-black text-textSecondary uppercase tracking-wider block">NODE MIỀN BẮC</span>
                             </div>
                             <span class="text-sm font-black text-textPrimary group-hover:text-primary transition-colors">Hà Nội (VNPT)</span>
                         </div>
@@ -1001,7 +1003,7 @@
                         <div>
                             <div class="flex items-center gap-1.5 mb-1">
                                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                <span class="text-[10px] font-black text-textSecondary uppercase tracking-wider block">NODE MIỀN NAM</span>
+                                <span class="text-xs font-black text-textSecondary uppercase tracking-wider block">NODE MIỀN NAM</span>
                             </div>
                             <span class="text-sm font-black text-textPrimary group-hover:text-primary transition-colors">TP.HCM (FPT)</span>
                         </div>
@@ -1013,7 +1015,7 @@
                         <div>
                             <div class="flex items-center gap-1.5 mb-1">
                                 <span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span>
-                                <span class="text-[10px] font-black text-textSecondary uppercase tracking-wider block">NODE MIỀN TRUNG</span>
+                                <span class="text-xs font-black text-textSecondary uppercase tracking-wider block">NODE MIỀN TRUNG</span>
                             </div>
                             <span class="text-sm font-black text-textPrimary group-hover:text-primary transition-colors">Đà Nẵng (VNIX)</span>
                         </div>
@@ -1025,7 +1027,7 @@
                         <div>
                             <div class="flex items-center gap-1.5 mb-1">
                                 <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-                                <span class="text-[10px] font-black text-textSecondary uppercase tracking-wider block">NODE QUỐC TẾ</span>
+                                <span class="text-xs font-black text-textSecondary uppercase tracking-wider block">NODE QUỐC TẾ</span>
                             </div>
                             <span class="text-sm font-black text-textPrimary group-hover:text-warning transition-colors">Singapore Discord</span>
                         </div>
@@ -1065,7 +1067,7 @@
                                     <span class="text-[11px] text-textSecondary font-medium">Tự động cấu hình đồ họa chuẩn theo phần cứng</span>
                                 </div>
                             </div>
-                            <span class="t1-pill t1-pill-success text-[10px]">TẢI TỨC THÌ</span>
+                            <span class="t1-pill t1-pill-success text-xs">TẢI TỨC THÌ</span>
                         </div>
 
                         <!-- Chọn Cấu Hình Máy -->
@@ -1120,7 +1122,7 @@
                                     <span class="text-[11px] text-textSecondary font-medium">Sao chép lệnh PowerShell tự động quét sạch rác hệ thống</span>
                                 </div>
                             </div>
-                            <span class="t1-pill t1-pill-primary text-[10px]">FIX CRASH</span>
+                            <span class="t1-pill t1-pill-primary text-xs">FIX CRASH</span>
                         </div>
 
                         <!-- 3 Thẻ Lệnh Sao Chép Nhanh -->
@@ -1163,7 +1165,7 @@
                     <!-- Cách Sử Dụng -->
                     <div class="pt-3 border-t border-t1border text-[11px] text-textSecondary flex items-center justify-between">
                         <span><i class="fa-solid fa-terminal text-secondary mr-1"></i> Mở <strong>PowerShell</strong> hoặc <strong>Run (Win + R)</strong> và dán lệnh vào.</span>
-                        <span class="t1-pill t1-pill-success text-[10px] py-0 px-2">An Toàn 100%</span>
+                        <span class="t1-pill t1-pill-success text-xs py-0 px-2">An Toàn 100%</span>
                     </div>
                 </div>
             </div>
@@ -1196,7 +1198,7 @@
                             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-50 to-white border border-sky-100 flex items-center justify-center text-lg text-primary shadow-xs group-hover:scale-110 transition-transform">
                                 <i class="fa-solid fa-microchip"></i>
                             </div>
-                            <span class="t1-pill t1-pill-primary text-[10px] font-black uppercase tracking-wider">
+                            <span class="t1-pill t1-pill-primary text-xs font-black uppercase tracking-wider">
                                 100% CPU Clock
                             </span>
                         </div>
@@ -1219,7 +1221,7 @@
                             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-50 to-white border border-emerald-100 flex items-center justify-center text-lg text-emerald-600 shadow-xs group-hover:scale-110 transition-transform">
                                 <i class="fa-brands fa-xbox"></i>
                             </div>
-                            <span class="t1-pill t1-pill-success text-[10px] font-black uppercase tracking-wider">
+                            <span class="t1-pill t1-pill-success text-xs font-black uppercase tracking-wider">
                                 Khử Khựng 10s
                             </span>
                         </div>
@@ -1242,7 +1244,7 @@
                             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-50 to-white border border-sky-100 flex items-center justify-center text-lg text-primary shadow-xs group-hover:scale-110 transition-transform">
                                 <i class="fa-solid fa-crosshairs"></i>
                             </div>
-                            <span class="t1-pill t1-pill-primary text-[10px] font-black uppercase tracking-wider">
+                            <span class="t1-pill t1-pill-primary text-xs font-black uppercase tracking-wider">
                                 0.5ms Độ Trễ
                             </span>
                         </div>
@@ -1265,7 +1267,7 @@
                             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-50 to-white border border-emerald-100 flex items-center justify-center text-lg text-secondary shadow-xs group-hover:scale-110 transition-transform">
                                 <i class="fa-solid fa-network-wired"></i>
                             </div>
-                            <span class="t1-pill t1-pill-success text-[10px] font-black uppercase tracking-wider">
+                            <span class="t1-pill t1-pill-success text-xs font-black uppercase tracking-wider">
                                 -15ms Ping Server
                             </span>
                         </div>
@@ -1288,7 +1290,7 @@
                             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-indigo-50 to-white border border-indigo-100 flex items-center justify-center text-lg text-indigo-600 shadow-xs group-hover:scale-110 transition-transform">
                                 <i class="fa-brands fa-discord"></i>
                             </div>
-                            <span class="t1-pill t1-pill-accent text-[10px] font-black uppercase tracking-wider">
+                            <span class="t1-pill t1-pill-accent text-xs font-black uppercase tracking-wider">
                                 +15% GPU Rảnh
                             </span>
                         </div>
@@ -1311,7 +1313,7 @@
                             <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-amber-50 to-white border border-amber-100 flex items-center justify-center text-lg text-warning shadow-xs group-hover:scale-110 transition-transform">
                                 <i class="fa-solid fa-desktop"></i>
                             </div>
-                            <span class="t1-pill t1-pill-warning text-[10px] font-black uppercase tracking-wider">
+                            <span class="t1-pill t1-pill-warning text-xs font-black uppercase tracking-wider">
                                 Khóa 144Hz Mát Máy
                             </span>
                         </div>
@@ -1424,7 +1426,7 @@
 
                     <div class="pt-3 border-t border-sky-100/70 flex items-center justify-between text-[11px]">
                         <span class="text-textSecondary font-mono font-semibold">i5-10400F &bull; GTX 1660S</span>
-                        <span class="t1-pill t1-pill-success text-[10px] py-0.5 px-2 font-black">+72 FPS ỔN ĐỊNH</span>
+                        <span class="t1-pill t1-pill-success text-xs py-0.5 px-2 font-black">+72 FPS ỔN ĐỊNH</span>
                     </div>
                 </div>
 
@@ -1456,7 +1458,7 @@
 
                     <div class="pt-3 border-t border-sky-100/70 flex items-center justify-between text-[11px]">
                         <span class="text-textSecondary font-mono font-semibold">i3-10105F &bull; GTX 750Ti</span>
-                        <span class="t1-pill t1-pill-primary text-[10px] py-0.5 px-2 font-black">HẾT CRASH 100%</span>
+                        <span class="t1-pill t1-pill-primary text-xs py-0.5 px-2 font-black">HẾT CRASH 100%</span>
                     </div>
                 </div>
 
@@ -1488,7 +1490,7 @@
 
                     <div class="pt-3 border-t border-sky-100/70 flex items-center justify-between text-[11px]">
                         <span class="text-textSecondary font-mono font-semibold">Ryzen 7 5800X &bull; RTX 3070</span>
-                        <span class="t1-pill t1-pill-success text-[10px] py-0.5 px-2 font-black">PING TỪ 45ms &rarr; 9ms</span>
+                        <span class="t1-pill t1-pill-success text-xs py-0.5 px-2 font-black">PING TỪ 45ms &rarr; 9ms</span>
                     </div>
                 </div>
 
@@ -1520,7 +1522,7 @@
 
                     <div class="pt-3 border-t border-sky-100/70 flex items-center justify-between text-[11px]">
                         <span class="text-textSecondary font-mono font-semibold">i7-11700K &bull; RTX 2060S</span>
-                        <span class="t1-pill t1-pill-primary text-[10px] py-0.5 px-2 font-black">INPUT LAG 0.5ms</span>
+                        <span class="t1-pill t1-pill-primary text-xs py-0.5 px-2 font-black">INPUT LAG 0.5ms</span>
                     </div>
                 </div>
 
@@ -1552,7 +1554,7 @@
 
                     <div class="pt-3 border-t border-sky-100/70 flex items-center justify-between text-[11px]">
                         <span class="text-textSecondary font-mono font-semibold">i5-12400F &bull; RTX 3060 12GB</span>
-                        <span class="t1-pill t1-pill-success text-[10px] py-0.5 px-2 font-black">LOAD MAP SIÊU TỐC</span>
+                        <span class="t1-pill t1-pill-success text-xs py-0.5 px-2 font-black">LOAD MAP SIÊU TỐC</span>
                     </div>
                 </div>
 
@@ -1584,7 +1586,7 @@
 
                     <div class="pt-3 border-t border-sky-100/70 flex items-center justify-between text-[11px]">
                         <span class="text-textSecondary font-mono font-semibold">Xeon E5-2670 &bull; RX 580 8GB</span>
-                        <span class="t1-pill t1-pill-success text-[10px] py-0.5 px-2 font-black">100% VIRUSTOTAL CLEAN</span>
+                        <span class="t1-pill t1-pill-success text-xs py-0.5 px-2 font-black">100% VIRUSTOTAL CLEAN</span>
                     </div>
                 </div>
             </div>
@@ -1699,7 +1701,7 @@
                     <div>
                         <div class="flex items-center gap-2">
                             <h3 class="text-base sm:text-lg font-black text-slate-900 tracking-tight">THÔNG BÁO HỆ THỐNG</h3>
-                            <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-black font-mono">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-black font-mono">
                                 v2.5.2
                             </span>
                         </div>
@@ -1776,7 +1778,7 @@
                     </div>
                     <div>
                         <h3 class="font-black text-base text-textPrimary">Tải GTA5VN-System v2.5</h3>
-                        <span class="t1-pill t1-pill-primary py-0 px-2 text-[10px]">Phiên Bản v2.5.0 Pro</span>
+                        <span class="t1-pill t1-pill-primary py-0 px-2 text-xs">Phiên Bản v2.5.0 Pro</span>
                     </div>
                 </div>
                 <button id="btn-close-modal" class="text-textSecondary hover:text-textPrimary transition p-1">
@@ -1814,7 +1816,7 @@
                         <i class="fa-regular fa-copy"></i> Sao chép
                     </button>
                 </div>
-                <div id="hash-text" class="text-[10px] font-mono text-textPrimary break-all select-all">
+                <div id="hash-text" class="text-xs font-mono text-textPrimary break-all select-all">
                     a5c90a8da5b7490ba269e7a65a7fde5ebb64e0067e4d02d70c73357e1d1cb3a1
                 </div>
             </div>
@@ -1829,7 +1831,7 @@
                 </div>
                 <a href="https://discord.gg/gtavn" target="_blank" rel="noopener noreferrer" class="t1-btn-3d bg-[#5865F2] text-white hover:bg-[#4752C4] text-[11px] font-black py-2 px-3.5 rounded-xl flex-shrink-0 flex items-center gap-1.5 shadow-xs">
                     <span>VÀO DISCORD</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                 </a>
             </div>
 
@@ -1922,7 +1924,7 @@
     </div>
 
     <!-- Scripts JavaScript Hoạt Động -->
-    <script src="assets/js/app.js?v=2026.56"></script>
+    <script src="assets/js/app.js?v=2026.58"></script>
     <script src="assets/js/bunnies.js?v=2026.40"></script>
     <script src="assets/js/scroll-draw.js?v=2026.40"></script>
     <!-- ======================================================================
@@ -1938,7 +1940,7 @@
             <span class="text-slate-300">&bull;</span>
             <span class="text-sky-600">0.5ms</span>
             <span class="text-slate-300">&bull;</span>
-            <span class="text-slate-400 text-[10px] hidden md:inline">Phím <kbd class="t1-keycap text-[8px]">D</kbd> Tải nhanh</span>
+            <span class="text-slate-400 text-xs hidden md:inline">Phím <kbd class="t1-keycap text-[8px]">D</kbd> Tải nhanh</span>
         </div>
         <button id="btn-back-to-top" class="w-10 h-10 rounded-2xl bg-white border border-slate-200 text-slate-600 hover:text-primary transition-all flex items-center justify-center shadow-[0_4px_14px_rgba(0,0,0,0.06)] hover:scale-105" title="Cuộn Lên Đầu Trang">
             <i class="fa-solid fa-arrow-up text-xs"></i>

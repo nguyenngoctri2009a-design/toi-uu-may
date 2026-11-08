@@ -1,1785 +1,3509 @@
 /* ==========================================================================
+
    T1 GTA 5 VN OPTIMIZER V2.5 - MASTER DESIGN SYSTEM (LIGHT MODE ONLY)
+
    Gaming SaaS + Premium Dashboard + Neumorphic 3D Architecture
+
    ========================================================================== */
+
+
 
 :root {
+
   /* Khóa cứng Light Mode vĩnh viễn */
+
   color-scheme: light !important;
 
+
+
   /* Bảng màu chuẩn chỉ định */
+
   --primary: #0796E5;
+
   --primary-dark: #0875C1;
+
   --secondary: #00A88A;
+
   --bg: #F4F8FC;
+
   --surface: #FFFFFF;
+
   --surface-soft: #EDF6FF;
+
   --text-primary: #152238;
+
   --text-secondary: #64748B;
+
   --border: #DFEAF4;
+
   --success: #0BAA78;
+
   --warning: #E99520;
+
   --danger: #E34D59;
+
   --accent: #6655EE;
 
+
+
   /* Gradients */
+
   --primary-gradient: linear-gradient(135deg, #0796E5 0%, #00A88A 100%);
+
   --btn-primary-bg: linear-gradient(180deg, #18A2F2 0%, #0796E5 100%);
+
   --btn-secondary-bg: linear-gradient(180deg, #02BA99 0%, #00A88A 100%);
+
   --btn-white-bg: linear-gradient(180deg, #FFFFFF 0%, #F0F6FC 100%);
+
 }
+
+
 
 /* Reset & Nền Tổng Thể */
+
 *, *::before, *::after {
+
   box-sizing: border-box;
+
 }
+
+
 
 html {
+
   overflow-x: hidden;
+
   overflow-y: auto;
+
   scroll-behavior: smooth;
+
   -webkit-overflow-scrolling: touch;
+
   height: 100%;
+
 }
 
+
+
 body {
+
   background-color: var(--bg) !important;
+
   color: var(--text-primary) !important;
+
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
   margin: 0;
+
   padding: 0;
+
   width: 100%;
+
   min-height: 100%;
+
   overflow-x: hidden;
+
   overflow-y: visible;
+
   -webkit-font-smoothing: antialiased;
+
   -moz-osx-font-smoothing: grayscale;
+
 }
+
+
 
 h1, h2, h3, h4, .font-heading {
+
   font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+
 }
+
+
 
 /* Họa Tiết Nền Chấm Nhỏ Vi Tế (Subtle Dot Matrix) */
+
 .t1-dot-matrix {
+
   background-color: var(--bg);
+
   background-image: radial-gradient(#CBD5E1 0.75px, transparent 0.75px);
+
   background-size: 24px 24px;
+
 }
 
+
+
 /* ==========================================================================
+
    HIỆU ỨNG MÙ MỊT KHÔNG GÂY LAG (GPU-ACCELERATED ATMOSPHERIC MIST & GLOW)
+
    Sử dụng translate3d và opacity tối ưu phần cứng 60-120fps mượt mà
+
    ========================================================================== */
+
 .t1-hero-mist-wrap {
+
   position: relative;
+
   width: 100%;
+
   max-width: 920px;
+
   margin: 0 auto 24px auto;
+
   perspective: 1000px;
+
 }
+
+
 
 /* Làn Khói Mù Mịt Mờ Ảo Phía Sau Chữ (Zero-Lag Fog) */
+
 .t1-fog-layer {
+
   position: absolute;
+
   top: 50%;
+
   left: 50%;
+
   width: 110%;
+
   height: 140%;
+
   transform: translate3d(-50%, -50%, 0);
+
   background: 
+
     radial-gradient(ellipse at 30% 45%, rgba(7, 150, 229, 0.18) 0%, transparent 60%),
+
     radial-gradient(ellipse at 70% 55%, rgba(0, 168, 138, 0.16) 0%, transparent 60%),
+
     radial-gradient(ellipse at 50% 50%, rgba(102, 85, 238, 0.08) 0%, transparent 70%);
+
   filter: blur(55px);
+
   pointer-events: none;
+
   z-index: 0;
+
   will-change: opacity, transform;
+
   animation: gentleMistDrift 10s ease-in-out infinite alternate;
+
 }
+
+
 
 @keyframes gentleMistDrift {
+
   0% {
+
     transform: translate3d(-50%, -50%, 0) scale(0.95);
+
     opacity: 0.7;
+
   }
+
   50% {
+
     transform: translate3d(-48%, -52%, 0) scale(1.05);
+
     opacity: 0.95;
+
   }
+
   100% {
+
     transform: translate3d(-52%, -48%, 0) scale(1);
+
     opacity: 0.75;
+
   }
+
 }
+
+
 
 /* SVG Text Container */
+
 .t1-hero-svg-title {
+
   position: relative;
+
   z-index: 10;
+
   width: 100%;
+
   height: auto;
+
   filter: drop-shadow(0 4px 14px rgba(7, 150, 229, 0.1));
+
 }
 
+
+
 /* ==========================================================================
+
    HỆ THỐNG NÚT BẤM 3D XÚC GIÁC T1 (T1 3D TACTILE PRESSABLE BUTTONS)
+
    100% LIGHT THEME - GỜ ĐÁY 3D DÀY DẶN - BẤM LÚN THẬT 3PX CỰC ĐÃ TAY
+
    ========================================================================== */
+
 .t1-btn-3d {
+
   display: inline-flex;
+
   align-items: center;
+
   justify-content: center;
+
   white-space: nowrap !important;
+
   flex-shrink: 0;
+
   gap: 10px;
+
   padding: 12px 26px;
+
   font-size: 13.5px;
+
   font-weight: 850;
+
   border-radius: 14px;
+
   cursor: pointer;
+
   user-select: none;
+
   text-decoration: none;
+
   position: relative;
+
   outline: none;
+
   font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif !important;
+
   letter-spacing: 0.4px;
+
   transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+
   overflow: hidden;
+
 }
+
+
 
 /* Kiểu Chữ Máy Đánh Chữ Typewriter (some preview text style) */
+
 .t1-typewriter, .font-mono {
+
   font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif !important;
+
 }
+
+
 
 /* Ánh Sáng Phản Quang Laser Chạy Ngang Khi Hover (Glass Laser Shimmer) */
+
 .t1-btn-3d::after {
+
   content: '';
+
   position: absolute;
+
   top: -50%;
+
   left: -120%;
+
   width: 60%;
+
   height: 200%;
+
   background: linear-gradient(
+
     90deg,
+
     rgba(255, 255, 255, 0) 0%,
+
     rgba(255, 255, 255, 0.6) 50%,
+
     rgba(255, 255, 255, 0) 100%
+
   );
+
   transform: rotate(25deg);
+
   pointer-events: none;
+
 }
+
 .t1-btn-3d:hover::after {
+
   left: 160%;
+
   transition: left 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+
 }
+
+
 
 /* Micro-Interaction: Icon Nhúc Nhích Sống Động */
+
 .t1-btn-3d i, .t1-btn-3d svg {
+
   transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+
 }
+
 .t1-btn-3d:hover i, .t1-btn-3d:hover svg {
+
   transform: scale(1.15);
+
 }
+
 .t1-btn-primary:hover i.fa-download, 
+
 .t1-btn-primary:hover svg {
+
   transform: translateY(2px) scale(1.15);
+
 }
+
+
 
 /* 1. NÚT PRIMARY 3D (Xanh Cyan / Sky Blue Đậm Đà với Gờ Đáy 3D 4px) */
+
 .t1-btn-primary {
+
   background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%) !important;
+
   color: #ffffff !important;
+
   border: 1px solid #38bdf8 !important;
+
   box-shadow: 
+
     0 4px 0 #075985,
+
     0 7px 18px rgba(2, 132, 199, 0.35),
+
     inset 0 1.5px 0.5px rgba(255, 255, 255, 0.45) !important;
+
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+
 }
+
 .t1-btn-primary:hover {
+
   transform: translateY(-2px);
+
   background: linear-gradient(180deg, #0ea5e9 0%, #0284c7 100%) !important;
+
   border-color: #7dd3fc !important;
+
   color: #ffffff !important;
+
   box-shadow: 
+
     0 6px 0 #075985,
+
     0 11px 24px rgba(2, 132, 199, 0.45),
+
     inset 0 1.5px 0.5px rgba(255, 255, 255, 0.65) !important;
+
 }
+
 .t1-btn-primary:active {
+
   transform: translateY(3px) !important;
+
   box-shadow: 
+
     0 1px 0 #075985,
+
     0 2px 6px rgba(2, 132, 199, 0.25),
+
     inset 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+
 }
+
+
 
 /* 2. NÚT SUCCESS 3D (Xanh Ngọc Lục Bảo Emerald với Gờ Đáy 3D 4px) */
+
 .t1-btn-success {
+
   background: linear-gradient(180deg, #059669 0%, #047857 100%) !important;
+
   color: #ffffff !important;
+
   border: 1px solid #34d399 !important;
+
   box-shadow: 
+
     0 4px 0 #064e3b,
+
     0 7px 18px rgba(5, 150, 105, 0.35),
+
     inset 0 1.5px 0.5px rgba(255, 255, 255, 0.45) !important;
+
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+
 }
+
 .t1-btn-success:hover {
+
   transform: translateY(-2px);
+
   background: linear-gradient(180deg, #10b981 0%, #059669 100%) !important;
+
   border-color: #6ee7b7 !important;
+
   color: #ffffff !important;
+
   box-shadow: 
+
     0 6px 0 #064e3b,
+
     0 11px 24px rgba(5, 150, 105, 0.45),
+
     inset 0 1.5px 0.5px rgba(255, 255, 255, 0.65) !important;
+
 }
+
 .t1-btn-success:active {
+
   transform: translateY(3px) !important;
+
   box-shadow: 
+
     0 1px 0 #064e3b,
+
     0 2px 6px rgba(5, 150, 105, 0.25),
+
     inset 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+
 }
+
+
 
 /* 3. NÚT SECONDARY / SURFACE 3D (Trắng Sứ Neumorphic Nổi Khối Cao Cấp) */
+
 .t1-btn-surface, .t1-btn-secondary {
+
   background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%) !important;
+
   color: #0f172a !important;
+
   border: 1.5px solid #cbd5e1 !important;
+
   box-shadow: 
+
     0 3.5px 0 #94a3b8,
+
     0 6px 14px rgba(0, 0, 0, 0.08),
+
     inset 0 1.5px 1px #ffffff !important;
+
 }
+
 .t1-btn-surface:hover, .t1-btn-secondary:hover {
+
   transform: translateY(-2px);
+
   background: #ffffff !important;
+
   border-color: #64748b !important;
+
   color: #0284c7 !important;
+
   box-shadow: 
+
     0 5.5px 0 #64748b,
+
     0 10px 20px rgba(0, 0, 0, 0.12),
+
     inset 0 1.5px 1px #ffffff !important;
+
 }
+
 .t1-btn-surface:active, .t1-btn-secondary:active {
+
   transform: translateY(2.5px) !important;
+
   box-shadow: 
+
     0 1px 0 #94a3b8,
+
     inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+
 }
+
+
 
 /* 4. NÚT DISCORD 3D (Tím Xanh Blurple Đặc Trưng 3D) */
+
 .t1-btn-discord, a[href*="discord.gg"] {
+
   transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1) !important;
+
 }
+
+
 
 /* 5. NÚT WARNING 3D (Vàng Hổ Phách / Amber VIP) */
+
 .t1-btn-warning {
+
   background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%) !important;
+
   color: #ffffff !important;
+
   border: 1px solid #fcd34d !important;
+
   box-shadow: 
+
     0 4px 0 #92400e,
+
     0 7px 18px rgba(245, 158, 11, 0.35),
+
     inset 0 1.5px 0.5px rgba(255, 255, 255, 0.45) !important;
+
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+
 }
+
 .t1-btn-warning:hover {
+
   transform: translateY(-2px);
+
   background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 100%) !important;
+
   box-shadow: 0 6px 0 #92400e, 0 11px 24px rgba(245, 158, 11, 0.45) !important;
+
 }
+
 .t1-btn-warning:active {
+
   transform: translateY(3px) !important;
+
   box-shadow: 0 1px 0 #92400e, inset 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+
 }
+
+
 
 /* 6. NÚT DANGER 3D (Đỏ Ruby Cảnh Báo) */
+
 .t1-btn-danger {
+
   background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%) !important;
+
   color: #ffffff !important;
+
   border: 1px solid #fca5a5 !important;
+
   box-shadow: 
+
     0 4px 0 #991b1b,
+
     0 7px 18px rgba(239, 68, 68, 0.35),
+
     inset 0 1.5px 0.5px rgba(255, 255, 255, 0.45) !important;
+
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+
 }
+
 .t1-btn-danger:hover {
+
   transform: translateY(-2px);
+
   background: linear-gradient(180deg, #f87171 0%, #ef4444 100%) !important;
+
   box-shadow: 0 6px 0 #991b1b, 0 11px 24px rgba(239, 68, 68, 0.45) !important;
+
 }
+
 .t1-btn-danger:active {
+
   transform: translateY(3px) !important;
+
   box-shadow: 0 1px 0 #991b1b, inset 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+
 }
+
+
 
 /* Nút Sao Chép Lệnh Kính Trong Suốt (Copy Command Glass Buttons) */
+
 .btn-copy-cmd {
+
   background: rgba(255, 255, 255, 0.25) !important;
+
   backdrop-filter: blur(10px) saturate(180%) !important;
+
   -webkit-backdrop-filter: blur(10px) saturate(180%) !important;
+
   border: 1.5px solid rgba(186, 230, 253, 0.5) !important;
+
   color: #0369a1 !important;
+
   font-weight: 800;
+
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
   box-shadow: 0 2px 8px rgba(7, 150, 229, 0.03), inset 0 1px 1px #FFFFFF !important;
+
 }
+
 .btn-copy-cmd:hover {
+
   background: rgba(224, 242, 254, 0.5) !important;
+
   border-color: #38bdf8 !important;
+
   transform: translateY(-2px);
+
   box-shadow: 0 6px 16px rgba(7, 150, 229, 0.12), inset 0 1px 1px #FFFFFF !important;
+
 }
+
   backdrop-filter: blur(10px) !important;
+
   -webkit-backdrop-filter: blur(10px) !important;
+
   border: 1.5px solid rgba(186, 230, 253, 0.7) !important;
+
   color: #0369a1 !important;
+
   font-weight: 800;
+
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
   box-shadow: 0 2px 8px rgba(7, 150, 229, 0.05), inset 0 1px 1px #FFFFFF;
+
 }
+
 .btn-copy-cmd:hover {
+
   background: rgba(224, 242, 254, 0.88) !important;
+
   border-color: #38bdf8 !important;
+
   transform: translateY(-2px);
+
   box-shadow: 0 6px 16px rgba(7, 150, 229, 0.18), inset 0 1px 1px #FFFFFF;
+
 }
+
 .btn-copy-cmd:active {
+
   transform: translateY(1px);
+
 }
+
+
 
 /* Hiệu ứng Sóng Tác Động Khi Nhấn Nút (Click Ripple Wave) */
+
 .t1-ripple-wave {
+
   position: absolute;
+
   border-radius: 50%;
+
   background: rgba(255, 255, 255, 0.55);
+
   transform: scale(0);
+
   animation: t1-ripple-anim 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
   pointer-events: none;
+
 }
+
 @keyframes t1-ripple-anim {
+
   to {
+
     transform: scale(4);
+
     opacity: 0;
+
   }
+
 }
+
+
+
 
 
 /* ==========================================================================
+
    HỆ THỐNG GLASSMORPHISM CAO CẤP & CHIỀU SÂU 3D (LIGHT THEME LUXURY GLASS)
+
    ========================================================================== */
+
 .t1-card {
+
   background: rgba(255, 255, 255, 0.68) !important;
+
   backdrop-filter: blur(24px) saturate(190%) !important;
+
   -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+
   border-radius: 24px;
+
   border: 1.5px solid rgba(255, 255, 255, 0.92) !important;
+
   box-shadow: 
+
     0 4.5px 0 #DFEAF4,
+
     0 14px 40px rgba(7, 150, 229, 0.08),
+
     inset 0 1.5px 1px #ffffff !important;
+
   padding: 26px 28px;
+
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
   position: relative;
+
 }
+
+
 
 .t1-card-hover:hover, .t1-card:hover {
+
   border-color: rgba(56, 189, 248, 0.6);
+
   box-shadow: 
+
     0 16px 36px rgba(7, 150, 229, 0.1),
+
     0 4px 12px rgba(21, 34, 56, 0.04),
+
     inset 0 1.5px 2px #FFFFFF;
+
 }
+
+
 
 /* Thẻ Kính Phụ (Sub-Glass Card) Dành Cho 3 Card Phần Cứng */
+
 .t1-subglass-card {
+
   background: rgba(255, 255, 255, 0.32) !important;
+
   backdrop-filter: blur(16px) saturate(180%) !important;
+
   -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+
   border-radius: 20px;
+
   border: 1.5px solid rgba(255, 255, 255, 0.75) !important;
+
   box-shadow: 
+
     0 6px 20px rgba(7, 150, 229, 0.04),
+
     inset 0 1.5px 2px rgba(255, 255, 255, 0.95) !important;
+
   padding: 20px 22px;
+
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
   position: relative;
+
   overflow: hidden;
+
 }
+
+
 
 .t1-subglass-card:hover {
+
   transform: translateY(-3.5px);
+
   background: rgba(255, 255, 255, 0.82);
+
   border-color: rgba(56, 189, 248, 0.55);
+
   box-shadow: 
+
     0 12px 28px rgba(7, 150, 229, 0.12),
+
     inset 0 1px 2px #FFFFFF;
+
 }
+
+
 
 /* Banner Đánh Giá Kính Mờ Ánh Sáng Xanh Ngọc */
+
 .t1-glass-banner {
+
   background: linear-gradient(
+
     135deg,
+
     rgba(255, 255, 255, 0.45) 0%,
+
     rgba(236, 253, 245, 0.28) 50%,
+
     rgba(209, 250, 229, 0.20) 100%
+
   ) !important;
+
   backdrop-filter: blur(16px) saturate(180%) !important;
+
   -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+
   border: 1.5px solid rgba(167, 243, 208, 0.65) !important;
+
   border-radius: 20px;
+
   box-shadow: 
+
     0 8px 24px -4px rgba(16, 185, 129, 0.08),
+
     inset 0 1.5px 2px rgba(255, 255, 255, 0.95) !important;
+
   padding: 22px 26px;
+
   transition: all 0.25s ease;
+
 }
+
+
 
 /* Glass Select Dropdown */
+
 /* Khung Chứa Dropdown Kính Mờ (Glass Input Group) */
+
 .t1-glass-input-group {
+
   background: rgba(255, 255, 255, 0.35);
+
   backdrop-filter: blur(14px) saturate(180%);
+
   -webkit-backdrop-filter: blur(14px) saturate(180%);
+
   border: 1.5px solid rgba(255, 255, 255, 0.85);
+
   border-radius: 18px;
+
   padding: 14px 16px;
+
   box-shadow: 
+
     0 4px 14px rgba(7, 150, 229, 0.03),
+
     inset 0 1.5px 2px rgba(255, 255, 255, 0.95);
+
   transition: all 0.25s ease;
+
 }
+
 .t1-glass-input-group:hover {
+
   background: rgba(255, 255, 255, 0.5);
+
   border-color: rgba(56, 189, 248, 0.6);
+
   box-shadow: 0 8px 22px rgba(7, 150, 229, 0.08), inset 0 1.5px 2px #fff;
+
 }
+
+
 
 /* Glass Select Dropdown Cao Cấp Chuẩn Apple/Linear */
+
 .t1-glass-select {
+
   width: 100%;
+
   height: 42px;
+
   padding: 8px 36px 8px 14px;
+
   font-size: 13.5px;
+
   font-weight: 750;
+
   color: #0f172a !important;
+
   background: rgba(255, 255, 255, 0.5) !important;
+
   backdrop-filter: blur(12px) saturate(180%) !important;
+
   -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
+
   border: 1.5px solid rgba(186, 230, 253, 0.7) !important;
+
   border-radius: 12px;
+
   outline: none;
+
   cursor: pointer;
+
   transition: all 0.2s ease;
+
   box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03), inset 0 1px 1px rgba(255, 255, 255, 0.95) !important;
+
   appearance: none;
+
   -webkit-appearance: none;
+
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%230284c7' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") !important;
+
   background-repeat: no-repeat !important;
+
   background-position: right 12px center !important;
+
   background-size: 14px 14px !important;
+
 }
+
 .t1-glass-select:hover {
+
   background-color: rgba(255, 255, 255, 0.7) !important;
+
   border-color: #38bdf8 !important;
+
   box-shadow: 0 4px 12px rgba(7, 150, 229, 0.1), inset 0 1px 1px #fff !important;
+
 }
+
 .t1-glass-select:focus {
+
   background-color: rgba(255, 255, 255, 0.9) !important;
+
   border-color: #0284c7 !important;
+
   box-shadow: 0 0 0 3.5px rgba(14, 165, 233, 0.18), inset 0 1px 1px #fff !important;
+
 }
+
 .t1-glass-select option {
+
   background: #ffffff;
+
   color: #0f172a;
+
   font-weight: 600;
+
 }
+
+
 
 /* Khung Kết Quả FPS HUD Kính Mờ (FPS HUD Gauge Card) */
+
 .t1-fps-hud-card {
+
   background: linear-gradient(
+
     135deg,
+
     rgba(255, 255, 255, 0.6) 0%,
+
     rgba(240, 253, 250, 0.45) 50%,
+
     rgba(209, 250, 229, 0.3) 100%
+
   ) !important;
+
   backdrop-filter: blur(16px) saturate(180%) !important;
+
   -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+
   border: 1.5px solid rgba(16, 185, 129, 0.4) !important;
+
   border-radius: 18px;
+
   padding: 16px 20px;
+
   box-shadow: 
+
     0 8px 24px -4px rgba(16, 185, 129, 0.1),
+
     inset 0 1.5px 2px rgba(255, 255, 255, 0.95);
+
   display: flex;
+
   flex-direction: column;
+
   justify-content: space-between;
+
   transition: all 0.25s ease;
+
 }
+
 .t1-fps-hud-card:hover {
+
   transform: translateY(-2px);
+
   border-color: rgba(16, 185, 129, 0.65) !important;
+
   box-shadow: 
+
     0 12px 30px -4px rgba(16, 185, 129, 0.16),
+
     inset 0 1.5px 2px #ffffff;
+
 }
+
+
 
 /* FPS Badge */
+
 .t1-fps-badge {
+
   display: inline-flex;
+
   align-items: center;
+
   padding: 3px 10px;
+
   border-radius: 9999px;
+
   font-size: 11px;
+
   font-weight: 850;
+
   letter-spacing: 0.3px;
+
   background: rgba(16, 185, 129, 0.12);
+
   color: #047857;
+
   border: 1px solid rgba(16, 185, 129, 0.35);
+
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8);
+
 }
+
 .t1-glass-select:focus {
+
   background: rgba(255, 255, 255, 0.95);
+
   border-color: #0284c7;
+
   box-shadow: 0 0 0 3.5px rgba(14, 165, 233, 0.15);
+
 }
+
+
 
 /* Thẻ Glass Card Tổng Thể (Dành Cho Leaderboard) */
+
 .t1-glass-card {
+
   background: rgba(255, 255, 255, 0.68) !important;
+
   backdrop-filter: blur(24px) saturate(190%) !important;
+
   -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+
   border: 1.5px solid rgba(255, 255, 255, 0.92) !important;
+
   border-radius: 24px;
+
   box-shadow: 
+
     0 4.5px 0 #DFEAF4,
+
     0 12px 32px rgba(7, 150, 229, 0.08),
+
     inset 0 1.5px 1px #ffffff !important;
+
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+
   position: relative;
+
 }
+
 .t1-glass-card:hover {
+
   transform: translateY(-3.5px);
+
   background: rgba(255, 255, 255, 0.88) !important;
+
   border-color: #38bdf8 !important;
+
   box-shadow: 
+
     0 7px 0 #0284c7,
+
     0 18px 40px rgba(2, 132, 199, 0.18),
+
     inset 0 1.5px 1px #ffffff !important;
+
 }
+
+
 
 /* FAQ Accordion 3D Glass Items */
+
 .faq-item {
+
   background: rgba(255, 255, 255, 0.7) !important;
+
   backdrop-filter: blur(16px) !important;
+
   -webkit-backdrop-filter: blur(16px) !important;
+
   border-radius: 20px !important;
+
   border: 1.5px solid rgba(255, 255, 255, 0.9) !important;
+
   box-shadow: 0 3.5px 0 #DFEAF4, 0 6px 18px rgba(15, 23, 42, 0.04), inset 0 1px 1px #ffffff !important;
+
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+
 }
+
 .faq-item:hover {
+
   transform: translateY(-2px);
+
   border-color: #38bdf8 !important;
+
   box-shadow: 0 5.5px 0 #0284c7, 0 12px 24px rgba(2, 132, 199, 0.12), inset 0 1px 1px #ffffff !important;
+
 }
+
+
 
 /* Review Card 3D Glass */
+
 .t1-review-card {
+
   background: rgba(255, 255, 255, 0.72) !important;
+
   backdrop-filter: blur(18px) saturate(180%) !important;
+
   -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+
   border-radius: 22px !important;
+
   border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
+
   box-shadow: 0 4px 0 #DFEAF4, 0 8px 24px rgba(7, 150, 229, 0.06), inset 0 1.5px 1px #ffffff !important;
+
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+
 }
+
 .t1-review-card:hover {
+
   transform: translateY(-3px);
+
   border-color: #38bdf8 !important;
+
   box-shadow: 0 6px 0 #0284c7, 0 14px 30px rgba(2, 132, 199, 0.15), inset 0 1.5px 1px #ffffff !important;
+
 }
+
+
 
 /* Thẻ KPI Thống Kê */
+
 .t1-kpi-card {
+
   background: rgba(255, 255, 255, 0.42) !important;
+
   backdrop-filter: blur(16px) saturate(180%) !important;
+
   -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+
   border-radius: 20px;
+
   border: 1.5px solid rgba(255, 255, 255, 0.85) !important;
+
   padding: 22px 24px;
+
   box-shadow: 
+
     0 8px 24px rgba(7, 150, 229, 0.05),
+
     inset 0 1.5px 2px rgba(255, 255, 255, 0.95);
+
   display: flex;
+
   flex-direction: column;
+
   transition: all 0.25s ease;
+
 }
+
 .t1-kpi-card:hover {
+
   transform: translateY(-3px);
+
   background: rgba(255, 255, 255, 0.65) !important;
+
   border-color: rgba(56, 189, 248, 0.6) !important;
+
   box-shadow: 0 14px 32px rgba(7, 150, 229, 0.12), inset 0 1.5px 2px #FFFFFF;
+
 }
+
+
 
 .t1-kpi-icon-wrap {
+
   width: 46px;
+
   height: 46px;
+
   border-radius: 14px;
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
   font-size: 20px;
+
   margin-bottom: 14px;
+
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8);
+
 }
+
+
 
 .t1-kpi-number {
+
   font-size: 34px;
+
   font-weight: 900;
+
   color: var(--text-primary);
+
   line-height: 1.1;
+
   letter-spacing: -0.5px;
+
 }
 
+
+
 /* ==========================================================================
+
    HỆ THỐNG HUY HIỆU & STATUS PILLS (LIGHT ONLY)
+
    ========================================================================== */
+
 .t1-pill {
+
   font-family: 'Space Mono', 'Courier Prime', monospace !important;
+
   letter-spacing: 0.4px;
+
   display: inline-flex;
+
   align-items: center;
+
   gap: 6px;
+
   padding: 4px 12px;
+
   border-radius: 999px;
+
   font-size: 11.5px;
+
   font-weight: 800;
+
   white-space: nowrap !important;
+
 }
+
 .t1-pill-primary {
+
   background: #EDF6FF;
+
   color: var(--primary);
+
   border: 1px solid #BAE6FD;
+
 }
+
 .t1-pill-success {
+
   background: #ECFDF5;
+
   color: var(--success);
+
   border: 1px solid #A7F3D0;
+
 }
+
 .t1-pill-warning {
+
   background: #FFFBEB;
+
   color: var(--warning);
+
   border: 1px solid #FDE68A;
+
 }
+
 .t1-pill-danger {
+
   background: #FEE2E2;
+
   color: var(--danger);
+
   border: 1px solid #FCA5A5;
+
 }
 
+
+
 /* ==========================================================================
+
    FORM INPUTS & SELECTS CHUẨN T1 (LIGHT ONLY)
+
    ========================================================================== */
+
 .t1-input, .t1-select {
+
   width: 100%;
+
   padding: 12px 16px;
+
   font-size: 14px;
+
   font-weight: 600;
+
   color: var(--text-primary);
+
   background: rgba(255, 255, 255, 0.45) !important;
+
   backdrop-filter: blur(12px) !important;
+
   -webkit-backdrop-filter: blur(12px) !important;
+
   border: 1.5px solid rgba(186, 230, 253, 0.65) !important;
+
   border-radius: 14px;
+
   outline: none;
+
   transition: all 0.2s ease;
+
   box-shadow: 0 2px 8px rgba(7, 150, 229, 0.03), inset 0 1px 1px rgba(255, 255, 255, 0.9);
-}
-.t1-input:focus, .t1-select:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3.5px rgba(7, 150, 229, 0.16), inset 0 1px 2px rgba(0, 0, 0, 0.02);
+
 }
 
+.t1-input:focus, .t1-select:focus {
+
+  border-color: var(--primary);
+
+  box-shadow: 0 0 0 3.5px rgba(7, 150, 229, 0.16), inset 0 1px 2px rgba(0, 0, 0, 0.02);
+
+}
+
+
+
 /* ==========================================================================
+
    WORDMARK LOGO & BRAND ICON: FIVEM VN ENGINE
+
    ========================================================================== */
+
 /* Khung Biểu Tượng Icon Đứng Trước Chữ */
+
 .t1-brand-icon-wrap {
+
   width: 38px;
+
   height: 38px;
+
   border-radius: 12px;
+
   background: linear-gradient(135deg, #FFFFFF 0%, #EDF6FF 100%);
+
   border: 1.5px solid #BAE6FD;
+
   box-shadow: 0 4px 14px rgba(7, 150, 229, 0.16), inset 0 1px 2px #FFFFFF;
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
   position: relative;
+
   overflow: hidden;
+
   flex-shrink: 0;
+
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
 }
+
 .t1-wordmark-logo:hover .t1-brand-icon-wrap {
+
   transform: scale(1.06) rotate(3deg);
+
   border-color: #38BDF8;
+
   box-shadow: 0 6px 18px rgba(7, 150, 229, 0.28), inset 0 1px 2px #FFFFFF;
+
 }
+
+
 
 /* Vệt Laser Quét Nhẹ Qua Icon */
+
 .t1-brand-icon-laser {
+
   position: absolute;
+
   top: 0;
+
   left: -120%;
+
   width: 100%;
+
   height: 100%;
+
   background: linear-gradient(90deg, transparent, rgba(7, 150, 229, 0.25), rgba(0, 168, 138, 0.35), transparent);
+
   transform: skewX(-20deg);
+
   animation: iconLaserSweep 3.5s ease-in-out infinite;
+
   pointer-events: none;
+
 }
+
 @keyframes iconLaserSweep {
+
   0% { left: -120%; }
+
   25%, 100% { left: 140%; }
+
 }
+
+
 
 .t1-wordmark-logo {
+
   display: inline-flex;
+
   align-items: center;
+
   gap: 10px;
+
   text-decoration: none;
+
   user-select: none;
+
   font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
   padding: 4px 0;
+
   cursor: pointer;
+
 }
+
 .t1-wordmark-logo:hover {
+
   transform: translateY(-1px);
+
 }
+
+
 
 /* Phần chữ FiveM: Quét sáng xanh dương (#0b76e0) & xanh ngọc (#00b493) */
+
 .t1-wordmark-fivem {
+
   font-size: 22px;
+
   font-weight: 900;
+
   letter-spacing: -0.5px;
+
   line-height: 1;
+
   background: linear-gradient(
+
     115deg,
+
     #152238 0%,
+
     #152238 35%,
+
     #0b76e0 48%,
+
     #00b493 54%,
+
     #152238 68%,
+
     #152238 100%
+
   );
+
   background-size: 280% 100%;
+
   background-position: 100% 0;
+
   -webkit-background-clip: text;
+
   background-clip: text;
+
   -webkit-text-fill-color: transparent;
+
   animation: t1-wordmark-scan 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+
   will-change: background-position;
+
 }
+
 .t1-wordmark-logo:hover .t1-wordmark-fivem {
+
   animation: t1-wordmark-scan 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+
 }
+
+
 
 /* Phần chữ VN: Gradient Xanh Ngọc + Neon Glow + Quét Sáng Engine */
+
 .t1-wordmark-vn {
+
   font-size: 22px;
+
   font-weight: 900;
+
   letter-spacing: -0.3px;
+
   line-height: 1;
+
   background: linear-gradient(
+
     115deg,
+
     #0796E5 0%,
+
     #00A88A 35%,
+
     #38BDF8 48%,
+
     #6EE7B7 54%,
+
     #0796E5 68%,
+
     #00A88A 100%
+
   );
+
   background-size: 280% 100%;
+
   background-position: 100% 0;
+
   -webkit-background-clip: text;
+
   background-clip: text;
+
   -webkit-text-fill-color: transparent;
+
   display: inline-flex;
+
   align-items: center;
+
   animation: t1-wordmark-scan 4s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.16s;
+
   will-change: background-position, filter;
+
 }
+
 .t1-wordmark-logo:hover .t1-wordmark-vn {
+
   animation: t1-wordmark-scan 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.08s;
+
 }
+
+
 
 /* Dấu Chấm Xanh Ngọc: Hiệu Ứng Neon Glow & Pulse Tinh Tế */
+
 .t1-wordmark-dot {
+
   display: inline-block;
+
   width: 5.5px;
+
   height: 5.5px;
+
   border-radius: 50%;
+
   background-color: #00b493;
+
   margin-left: 2px;
+
   margin-bottom: 2px;
+
   vertical-align: middle;
+
   animation: t1-dot-pulse 2s ease-in-out infinite alternate;
+
 }
+
+
 
 /* Phần chữ Engine: Kích thước nhỏ, xám trung tính, nhận tia quét cuối cùng */
+
 .t1-wordmark-engine {
+
   font-size: 13.5px;
+
   font-weight: 700;
+
   letter-spacing: 0.8px;
+
   text-transform: uppercase;
+
   margin-left: 2px;
+
   background: linear-gradient(
+
     115deg,
+
     #64748B 0%,
+
     #64748B 35%,
+
     #0b76e0 48%,
+
     #00b493 54%,
+
     #64748B 68%,
+
     #64748B 100%
+
   );
+
   background-size: 280% 100%;
+
   background-position: 100% 0;
+
   -webkit-background-clip: text;
+
   background-clip: text;
+
   -webkit-text-fill-color: transparent;
+
   animation: t1-wordmark-scan 4s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.32s;
+
   will-change: background-position;
-}
-.t1-wordmark-logo:hover .t1-wordmark-engine {
-  animation: t1-wordmark-scan 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.16s;
+
 }
 
-/* ==========================================================================
-   KEYFRAMES CHO HIỆU ỨNG QUÉT CHỮ & NEON GLOW ENGINE
-   ========================================================================== */
-/* Quét sáng tia laser từ trái sang phải qua các ký tự */
-@keyframes t1-wordmark-scan {
-  0% {
-    background-position: 100% 0;
-  }
-  38% {
-    background-position: 0% 0;
-  }
-  100% {
-    background-position: 0% 0;
-  }
+.t1-wordmark-logo:hover .t1-wordmark-engine {
+
+  animation: t1-wordmark-scan 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.16s;
+
 }
+
+
+
+/* ==========================================================================
+
+   KEYFRAMES CHO HIỆU ỨNG QUÉT CHỮ & NEON GLOW ENGINE
+
+   ========================================================================== */
+
+/* Quét sáng tia laser từ trái sang phải qua các ký tự */
+
+@keyframes t1-wordmark-scan {
+
+  0% {
+
+    background-position: 100% 0;
+
+  }
+
+  38% {
+
+    background-position: 0% 0;
+
+  }
+
+  100% {
+
+    background-position: 0% 0;
+
+  }
+
+}
+
+
 
 /* Neon Glow nhẹ cho chữ VN */
+
 @keyframes t1-vn-neon {
+
   0% {
+
     filter: drop-shadow(0 0 3px rgba(0, 180, 147, 0.4)) drop-shadow(0 0 8px rgba(11, 118, 224, 0.25));
+
   }
+
   100% {
+
     filter: drop-shadow(0 0 6px rgba(0, 180, 147, 0.85)) drop-shadow(0 0 14px rgba(11, 118, 224, 0.5));
+
   }
+
 }
+
+
 
 /* Neon Pulse cho chấm xanh ngọc */
+
 @keyframes t1-dot-pulse {
+
   0% {
+
     transform: scale(0.9);
+
     box-shadow: 0 0 6px #00b493, 0 0 10px rgba(0, 180, 147, 0.6);
+
   }
+
   100% {
+
     transform: scale(1.25);
+
     box-shadow: 0 0 10px #00b493, 0 0 18px rgba(0, 180, 147, 0.95), 0 0 24px rgba(11, 118, 224, 0.7);
+
   }
+
 }
+
+
 
 /* Mobile responsive wordmark */
+
 @media (max-width: 640px) {
+
   .t1-wordmark-fivem { font-size: 19px; }
+
   .t1-wordmark-vn { font-size: 19px; }
+
   .t1-wordmark-engine { font-size: 11.5px; }
+
 }
+
 .t1-logo-box {
+
   width: 44px;
+
   height: 44px;
+
   border-radius: 14px;
+
   background: linear-gradient(135deg, #FFFFFF 0%, #EDF6FF 100%);
+
   border: 1.5px solid #BAE6FD;
+
   box-shadow: 0 4px 14px rgba(7, 150, 229, 0.18), inset 0 1px 2px #FFFFFF;
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
   position: relative;
+
   overflow: hidden;
+
   transition: transform 0.25s ease;
+
 }
+
 .t1-logo-box:hover {
+
   transform: translateY(-2px);
+
 }
+
+
 
 .t1-logo-laser {
+
   position: absolute;
+
   top: 0;
+
   left: -120%;
+
   width: 100%;
+
   height: 100%;
+
   background: linear-gradient(
+
     90deg,
+
     transparent 0%,
+
     rgba(7, 150, 229, 0.2) 30%,
+
     rgba(7, 150, 229, 0.9) 50%,
+
     rgba(0, 168, 138, 0.9) 60%,
+
     transparent 100%
+
   );
+
   transform: skewX(-20deg);
+
   animation: logoLaserSweep 3.5s ease-in-out infinite;
+
   pointer-events: none;
+
 }
+
+
 
 @keyframes logoLaserSweep {
+
   0% { left: -120%; opacity: 0; }
+
   15% { opacity: 1; }
+
   75% { opacity: 1; }
+
   100% { left: 140%; opacity: 0; }
+
 }
 
+
+
 /* ==========================================================================
+
    DASHBOARD MOCKUP CỬA SỔ PHẦN MỀM
+
    ========================================================================== */
+
 .t1-window-mockup {
+
   background: rgba(255, 255, 255, 0.45) !important;
+
   backdrop-filter: blur(20px) saturate(180%) !important;
+
   -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+
   border-radius: 26px;
+
   border: 1.5px solid rgba(255, 255, 255, 0.85) !important;
+
   box-shadow: 
+
     0 24px 50px rgba(7, 150, 229, 0.08),
+
     0 6px 16px rgba(21, 34, 56, 0.03),
+
     inset 0 1.5px 2px rgba(255, 255, 255, 0.95) !important;
+
   overflow: hidden;
+
 }
+
+
 
 .t1-window-header {
+
   padding: 14px 20px;
+
   background: #F8FAFC;
+
   border-bottom: 1.5px solid var(--border);
+
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
+
 }
 
+
+
 /* ==========================================================================
+
    MODAL THỦY TINH MỜ (LIGHT GLASS MODAL)
+
    ========================================================================== */
+
 .t1-modal-backdrop {
+
   position: fixed;
+
   inset: 0;
+
   background: rgba(21, 34, 56, 0.4);
+
   backdrop-filter: blur(8px);
+
   -webkit-backdrop-filter: blur(8px);
+
   z-index: 99999;
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
   padding: 16px;
+
 }
+
 .t1-modal-container {
+
   background: #FFFFFF;
+
   border-radius: 24px;
+
   border: 1.5px solid #FFFFFF;
+
   box-shadow: 
+
     0 25px 60px rgba(21, 34, 56, 0.18),
+
     0 6px 18px rgba(21, 34, 56, 0.06);
+
   width: 100%;
+
   max-width: 520px;
+
   padding: 28px;
+
   position: relative;
+
   max-height: 90vh;
+
   overflow-y: auto;
+
 }
+
+
 
 /* Tối ưu cuộn chuột */
+
 ::-webkit-scrollbar {
+
   width: 7px;
+
 }
+
 ::-webkit-scrollbar-track {
+
   background: var(--bg);
+
 }
+
 ::-webkit-scrollbar-thumb {
+
   background: #CBD5E1;
+
   border-radius: 4px;
+
 }
+
 ::-webkit-scrollbar-thumb:hover {
+
   background: var(--primary);
+
 }
+
+
 
 /* ==========================================================================
+
    KHÓA CỨNG CHỐNG PHÓNG TO THU NHỎ & GPU THREAD ACCELERATION (PHÂN LUỒNG MƯỢT)
+
    ========================================================================== */
+
 html {
+
   -webkit-text-size-adjust: 100% !important;
+
   text-size-adjust: 100% !important;
+
 }
+
+
 
 body {
+
   touch-action: auto !important;
+
 }
+
+
 
 /* Chống double-tap zoom trên tất cả nút bấm và liên kết */
+
 button, a, input, select, textarea, .t1-btn-3d {
+
   touch-action: manipulation !important;
+
 }
 
+
+
 /* Phân luồng tăng tốc phần cứng GPU (Hardware Acceleration Layer) */
+
 .t1-card, .t1-glass-card, .t1-btn-3d, .t1-window-mockup, header {
+
   transform: translateZ(0);
+
   -webkit-transform: translateZ(0);
+
   backface-visibility: hidden;
+
   -webkit-backface-visibility: hidden;
+
 }
+
+
+
+
 
 
 
 /* Thẻ Con Trong Suốt Nổi Khối 3D (3D Transparent Glass Child Cards) */
+
 .t1-node-glass {
+
   background: rgba(255, 255, 255, 0.72) !important;
+
   backdrop-filter: blur(14px) !important;
+
   -webkit-backdrop-filter: blur(14px) !important;
+
   border-radius: 18px;
+
   border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
+
   box-shadow: 
+
     0 3.5px 0 #DFEAF4,
+
     0 6px 16px rgba(15, 23, 42, 0.04),
+
     inset 0 1px 1px #ffffff !important;
+
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
 }
+
 .t1-node-glass:hover {
+
   transform: translateY(-2.5px);
+
   background: rgba(255, 255, 255, 0.92) !important;
+
   border-color: #38bdf8 !important;
+
   box-shadow: 
+
     0 5.5px 0 #0284c7,
+
     0 12px 24px rgba(2, 132, 199, 0.16),
+
     inset 0 1px 1px #ffffff !important;
+
 }
+
+
+
 
 
 /* ==========================================================================
+
    HỆ THỐNG TAB & NÚT BẤM ĐIỀU HƯỚNG 3D (T1 TACTILE 3D BUTTON TABS)
+
    CHUẨN STYLE NÚT GITHUB REPO 3D NỔI KHỐI - BẤM LÚN ĐÃ TAY
+
    ========================================================================== */
+
 .t1-nav-btn {
+
   display: inline-flex;
+
   align-items: center;
+
   gap: 7px;
+
   padding: 8px 14px;
+
   font-size: 11.5px;
+
   font-weight: 850;
+
   letter-spacing: 0.35px;
+
   color: #1e293b !important;
+
   background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%) !important;
+
   border: 1.5px solid #cbd5e1 !important;
+
   border-radius: 13px;
+
   box-shadow: 
+
     0 3px 0 #94a3b8,
+
     0 6px 12px rgba(0, 0, 0, 0.05),
+
     inset 0 1.5px 1px #ffffff !important;
+
   transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+
   user-select: none;
+
   text-decoration: none;
+
   cursor: pointer;
+
   white-space: nowrap;
+
   position: relative;
+
 }
+
+
 
 .t1-nav-btn:hover {
+
   transform: translateY(-2px);
+
   background: #ffffff !important;
+
   border-color: #64748b !important;
+
   color: #0284c7 !important;
+
   box-shadow: 
+
     0 5px 0 #64748b,
+
     0 10px 18px rgba(0, 0, 0, 0.09),
+
     inset 0 1.5px 1px #ffffff !important;
+
 }
+
+
 
 .t1-nav-btn:active {
+
   transform: translateY(2.5px) !important;
+
   box-shadow: 
+
     0 0.5px 0 #94a3b8,
+
     inset 0 1.5px 3px rgba(0, 0, 0, 0.1) !important;
+
 }
+
+
 
 .t1-nav-btn.active-tab {
+
   background: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%) !important;
+
   border-color: #86efac !important;
+
   color: #059669 !important;
+
   box-shadow: 
+
     0 3px 0 #10b981,
+
     0 6px 14px rgba(16, 185, 129, 0.14),
+
     inset 0 1.5px 1px #ffffff !important;
+
 }
 
 
+
+
+
 /* ==========================================================================
+
    T1 PRO DETAILS & LUXURY GAMING MICRO-INTERACTIONS
+
    ========================================================================== */
+
+
 
 /* 1. Interactive Cursor Spotlight Shader */
+
 .t1-spotlight {
+
   position: relative;
+
 }
+
 .t1-spotlight::before {
+
   content: '';
+
   position: absolute;
+
   inset: 0;
+
   border-radius: inherit;
+
   background: radial-gradient(
+
     380px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+
     rgba(2, 132, 199, 0.07),
+
     transparent 70%
+
   );
+
   pointer-events: none;
+
   opacity: 0;
+
   transition: opacity 0.3s ease;
+
   z-index: 1;
+
 }
+
 .t1-spotlight:hover::before {
+
   opacity: 1;
+
 }
+
+
 
 /* 2. 3D Physical Keyboard Keycap Badges */
+
 kbd.t1-keycap {
+
   display: inline-flex;
+
   align-items: center;
+
   justify-content: center;
+
   min-width: 18px;
+
   height: 18px;
+
   padding: 0 4.5px;
+
   font-family: 'Outfit', monospace;
+
   font-size: 9.5px;
+
   font-weight: 850;
+
   color: #475569;
+
   background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+
   border: 1px solid #cbd5e1;
+
   border-bottom: 2.5px solid #94a3b8;
+
   border-radius: 5px;
+
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
   user-select: none;
+
   vertical-align: middle;
+
   line-height: 1;
+
 }
+
+
 
 /* 3. Diagnostic Laser Scanline Animation */
+
 @keyframes laserSweep {
+
   0% { top: 0%; opacity: 0; }
+
   10% { opacity: 1; }
+
   90% { opacity: 1; }
+
   100% { top: 100%; opacity: 0; }
+
 }
+
 .laser-scanline {
+
   position: absolute;
+
   left: 0;
+
   right: 0;
+
   height: 3px;
+
   background: linear-gradient(90deg, transparent 0%, #0284c7 20%, #38bdf8 50%, #10b981 80%, transparent 100%);
+
   box-shadow: 0 0 16px #38bdf8, 0 0 28px #0284c7;
+
   pointer-events: none;
+
   z-index: 25;
+
   animation: laserSweep 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+
 }
+
+
 
 /* 4. Quick HUD Dock & Floating Badge */
+
 #quick-hud-dock {
+
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
 }
+
 #btn-back-to-top:hover {
+
   transform: translateY(-2px);
+
   border-color: #0284c7;
+
   box-shadow: 0 6px 16px rgba(2, 132, 199, 0.15);
+
 }
+
 #btn-back-to-top:active {
+
   transform: translateY(1px);
+
 }
+
+
+
 
 
 /* ==========================================================================
+
    T1 FULL PLATFORM PRO SUITE (LOADER, SKELETON, TOAST, TOOLTIP, OFFLINE)
+
    ========================================================================== */
+
+
 
 /* 1. Initial Page Preloader */
+
 #t1-page-loader {
+
   position: fixed;
+
   inset: 0;
+
   z-index: 99999;
+
   background: rgba(248, 250, 252, 0.98);
+
   backdrop-filter: blur(24px);
+
   -webkit-backdrop-filter: blur(24px);
+
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
+
   justify-content: center;
+
   transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.45s ease;
+
 }
+
 #t1-page-loader.loader-hidden {
+
   opacity: 0;
+
   visibility: hidden;
+
   pointer-events: none;
+
 }
+
 .loader-spinner {
+
   width: 60px;
+
   height: 60px;
+
   border-radius: 50%;
+
   border: 3.5px solid rgba(226, 232, 240, 0.8);
+
   border-top-color: #0284c7;
+
   border-right-color: #10b981;
+
   animation: loaderSpin 0.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+
   box-shadow: 0 0 20px rgba(7, 150, 229, 0.15);
+
 }
+
 @keyframes loaderSpin {
+
   to { transform: rotate(360deg); }
+
 }
+
+
 
 /* 2. Skeleton Shimmer Loading Placeholders */
+
 @keyframes t1-shimmer {
+
   0% { background-position: -200% 0; }
+
   100% { background-position: 200% 0; }
+
 }
+
 .t1-skeleton {
+
   background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%) !important;
+
   background-size: 200% 100% !important;
+
   animation: t1-shimmer 1.5s infinite linear !important;
+
   color: transparent !important;
+
   border-color: #e2e8f0 !important;
+
   user-select: none !important;
+
   pointer-events: none !important;
+
 }
+
+
 
 /* 3. Universal 3D Toast Notification System */
+
 #toast-container {
+
   position: fixed !important;
+
   top: 20px !important;
+
   right: 20px !important;
+
   z-index: 999999 !important;
+
   display: flex !important;
+
   flex-direction: column !important;
+
   gap: 10px !important;
+
   max-width: 380px !important;
+
   width: calc(100% - 32px) !important;
+
   pointer-events: none !important;
+
 }
+
+
 
 .t1-toast-item {
+
   pointer-events: auto !important;
+
   background: rgba(255, 255, 255, 0.98) !important;
+
   backdrop-filter: blur(24px) !important;
+
   -webkit-backdrop-filter: blur(24px) !important;
+
   border-radius: 16px !important;
+
   padding: 12px 16px !important;
+
   border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
+
   box-shadow: 
+
     0 4px 0 #dfeaf4,
+
     0 16px 36px rgba(15, 23, 42, 0.12),
+
     inset 0 1.5px 1px #ffffff !important;
+
   display: flex !important;
+
   align-items: flex-start !important;
+
   gap: 12px !important;
+
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+
   transform: translateY(-8px) scale(0.96) !important;
+
   opacity: 0 !important;
+
   position: relative !important;
+
   overflow: hidden !important;
+
 }
+
+
 
 .t1-toast-item.toast-visible {
+
   transform: translateY(0) scale(1) !important;
+
   opacity: 1 !important;
+
 }
+
+
 
 .t1-toast-item.toast-success { 
+
   border-color: #86efac !important; 
+
   box-shadow: 0 4px 0 #10b981, 0 16px 36px rgba(16, 185, 129, 0.18), inset 0 1px 1px #ffffff !important; 
+
 }
+
 .t1-toast-item.toast-error { 
+
   border-color: #fda4af !important; 
+
   box-shadow: 0 4px 0 #f43f5e, 0 16px 36px rgba(244, 63, 94, 0.18), inset 0 1px 1px #ffffff !important; 
+
 }
+
 .t1-toast-item.toast-warning { 
+
   border-color: #fde047 !important; 
+
   box-shadow: 0 4px 0 #eab308, 0 16px 36px rgba(234, 179, 8, 0.18), inset 0 1px 1px #ffffff !important; 
+
 }
+
 .t1-toast-item.toast-info { 
+
   border-color: #7dd3fc !important; 
+
   box-shadow: 0 4px 0 #0284c7, 0 16px 36px rgba(2, 132, 199, 0.18), inset 0 1px 1px #ffffff !important; 
+
 }
+
+
 
 .toast-progress-bar {
+
   position: absolute !important;
+
   bottom: 0 !important;
+
   left: 0 !important;
+
   height: 3px !important;
+
   background: #0284c7 !important;
+
   width: 100% !important;
+
   transform-origin: left !important;
+
   animation: toastCountdown 3.5s linear forwards !important;
+
 }
+
+
 
 @keyframes toastCountdown {
+
   from { transform: scaleX(1); }
+
   to { transform: scaleX(0); }
+
 }
+
+
 
 /* 5. Online / Offline Banner */
+
 #network-status-banner {
+
   position: fixed;
+
   top: 0;
+
   left: 0;
+
   right: 0;
+
   z-index: 100000;
+
   padding: 8px 16px;
+
   font-size: 11.5px;
+
   font-weight: 850;
+
   text-align: center;
+
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+
   transform: translateY(-100%);
+
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+
   display: flex;
+
   items-center: center;
+
   justify-content: center;
+
   gap: 8px;
-}
-#network-status-banner.banner-visible {
-  transform: translateY(0);
-}
-#network-status-banner.banner-offline {
-  background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
-  color: #ffffff;
-}
-#network-status-banner.banner-online {
-  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
-  color: #ffffff;
+
 }
 
-/* 6. Page Navigation Progress Bar */
-#t1-page-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 3px;
-  background: linear-gradient(90deg, #0284c7 0%, #0ea5e9 50%, #10b981 100%);
-  z-index: 99999;
-  box-shadow: 0 0 10px rgba(14, 165, 233, 0.8);
-  transition: width 0.2s ease, opacity 0.4s ease;
+#network-status-banner.banner-visible {
+
+  transform: translateY(0);
+
 }
+
+#network-status-banner.banner-offline {
+
+  background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+
+  color: #ffffff;
+
+}
+
+#network-status-banner.banner-online {
+
+  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+
+  color: #ffffff;
+
+}
+
+
+
+/* 6. Page Navigation Progress Bar */
+
+#t1-page-progress {
+
+  position: fixed;
+
+  top: 0;
+
+  left: 0;
+
+  width: 0%;
+
+  height: 3px;
+
+  background: linear-gradient(90deg, #0284c7 0%, #0ea5e9 50%, #10b981 100%);
+
+  z-index: 99999;
+
+  box-shadow: 0 0 10px rgba(14, 165, 233, 0.8);
+
+  transition: width 0.2s ease, opacity 0.4s ease;
+
+}
+
+
+
 
 
 /* ==========================================================================
+
    T1 FLOATING LUXURY GLASS NAVBAR (ULTRA-SLIM LOW-PROFILE DOCK)
+
    ========================================================================== */
+
 header.t1-navbar {
+
   position: sticky;
+
   top: 0;
+
   z-index: 50;
+
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
   background: rgba(255, 255, 255, 0.92);
+
   backdrop-filter: blur(16px);
+
   -webkit-backdrop-filter: blur(16px);
+
   border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+
 }
+
+
 
 .t1-navbar-inner {
-  height: 48px !important;
-  min-height: 48px !important;
-  max-height: 48px !important;
+  height: 58px !important;
+  min-height: 58px !important;
+  max-height: 58px !important;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Khi lướt cuộn xuống: Biến thành thanh Dock Kính nổi siêu mảnh gọn, sang trọng */
+/* Khi lướt cuộn xuống: Biến thành thanh Dock Kính nổi siêu sang trọng */
 header.t1-navbar.scrolled {
   background: transparent !important;
   border-bottom: none !important;
   box-shadow: none !important;
-  padding-top: 5px !important;
+  padding-top: 8px !important;
 }
 
 header.t1-navbar.scrolled .t1-navbar-inner {
-  height: 42px !important;
-  min-height: 42px !important;
-  max-height: 42px !important;
-  max-width: 1200px !important;
-  background: rgba(255, 255, 255, 0.95) !important;
+  height: 52px !important;
+  min-height: 52px !important;
+  max-height: 52px !important;
+  max-width: 1260px !important;
+  background: rgba(255, 255, 255, 0.96) !important;
   backdrop-filter: blur(24px) !important;
   -webkit-backdrop-filter: blur(24px) !important;
-  border-radius: 12px !important;
+  border-radius: 16px !important;
   border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
   box-shadow: 
     0 3px 0 #DFEAF4,
-    0 10px 24px rgba(7, 150, 229, 0.08),
+    0 12px 28px rgba(7, 150, 229, 0.1),
     inset 0 1px 1px #ffffff !important;
-  padding-left: 14px !important;
-  padding-right: 14px !important;
+  padding-left: 18px !important;
+  padding-right: 18px !important;
 }
 
-/* Tinh chỉnh tab điều hướng siêu gọn gàng, tinh tế */
+/* Tab điều hướng nổi khối 3D rõ nét, rộng rãi, chuẩn tỷ lệ vàng */
 .t1-nav-btn {
-  height: 28px !important;
-  padding: 3px 8px !important;
-  font-size: 10px !important;
-  gap: 4px !important;
-  border-radius: 8px !important;
-  letter-spacing: 0.3px !important;
+  height: 38px !important;
+  padding: 0 15px !important;
+  font-size: 12.5px !important;
+  font-weight: 800 !important;
+  gap: 7.5px !important;
+  border-radius: 11px !important;
+  letter-spacing: 0.35px !important;
 }
 
-/* Nút bấm trong header luôn slim chuẩn low-profile */
+/* Nút bấm trong header nổi khối sang trọng, cân đối */
 header.t1-navbar .t1-btn-3d {
-  height: 30px !important;
-  min-height: 30px !important;
-  max-height: 30px !important;
-  padding: 0 10px !important;
-  font-size: 11px !important;
-  border-radius: 8px !important;
-  box-shadow: 0 2.5px 0 rgba(2, 132, 199, 0.35) !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  max-height: 38px !important;
+  padding: 0 15px !important;
+  font-size: 13px !important;
+  border-radius: 11px !important;
+  box-shadow: 0 3px 0 rgba(2, 132, 199, 0.4), 0 8px 18px rgba(2, 132, 199, 0.18) !important;
 }
 
 header.t1-navbar .t1-btn-discord {
-  height: 28px !important;
-  min-height: 28px !important;
-  max-height: 28px !important;
-  padding: 0 8px !important;
-  font-size: 10px !important;
-  border-radius: 8px !important;
-  box-shadow: 0 2.5px 0 #4752c4 !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  max-height: 38px !important;
+  padding: 0 13px !important;
+  font-size: 12px !important;
+  border-radius: 11px !important;
+  box-shadow: 0 3px 0 #373e98, 0 8px 16px rgba(88, 101, 242, 0.22) !important;
 }
+
+
+
 
 
 /* ==========================================================================
+
    T1 LUXURY MASCOT COMPANIONS: DUAL ANIMATED PLAYFUL BUNNIES (SNOWY & COCO)
+
    ========================================================================== */
+
 #bunny-playground {
+
   position: fixed !important;
+
   inset: 0 !important;
+
   pointer-events: none !important;
+
   z-index: 45 !important;
+
   overflow: hidden !important;
+
   user-select: none !important;
+
 }
+
+
 
 .bunny-actor {
+
   position: absolute;
+
   top: 0;
+
   left: 0;
+
   width: 54px;
+
   height: 44px;
+
   will-change: transform;
+
   pointer-events: none !important;
+
   user-select: none !important;
+
 }
+
+
 
 /* Khớp chuyển động các chi tiết tai, đuôi, chân */
+
 .bunny-actor .ear-left { transform-origin: 16px 14px; }
+
 .bunny-actor .ear-right { transform-origin: 22px 14px; }
+
 .bunny-actor .tail { transform-origin: 44px 26px; }
+
 .bunny-actor .paw-front { transform-origin: 16px 35px; }
+
 .bunny-actor .paw-back { transform-origin: 36px 35px; }
 
+
+
 /* Trạng thái 1: Đang chạy nhảy (Hopping Cycle) */
+
 .bunny-actor.hopping .ear-left { animation: earHopLeft 0.38s infinite ease-in-out; }
+
 .bunny-actor.hopping .ear-right { animation: earHopRight 0.38s infinite ease-in-out; }
+
 .bunny-actor.hopping .tail { animation: tailBounce 0.38s infinite ease-in-out; }
+
 .bunny-actor.hopping .paw-front { animation: pawFrontHop 0.38s infinite ease-in-out; }
+
 .bunny-actor.hopping .paw-back { animation: pawBackHop 0.38s infinite ease-in-out; }
 
+
+
 /* Trạng thái 2: Dừng lại nghỉ ngơi & Vẫy tai (Idle Twitch Cycle) */
+
 .bunny-actor.idle .ear-left { animation: earTwitchLeft 2.2s infinite ease-in-out; }
+
 .bunny-actor.idle .ear-right { animation: earTwitchRight 2.5s infinite ease-in-out 0.25s; }
+
 .bunny-actor.idle .tail { animation: tailWiggleSoft 1.4s infinite ease-in-out; }
 
+
+
 /* Trạng thái 3: Nhảy cẫng vui vẻ (Happy High Jump) */
+
 .bunny-actor.happy .ear-left { animation: earHopLeft 0.22s infinite ease-in-out; }
+
 .bunny-actor.happy .ear-right { animation: earHopRight 0.22s infinite ease-in-out; }
+
 .bunny-actor.happy .tail { animation: tailBounce 0.22s infinite ease-in-out; }
 
+
+
 /* Trạng thái 4: Gặp nhau quay đầu nhìn (Meeting Sniff) */
+
 .bunny-actor.meeting .ear-left { animation: earTwitchLeft 1.2s infinite ease-in-out; }
+
 .bunny-actor.meeting .ear-right { animation: earTwitchRight 1.2s infinite ease-in-out 0.1s; }
+
 .bunny-actor.meeting .tail { animation: tailBounce 0.3s infinite ease-in-out; }
 
+
+
 @keyframes earHopLeft {
+
   0%, 100% { transform: rotate(-6deg); }
+
   50% { transform: rotate(18deg); }
+
 }
+
 @keyframes earHopRight {
+
   0%, 100% { transform: rotate(6deg); }
+
   50% { transform: rotate(-16deg); }
+
 }
+
 @keyframes tailBounce {
+
   0%, 100% { transform: rotate(-8deg) scale(0.95); }
+
   50% { transform: rotate(16deg) scale(1.15); }
+
 }
+
 @keyframes pawFrontHop {
+
   0%, 100% { transform: translate(0, 0); }
+
   50% { transform: translate(-3px, -4px); }
+
 }
+
 @keyframes pawBackHop {
+
   0%, 100% { transform: translate(0, 0); }
+
   50% { transform: translate(3px, -3px); }
+
 }
+
 @keyframes earTwitchLeft {
+
   0%, 75%, 100% { transform: rotate(0deg); }
+
   80% { transform: rotate(16deg); }
+
   85% { transform: rotate(-10deg); }
+
   90% { transform: rotate(12deg); }
+
 }
+
 @keyframes earTwitchRight {
+
   0%, 75%, 100% { transform: rotate(0deg); }
+
   80% { transform: rotate(-16deg); }
+
   85% { transform: rotate(10deg); }
+
   90% { transform: rotate(-12deg); }
+
 }
+
 @keyframes tailWiggleSoft {
+
   0%, 65%, 100% { transform: rotate(0); }
+
   72% { transform: rotate(18deg); }
+
   82% { transform: rotate(-18deg); }
+
 }
+
+
 
 /* Bụi mềm khi chân tiếp đất (Dust Puff) */
+
 .bunny-dust-puff {
+
   position: absolute;
+
   border-radius: 50%;
+
   background: rgba(148, 163, 184, 0.4);
+
   pointer-events: none !important;
+
   animation: bunnyDustPuffAnim 0.42s ease-out forwards;
+
 }
+
+
 
 @keyframes bunnyDustPuffAnim {
+
   0% { transform: scale(0.35); opacity: 0.65; }
+
   100% { transform: scale(1.6) translateY(-6px); opacity: 0; }
+
 }
 
+
+
 @media (prefers-reduced-motion: reduce) {
+
   #bunny-playground {
+
     display: none !important;
+
   }
+
 }
+
+
+
 
 
 /* ==========================================================================
+
    T1 SCROLL DRAWING ANIMATION (ARTISTIC HAND-DRAWN SKETCH RIBBON)
+
    ========================================================================== */
+
 #scroll-draw-playground {
+
   position: absolute !important;
+
   top: 0 !important;
+
   left: 0 !important;
+
   width: 100% !important;
+
   height: 100% !important;
+
   pointer-events: none !important;
+
   z-index: 35 !important;
+
   overflow: hidden !important;
+
   user-select: none !important;
+
 }
+
+
 
 #scroll-draw-svg {
+
   position: absolute;
+
   top: 0;
+
   left: 0;
+
   width: 100%;
+
   height: 100%;
+
   pointer-events: none !important;
+
   overflow: visible;
+
 }
+
+
 
 #scroll-main-path {
+
   fill: none;
+
   stroke: url(#scrollDrawGradient);
+
   stroke-width: 2.8px;
+
   stroke-linecap: round;
+
   stroke-linejoin: round;
+
   filter: drop-shadow(0 2px 8px rgba(14, 165, 233, 0.22));
+
 }
+
+
 
 .sketch-line {
+
   transition: stroke-dashoffset 0.08s linear;
+
 }
+
+
 
 .sketch-doodle {
+
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+
 }
+
+
 
 .sketch-doodle.doodle-completed {
+
   filter: drop-shadow(0 4px 12px rgba(16, 185, 129, 0.2));
+
   animation: doodlePop 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
 }
+
+
 
 @keyframes doodlePop {
+
   0% { transform: scale(0.95); }
+
   50% { transform: scale(1.08); }
+
   100% { transform: scale(1); }
+
 }
+
+
 
 /* Cọ vẽ hoạt hình ma thuật (Artist Paintbrush Nib) */
+
 .artist-brush-nib {
+
   position: absolute;
+
   top: 0;
+
   left: 0;
+
   width: 32px;
+
   height: 32px;
+
   pointer-events: none !important;
+
   will-change: transform, opacity;
+
   z-index: 36 !important;
+
   transition: opacity 0.25s ease;
+
   filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.15));
+
 }
+
+
 
 .brush-paint-sparkle {
+
   position: absolute;
+
   bottom: 0;
+
   right: 0;
+
   width: 8px;
+
   height: 8px;
+
   border-radius: 50%;
+
   background: radial-gradient(circle, #38bdf8 0%, rgba(14, 165, 233, 0) 70%);
+
   animation: brushSparkleGlow 0.8s infinite alternate ease-in-out;
+
 }
+
+
 
 @keyframes brushSparkleGlow {
+
   0% { transform: scale(0.8); opacity: 0.5; }
+
   100% { transform: scale(1.6); opacity: 1; }
+
 }
 
+
+
 @media (prefers-reduced-motion: reduce) {
+
   #scroll-draw-playground {
+
     display: none !important;
+
   }
+
 }
+
+
+
 
 
 /* ==========================================================================
+
    T1 HERO TITLE - SOLID CRISP TYPOGRAPHY WITH SUBTLE ENTRANCE
+
    ========================================================================== */
+
 .hero-title {
+
   font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif !important;
+
   user-select: none;
+
   animation: heroTitleSmoothFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+
 }
+
+
 
 @keyframes heroTitleSmoothFade {
+
   0% {
+
     opacity: 0;
+
     transform: translateY(10px);
+
   }
+
   100% {
+
     opacity: 1;
+
     transform: translateY(0);
+
   }
+
 }
 
+
+
 @media (prefers-reduced-motion: reduce) {
+
   .hero-title {
+
     opacity: 1 !important;
+
     transform: none !important;
+
     animation: none !important;
+
   }
+
 }
+
+
+
 
 
 /* ==========================================================================
+
    T1 PREMIUM GAMING SOFT-UI GLASS DRAWER MENU (RESPONSIVE DOCK)
+
    ========================================================================== */
+
 .t1-drawer-card {
+
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
+
   padding: 8px 12px;
+
   border-radius: 12px;
+
   background: rgba(255, 255, 255, 0.85);
+
   border: 1px solid #e2e8f0;
+
   box-shadow: 0 2px 4px rgba(15, 23, 42, 0.03), 0 2px 0 #edf2f7;
+
   text-decoration: none !important;
+
   position: relative;
+
   overflow: hidden;
+
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
   user-select: none;
+
 }
+
+
 
 .t1-drawer-card:hover {
+
   background: #ffffff;
+
   border-color: #7dd3fc;
+
   box-shadow: 0 4px 12px rgba(14, 165, 233, 0.12), 0 2px 0 #bae6fd;
+
   transform: translateY(-2px);
+
 }
+
+
 
 .t1-drawer-card:active {
+
   transform: translateY(1px);
+
   box-shadow: 0 1px 2px rgba(14, 165, 233, 0.08);
+
 }
+
+
 
 /* Mục active có dải chỉ báo bên trái */
+
 .t1-drawer-card.active-drawer-card {
+
   background: #f0f9ff;
+
   border-color: #38bdf8;
+
   box-shadow: 0 2px 0 #0284c7, 0 6px 16px rgba(2, 132, 199, 0.08);
+
 }
+
+
 
 .t1-drawer-card.active-drawer-card::before {
+
   content: '';
+
   position: absolute;
+
   left: 0;
+
   top: 6px;
+
   bottom: 6px;
+
   width: 3.5px;
+
   border-radius: 0 4px 4px 0;
+
   background: #0284c7;
+
 }
+
+
 
 /* Vệt sáng chạy nhẹ qua khi hover */
+
 .t1-drawer-card::after {
+
   content: '';
+
   position: absolute;
+
   top: -50%;
+
   left: -100%;
+
   width: 50%;
+
   height: 200%;
+
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+
   transform: skewX(-20deg);
+
   transition: none;
+
   pointer-events: none;
+
 }
+
+
 
 .t1-drawer-card:hover::after {
+
   left: 150%;
+
   transition: left 0.5s ease-in-out;
+
 }
+
+
 
 /* Nút Discord chuyên nghiệp */
+
 .t1-drawer-discord-btn {
+
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
+
   padding: 10px 14px;
+
   border-radius: 14px;
+
   background: linear-gradient(135deg, #5865F2 0%, #4752c4 100%);
+
   color: #ffffff !important;
+
   text-decoration: none !important;
+
   box-shadow: 0 3px 0 #373e98, 0 10px 24px rgba(88, 101, 242, 0.22);
+
   position: relative;
+
   overflow: hidden;
+
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
   user-select: none;
+
 }
+
+
 
 .t1-drawer-discord-btn:hover {
+
   transform: translateY(-2px);
+
   box-shadow: 0 4px 0 #373e98, 0 14px 28px rgba(88, 101, 242, 0.32);
+
 }
 
+
+
 .t1-drawer-discord-btn:active {
+
   transform: translateY(1.5px);
+
   box-shadow: 0 1.5px 0 #373e98;
+
 }
+
