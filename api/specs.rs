@@ -1,22 +1,13 @@
-use serde::{Deserialize, Serialize};
 use serde_json::json;
 use std::collections::HashMap;
-use vercel_runtime::{run, service_fn, Error, Request, Response, StatusCode};
-
-#[derive(Debug, Serialize, Deserialize)]
-struct DiagnosticQuery {
-    cores: Option<u32>,
-    ram_gb: Option<u32>,
-    gpu: Option<String>,
-}
+use vercel_runtime::{run, Body, Error, Request, Response, StatusCode};
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
-    run(service_fn(handler)).await
+    run(handler).await
 }
 
-async fn handler(req: Request) -> Result<Response<String>, Error> {
-    // Parse query parameters
+pub async fn handler(req: Request) -> Result<Response<Body>, Error> {
     let uri = req.uri();
     let query_map: HashMap<String, String> = uri
         .query()
@@ -42,7 +33,6 @@ async fn handler(req: Request) -> Result<Response<String>, Error> {
         .map(|s| s.to_string())
         .unwrap_or_else(|| "GeForce GTX Series".to_string());
 
-    // Rust Diagnostic Analysis Logic
     let (tier, preset, target_fps, boost_percent, advice) = if ram_gb >= 16 && cores >= 6 {
         (
             "TIER_HIGH_END",
@@ -87,13 +77,12 @@ async fn handler(req: Request) -> Result<Response<String>, Error> {
         "engine": "GTA5VN Rust Hardware Analyzer v2.5.2"
     });
 
-    let body = serde_json::to_string(&payload)?;
     let response = Response::builder()
         .status(StatusCode::OK)
         .header("Content-Type", "application/json; charset=utf-8")
         .header("Cache-Control", "public, s-maxage=300")
         .header("Access-Control-Allow-Origin", "*")
-        .body(body)?;
+        .body(payload.to_string().into())?;
 
     Ok(response)
 }

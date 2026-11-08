@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 use serde_json::json;
-use vercel_runtime::{run, service_fn, Error, Method, Request, Response, StatusCode};
+use vercel_runtime::{run, Body, Error, Method, Request, Response, StatusCode};
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 struct ReviewItem {
@@ -23,7 +23,7 @@ struct CreateReviewRequest {
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
-    run(service_fn(handler)).await
+    run(handler).await
 }
 
 fn sanitize_text(input: &str) -> String {
@@ -36,10 +36,9 @@ fn sanitize_text(input: &str) -> String {
         .to_string()
 }
 
-async fn handler(req: Request) -> Result<Response<String>, Error> {
+pub async fn handler(req: Request) -> Result<Response<Body>, Error> {
     match req.method() {
         &Method::GET => {
-            // Real Community Reviews curated by GTA5VN-System
             let reviews = vec![
                 ReviewItem {
                     id: "rev_01".to_string(),
@@ -76,13 +75,12 @@ async fn handler(req: Request) -> Result<Response<String>, Error> {
                 "data": reviews
             });
 
-            let body = serde_json::to_string(&payload)?;
             let response = Response::builder()
                 .status(StatusCode::OK)
                 .header("Content-Type", "application/json; charset=utf-8")
                 .header("Cache-Control", "public, s-maxage=60, stale-while-revalidate=120")
                 .header("Access-Control-Allow-Origin", "*")
-                .body(body)?;
+                .body(payload.to_string().into())?;
 
             Ok(response)
         }
@@ -109,11 +107,10 @@ async fn handler(req: Request) -> Result<Response<String>, Error> {
                             .status(StatusCode::BAD_REQUEST)
                             .header("Content-Type", "application/json; charset=utf-8")
                             .header("Access-Control-Allow-Origin", "*")
-                            .body(serde_json::to_string(&error_body)?)?;
+                            .body(error_body.to_string().into())?;
                         return Ok(response);
                     }
 
-                    // Created review item
                     let created = ReviewItem {
                         id: format!("rev_{}", chrono::Utc::now().timestamp_millis()),
                         author: clean_name,
@@ -134,7 +131,7 @@ async fn handler(req: Request) -> Result<Response<String>, Error> {
                         .status(StatusCode::CREATED)
                         .header("Content-Type", "application/json; charset=utf-8")
                         .header("Access-Control-Allow-Origin", "*")
-                        .body(serde_json::to_string(&success_body)?)?;
+                        .body(success_body.to_string().into())?;
 
                     Ok(response)
                 }
@@ -147,7 +144,7 @@ async fn handler(req: Request) -> Result<Response<String>, Error> {
                         .status(StatusCode::BAD_REQUEST)
                         .header("Content-Type", "application/json; charset=utf-8")
                         .header("Access-Control-Allow-Origin", "*")
-                        .body(serde_json::to_string(&err_json)?)?;
+                        .body(err_json.to_string().into())?;
                     Ok(response)
                 }
             }
@@ -159,14 +156,14 @@ async fn handler(req: Request) -> Result<Response<String>, Error> {
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
                 .header("Access-Control-Allow-Headers", "Content-Type, Authorization")
-                .body("".to_string())?;
+                .body("".into())?;
             Ok(response)
         }
 
         _ => {
             let response = Response::builder()
                 .status(StatusCode::METHOD_NOT_ALLOWED)
-                .body("Method Not Allowed".to_string())?;
+                .body("Method Not Allowed".into())?;
             Ok(response)
         }
     }

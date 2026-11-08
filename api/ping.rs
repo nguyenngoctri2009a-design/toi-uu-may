@@ -1,12 +1,12 @@
 use serde_json::json;
-use vercel_runtime::{run, service_fn, Error, Request, Response, StatusCode};
+use vercel_runtime::{run, Body, Error, Request, Response, StatusCode};
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
-    run(service_fn(handler)).await
+    run(handler).await
 }
 
-async fn handler(_req: Request) -> Result<Response<String>, Error> {
+pub async fn handler(_req: Request) -> Result<Response<Body>, Error> {
     let payload = json!({
         "success": true,
         "nodes": {
@@ -32,16 +32,15 @@ async fn handler(_req: Request) -> Result<Response<String>, Error> {
             }
         },
         "optimized_route": "Direct Anycast VNPT/FPT IX",
-        "timestamp": chrono::Utc::now().to_rfc3339()
+        "engine": "GTA5VN Rust Core v2.5.2"
     });
 
-    let body = serde_json::to_string(&payload)?;
     let response = Response::builder()
         .status(StatusCode::OK)
         .header("Content-Type", "application/json; charset=utf-8")
         .header("Cache-Control", "no-cache, no-store, must-revalidate")
         .header("Access-Control-Allow-Origin", "*")
-        .body(body)?;
+        .body(payload.to_string().into())?;
 
     Ok(response)
 }

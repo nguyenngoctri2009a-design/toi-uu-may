@@ -1,12 +1,12 @@
-use serde_json::{json, Value};
-use vercel_runtime::{run, service_fn, Error, Request, Response, StatusCode};
+use serde_json::json;
+use vercel_runtime::{run, Body, Error, Request, Response, StatusCode};
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
-    run(service_fn(handler)).await
+    run(handler).await
 }
 
-async fn handler(_req: Request) -> Result<Response<String>, Error> {
+pub async fn handler(_req: Request) -> Result<Response<Body>, Error> {
     let payload = json!({
         "status": "online",
         "service": "GTA5VN-System Rust Core Engine",
@@ -18,17 +18,15 @@ async fn handler(_req: Request) -> Result<Response<String>, Error> {
             "standby_ram_cleaner": true,
             "tcp_nodelay": true
         },
-        "region": "ap-southeast-1 (Singapore/VN Edge)",
-        "timestamp": chrono::Utc::now().to_rfc3339()
+        "region": "ap-southeast-1 (Singapore/VN Edge)"
     });
 
-    let body = serde_json::to_string(&payload)?;
     let response = Response::builder()
         .status(StatusCode::OK)
         .header("Content-Type", "application/json; charset=utf-8")
-        .header("Cache-Control", "public, s-maxage=60, stale-while-revalidate=30")
+        .header("Cache-Control", "public, s-maxage=60, stale-while-revalidate=120")
         .header("Access-Control-Allow-Origin", "*")
-        .body(body)?;
+        .body(payload.to_string().into())?;
 
     Ok(response)
 }

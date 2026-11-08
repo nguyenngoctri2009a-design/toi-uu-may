@@ -1,12 +1,12 @@
 use std::collections::HashMap;
-use vercel_runtime::{run, service_fn, Error, Request, Response, StatusCode};
+use vercel_runtime::{run, Body, Error, Request, Response, StatusCode};
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
-    run(service_fn(handler)).await
+    run(handler).await
 }
 
-async fn handler(req: Request) -> Result<Response<String>, Error> {
+pub async fn handler(req: Request) -> Result<Response<Body>, Error> {
     let uri = req.uri();
     let query_map: HashMap<String, String> = uri
         .query()
@@ -25,7 +25,7 @@ async fn handler(req: Request) -> Result<Response<String>, Error> {
     let (shadow_quality, fx_quality, water_quality, grass_quality, particles_quality) = match profile {
         "potato" => ("0", "0", "0", "0", "0"),
         "high" => ("2", "2", "1", "1", "1"),
-        _ => ("1", "1", "0", "0", "0"), // "net" default
+        _ => ("1", "1", "0", "0", "0"),
     };
 
     let xml_content = format!(
@@ -80,7 +80,7 @@ async fn handler(req: Request) -> Result<Response<String>, Error> {
             format!("attachment; filename=\"settings_{}.xml\"", profile),
         )
         .header("Access-Control-Allow-Origin", "*")
-        .body(xml_content)?;
+        .body(xml_content.into())?;
 
     Ok(response)
 }
