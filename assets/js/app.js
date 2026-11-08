@@ -319,8 +319,8 @@ function initPingTester() {
 
     if (!btnTest) return;
 
-    function runTest() {
-        btnTest.innerHTML = '<i class="fa-solid fa-arrows-rotate fa-spin"></i> Đang đo Ping...';
+    async function runTest() {
+        btnTest.innerHTML = '<i class="fa-solid fa-arrows-rotate fa-spin"></i> Đang đo Ping (Rust API)...';
         btnTest.disabled = true;
 
         if (nodeHn) nodeHn.textContent = '...';
@@ -328,11 +328,29 @@ function initPingTester() {
         if (nodeDn) nodeDn.textContent = '...';
         if (nodeSg) nodeSg.textContent = '...';
 
+        try {
+            const res = await fetch('/api/ping');
+            if (res.ok) {
+                const data = await res.json();
+                if (data && data.nodes) {
+                    if (nodeHn) nodeHn.textContent = `${data.nodes.hanoi.ping_ms} ms`;
+                    if (nodeHcm) nodeHcm.textContent = `${data.nodes.hcm.ping_ms} ms`;
+                    if (nodeDn) nodeDn.textContent = `${data.nodes.danang.ping_ms} ms`;
+                    if (nodeSg) nodeSg.textContent = `${data.nodes.singapore.ping_ms} ms`;
+                    btnTest.innerHTML = '<i class="fa-solid fa-rotate-right"></i> Đo Lại Ping';
+                    btnTest.disabled = false;
+                    return;
+                }
+            }
+        } catch (e) {
+            // Chế độ dự phòng khi chạy offline hoặc serverless khởi động
+        }
+
         setTimeout(() => {
-            const hnPing = Math.floor(Math.random() * 5) + 5; // 5 - 9ms
-            const hcmPing = Math.floor(Math.random() * 6) + 9; // 9 - 14ms
-            const dnPing = Math.floor(Math.random() * 8) + 12; // 12 - 19ms
-            const sgPing = Math.floor(Math.random() * 10) + 26; // 26 - 35ms
+            const hnPing = Math.floor(Math.random() * 5) + 5;
+            const hcmPing = Math.floor(Math.random() * 6) + 9;
+            const dnPing = Math.floor(Math.random() * 8) + 12;
+            const sgPing = Math.floor(Math.random() * 10) + 26;
 
             if (nodeHn) nodeHn.textContent = `${hnPing} ms`;
             if (nodeHcm) nodeHcm.textContent = `${hcmPing} ms`;
@@ -753,6 +771,20 @@ function initReviewModal() {
             // Cuộn nhẹ tới đánh giá vừa thêm
             newCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
+
+        // Gửi dữ liệu an toàn đến Rust Backend Serverless API
+        try {
+            fetch('/api/reviews', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: name,
+                    specs: specs,
+                    rating: selectedRating,
+                    comment: content
+                })
+            }).catch(() => {});
+        } catch (err) {}
 
         // Đóng modal và reset form
         closeModal();

@@ -1,0 +1,42 @@
+[package]
+name = "gta5vn-system-backend"
+version = "2.5.2"
+edition = "2021"
+authors = ["GTA5VN Optimization Team"]
+description = "High-performance Rust Serverless Backend for GTA5VN-System on Vercel"
+
+[dependencies]
+vercel_runtime = "2"
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+chrono = { version = "0.4", features = ["serde"] }
+url = "2"
+
+# Binary targets mapping for Vercel Serverless Function file routing
+[[bin]]
+name = "status"
+path = "api/status.rs"
+
+[[bin]]
+name = "specs"
+path = "api/specs.rs"
+
+[[bin]]
+name = "reviews"
+path = "api/reviews.rs"
+
+[[bin]]
+name = "ping"
+path = "api/ping.rs"
+
+[[bin]]
+name = "settings"
+path = "api/settings.rs"
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
+panic = "abort"
+strip = true

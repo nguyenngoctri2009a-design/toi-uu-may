@@ -1,66 +1,103 @@
-# ⚡ T1 GTA 5 VN Optimizer - Official Landing Page
+# ⚡ GTA5VN-System Pro - Fullstack Rust + Vercel Architecture
 
-Trang Landing Page giới thiệu và tải phần mềm tối ưu máy cho game **GTA 5 & FiveM Việt Nam**, tích hợp công cụ kiểm tra phần cứng (Hardware Spec Checker) trực tiếp trên trình duyệt, thiết kế theo ngôn ngữ phong cách **T1 Esports (Đỏ Crimson / Đen Carbon / Trắng)**.
-
-Được tối ưu hóa On-Page SEO toàn diện (Schema.org JSON-LD, OpenGraph, Twitter Cards, Semantic HTML5) nhằm đẩy thứ hạng từ khóa liên quan đến `tối ưu gta 5`, `tăng fps fivem vn` lên Google Search.
-
----
-
-## 🚀 Các Tính Năng Đã Tích Hợp
-
-1. **Giao Diện T1 Esports**: Tông màu chuẩn T1 (`#E2012D`), hiệu ứng viền neon, cyber-grid nền, tối ưu 100% Mobile & PC.
-2. **Trình Đo Cấu Hình Trực Tiếp (Live Hardware Checker)**: Tự động quét số luồng CPU, dung lượng RAM ước tính và card đồ họa GPU (qua WebGL) để đưa ra khuyến nghị chơi FiveM.
-3. **Bảng Benchmark Trước & Sau**: Trực quan hóa độ tăng FPS thực tế trên 3 phân khúc máy tính.
-4. **Chuẩn SEO Top Google**:
-   - Khai báo Schema `SoftwareApplication` (được ưu tiên hiển thị sao đánh giá và lượt tải trên Google).
-   - Đầy đủ thẻ Meta Title, Meta Description chuẩn độ dài ký tự vàng.
-   - Sẵn sàng tệp `robots.txt` và `sitemap.xml`.
+Hệ thống Landing Page & Công cụ Tối ưu hóa GTA 5 / FiveM Roleplay Việt Nam.
+Giao diện chuẩn **T1 3D Neumorphic-Glass Hybrid**, tích hợp **Rust Serverless Backend** hiệu năng cao triển khai trực tiếp trên **Vercel** kết nối kho lưu trữ **GitHub**.
 
 ---
 
-## 🛠️ Hướng Dẫn Up Lên GitHub & Kích Hoạt GitHub Pages (Miễn Phí 100%)
+## 🏗️ Kiến Trúc Hệ Thống (Architecture Overview)
 
-### Bước 1: Khởi tạo Git và đẩy code lên Repo
-
-Mở PowerShell hoặc Terminal tại thư mục này và chạy các lệnh sau:
-
-```bash
-# 1. Khởi tạo Git
-git init
-
-# 2. Thêm tất cả các file
-git add .
-
-# 3. Commit code
-git commit -m "feat: init T1 GTA 5 VN Optimizer SEO landing page"
-
-# 4. Đổi tên nhánh sang main
-git branch -M main
-
-# 5. Liên kết với Repository trên GitHub của bạn (Thay URL bằng link repo của bạn)
-git remote add origin https://github.com/TÊN_GITHUB_CỦA_BẠN/TÊN_REPO.git
-
-# 6. Đẩy code lên
-git push -u origin main
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    GitHub Repository (Source)               │
+│               nguyenngoctri2009a-design/toi-uu-may          │
+└──────────────────────────────┬──────────────────────────────┘
+                               │ Auto-Deploy on Push (main)
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│                       Vercel Cloud Platform                 │
+├──────────────────────────────┬──────────────────────────────┤
+│    Frontend (Global Edge CDN)│   Backend (Rust Serverless)  │
+│  - 100% Light Mode T1 Glass  │  - vercel_runtime v2 + Tokio │
+│  - index.html, 404, 500      │  - api/status.rs             │
+│  - assets/css, assets/js     │  - api/specs.rs              │
+│  - 144Hz Telemetry Canvas    │  - api/reviews.rs            │
+│  - Web Audio Tactile Engine  │  - api/ping.rs               │
+│  - LocalStorage Persistence  │  - api/settings.rs           │
+└──────────────────────────────┴──────────────────────────────┘
 ```
 
 ---
 
-### Bước 2: Bật tính năng Web GitHub Pages
+## 🚀 Danh Sách Endpoint Rust API (`api/*.rs`)
 
-1. Vào trang GitHub Repo của bạn trên trình duyệt.
-2. Bấm vào tab **Settings** (Cài đặt) ở trên cùng.
-3. Ở menu bên trái, tìm và chọn mục **Pages**.
-4. Tại mục **Build and deployment** -> **Source**: Chọn `Deploy from a branch`.
-5. Tại mục **Branch**: Chọn nhánh `main` và thư mục `/ (root)`, sau đó nhấn **Save**.
-6. Đợi khoảng 1-2 phút, GitHub sẽ cấp cho bạn một đường link website có dạng:
-   👉 `https://TÊN_GITHUB_CỦA_BẠN.github.io/TÊN_REPO/`
+| Endpoint | Method | Chức Năng | Output |
+| :--- | :--- | :--- | :--- |
+| `/api/status` | `GET` | Kiểm tra trạng thái máy chủ, runtime Rust, tính năng khóa 144Hz | JSON |
+| `/api/ping` | `GET` | Đo độ trễ thời gian thực tới 4 cụm máy chủ VN & Quốc tế | JSON |
+| `/api/specs` | `GET` | Thuật toán chẩn đoán phần cứng (CPU, RAM, GPU) và dự đoán FPS | JSON |
+| `/api/reviews` | `GET, POST` | Lấy danh sách & Đăng bài đánh giá cộng đồng (Lọc XSS, Rate limit) | JSON |
+| `/api/settings` | `GET` | Engine sinh file `gta5_settings.xml` tối ưu theo phân khúc máy | XML |
 
 ---
 
-## 🎯 Lưu Ý Để Đạt Điểm SEO Cao Nhất
+## 🛠️ Hướng Dẫn Cài Đặt & Phát Triển Cục Bộ (Local Development)
 
-- Mở file [index.html](file:///c:/Users/PC/Documents/HI/index.html), [sitemap.xml](file:///c:/Users/PC/Documents/HI/sitemap.xml), [robots.txt](file:///c:/Users/PC/Documents/HI/robots.txt) và thay thế `https://yourusername.github.io/gta5-vn-optimizer/` bằng link thật của bạn.
-- Thay link tải file `.exe` và `.zip` trong mục `#download` trỏ đến link Google Drive hoặc GitHub Releases chứa app thật của bạn.
-- Gửi link `sitemap.xml` lên **Google Search Console** để Google cào dữ liệu và lập chỉ mục trong 24-48 giờ.
+### 1. Yêu cầu môi trường
+- Đã cài đặt [Rust & Cargo](https://rustup.rs/) (phiên bản 1.70 trở lên).
+- Đã cài đặt [Vercel CLI](https://vercel.com/cli):
+  ```bash
+  npm i -g vercel
+  ```
 
+### 2. Cài đặt biến môi trường
+Tạo file `.env.local` tại thư mục gốc (dựa theo `.env.example`):
+```bash
+ENVIRONMENT=development
+RUST_LOG=debug
+DATABASE_URL=postgres://user:password@host/database?sslmode=require
+API_SECRET_KEY=local_development_secret_key
+```
+
+### 3. Khởi chạy môi trường Dev
+Chạy lệnh sau tại thư mục dự án:
+```bash
+vercel dev
+```
+Vercel CLI sẽ tự động biên dịch các file trong `api/*.rs` bằng Cargo và khởi tạo máy chủ tại `http://localhost:3000`.
+
+---
+
+## 🌐 Hướng Dẫn Triển Khai Lên Vercel (Production Deployment)
+
+### 1. Kết nối Repository với Vercel
+1. Truy cập [Vercel Dashboard](https://vercel.com/dashboard) -> Chọn **Add New Project**.
+2. Chọn Repository GitHub: `nguyenngoctri2009a-design/toi-uu-may`.
+3. Framework Preset: Chọn **Other**.
+4. Cấu hình biến môi trường trong mục **Environment Variables**:
+   - `ENVIRONMENT`: `production`
+   - `DATABASE_URL`: Đường dẫn kết nối database Supabase / Neon / Postgres của bạn.
+   - `API_SECRET_KEY`: Khóa bí mật API.
+5. Bấm **Deploy**. Vercel sẽ tự động build binary Rust và kích hoạt website trực tuyến.
+
+---
+
+## 🛡️ Bảo Mật & Toàn Vẹn Dữ Liệu
+
+1. **Bảo vệ biến môi trường**: File `.env*` đã được đưa vào `.gitignore`, ngăn chặn rò rỉ credential lên GitHub.
+2. **Cơ sở dữ liệu bền vững**: Không lưu trữ file dữ liệu quan trọng trên filesystem tạm `/tmp` của Serverless Function. Mọi dữ liệu đều được lưu trữ trên Cloud Database độc lập.
+3. **Phòng chống tấn công XSS & Injection**: Mọi dữ liệu người dùng gửi lên qua `/api/reviews` đều được hàm `sanitize_text` của Rust làm sạch trước khi xử lý.
+4. **Bảo mật Header**: Cấu hình đầy đủ `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Permissions-Policy`.
+
+---
+
+## ❓ Xử Lý Lỗi Thường Gặp (Troubleshooting)
+
+- **Lỗi 1: `Function Execution Timeout`**:
+  - *Nguyên nhân*: Hàm Rust mất quá 10s để thực thi.
+  - *Khắc phục*: Tối ưu connection pool database hoặc tăng `maxDuration` trong `vercel.json`.
+- **Lỗi 2: `Database Connection Lost`**:
+  - *Nguyên nhân*: Serverless function đóng kết nối khi instance ngủ đông.
+  - *Khắc phục*: Sử dụng Connection Pooling (PgBouncer hoặc HTTP REST Adapter như Neon/Supabase/Upstash).
+- **Lỗi 3: Chạy offline không tải được dữ liệu**:
+  - *Cơ chế dự phòng*: Toàn bộ frontend đã tích hợp sẵn Service Fallback. Khi mất kết nối hoặc API serverless đang khởi động nguội, frontend tự động sử dụng bộ tính toán client mà không làm gián đoạn trải nghiệm người dùng.
