@@ -119,7 +119,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Custom T1 Master Design System Stylesheet -->
-    <link rel="stylesheet" href="assets/css/style.css?v=2026.35">
+    <link rel="stylesheet" href="assets/css/style.css?v=2026.40">
 
     <script>
         tailwind.config = {
@@ -1849,8 +1849,9 @@
     </div>
 
     <!-- Scripts JavaScript Hoạt Động -->
-    <script src="assets/js/app.js?v=2026.35"></script>
-    <script src="assets/js/bunnies.js?v=2026.35"></script>
+    <script src="assets/js/app.js?v=2026.40"></script>
+    <script src="assets/js/bunnies.js?v=2026.40"></script>
+    <script src="assets/js/scroll-draw.js?v=2026.40"></script>
     <!-- ======================================================================
          PRO FLOATING HUD & BACK-TO-TOP DOCK (T1 GAMING SAAS TELEMETRY)
          ====================================================================== -->
@@ -1949,6 +1950,25 @@
                 <span>ĐÃ HIỂU</span>
             </button>
         </div>
+    </div>
+
+    <!-- ======================================================================
+         SCROLL DRAWING ARTISTIC ANIMATION PLAYGROUND (ZERO INTERFERENCE)
+         ====================================================================== -->
+    <div id="scroll-draw-playground" class="pointer-events-none absolute inset-0 z-30 overflow-hidden select-none" aria-hidden="true">
+        <svg id="scroll-draw-svg">
+            <defs>
+                <linearGradient id="scrollDrawGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#0284c7"/>
+                    <stop offset="25%" stop-color="#0ea5e9"/>
+                    <stop offset="50%" stop-color="#10b981"/>
+                    <stop offset="75%" stop-color="#f59e0b"/>
+                    <stop offset="100%" stop-color="#ec4899"/>
+                </linearGradient>
+            </defs>
+            <path id="scroll-main-path"/>
+            <g id="scroll-doodles-container"></g>
+        </svg>
     </div>
 
     <!-- ======================================================================
