@@ -262,10 +262,7 @@ function triggerDirectDownload(e) {
     if (e && e.preventDefault) e.preventDefault();
 
     // Sử dụng link trực tiếp file GTA5VN-System.exe
-    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-    const downloadUrl = isLocal 
-        ? 'downloads/GTA5VN-System.exe' 
-        : 'https://github.com/nguyenngoctri2009a-design/toi-uu-may/releases/download/v2.5.0/GTA5VN-System.exe';
+    const downloadUrl = 'downloads/GTA5VN-System.exe';
 
     const a = document.createElement('a');
     a.href = downloadUrl;
