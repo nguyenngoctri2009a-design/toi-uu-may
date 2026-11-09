@@ -5,17 +5,13 @@
    Gaming SaaS + Premium Dashboard + Neumorphic 3D Architecture
 
    ========================================================================== */
-
-
-
+
 :root {
 
   /* Khóa cứng Light Mode vĩnh viễn */
 
   color-scheme: light !important;
-
-
-
+
   /* Bảng màu chuẩn chỉ định */
 
   --primary: #0796E5;
@@ -43,9 +39,7 @@
   --danger: #E34D59;
 
   --accent: #6655EE;
-
-
-
+
   /* Gradients */
 
   --primary-gradient: linear-gradient(135deg, #0796E5 0%, #00A88A 100%);
@@ -57,9 +51,7 @@
   --btn-white-bg: linear-gradient(180deg, #FFFFFF 0%, #F0F6FC 100%);
 
 }
-
-
-
+
 /* Reset & Nền Tổng Thể */
 
 *, *::before, *::after {
@@ -67,15 +59,11 @@
   box-sizing: border-box;
 
 }
-
-
-
+
 html {
   overflow-x: clip;
 }
-
-
-
+
 body {
 
   background-color: var(--bg) !important;
@@ -98,17 +86,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
 }
-
-
-
+
 h1, h2, h3, h4, .font-heading {
 
   font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
 
 }
-
-
-
+
 /* Họa Tiết Nền Chấm Nhỏ Vi Tế (Subtle Dot Matrix) */
 
 .t1-dot-matrix {
@@ -127,9 +111,7 @@ h1, h2, h3, h4, .font-heading {
   transform: translateZ(0);
   will-change: transform;
 }
-
-
-
+
 /* ==========================================================================
 
    HIỆU ỨNG MÙ MỊT KHÔNG GÂY LAG (GPU-ACCELERATED ATMOSPHERIC MIST & GLOW)
@@ -151,9 +133,7 @@ h1, h2, h3, h4, .font-heading {
   perspective: 1000px;
 
 }
-
-
-
+
 /* Làn Khói Mù Mịt Mờ Ảo Phía Sau Chữ (Zero-Lag Fog) */
 
 .t1-fog-layer {
@@ -189,9 +169,7 @@ h1, h2, h3, h4, .font-heading {
   animation: none !important;
 
 }
-
-
-
+
 @keyframes gentleMistDrift {
 
   0% {
@@ -219,9 +197,7 @@ h1, h2, h3, h4, .font-heading {
   }
 
 }
-
-
-
+
 /* SVG Text Container */
 
 .t1-hero-svg-title {
@@ -237,9 +213,7 @@ h1, h2, h3, h4, .font-heading {
   filter: drop-shadow(0 4px 14px rgba(7, 150, 229, 0.1));
 
 }
-
-
-
+
 /* ==========================================================================
 
    HỆ THỐNG NÚT BẤM 3D XÚC GIÁC T1 (T1 3D TACTILE PRESSABLE BUTTONS)
@@ -289,9 +263,7 @@ h1, h2, h3, h4, .font-heading {
   overflow: hidden;
 
 }
-
-
-
+
 /* Kiểu Chữ Máy Đánh Chữ Typewriter (some preview text style) */
 
 .t1-typewriter, .font-mono {
@@ -299,9 +271,7 @@ h1, h2, h3, h4, .font-heading {
   font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif !important;
 
 }
-
-
-
+
 /* Ánh Sáng Phản Quang Laser Chạy Ngang Khi Hover (Glass Laser Shimmer) */
 
 .t1-btn-3d::after {
@@ -343,9 +313,7 @@ h1, h2, h3, h4, .font-heading {
   transition: left 0.75s cubic-bezier(0.16, 1, 0.3, 1);
 
 }
-
-
-
+
 /* Micro-Interaction: Icon Nhúc Nhích Sống Động */
 
 .t1-btn-3d i, .t1-btn-3d svg {
@@ -367,9 +335,7 @@ h1, h2, h3, h4, .font-heading {
   transform: translateY(2px) scale(1.15);
 
 }
-
-
-
+
 /* 1. NÚT PRIMARY 3D (Xanh Cyan / Sky Blue Đậm Đà với Gờ Đáy 3D 4px) */
 
 .t1-btn-primary {
@@ -425,9 +391,7 @@ h1, h2, h3, h4, .font-heading {
     inset 0 2px 4px rgba(0, 0, 0, 0.25) !important;
 
 }
-
-
-
+
 /* 2. NÚT SUCCESS 3D (Xanh Ngọc Lục Bảo Emerald với Gờ Đáy 3D 4px) */
 
 .t1-btn-success {
@@ -483,9 +447,7 @@ h1, h2, h3, h4, .font-heading {
     inset 0 2px 4px rgba(0, 0, 0, 0.25) !important;
 
 }
-
-
-
+
 /* 3. NÚT SECONDARY / SURFACE 3D (Trắng Sứ Neumorphic Nổi Khối Cao Cấp) */
 
 .t1-btn-surface, .t1-btn-secondary {
@@ -537,9 +499,7 @@ h1, h2, h3, h4, .font-heading {
     inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
 
 }
-
-
-
+
 /* 4. NÚT DISCORD 3D (Tím Xanh Blurple Đặc Trưng 3D) */
 
 .t1-btn-discord, a[href*="discord.gg"] {
@@ -547,9 +507,7 @@ h1, h2, h3, h4, .font-heading {
   transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1) !important;
 
 }
-
-
-
+
 /* 5. NÚT WARNING 3D (Vàng Hổ Phách / Amber VIP) */
 
 .t1-btn-warning {
@@ -589,9 +547,7 @@ h1, h2, h3, h4, .font-heading {
   box-shadow: 0 1px 0 #92400e, inset 0 2px 4px rgba(0, 0, 0, 0.25) !important;
 
 }
-
-
-
+
 /* 6. NÚT DANGER 3D (Đỏ Ruby Cảnh Báo) */
 
 .t1-btn-danger {
@@ -631,9 +587,7 @@ h1, h2, h3, h4, .font-heading {
   box-shadow: 0 1px 0 #991b1b, inset 0 2px 4px rgba(0, 0, 0, 0.25) !important;
 
 }
-
-
-
+
 /* Nút Sao Chép Lệnh Kính Trong Suốt (Copy Command Glass Buttons) */
 
 .btn-copy-cmd {
@@ -701,9 +655,7 @@ h1, h2, h3, h4, .font-heading {
   transform: translateY(1px);
 
 }
-
-
-
+
 /* Hiệu ứng Sóng Tác Động Khi Nhấn Nút (Click Ripple Wave) */
 
 .t1-ripple-wave {
@@ -733,11 +685,7 @@ h1, h2, h3, h4, .font-heading {
   }
 
 }
-
-
-
-
-
+
 /* ==========================================================================
 
    HỆ THỐNG GLASSMORPHISM CAO CẤP & CHIỀU SÂU 3D (LIGHT THEME LUXURY GLASS)
@@ -747,11 +695,7 @@ h1, h2, h3, h4, .font-heading {
 .t1-card {
 
   background: #FFFFFF !important;
-
-
-
-
-
+
   border-radius: 24px;
 
   border: 1.5px solid rgba(255, 255, 255, 0.92) !important;
@@ -771,9 +715,7 @@ h1, h2, h3, h4, .font-heading {
   position: relative;
 
 }
-
-
-
+
 .t1-card-hover:hover, .t1-card:hover {
 
   border-color: rgba(56, 189, 248, 0.6);
@@ -787,9 +729,7 @@ h1, h2, h3, h4, .font-heading {
     inset 0 1.5px 2px #FFFFFF;
 
 }
-
-
-
+
 /* Thẻ Kính Phụ (Sub-Glass Card) Dành Cho 3 Card Phần Cứng */
 
 .t1-subglass-card {
@@ -819,9 +759,7 @@ h1, h2, h3, h4, .font-heading {
   overflow: hidden;
 
 }
-
-
-
+
 .t1-subglass-card:hover {
 
   transform: translateY(-3.5px);
@@ -837,9 +775,7 @@ h1, h2, h3, h4, .font-heading {
     inset 0 1px 2px #FFFFFF;
 
 }
-
-
-
+
 /* Banner Đánh Giá Kính Mờ Ánh Sáng Xanh Ngọc */
 
 .t1-glass-banner {
@@ -875,9 +811,7 @@ h1, h2, h3, h4, .font-heading {
   transition: all 0.25s ease;
 
 }
-
-
-
+
 /* Glass Select Dropdown */
 
 /* Khung Chứa Dropdown Kính Mờ (Glass Input Group) */
@@ -915,9 +849,7 @@ h1, h2, h3, h4, .font-heading {
   box-shadow: 0 8px 22px rgba(7, 150, 229, 0.08), inset 0 1.5px 2px #fff;
 
 }
-
-
-
+
 /* Glass Select Dropdown Cao Cấp Chuẩn Apple/Linear */
 
 .t1-glass-select {
@@ -995,9 +927,7 @@ h1, h2, h3, h4, .font-heading {
   font-weight: 600;
 
 }
-
-
-
+
 /* Khung Kết Quả FPS HUD Kính Mờ (FPS HUD Gauge Card) */
 
 .t1-fps-hud-card {
@@ -1053,9 +983,7 @@ h1, h2, h3, h4, .font-heading {
     inset 0 1.5px 2px #ffffff;
 
 }
-
-
-
+
 /* FPS Badge */
 
 .t1-fps-badge {
@@ -1093,9 +1021,7 @@ h1, h2, h3, h4, .font-heading {
   box-shadow: 0 0 0 3.5px rgba(14, 165, 233, 0.15);
 
 }
-
-
-
+
 /* Thẻ Glass Card Tổng Thể (Dành Cho Leaderboard) */
 
 .t1-glass-card {
@@ -1141,9 +1067,7 @@ h1, h2, h3, h4, .font-heading {
     inset 0 1.5px 1px #ffffff !important;
 
 }
-
-
-
+
 /* FAQ Accordion 3D Glass Items */
 
 .faq-item {
@@ -1173,9 +1097,7 @@ h1, h2, h3, h4, .font-heading {
   box-shadow: 0 5.5px 0 #0284c7, 0 12px 24px rgba(2, 132, 199, 0.12), inset 0 1px 1px #ffffff !important;
 
 }
-
-
-
+
 /* Review Card 3D Glass */
 
 .t1-review-card {
@@ -1205,9 +1127,7 @@ h1, h2, h3, h4, .font-heading {
   box-shadow: 0 6px 0 #0284c7, 0 14px 30px rgba(2, 132, 199, 0.15), inset 0 1.5px 1px #ffffff !important;
 
 }
-
-
-
+
 /* Thẻ KPI Thống Kê */
 
 .t1-kpi-card {
@@ -1249,9 +1169,7 @@ h1, h2, h3, h4, .font-heading {
   box-shadow: 0 14px 32px rgba(7, 150, 229, 0.12), inset 0 1.5px 2px #FFFFFF;
 
 }
-
-
-
+
 .t1-kpi-icon-wrap {
 
   width: 46px;
@@ -1273,9 +1191,7 @@ h1, h2, h3, h4, .font-heading {
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8);
 
 }
-
-
-
+
 .t1-kpi-number {
 
   font-size: 34px;
@@ -1289,9 +1205,7 @@ h1, h2, h3, h4, .font-heading {
   letter-spacing: -0.5px;
 
 }
-
-
-
+
 /* ==========================================================================
 
    HỆ THỐNG HUY HIỆU & STATUS PILLS (LIGHT ONLY)
@@ -1361,9 +1275,7 @@ h1, h2, h3, h4, .font-heading {
   border: 1px solid #FCA5A5;
 
 }
-
-
-
+
 /* ==========================================================================
 
    FORM INPUTS & SELECTS CHUẨN T1 (LIGHT ONLY)
@@ -1383,11 +1295,7 @@ h1, h2, h3, h4, .font-heading {
   color: var(--text-primary);
 
   background: rgba(255, 255, 255, 0.45) !important;
-
-
-
-
-
+
   border: 1.5px solid rgba(186, 230, 253, 0.65) !important;
 
   border-radius: 14px;
@@ -1407,9 +1315,7 @@ h1, h2, h3, h4, .font-heading {
   box-shadow: 0 0 0 3.5px rgba(7, 150, 229, 0.16), inset 0 1px 2px rgba(0, 0, 0, 0.02);
 
 }
-
-
-
+
 /* ==========================================================================
 
    WORDMARK LOGO & BRAND ICON: FIVEM VN ENGINE
@@ -1457,9 +1363,7 @@ h1, h2, h3, h4, .font-heading {
   box-shadow: 0 6px 18px rgba(7, 150, 229, 0.28), inset 0 1px 2px #FFFFFF;
 
 }
-
-
-
+
 /* Vệt Laser Quét Nhẹ Qua Icon */
 
 .t1-brand-icon-laser {
@@ -1491,9 +1395,7 @@ h1, h2, h3, h4, .font-heading {
   25%, 100% { left: 140%; }
 
 }
-
-
-
+
 .t1-wordmark-logo {
 
   display: inline-flex;
@@ -1521,9 +1423,7 @@ h1, h2, h3, h4, .font-heading {
   transform: translateY(-1px);
 
 }
-
-
-
+
 /* Phần chữ FiveM: Quét sáng xanh dương (#0b76e0) & xanh ngọc (#00b493) */
 
 .t1-wordmark-fivem {
@@ -1575,9 +1475,7 @@ h1, h2, h3, h4, .font-heading {
   animation: none !important;
 
 }
-
-
-
+
 /* Phần chữ VN: Gradient Xanh Ngọc + Neon Glow + Quét Sáng Engine */
 
 .t1-wordmark-vn {
@@ -1633,9 +1531,7 @@ h1, h2, h3, h4, .font-heading {
   animation: none !important;
 
 }
-
-
-
+
 /* Dấu Chấm Xanh Ngọc: Hiệu Ứng Neon Glow & Pulse Tinh Tế */
 
 .t1-wordmark-dot {
@@ -1659,9 +1555,7 @@ h1, h2, h3, h4, .font-heading {
   animation: none !important;
 
 }
-
-
-
+
 /* Phần chữ Engine: Kích thước nhỏ, xám trung tính, nhận tia quét cuối cùng */
 
 .t1-wordmark-engine {
@@ -1715,9 +1609,7 @@ h1, h2, h3, h4, .font-heading {
   animation: none !important;
 
 }
-
-
-
+
 /* ==========================================================================
 
    KEYFRAMES CHO HIỆU ỨNG QUÉT CHỮ & NEON GLOW ENGINE
@@ -1747,9 +1639,7 @@ h1, h2, h3, h4, .font-heading {
   }
 
 }
-
-
-
+
 /* Neon Glow nhẹ cho chữ VN */
 
 @keyframes t1-vn-neon {
@@ -1767,9 +1657,7 @@ h1, h2, h3, h4, .font-heading {
   }
 
 }
-
-
-
+
 /* Neon Pulse cho chấm xanh ngọc */
 
 @keyframes t1-dot-pulse {
@@ -1791,9 +1679,7 @@ h1, h2, h3, h4, .font-heading {
   }
 
 }
-
-
-
+
 /* Mobile responsive wordmark */
 
 @media (max-width: 640px) {
@@ -1839,9 +1725,7 @@ h1, h2, h3, h4, .font-heading {
   transform: translateY(-2px);
 
 }
-
-
-
+
 .t1-logo-laser {
 
   position: absolute;
@@ -1877,9 +1761,7 @@ h1, h2, h3, h4, .font-heading {
   pointer-events: none;
 
 }
-
-
-
+
 @keyframes logoLaserSweep {
 
   0% { left: -120%; opacity: 0; }
@@ -1891,9 +1773,7 @@ h1, h2, h3, h4, .font-heading {
   100% { left: 140%; opacity: 0; }
 
 }
-
-
-
+
 /* ==========================================================================
 
    DASHBOARD MOCKUP CỬA SỔ PHẦN MỀM
@@ -1923,9 +1803,7 @@ h1, h2, h3, h4, .font-heading {
   overflow: hidden;
 
 }
-
-
-
+
 .t1-window-header {
 
   padding: 14px 20px;
@@ -1941,9 +1819,7 @@ h1, h2, h3, h4, .font-heading {
   justify-content: space-between;
 
 }
-
-
-
+
 /* ==========================================================================
 
    MODAL THỦY TINH MỜ (LIGHT GLASS MODAL)
@@ -2001,9 +1877,7 @@ h1, h2, h3, h4, .font-heading {
   overflow-y: auto;
 
 }
-
-
-
+
 /* Tối ưu cuộn chuột */
 
 ::-webkit-scrollbar {
@@ -2031,9 +1905,7 @@ h1, h2, h3, h4, .font-heading {
   background: var(--primary);
 
 }
-
-
-
+
 /* ==========================================================================
 
    KHÓA CỨNG CHỐNG PHÓNG TO THU NHỎ & GPU THREAD ACCELERATION (PHÂN LUỒNG MƯỢT)
@@ -2047,17 +1919,13 @@ html {
   text-size-adjust: 100% !important;
 
 }
-
-
-
+
 body {
 
   touch-action: auto !important;
 
 }
-
-
-
+
 /* Chống double-tap zoom trên tất cả nút bấm và liên kết */
 
 button, a, input, select, textarea, .t1-btn-3d {
@@ -2065,9 +1933,7 @@ button, a, input, select, textarea, .t1-btn-3d {
   touch-action: manipulation !important;
 
 }
-
-
-
+
 /* Phân luồng tăng tốc phần cứng GPU (Hardware Acceleration Layer) */
 
 .t1-card, .t1-glass-card, .t1-btn-3d, .t1-window-mockup, header {
@@ -2081,23 +1947,13 @@ button, a, input, select, textarea, .t1-btn-3d {
   -webkit-backface-visibility: hidden;
 
 }
-
-
-
-
-
-
-
+
 /* Thẻ Con Trong Suốt Nổi Khối 3D (3D Transparent Glass Child Cards) */
 
 .t1-node-glass {
 
   background: rgba(255, 255, 255, 0.72) !important;
-
-
-
-
-
+
   border-radius: 18px;
 
   border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
@@ -2131,11 +1987,7 @@ button, a, input, select, textarea, .t1-btn-3d {
     inset 0 1px 1px #ffffff !important;
 
 }
-
-
-
-
-
+
 /* ==========================================================================
 
    HỆ THỐNG TAB & NÚT BẤM ĐIỀU HƯỚNG 3D (T1 TACTILE 3D BUTTON TABS)
@@ -2189,9 +2041,7 @@ button, a, input, select, textarea, .t1-btn-3d {
   position: relative;
 
 }
-
-
-
+
 .t1-nav-btn:hover {
 
   transform: translateY(-2px);
@@ -2211,9 +2061,7 @@ button, a, input, select, textarea, .t1-btn-3d {
     inset 0 1.5px 1px #ffffff !important;
 
 }
-
-
-
+
 .t1-nav-btn:active {
 
   transform: translateY(2.5px) !important;
@@ -2225,9 +2073,7 @@ button, a, input, select, textarea, .t1-btn-3d {
     inset 0 1.5px 3px rgba(0, 0, 0, 0.1) !important;
 
 }
-
-
-
+
 .t1-nav-btn.active-tab {
 
   background: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%) !important;
@@ -2245,19 +2091,13 @@ button, a, input, select, textarea, .t1-btn-3d {
     inset 0 1.5px 1px #ffffff !important;
 
 }
-
-
-
-
-
+
 /* ==========================================================================
 
    T1 PRO DETAILS & LUXURY GAMING MICRO-INTERACTIONS
 
    ========================================================================== */
-
-
-
+
 /* 1. Interactive Cursor Spotlight Shader */
 
 .t1-spotlight {
@@ -2273,9 +2113,7 @@ button, a, input, select, textarea, .t1-btn-3d {
   opacity: 1;
 
 }
-
-
-
+
 /* 2. 3D Physical Keyboard Keycap Badges */
 
 kbd.t1-keycap {
@@ -2317,9 +2155,7 @@ kbd.t1-keycap {
   line-height: 1;
 
 }
-
-
-
+
 /* 3. Diagnostic Laser Scanline Animation */
 
 @keyframes laserSweep {
@@ -2355,9 +2191,7 @@ kbd.t1-keycap {
   animation: laserSweep 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 
 }
-
-
-
+
 /* 4. Quick HUD Dock & Floating Badge */
 
 #quick-hud-dock {
@@ -2381,19 +2215,13 @@ kbd.t1-keycap {
   transform: translateY(1px);
 
 }
-
-
-
-
-
+
 /* ==========================================================================
 
    T1 FULL PLATFORM PRO SUITE (LOADER, SKELETON, TOAST, TOOLTIP, OFFLINE)
 
    ========================================================================== */
-
-
-
+
 /* 1. Initial Page Preloader */
 
 #t1-page-loader {
@@ -2457,9 +2285,7 @@ kbd.t1-keycap {
   to { transform: rotate(360deg); }
 
 }
-
-
-
+
 /* 2. Skeleton Shimmer Loading Placeholders */
 
 @keyframes t1-shimmer {
@@ -2487,9 +2313,7 @@ kbd.t1-keycap {
   pointer-events: none !important;
 
 }
-
-
-
+
 /* 3. Universal 3D Toast Notification System */
 
 #toast-container {
@@ -2515,9 +2339,7 @@ kbd.t1-keycap {
   pointer-events: none !important;
 
 }
-
-
-
+
 .t1-toast-item {
 
   pointer-events: auto !important;
@@ -2559,9 +2381,7 @@ kbd.t1-keycap {
   overflow: hidden !important;
 
 }
-
-
-
+
 .t1-toast-item.toast-visible {
 
   transform: translateY(0) scale(1) !important;
@@ -2569,9 +2389,7 @@ kbd.t1-keycap {
   opacity: 1 !important;
 
 }
-
-
-
+
 .t1-toast-item.toast-success { 
 
   border-color: #86efac !important; 
@@ -2603,9 +2421,7 @@ kbd.t1-keycap {
   box-shadow: 0 4px 0 #0284c7, 0 16px 36px rgba(2, 132, 199, 0.18), inset 0 1px 1px #ffffff !important; 
 
 }
-
-
-
+
 .toast-progress-bar {
 
   position: absolute !important;
@@ -2625,9 +2441,7 @@ kbd.t1-keycap {
   animation: toastCountdown 3.5s linear forwards !important;
 
 }
-
-
-
+
 @keyframes toastCountdown {
 
   from { transform: scaleX(1); }
@@ -2635,9 +2449,7 @@ kbd.t1-keycap {
   to { transform: scaleX(0); }
 
 }
-
-
-
+
 /* 5. Online / Offline Banner */
 
 #network-status-banner {
@@ -2697,9 +2509,7 @@ kbd.t1-keycap {
   color: #ffffff;
 
 }
-
-
-
+
 /* 6. Page Navigation Progress Bar */
 
 #t1-page-progress {
@@ -2723,11 +2533,7 @@ kbd.t1-keycap {
   transition: width 0.2s ease, opacity 0.4s ease;
 
 }
-
-
-
-
-
+
 /* ==========================================================================
 
    T1 FLOATING LUXURY GLASS NAVBAR (ULTRA-SLIM LOW-PROFILE DOCK)
@@ -2753,9 +2559,7 @@ header.t1-navbar {
   border-bottom: 1px solid rgba(226, 232, 240, 0.85);
 
 }
-
-
-
+
 .t1-navbar-inner {
   height: 58px !important;
   min-height: 58px !important;
@@ -2820,12 +2624,6 @@ header.t1-navbar .t1-btn-discord {
   border-radius: 11px !important;
   box-shadow: 0 3px 0 #373e98, 0 8px 16px rgba(88, 101, 242, 0.22) !important;
 }
-
-
-
-
-
-
 
 /* ==========================================================================
 
@@ -2862,9 +2660,7 @@ header.t1-navbar .t1-btn-discord {
   user-select: none;
 
 }
-
-
-
+
 .t1-drawer-card:hover {
 
   background: #ffffff;
@@ -2876,9 +2672,7 @@ header.t1-navbar .t1-btn-discord {
   transform: translateY(-2px);
 
 }
-
-
-
+
 .t1-drawer-card:active {
 
   transform: translateY(1px);
@@ -2886,9 +2680,7 @@ header.t1-navbar .t1-btn-discord {
   box-shadow: 0 1px 2px rgba(14, 165, 233, 0.08);
 
 }
-
-
-
+
 /* Mục active có dải chỉ báo bên trái */
 
 .t1-drawer-card.active-drawer-card {
@@ -2900,9 +2692,7 @@ header.t1-navbar .t1-btn-discord {
   box-shadow: 0 2px 0 #0284c7, 0 6px 16px rgba(2, 132, 199, 0.08);
 
 }
-
-
-
+
 .t1-drawer-card.active-drawer-card::before {
 
   content: '';
@@ -2922,9 +2712,7 @@ header.t1-navbar .t1-btn-discord {
   background: #0284c7;
 
 }
-
-
-
+
 /* Vệt sáng chạy nhẹ qua khi hover */
 
 .t1-drawer-card::after {
@@ -2950,9 +2738,7 @@ header.t1-navbar .t1-btn-discord {
   pointer-events: none;
 
 }
-
-
-
+
 .t1-drawer-card:hover::after {
 
   left: 150%;
@@ -2960,9 +2746,7 @@ header.t1-navbar .t1-btn-discord {
   transition: left 0.5s ease-in-out;
 
 }
-
-
-
+
 /* Nút Discord chuyên nghiệp */
 
 .t1-drawer-discord-btn {
@@ -2994,9 +2778,7 @@ header.t1-navbar .t1-btn-discord {
   user-select: none;
 
 }
-
-
-
+
 .t1-drawer-discord-btn:hover {
 
   transform: translateY(-2px);
@@ -3004,9 +2786,7 @@ header.t1-navbar .t1-btn-discord {
   box-shadow: 0 4px 0 #373e98, 0 14px 28px rgba(88, 101, 242, 0.32);
 
 }
-
-
-
+
 .t1-drawer-discord-btn:active {
 
   transform: translateY(1.5px);
@@ -3014,11 +2794,47 @@ header.t1-navbar .t1-btn-discord {
   box-shadow: 0 1.5px 0 #373e98;
 
 }
-
-
 
 /* GPU COMPOSITOR PROMOTIONS FOR 144HZ SMOOTH SCROLLING */
 header.t1-navbar, #quick-hud-dock {
   transform: translateZ(0);
   backface-visibility: hidden;
+}
+
+/* ==========================================================================
+   ULTRA-PERFORMANCE ENGINE: CONTENT VISIBILITY & COMPOSITING RULES
+   ========================================================================== */
+#thong-ke, #checker, #bang-xep-hang, #bieu-do, #cong-cu, #danh-gia, #hoi-dap {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 650px;
+}
+
+/* Fast-path hardware acceleration for interactive elements */
+.t1-btn-3d, .t1-nav-btn, .t1-card, .t1-pill {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Smooth micro-interactions without layout reflows */
+.t1-card {
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.t1-card:hover {
+  transform: translateY(-2px) translateZ(0);
+}
+
+/* Modal hardware-accelerated transitions */
+.t1-modal-backdrop {
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.t1-modal-backdrop > div {
+  transform: translateZ(0) scale(1);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.22s ease;
+}
+
+.t1-modal-backdrop.hidden > div {
+  transform: translateZ(0) scale(0.96);
+  opacity: 0;
 }
