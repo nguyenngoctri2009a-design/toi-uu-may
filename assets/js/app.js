@@ -391,28 +391,9 @@ function initPingTester() {
  */
 function initAnimatedCounters() {
     const usersEl = document.getElementById('stat-counter-users');
-    if (!usersEl) return;
-
-    const startVal = 24500;
-    const targetVal = 25840;
-    const duration = 1200; // 1.2s smooth animation
-    let startTime = null;
-
-    function step(timestamp) {
-        if (!startTime) startTime = timestamp;
-        const progress = Math.min((timestamp - startTime) / duration, 1);
-        // Easing cubic out
-        const easeProgress = 1 - Math.pow(1 - progress, 3);
-        const current = Math.floor(startVal + (targetVal - startVal) * easeProgress);
-        usersEl.textContent = current.toLocaleString('vi-VN') + '+';
-
-        if (progress < 1) {
-            window.requestAnimationFrame(step);
-        } else {
-            usersEl.textContent = targetVal.toLocaleString('vi-VN') + '+';
-        }
+    if (usersEl) {
+        usersEl.textContent = '25,840+';
     }
-    window.requestAnimationFrame(step);
 }
 
 /**
@@ -1189,7 +1170,8 @@ function initFpsChartEngine() {
             }
         }
 
-        animationFrameId = requestAnimationFrame(render);
+        // static render: no infinite loop
+animationFrameId = null;
     }
 
     // Tự động tạm dừng render khi người dùng cuộn ra ngoài màn hình để tiết kiệm 100% pin & CPU
@@ -1200,7 +1182,7 @@ function initFpsChartEngine() {
                 if (isVisible) {
                     resize();
                     lastTime = performance.now();
-                    if (!animationFrameId) animationFrameId = requestAnimationFrame(render);
+                    render(performance.now());
                 } else {
                     if (animationFrameId) { cancelAnimationFrame(animationFrameId); animationFrameId = null; }
                 }
@@ -1372,22 +1354,8 @@ function initTactileAudio() {
  * 19. Interactive Cursor Spotlight Shader Effect
  */
 function initSpotlightEffect() {
-    const spotlights = document.querySelectorAll('.t1-spotlight');
-    if (!spotlights.length) return;
-    spotlights.forEach(el => {
-        let ticking = false;
-        el.addEventListener('mousemove', (e) => {
-            if (!ticking) {
-                ticking = true;
-                requestAnimationFrame(() => {
-                    const rect = el.getBoundingClientRect();
-                    el.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
-                    el.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
-                    ticking = false;
-                });
-            }
-        }, { passive: true });
-    });
+    // Disabled for 100% flat 144Hz scroll performance (no mousemove reflows)
+    return;
 }
 
 /**

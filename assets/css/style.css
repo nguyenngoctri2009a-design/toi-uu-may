@@ -186,7 +186,7 @@ h1, h2, h3, h4, .font-heading {
 
   will-change: opacity, transform;
 
-  animation: gentleMistDrift 10s ease-in-out infinite alternate;
+  animation: none !important;
 
 }
 
@@ -1478,7 +1478,7 @@ h1, h2, h3, h4, .font-heading {
 
   transform: skewX(-20deg);
 
-  animation: iconLaserSweep 3.5s ease-in-out infinite;
+  animation: none !important;
 
   pointer-events: none;
 
@@ -1564,7 +1564,7 @@ h1, h2, h3, h4, .font-heading {
 
   -webkit-text-fill-color: transparent;
 
-  animation: t1-wordmark-scan 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: none !important;
 
   will-change: background-position;
 
@@ -1572,7 +1572,7 @@ h1, h2, h3, h4, .font-heading {
 
 .t1-wordmark-logo:hover .t1-wordmark-fivem {
 
-  animation: t1-wordmark-scan 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: none !important;
 
 }
 
@@ -1622,7 +1622,7 @@ h1, h2, h3, h4, .font-heading {
 
   align-items: center;
 
-  animation: t1-wordmark-scan 4s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.16s;
+  animation: none !important;
 
   will-change: background-position, filter;
 
@@ -1630,7 +1630,7 @@ h1, h2, h3, h4, .font-heading {
 
 .t1-wordmark-logo:hover .t1-wordmark-vn {
 
-  animation: t1-wordmark-scan 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.08s;
+  animation: none !important;
 
 }
 
@@ -1656,7 +1656,7 @@ h1, h2, h3, h4, .font-heading {
 
   vertical-align: middle;
 
-  animation: t1-dot-pulse 2s ease-in-out infinite alternate;
+  animation: none !important;
 
 }
 
@@ -1704,7 +1704,7 @@ h1, h2, h3, h4, .font-heading {
 
   -webkit-text-fill-color: transparent;
 
-  animation: t1-wordmark-scan 4s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.32s;
+  animation: none !important;
 
   will-change: background-position;
 
@@ -1712,7 +1712,7 @@ h1, h2, h3, h4, .font-heading {
 
 .t1-wordmark-logo:hover .t1-wordmark-engine {
 
-  animation: t1-wordmark-scan 1.4s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.16s;
+  animation: none !important;
 
 }
 
@@ -1872,7 +1872,7 @@ h1, h2, h3, h4, .font-heading {
 
   transform: skewX(-20deg);
 
-  animation: logoLaserSweep 3.5s ease-in-out infinite;
+  animation: none !important;
 
   pointer-events: none;
 
@@ -2266,35 +2266,7 @@ button, a, input, select, textarea, .t1-btn-3d {
 
 }
 
-.t1-spotlight::before {
-
-  content: '';
-
-  position: absolute;
-
-  inset: 0;
-
-  border-radius: inherit;
-
-  background: radial-gradient(
-
-    380px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
-
-    rgba(2, 132, 199, 0.07),
-
-    transparent 70%
-
-  );
-
-  pointer-events: none;
-
-  opacity: 0;
-
-  transition: opacity 0.3s ease;
-
-  z-index: 1;
-
-}
+.t1-spotlight::before { display: none !important; }
 
 .t1-spotlight:hover::before {
 
@@ -2474,7 +2446,7 @@ kbd.t1-keycap {
 
   border-right-color: #10b981;
 
-  animation: loaderSpin 0.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: none !important;
 
   box-shadow: 0 0 20px rgba(7, 150, 229, 0.15);
 
@@ -2504,7 +2476,7 @@ kbd.t1-keycap {
 
   background-size: 200% 100% !important;
 
-  animation: t1-shimmer 1.5s infinite linear !important;
+  animation: none !important;
 
   color: transparent !important;
 
