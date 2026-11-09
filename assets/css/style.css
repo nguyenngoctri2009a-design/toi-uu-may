@@ -70,18 +70,8 @@
 
 
 
-html {
-
-  overflow-x: hidden;
-
-  overflow-y: auto;
-
-  scroll-behavior: smooth;
-
-  -webkit-overflow-scrolling: touch;
-
-  height: 100%;
-
+html {
+  overflow-x: clip;
 }
 
 
@@ -100,11 +90,8 @@ body {
 
   width: 100%;
 
-  min-height: 100%;
-
-  overflow-x: hidden;
-
-  overflow-y: visible;
+  min-height: 100vh;
+  overflow-x: clip;
 
   -webkit-font-smoothing: antialiased;
 
