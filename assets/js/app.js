@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavbarScroll();
     initNavTabs();
     initBackToTop();
+    initHighRefreshScrollEngine();
+    initLiveFpsMeter();
 
     // 2. Scheduled Idle Execution: eliminates Long Tasks & guarantees 0ms TBT
     const scheduleIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 40));
@@ -1835,4 +1837,61 @@ function initNavbarScroll() {
     }
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
+}
+
+/**
+ * 32. 120Hz / 144Hz Scroll Performance Engine (Zero-Hover Compositor Freeze)
+ */
+function initHighRefreshScrollEngine() {
+    let scrollTimer = null;
+    window.addEventListener('scroll', () => {
+        if (!document.body.classList.contains('is-scrolling')) {
+            document.body.classList.add('is-scrolling');
+        }
+        if (scrollTimer !== null) {
+            clearTimeout(scrollTimer);
+        }
+        scrollTimer = setTimeout(() => {
+            document.body.classList.remove('is-scrolling');
+        }, 80);
+    }, { passive: true });
+}
+
+/**
+ * 33. Live Hardware Refresh Rate & FPS Telemetry Monitor
+ */
+function initLiveFpsMeter() {
+    const fpsEl = document.getElementById('hud-live-fps');
+    const hzEl = document.getElementById('hud-live-hz');
+    if (!fpsEl) return;
+
+    let frameCount = 0;
+    let lastStamp = performance.now();
+
+    function tick(now) {
+        frameCount++;
+        const delta = now - lastStamp;
+        if (delta >= 450) {
+            const liveFps = Math.round((frameCount * 1000) / delta);
+            fpsEl.textContent = `${liveFps} FPS`;
+
+            if (hzEl) {
+                if (liveFps >= 110) {
+                    hzEl.textContent = '120Hz+ ULTRA';
+                    hzEl.className = 'text-emerald-600 font-bold';
+                } else if (liveFps >= 85) {
+                    hzEl.textContent = '90Hz SMOOTH';
+                    hzEl.className = 'text-sky-600 font-bold';
+                } else {
+                    hzEl.textContent = '60Hz LOCK';
+                    hzEl.className = 'text-sky-600 font-bold';
+                }
+            }
+
+            frameCount = 0;
+            lastStamp = now;
+        }
+        requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
 }

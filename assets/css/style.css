@@ -2810,9 +2810,11 @@ header.t1-navbar, #quick-hud-dock {
 }
 
 /* Fast-path hardware acceleration for interactive elements */
-.t1-btn-3d, .t1-nav-btn, .t1-card, .t1-pill {
+.t1-btn-3d, .t1-nav-btn {
   transform: translateZ(0);
-  will-change: transform;
+}
+.t1-card {
+  transform: translateZ(0);
 }
 
 /* Smooth micro-interactions without layout reflows */
@@ -2837,4 +2839,17 @@ header.t1-navbar, #quick-hud-dock {
 .t1-modal-backdrop.hidden > div {
   transform: translateZ(0) scale(0.96);
   opacity: 0;
+}
+
+/* 120Hz / 144Hz Ultra High-Refresh Rate Compositor Rules */
+html {
+  overscroll-behavior-y: none;
+}
+
+body.is-scrolling {
+  pointer-events: none !important;
+}
+
+body.is-scrolling * {
+  pointer-events: none !important;
 }
