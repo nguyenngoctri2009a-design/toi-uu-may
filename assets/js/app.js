@@ -303,21 +303,87 @@ function showDownloadToast() {
 }
 
 function initDownloadModal() {
-    const downloadBtns = [
-        document.getElementById('btn-open-download-modal'),
-        document.getElementById('btn-hero-download'),
-        document.getElementById('btn-quick-optimize'),
-        document.getElementById('btn-direct-dl-modal')
-    ];
+    const modal = document.getElementById('download-modal');
+    const btnOpen = document.getElementById('btn-open-download-modal');
+    const btnHero = document.getElementById('btn-hero-download');
+    const btnHeroGuide = document.getElementById('btn-hero-security-guide');
+    const btnQuick = document.getElementById('btn-quick-optimize');
+    const btnDirect = document.getElementById('btn-direct-dl-modal');
+    const btnClose = document.getElementById('btn-close-modal');
 
-    downloadBtns.forEach(btn => {
-        if (btn) {
-            btn.addEventListener('click', (e) => {
-                triggerDirectDownload(e);
-            });
+    function openModal() {
+        if (!modal) return;
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        if (!modal) return;
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    if (btnOpen) btnOpen.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
+    if (btnHeroGuide) btnHeroGuide.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
+    if (btnClose) btnClose.addEventListener('click', closeModal);
+
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+    }
+
+    // Direct download triggers
+    if (btnHero) {
+        btnHero.addEventListener('click', (e) => {
+            triggerDirectDownload(e);
+            openModal();
+        });
+    }
+    if (btnQuick) {
+        btnQuick.addEventListener('click', (e) => {
+            triggerDirectDownload(e);
+            openModal();
+        });
+    }
+    if (btnDirect) {
+        btnDirect.addEventListener('click', (e) => {
+            triggerDirectDownload(e);
+        });
+    }
+
+    // Security Guide Tab Switching (Chrome / Edge / SmartScreen)
+    const tabChrome = document.getElementById('guide-tab-chrome');
+    const tabEdge = document.getElementById('guide-tab-edge');
+    const tabSmart = document.getElementById('guide-tab-smartscreen');
+
+    const contentChrome = document.getElementById('guide-content-chrome');
+    const contentEdge = document.getElementById('guide-content-edge');
+    const contentSmart = document.getElementById('guide-content-smartscreen');
+
+    function switchGuideTab(activeTab, activeContent) {
+        [tabChrome, tabEdge, tabSmart].forEach(t => {
+            if (t) {
+                t.className = 'flex-1 py-1.5 px-2 rounded-lg text-slate-600 hover:text-primary transition-all text-center';
+            }
+        });
+        [contentChrome, contentEdge, contentSmart].forEach(c => {
+            if (c) c.classList.add('hidden');
+        });
+
+        if (activeTab) {
+            activeTab.className = 'flex-1 py-1.5 px-2 rounded-lg bg-primary text-white shadow-xs transition-all text-center';
         }
-    });
+        if (activeContent) {
+            activeContent.classList.remove('hidden');
+        }
+    }
 
+    if (tabChrome) tabChrome.addEventListener('click', () => switchGuideTab(tabChrome, contentChrome));
+    if (tabEdge) tabEdge.addEventListener('click', () => switchGuideTab(tabEdge, contentEdge));
+    if (tabSmart) tabSmart.addEventListener('click', () => switchGuideTab(tabSmart, contentSmart));
+
+    // Copy SHA-256 Checksum
     const copyHashBtn = document.getElementById('btn-copy-hash');
     const hashText = document.getElementById('hash-text');
     if (copyHashBtn && hashText) {
@@ -331,6 +397,7 @@ function initDownloadModal() {
         });
     }
 }
+
 /**
  * 6. Interactive FiveM Ping Tester (Đo Ping Thực Tế)
  */
