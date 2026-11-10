@@ -1863,31 +1863,68 @@ function initHighRefreshScrollEngine() {
 function initLiveFpsMeter() {
     const fpsEl = document.getElementById('hud-live-fps');
     const hzEl = document.getElementById('hud-live-hz');
-    if (!fpsEl) return;
+    const monitorHzEl = document.getElementById('monitor-native-hz');
+    const monitorFpsEl = document.getElementById('monitor-fps');
+    if (!fpsEl && !hzEl) return;
 
+    let nativeHz = 0;
+    let sampleFrames = [];
+    let prevCheck = performance.now();
+
+    // Tự động nhận diện chính xác tần số quét phần cứng màn hình người dùng (không gán lock cố định)
+    function measureNativeHz(now) {
+        if (sampleFrames.length < 35) {
+            sampleFrames.push(now - prevCheck);
+            prevCheck = now;
+            requestAnimationFrame(measureNativeHz);
+        } else {
+            const clean = sampleFrames.slice(5);
+            const avgDelta = clean.reduce((a, b) => a + b, 0) / clean.length;
+            const rawHz = Math.round(1000 / avgDelta);
+
+            // Bắt nhịp chính xác theo chuẩn tần số quét phần cứng (60Hz, 75Hz, 120Hz, 144Hz, 165Hz, 240Hz, 360Hz)
+            const standardRefreshRates = [60, 75, 90, 100, 120, 144, 165, 180, 200, 240, 280, 360, 500];
+            let bestMatch = standardRefreshRates[0];
+            let minDiff = 999;
+            for (let r of standardRefreshRates) {
+                const diff = Math.abs(r - rawHz);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    bestMatch = r;
+                }
+            }
+
+            nativeHz = (minDiff <= 6) ? bestMatch : rawHz;
+
+            if (hzEl) {
+                hzEl.textContent = `${nativeHz}Hz`;
+                hzEl.title = `Màn hình của bạn đang chạy ở ${nativeHz}Hz thực tế`;
+            }
+            if (monitorHzEl) {
+                monitorHzEl.textContent = `/ ${nativeHz}Hz`;
+            }
+        }
+    }
+    requestAnimationFrame(measureNativeHz);
+
+    // Đo FPS thực tế theo thời gian thực (Real-time Live FPS)
     let frameCount = 0;
     let lastStamp = performance.now();
 
     function tick(now) {
         frameCount++;
         const delta = now - lastStamp;
-        if (delta >= 450) {
+        if (delta >= 400) {
             const liveFps = Math.round((frameCount * 1000) / delta);
-            fpsEl.textContent = `${liveFps} FPS`;
-
-            if (hzEl) {
-                if (liveFps >= 110) {
-                    hzEl.textContent = '120Hz+ ULTRA';
-                    hzEl.className = 'text-emerald-600 font-bold';
-                } else if (liveFps >= 85) {
-                    hzEl.textContent = '90Hz SMOOTH';
-                    hzEl.className = 'text-sky-600 font-bold';
-                } else {
-                    hzEl.textContent = '60Hz LOCK';
-                    hzEl.className = 'text-sky-600 font-bold';
-                }
+            if (fpsEl) {
+                fpsEl.textContent = `${liveFps} FPS`;
             }
-
+            if (monitorFpsEl && !document.hidden) {
+                monitorFpsEl.textContent = `${liveFps}`;
+            }
+            if (hzEl && nativeHz > 0) {
+                hzEl.textContent = `${nativeHz}Hz`;
+            }
             frameCount = 0;
             lastStamp = now;
         }
