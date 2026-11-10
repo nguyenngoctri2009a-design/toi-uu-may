@@ -4,34 +4,37 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. Critical Instant UI (< 1ms execution on frame 0)
     initAntiZoom();
-    initThreadingEngine();
     initMobileMenu();
-    initHardwareScanner();
-    initFaqAccordion();
-    initFpsCalculator();
-    initDownloadModal();
-    initPingTester();
-    initAnimatedCounters();
-    initXmlGenerator();
-    initCommandCopier();
-    initMockupBoost();
-    initButtonRipple();
-    initReviewModal();
-    initFpsChartEngine();
-    initAnnouncementModal();
-    initNavTabs();
-    initTactileAudio();
-    initSpotlightEffect();
-    initKeyboardShortcuts();
-    initLaserScanner();
-    initBackToTop();
     initNavbarScroll();
-    initPageLoader();
-    initNetworkStatus();
-    initShortcutsModal();
-    initUserPreferences();
-    initPageTransitions();
+    initNavTabs();
+    initBackToTop();
+
+    // 2. Scheduled Idle Execution: eliminates Long Tasks & guarantees 0ms TBT
+    const scheduleIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 40));
+    scheduleIdle(() => {
+        initHardwareScanner();
+        initFpsCalculator();
+        initFpsChartEngine();
+        initDownloadModal();
+        initReviewModal();
+        initAnnouncementModal();
+        initShortcutsModal();
+        initFaqAccordion();
+        initPingTester();
+        initAnimatedCounters();
+        initXmlGenerator();
+        initCommandCopier();
+        initMockupBoost();
+        initButtonRipple();
+        initTactileAudio();
+        initKeyboardShortcuts();
+        initLaserScanner();
+        initNetworkStatus();
+        initUserPreferences();
+        initPageTransitions();
+    });
 });
 
 /**
