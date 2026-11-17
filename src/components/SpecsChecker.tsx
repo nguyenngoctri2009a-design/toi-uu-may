@@ -8,25 +8,25 @@ interface SpecsCheckerProps {
   onOpenDownload: () => void;
 }
 
-const cpus = [
-  { id: 'i3_old', name: 'Intel Core i3 / Core i5 (Gen 2 - 7) / CPU Cũ', tier: 'low' },
-  { id: 'i5_mid', name: 'Intel Core i5 (Gen 8 - 11) / Ryzen 3, 5 3600', tier: 'mid' },
-  { id: 'i7_high', name: 'Intel Core i5/i7 (Gen 12 - 14) / Ryzen 5, 7 5000+', tier: 'high' },
-  { id: 'ryzen_extreme', name: 'Intel Core i9 / AMD Ryzen 7 7800X3D / Extreme', tier: 'ultra' },
+export const cpus = [
+  { id: 'i3_old', name: 'Intel Core i3-10100F / Core i5 Cũ (Gen 2 - 7)', cpuBase: 20, tier: 'low' },
+  { id: 'i5_mid', name: 'Intel Core i5 (Gen 8 - 11) / AMD Ryzen 5 3600', cpuBase: 20, tier: 'mid' },
+  { id: 'i7_high', name: 'Intel Core i5-12400F / i7 (Gen 12 - 14) / Ryzen 5000+', cpuBase: 26, tier: 'high' },
+  { id: 'ryzen_extreme', name: 'Intel Core i9 / AMD Ryzen 7 7800X3D / Extreme', cpuBase: 34, tier: 'ultra' },
 ];
 
-const gpus = [
-  { id: 'onboard', name: 'Card Onboard Intel UHD / Iris Xe / AMD Vega', score: 25, tier: 'low' },
-  { id: 'gtx_low', name: 'NVIDIA GTX 750Ti / GTX 960 / GTX 1050 2GB-4GB', score: 40, tier: 'low' },
-  { id: 'gtx_mid', name: 'NVIDIA GTX 1060 / GTX 1660 Super / RTX 2060 6GB', score: 65, tier: 'mid' },
-  { id: 'rtx_high', name: 'NVIDIA RTX 3060 / 3070 / 4060 / AMD RX 6700 XT', score: 85, tier: 'high' },
-  { id: 'rtx_ultra', name: 'NVIDIA RTX 4070 / 4080 / 4090 / RX 7900 XTX', score: 100, tier: 'ultra' },
+export const gpus = [
+  { id: 'onboard', name: 'Card Onboard Intel UHD 630 / Iris Xe / AMD Vega', gpuBase: 4, boost: 0.556, tier: 'low' },
+  { id: 'gtx_low', name: 'NVIDIA GTX 750Ti / GTX 960 / GTX 1050 2GB-4GB', gpuBase: 14, boost: 0.607, tier: 'low' },
+  { id: 'gtx_mid', name: 'NVIDIA GTX 1060 6GB / GTX 1660 Super / RTX 2060', gpuBase: 24, boost: 0.591, tier: 'mid' },
+  { id: 'rtx_high', name: 'NVIDIA RTX 3060 / 3070 / 4060 / AMD RX 6700 XT', gpuBase: 42, boost: 0.514, tier: 'high' },
+  { id: 'rtx_ultra', name: 'NVIDIA RTX 4070 / 4080 / 4090 / RX 7900 XTX', gpuBase: 64, boost: 0.425, tier: 'ultra' },
 ];
 
-const rams = [
-  { id: '8gb', name: '8 GB DDR4 (Đơn luồng / Thiếu VRAM swap)', penalty: -15 },
+export const rams = [
+  { id: '8gb', name: '8 GB DDR4 (Đơn luồng / Thiếu VRAM swap)', penalty: -6 },
   { id: '16gb', name: '16 GB DDR4/DDR5 (Tiêu chuẩn FiveM)', penalty: 0 },
-  { id: '32gb', name: '32 GB+ Dual Channel High-Speed', penalty: 5 },
+  { id: '32gb', name: '32 GB+ Dual Channel High-Speed', penalty: 2 },
 ];
 
 export const SpecsChecker: React.FC<SpecsCheckerProps> = ({ lang, onOpenDownload }) => {
@@ -35,25 +35,26 @@ export const SpecsChecker: React.FC<SpecsCheckerProps> = ({ lang, onOpenDownload
   const [selectedGpu, setSelectedGpu] = useState(gpus[2].id);
   const [selectedRam, setSelectedRam] = useState(rams[1].id);
 
-  // Calculate recommendation and FPS
+  // Calculate recommendation and FPS (Harmonized 100% with Leaderboard Telemetry)
   const calculation = useMemo(() => {
     const gpuObj = gpus.find(g => g.id === selectedGpu) || gpus[2];
     const ramObj = rams.find(r => r.id === selectedRam) || rams[1];
     const cpuObj = cpus.find(c => c.id === selectedCpu) || cpus[1];
 
-    let baseFps = 35;
-    if (gpuObj.tier === 'low') baseFps = 28;
-    if (gpuObj.tier === 'mid') baseFps = 48;
-    if (gpuObj.tier === 'high') baseFps = 72;
-    if (gpuObj.tier === 'ultra') baseFps = 105;
+    let baseFps = cpuObj.cpuBase + gpuObj.gpuBase + ramObj.penalty;
+    // Extra penalty for onboard on FiveM
+    if (gpuObj.id === 'onboard') {
+      baseFps = Math.max(16, baseFps - 6);
+    }
+    // High-end CPU boost bonus
+    if (cpuObj.tier === 'high' && gpuObj.tier === 'mid') {
+      baseFps += 2; // e.g. i5-12400F + GTX 1660S gives 52 base FPS
+    }
 
-    baseFps = Math.max(22, baseFps + ramObj.penalty);
-
-    let boostPercent = 0.7;
-    if (gpuObj.tier === 'low') boostPercent = 0.95;
-    if (gpuObj.tier === 'mid') boostPercent = 0.65;
-    if (gpuObj.tier === 'high') boostPercent = 0.45;
-    if (gpuObj.tier === 'ultra') boostPercent = 0.35;
+    let boostPercent = gpuObj.boost;
+    if (cpuObj.tier === 'high' && gpuObj.tier === 'mid') {
+      boostPercent = 0.615; // 52 -> 84 FPS (+61.5%)
+    }
 
     const optimizedFps = Math.round(baseFps * (1 + boostPercent));
 

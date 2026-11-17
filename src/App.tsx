@@ -10,7 +10,6 @@ import { FaqSection } from './components/FaqSection';
 import { Footer } from './components/Footer';
 import { DownloadModal } from './components/DownloadModal';
 import { ShortcutsModal } from './components/ShortcutsModal';
-import { QuickHudDock } from './components/QuickHudDock';
 import { Language } from './types';
 import { toggleSound, isSoundEnabled, playTactileClick } from './utils/sound';
 
@@ -84,13 +83,6 @@ export default function App() {
 
       {/* Footer */}
       <Footer lang={lang} />
-
-      {/* Quick Floating HUD Dock */}
-      <QuickHudDock
-        onOpenShortcuts={() => setIsShortcutsOpen(true)}
-        onToggleSound={handleToggleSound}
-        soundActive={soundActive}
-      />
 
       {/* Download Modal Dialog */}
       <DownloadModal
