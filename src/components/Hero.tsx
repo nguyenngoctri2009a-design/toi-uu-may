@@ -41,7 +41,7 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenDownload, onScrollToSpec
   }, []);
 
   return (
-    <section className="relative pt-10 pb-20 lg:pt-16 lg:pb-28">
+    <section className="relative pt-8 pb-20 lg:pt-12 lg:pb-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center">
           
@@ -52,30 +52,43 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenDownload, onScrollToSpec
             <span className="text-[#64748B] font-mono text-[11px] font-normal">| {nativeHz}Hz NATIVE</span>
           </div>
 
-          {/* Main Title - T1 Gradient Headline */}
-          <h1 className="max-w-4xl text-4xl sm:text-6xl lg:text-[66px] font-extrabold text-[#152238] font-heading tracking-tight leading-[1.08] mb-5">
-            <span className="t1-hero-gradient">
-              {t.titleHighlight}
-            </span>
-            <br />
-            <span className="text-[#152238]">
-              {t.titleRest}
-            </span>
+          {/* Hidden SEO Header */}
+          <h1 className="sr-only">
+            GTA5VN System - Tối Ưu Máy PC & Laptop Chơi FiveM Mượt Mà
           </h1>
 
-          {/* Subtitle */}
-          <p className="max-w-2xl text-base sm:text-lg text-[#64748B] leading-relaxed mb-8 font-normal">
-            {t.description}
-          </p>
+          {/* ================================================================
+              MASTER HERO SHOWCASE BANNER (ĐẶT NGAY ĐẦU TRANG THEO YÊU CẦU)
+              ================================================================ */}
+          <div className="w-full max-w-5xl mb-8 relative group">
+            {/* 3D Showcase Frame */}
+            <div className="relative rounded-3xl overflow-hidden border-4 border-white shadow-[0_20px_60px_rgba(7,150,229,0.18)] bg-white transform transition-all duration-300 hover:scale-[1.01]">
+              <img 
+                src="/images/hero-banner.jpg" 
+                alt="Tối Ưu Máy - Tối Ưu PC Laptop GTA5VN System" 
+                className="w-full h-auto object-cover block select-none"
+                loading="eager"
+              />
+              
+              {/* Subtle Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
 
-          {/* 3D Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-12">
+              {/* Floating Live Badge On Banner */}
+              <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/95 backdrop-blur-md border border-[#DFEAF4] shadow-md text-xs font-bold text-[#152238]">
+                <span className="w-2 h-2 rounded-full bg-[#00A88A] animate-ping" />
+                <span className="font-heading">CHƠI GAME & LÀM VIỆC MƯỢT HƠN</span>
+              </div>
+            </div>
+          </div>
+
+          {/* 3D Action Buttons (Đặt ngay dưới ảnh banner) */}
+          <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-14">
             <button
               onClick={() => {
                 playTactileClick('down');
                 onOpenDownload();
               }}
-              className="t1-btn-3d t1-btn-primary w-full sm:w-auto px-8 py-4 gap-3 group text-base"
+              className="t1-btn-3d t1-btn-primary w-full sm:w-auto px-9 py-4 gap-3 group text-base"
             >
               <Download className="w-5 h-5 transition-transform group-hover:-translate-y-0.5" />
               <div className="text-left">
@@ -97,30 +110,6 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenDownload, onScrollToSpec
               <span className="font-bold text-[#1E293B]">{t.specsCta}</span>
               <ChevronRight className="w-4 h-4 text-[#64748B]" />
             </button>
-          </div>
-
-          {/* ================================================================
-              MASTER HERO SHOWCASE BANNER (NHƯ CÁC WEB CÔNG NGHỆ HÀNG ĐẦU)
-              ================================================================ */}
-          <div className="w-full max-w-5xl mb-14 relative group">
-            {/* 3D Showcase Frame */}
-            <div className="relative rounded-3xl overflow-hidden border-4 border-white shadow-[0_20px_60px_rgba(7,150,229,0.18)] bg-white transform transition-all duration-300 hover:scale-[1.01]">
-              <img 
-                src="/images/hero-banner.jpg" 
-                alt="Tối Ưu Máy - Tối Ưu PC Laptop GTA5VN System" 
-                className="w-full h-auto object-cover block select-none"
-                loading="eager"
-              />
-              
-              {/* Subtle Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
-
-              {/* Floating Live Badge On Banner */}
-              <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/95 backdrop-blur-md border border-[#DFEAF4] shadow-md text-xs font-bold text-[#152238]">
-                <span className="w-2 h-2 rounded-full bg-[#00A88A] animate-ping" />
-                <span className="font-heading">CHƠI GAME & LÀM VIỆC MƯỢT HƠN</span>
-              </div>
-            </div>
           </div>
 
           {/* Real-time Visual Status Indicator Bar */}
