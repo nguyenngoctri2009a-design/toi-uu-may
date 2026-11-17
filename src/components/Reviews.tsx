@@ -24,9 +24,9 @@ const reviews: ReviewItem[] = [
     server: 'Mixi City Roleplay',
     stars: 5,
     date: '2 ngày trước',
-    comment: 'Trước đi xe qua Legion Square hay bị khựng khựng đứng hình 1 giây rất ức chế. Áp dụng profile eSports xong lướt êm ru, FPS từ 45 nhảy lên 82 ổn định luôn!',
+    comment: 'Trước đi xe qua Legion Square hay bị khựng khựng đứng hình 1 giây rất ức chế. Áp dụng profile eSports xong lướt êm ru, FPS từ 45 nhảy lên 72 ổn định luôn!',
     specs: 'Core i5-10400F • GTX 1660 Ti',
-    fpsGain: '+82% FPS',
+    fpsGain: '+60% FPS',
   },
   {
     name: 'Tuấn Anh (Sniper99)',
@@ -36,7 +36,7 @@ const reviews: ReviewItem[] = [
     date: '3 ngày trước',
     comment: 'Phần mềm dọn RAM ảo đỉnh thật, bật game lên chơi 4-5 tiếng không bị tràn bộ nhớ văng crash game như trước. Đặc biệt trỏ chuột lia rất mượt không bị trễ.',
     specs: 'Ryzen 5 3600 • 16GB RAM',
-    fpsGain: '+75% FPS',
+    fpsGain: '+58% FPS',
   },
   {
     name: 'Minh Quân (QuanB)',
@@ -44,9 +44,9 @@ const reviews: ReviewItem[] = [
     server: 'Sài Gòn Phố RP',
     stars: 5,
     date: 'Hôm qua',
-    comment: 'Máy mình laptop văn phòng chip Intel UHD tưởng không chơi nổi FiveM. Bật Potato Preset lên bắn nhau ầm ầm được 50 FPS, cảm ơn đội ngũ phát triển nhiều!',
+    comment: 'Máy mình laptop văn phòng chip Intel UHD tưởng không chơi nổi FiveM. Bật Potato Preset lên bắn nhau ầm ầm được 32 FPS, cảm ơn đội ngũ phát triển nhiều!',
     specs: 'Laptop Core i5-1135G7 Iris Xe',
-    fpsGain: '+95% FPS',
+    fpsGain: '+55% FPS',
   },
   {
     name: 'Bảo Nam (NamSeven)',
@@ -56,7 +56,7 @@ const reviews: ReviewItem[] = [
     date: '4 ngày trước',
     comment: 'Thích nhất là cái nút khôi phục 1-click rất an tâm. Tool sạch, quét qua VirusTotal xanh lè 100%. Anh em bắn súng war băng đảng khuyên thật lòng nên dùng.',
     specs: 'Ryzen 7 5700X • RTX 3060',
-    fpsGain: '+60% FPS',
+    fpsGain: '+52% FPS',
   },
   {
     name: 'Đức Trọng',
@@ -66,7 +66,7 @@ const reviews: ReviewItem[] = [
     date: '5 ngày trước',
     comment: 'Không bị ban tài khoản nha mọi người, mình dùng cả tháng nay trên FiveM và Steam bình thường. FPS tăng thấy rõ rệt khi trời mưa giông.',
     specs: 'Core i7-9700 • GTX 1070 8GB',
-    fpsGain: '+70% FPS',
+    fpsGain: '+56% FPS',
   },
   {
     name: 'Văn Hùng (HungMix)',
@@ -76,7 +76,7 @@ const reviews: ReviewItem[] = [
     date: '1 tuần trước',
     comment: 'Giao diện T1 đẹp đỉnh chóp, thao tác dễ hiểu. Bật tool lên rồi ấn 1 nút là xong, vào game hưởng thụ độ mượt.',
     specs: 'Core i5-12400 • RTX 2060 Super',
-    fpsGain: '+68% FPS',
+    fpsGain: '+60% FPS',
   },
 ];
 

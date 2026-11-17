@@ -125,13 +125,13 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenDownload, onScrollToSpec
                 <div className="w-5 h-5 rounded-lg bg-[#ECFDF5] border border-[#A7F3D0] text-[#00A88A] flex items-center justify-center flex-shrink-0 shadow-2xs">
                   <CheckCircle2 className="w-3.5 h-3.5" />
                 </div>
-                <span>Tăng FPS tức thì từ +45% đến +90% trên mọi cấu hình</span>
+                <span>Tăng FPS tức thì từ +40% đến +65% trên mọi cấu hình</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-5 h-5 rounded-lg bg-[#ECFDF5] border border-[#A7F3D0] text-[#00A88A] flex items-center justify-center flex-shrink-0 shadow-2xs">
                   <CheckCircle2 className="w-3.5 h-3.5" />
                 </div>
-                <span>Triệt tiêu 1% Low Stutter tại các điểm đông người</span>
+                <span>Tối ưu CPU Affinity & Triệt tiêu 1% Low Stutter tại các điểm đông người</span>
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-5 h-5 rounded-lg bg-[#ECFDF5] border border-[#A7F3D0] text-[#00A88A] flex items-center justify-center flex-shrink-0 shadow-2xs">
