@@ -1,5 +1,10 @@
 import React from 'react';
 import { Trophy, CheckCircle2, Server } from 'lucide-react';
+import { Language } from '../types';
+
+interface LeaderboardProps {
+  lang?: Language;
+}
 
 interface PlayerRank {
   rank: number;
@@ -93,7 +98,8 @@ const topPlayers: PlayerRank[] = [
   },
 ];
 
-export const Leaderboard: React.FC = () => {
+export const Leaderboard: React.FC<LeaderboardProps> = ({ lang = 'vi' }) => {
+  const isEn = lang === 'en';
   return (
     <section id="bang-xep-hang" className="py-20 relative">
       <div className="max-w-[1480px] mx-auto px-4 sm:px-8 lg:px-12">
@@ -102,13 +108,15 @@ export const Leaderboard: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#FFFBEB] border border-[#FDE68A] text-[#D97706] text-xs font-bold font-heading uppercase tracking-wider mb-3 shadow-xs">
             <Trophy className="w-3.5 h-3.5 text-[#F59E0B]" />
-            <span>TOP GAME THỦ & SERVER</span>
+            <span>{isEn ? 'TOP PLAYERS & SERVERS' : 'TOP GAME THỦ & SERVER'}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#152238] font-heading tracking-tight mb-4">
-            Bảng Xếp Hạng Tăng Trưởng FPS Thực Tế
+            {isEn ? 'Real-World FPS Growth Leaderboard' : 'Bảng Xếp Hạng Tăng Trưởng FPS Thực Tế'}
           </h2>
           <p className="text-[#64748B] text-sm sm:text-base">
-            Dữ liệu ghi nhận trực tiếp từ telemetry của người chơi tại các cụm server FiveM hàng đầu Việt Nam.
+            {isEn
+              ? 'Live telemetry telemetry recorded directly from players across top FiveM community servers.'
+              : 'Dữ liệu ghi nhận trực tiếp từ telemetry của người chơi tại các cụm server FiveM hàng đầu Việt Nam.'}
           </p>
         </div>
 

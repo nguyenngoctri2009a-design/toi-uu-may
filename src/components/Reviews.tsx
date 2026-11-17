@@ -1,5 +1,10 @@
 import React from 'react';
 import { Star, CheckCircle } from 'lucide-react';
+import { Language } from '../types';
+
+interface ReviewsProps {
+  lang?: Language;
+}
 
 interface ReviewItem {
   name: string;
@@ -75,7 +80,8 @@ const reviews: ReviewItem[] = [
   },
 ];
 
-export const Reviews: React.FC = () => {
+export const Reviews: React.FC<ReviewsProps> = ({ lang = 'vi' }) => {
+  const isEn = lang === 'en';
   return (
     <section id="danh-gia" className="py-20 relative">
       <div className="max-w-[1480px] mx-auto px-4 sm:px-8 lg:px-12">
@@ -84,13 +90,15 @@ export const Reviews: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#FFFBEB] border border-[#FDE68A] text-[#D97706] text-xs font-bold font-heading uppercase tracking-wider mb-3 shadow-xs">
             <Star className="w-3.5 h-3.5 fill-[#F59E0B] text-[#F59E0B]" />
-            <span>4.9 / 5 SAO TÍN NHIỆM</span>
+            <span>{isEn ? '4.9 / 5 TRUST SCORE' : '4.9 / 5 SAO TÍN NHIỆM'}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#152238] font-heading tracking-tight mb-4">
-            Cộng Đồng FiveM Việt Nam Nói Gì?
+            {isEn ? 'What Does The FiveM Community Say?' : 'Cộng Đồng FiveM Việt Nam Nói Gì?'}
           </h2>
           <p className="text-[#64748B] text-sm sm:text-base">
-            Hơn 25,800+ người chơi tại Mixi City, Độ Tộc, Sài Gòn Phố, GVN City đã kiểm chứng hiệu quả thực tế.
+            {isEn
+              ? 'Over 25,800+ players across top FiveM Roleplay servers have verified real combat performance.'
+              : 'Hơn 25,800+ người chơi tại Mixi City, Độ Tộc, Sài Gòn Phố, GVN City đã kiểm chứng hiệu quả thực tế.'}
           </p>
         </div>
 

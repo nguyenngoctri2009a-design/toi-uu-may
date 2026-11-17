@@ -70,11 +70,11 @@ export default function App() {
         </div>
 
         <div className="section-optimize">
-          <Leaderboard />
+          <Leaderboard lang={lang} />
         </div>
 
         <div className="section-optimize">
-          <Reviews />
+          <Reviews lang={lang} />
         </div>
 
         <div className="section-optimize">
