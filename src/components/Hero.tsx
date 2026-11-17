@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Download, Shield, Cpu, Activity, Zap, CheckCircle2, ChevronRight } from 'lucide-react';
 import { Language } from '../types';
 import { content } from '../data/content';
+import { playTactileClick } from '../utils/sound';
 
 interface HeroProps {
   lang: Language;
@@ -13,7 +14,6 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenDownload, onScrollToSpec
   const t = content[lang].hero;
   const [nativeHz, setNativeHz] = useState<number>(144);
 
-  // Tự động nhận diện tần số quét thực tế của màn hình (native refresh rate detection)
   useEffect(() => {
     let frameCount = 0;
     let startTime = performance.now();
@@ -24,7 +24,6 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenDownload, onScrollToSpec
       const delta = now - startTime;
       if (delta >= 1000) {
         const detected = Math.round((frameCount * 1000) / delta);
-        // Round to common monitor refresh rate bins
         if (detected >= 340) setNativeHz(360);
         else if (detected >= 220) setNativeHz(240);
         else if (detected >= 155) setNativeHz(165);
@@ -42,19 +41,19 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenDownload, onScrollToSpec
   }, []);
 
   return (
-    <section className="relative pt-12 pb-20 lg:pt-20 lg:pb-28">
+    <section className="relative pt-10 pb-20 lg:pt-16 lg:pb-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center">
           
           {/* Top Pill / Live Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ECFDF5] border border-[#A7F3D0] text-[#00A88A] text-xs font-bold font-heading uppercase tracking-wider mb-8 shadow-xs">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ECFDF5] border border-[#A7F3D0] text-[#00A88A] text-xs font-bold font-heading uppercase tracking-wider mb-6 shadow-xs">
             <span className="w-2 h-2 rounded-full bg-[#00A88A] animate-ping" />
             <span>{t.badge}</span>
             <span className="text-[#64748B] font-mono text-[11px] font-normal">| {nativeHz}Hz NATIVE</span>
           </div>
 
           {/* Main Title - T1 Gradient Headline */}
-          <h1 className="max-w-4xl text-4xl sm:text-6xl lg:text-[68px] font-extrabold text-[#152238] font-heading tracking-tight leading-[1.08] mb-6">
+          <h1 className="max-w-4xl text-4xl sm:text-6xl lg:text-[66px] font-extrabold text-[#152238] font-heading tracking-tight leading-[1.08] mb-5">
             <span className="t1-hero-gradient">
               {t.titleHighlight}
             </span>
@@ -65,14 +64,17 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenDownload, onScrollToSpec
           </h1>
 
           {/* Subtitle */}
-          <p className="max-w-2xl text-base sm:text-lg text-[#64748B] leading-relaxed mb-10 font-normal">
+          <p className="max-w-2xl text-base sm:text-lg text-[#64748B] leading-relaxed mb-8 font-normal">
             {t.description}
           </p>
 
           {/* 3D Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-14">
+          <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-12">
             <button
-              onClick={onOpenDownload}
+              onClick={() => {
+                playTactileClick('down');
+                onOpenDownload();
+              }}
               className="t1-btn-3d t1-btn-primary w-full sm:w-auto px-8 py-4 gap-3 group text-base"
             >
               <Download className="w-5 h-5 transition-transform group-hover:-translate-y-0.5" />
@@ -85,13 +87,40 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenDownload, onScrollToSpec
             </button>
 
             <button
-              onClick={onScrollToSpecs}
+              onClick={() => {
+                playTactileClick('subtle');
+                onScrollToSpecs();
+              }}
               className="t1-btn-3d t1-btn-surface w-full sm:w-auto px-7 py-4 gap-2.5 text-base"
             >
               <Cpu className="w-5 h-5 text-[#0796E5]" />
               <span className="font-bold text-[#1E293B]">{t.specsCta}</span>
               <ChevronRight className="w-4 h-4 text-[#64748B]" />
             </button>
+          </div>
+
+          {/* ================================================================
+              MASTER HERO SHOWCASE BANNER (NHƯ CÁC WEB CÔNG NGHỆ HÀNG ĐẦU)
+              ================================================================ */}
+          <div className="w-full max-w-5xl mb-14 relative group">
+            {/* 3D Showcase Frame */}
+            <div className="relative rounded-3xl overflow-hidden border-4 border-white shadow-[0_20px_60px_rgba(7,150,229,0.18)] bg-white transform transition-all duration-300 hover:scale-[1.01]">
+              <img 
+                src="/images/hero-banner.jpg" 
+                alt="Tối Ưu Máy - Tối Ưu PC Laptop GTA5VN System" 
+                className="w-full h-auto object-cover block select-none"
+                loading="eager"
+              />
+              
+              {/* Subtle Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
+
+              {/* Floating Live Badge On Banner */}
+              <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/95 backdrop-blur-md border border-[#DFEAF4] shadow-md text-xs font-bold text-[#152238]">
+                <span className="w-2 h-2 rounded-full bg-[#00A88A] animate-ping" />
+                <span className="font-heading">CHƠI GAME & LÀM VIỆC MƯỢT HƠN</span>
+              </div>
+            </div>
           </div>
 
           {/* Real-time Visual Status Indicator Bar */}
