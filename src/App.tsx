@@ -41,16 +41,24 @@ export default function App() {
           onScrollToSpecs={scrollToSpecs}
         />
 
-        <Features lang={lang} />
+        <div className="section-optimize">
+          <Features lang={lang} />
+        </div>
 
-        <SpecsChecker
-          lang={lang}
-          onOpenDownload={() => setIsDownloadOpen(true)}
-        />
+        <div className="section-optimize">
+          <SpecsChecker
+            lang={lang}
+            onOpenDownload={() => setIsDownloadOpen(true)}
+          />
+        </div>
 
-        <TelemetryChart lang={lang} />
+        <div className="section-optimize">
+          <TelemetryChart lang={lang} />
+        </div>
 
-        <FaqSection lang={lang} />
+        <div className="section-optimize">
+          <FaqSection lang={lang} />
+        </div>
       </main>
 
       {/* Footer */}

@@ -13,11 +13,7 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenDownload, onScrollToSpec
   const t = content[lang].hero;
 
   return (
-    <section className="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28">
-      {/* Background ambient lighting effects */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-emerald-500/10 blur-[130px] rounded-full pointer-events-none -z-10" />
-      <div className="absolute top-1/3 left-1/4 w-[350px] h-[250px] bg-teal-500/10 blur-[100px] rounded-full pointer-events-none -z-10" />
-
+    <section className="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 ambient-glow">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center">
           

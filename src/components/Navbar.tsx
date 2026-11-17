@@ -22,7 +22,7 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenDownlo
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-dark-border bg-dark-base/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 w-full border-b border-dark-border bg-[#080a0f]/95 shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Brand Logo */}
         <div className="flex items-center gap-3.5 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>

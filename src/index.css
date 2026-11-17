@@ -3,15 +3,26 @@
 @tailwind utilities;
 
 @layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: auto; /* Allow native 120Hz/240Hz wheel input without interpolation lag */
+  }
+
   body {
-    background-color: #07090e;
+    background-color: #080a0f;
     color: #e2e8f0;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     overflow-x: hidden;
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-/* Custom subtle scrollbar */
+/* Custom subtle high-perf scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -29,24 +40,38 @@
   background: #334155;
 }
 
-/* Glassmorphism helpers */
+/* Ultra high-performance card panels (Opaque / Semi-opaque without expensive GPU blur shaders) */
 .glass-panel {
-  background: rgba(13, 17, 23, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0d121c;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+  transform: translateZ(0); /* Promote to compositor layer */
 }
 
 .glass-panel-hover {
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  will-change: transform;
 }
 
 .glass-panel-hover:hover {
   border-color: rgba(52, 211, 153, 0.35);
-  background: rgba(19, 24, 34, 0.85);
-  box-shadow: 0 10px 30px -10px rgba(0, 255, 136, 0.12);
+  background: #121824;
+  box-shadow: 0 8px 25px -5px rgba(0, 255, 136, 0.12);
+  transform: translateY(-2px) translateZ(0);
 }
 
 .glow-text {
-  text-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+  text-shadow: 0 0 16px rgba(0, 255, 136, 0.35);
+}
+
+/* Zero-cost radial ambient glow (pre-rendered GPU radial gradients instead of heavy blur filters) */
+.ambient-glow {
+  background: radial-gradient(circle at 50% 30%, rgba(16, 185, 129, 0.08) 0%, rgba(8, 10, 15, 0) 70%);
+  pointer-events: none;
+}
+
+/* Content visibility optimization for off-screen rendering speed */
+.section-optimize {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 700px;
 }
