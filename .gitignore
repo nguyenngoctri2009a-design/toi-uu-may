@@ -1,5 +1,11 @@
+# Node & Build Artifacts
+node_modules/
+dist/
+dist-ssr/
+*.local
+
 # Downloads and Archives
-!downloads/GTA5VN-System.exe
+!public/downloads/GTA5VN-System.exe
 *.zip
 
 # Rust Build Artifacts
