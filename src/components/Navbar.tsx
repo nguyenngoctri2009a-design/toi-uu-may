@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Download, Globe, Menu, X } from 'lucide-react';
 import { Language } from '../types';
 import { content } from '../data/content';
+import { playTactileClick } from '../utils/sound';
 
 interface NavbarProps {
   lang: Language;
@@ -14,6 +15,7 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenDownlo
   const t = content[lang].nav;
 
   const scrollToSection = (id: string) => {
+    playTactileClick('subtle');
     setMobileMenuOpen(false);
     const element = document.getElementById(id);
     if (element) {
@@ -28,7 +30,10 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenDownlo
         {/* Brand Logo */}
         <div 
           className="flex items-center gap-3 cursor-pointer select-none" 
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={() => {
+            playTactileClick('up');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
         >
           <div className="relative flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-br from-[#0796E5] to-[#00A88A] p-0.5 shadow-md shadow-sky-500/20">
             <img 
@@ -57,28 +62,40 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenDownlo
         </div>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#475569]">
+        <nav className="hidden lg:flex items-center gap-1 text-[11.5px] font-bold uppercase tracking-wider text-[#475569]">
           <button 
             onClick={() => scrollToSection('features')} 
-            className="px-3.5 py-2 rounded-xl hover:text-[#0796E5] hover:bg-[#EDF6FF] transition-all"
+            className="px-3 py-2 rounded-xl hover:text-[#0796E5] hover:bg-[#EDF6FF] transition-all"
           >
             {t.features}
           </button>
           <button 
             onClick={() => scrollToSection('specs')} 
-            className="px-3.5 py-2 rounded-xl hover:text-[#0796E5] hover:bg-[#EDF6FF] transition-all"
+            className="px-3 py-2 rounded-xl hover:text-[#0796E5] hover:bg-[#EDF6FF] transition-all"
           >
             {t.specs}
           </button>
           <button 
             onClick={() => scrollToSection('telemetry')} 
-            className="px-3.5 py-2 rounded-xl hover:text-[#0796E5] hover:bg-[#EDF6FF] transition-all"
+            className="px-3 py-2 rounded-xl hover:text-[#0796E5] hover:bg-[#EDF6FF] transition-all"
           >
             {t.telemetry}
           </button>
           <button 
+            onClick={() => scrollToSection('bang-xep-hang')} 
+            className="px-3 py-2 rounded-xl hover:text-[#0796E5] hover:bg-[#EDF6FF] transition-all text-[#D97706]"
+          >
+            Xếp Hạng
+          </button>
+          <button 
+            onClick={() => scrollToSection('danh-gia')} 
+            className="px-3 py-2 rounded-xl hover:text-[#0796E5] hover:bg-[#EDF6FF] transition-all"
+          >
+            Đánh Giá
+          </button>
+          <button 
             onClick={() => scrollToSection('faq')} 
-            className="px-3.5 py-2 rounded-xl hover:text-[#0796E5] hover:bg-[#EDF6FF] transition-all"
+            className="px-3 py-2 rounded-xl hover:text-[#0796E5] hover:bg-[#EDF6FF] transition-all"
           >
             {t.faq}
           </button>
@@ -86,9 +103,23 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenDownlo
 
         {/* Right Actions: Lang Switcher & CTA */}
         <div className="hidden sm:flex items-center gap-3">
+          {/* Discord Pill */}
+          <a
+            href="https://discord.gg/gtavn"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => playTactileClick('subtle')}
+            className="t1-btn-3d px-3 py-2 text-xs font-bold bg-[#5865F2] hover:bg-[#4752C4] text-white rounded-xl shadow-xs"
+          >
+            <span>DISCORD</span>
+          </a>
+
           {/* Language Toggle */}
           <button
-            onClick={onToggleLang}
+            onClick={() => {
+              playTactileClick('subtle');
+              onToggleLang();
+            }}
             className="t1-btn-3d t1-btn-surface px-3 py-2 text-xs gap-1.5"
             title="Switch Language"
           >
@@ -98,7 +129,10 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenDownlo
 
           {/* Download CTA Button */}
           <button
-            onClick={onOpenDownload}
+            onClick={() => {
+              playTactileClick('down');
+              onOpenDownload();
+            }}
             className="t1-btn-3d t1-btn-primary px-5 py-2.5 text-xs sm:text-[13px] gap-2 shadow-sm"
           >
             <Download className="w-4 h-4" />
@@ -108,15 +142,21 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenDownlo
         </div>
 
         {/* Mobile Hamburger Toggle */}
-        <div className="flex sm:hidden items-center gap-2">
+        <div className="flex lg:hidden items-center gap-2">
           <button
-            onClick={onToggleLang}
+            onClick={() => {
+              playTactileClick('subtle');
+              onToggleLang();
+            }}
             className="px-2.5 py-1.5 rounded-lg border border-[#DFEAF4] bg-white text-xs font-bold text-[#475569]"
           >
             {lang.toUpperCase()}
           </button>
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={() => {
+              playTactileClick('subtle');
+              setMobileMenuOpen(!mobileMenuOpen);
+            }}
             className="p-2 rounded-xl bg-white border border-[#DFEAF4] text-[#152238] shadow-xs"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -127,7 +167,7 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenDownlo
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="sm:hidden border-b border-[#DFEAF4] bg-white px-4 pt-3 pb-6 space-y-2 shadow-lg">
+        <div className="lg:hidden border-b border-[#DFEAF4] bg-white px-4 pt-3 pb-6 space-y-2 shadow-lg">
           <button
             onClick={() => scrollToSection('features')}
             className="w-full text-left px-3 py-2.5 rounded-xl text-sm font-bold text-[#1E293B] hover:bg-[#EDF6FF] hover:text-[#0796E5]"
@@ -147,6 +187,18 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenDownlo
             {t.telemetry}
           </button>
           <button
+            onClick={() => scrollToSection('bang-xep-hang')}
+            className="w-full text-left px-3 py-2.5 rounded-xl text-sm font-bold text-[#D97706] hover:bg-[#FFFBEB]"
+          >
+            Bảng Xếp Hạng Top
+          </button>
+          <button
+            onClick={() => scrollToSection('danh-gia')}
+            className="w-full text-left px-3 py-2.5 rounded-xl text-sm font-bold text-[#1E293B] hover:bg-[#EDF6FF] hover:text-[#0796E5]"
+          >
+            Đánh Giá Cộng Đồng
+          </button>
+          <button
             onClick={() => scrollToSection('faq')}
             className="w-full text-left px-3 py-2.5 rounded-xl text-sm font-bold text-[#1E293B] hover:bg-[#EDF6FF] hover:text-[#0796E5]"
           >
@@ -155,6 +207,7 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenDownlo
           <div className="pt-2">
             <button
               onClick={() => {
+                playTactileClick('down');
                 setMobileMenuOpen(false);
                 onOpenDownload();
               }}
