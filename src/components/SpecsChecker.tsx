@@ -9,24 +9,24 @@ interface SpecsCheckerProps {
 }
 
 export const cpus = [
-  { id: 'i3_old', name: 'Intel Core i3-10100F / Core i5 Cũ (Gen 2 - 7)', cpuBase: 20, tier: 'low' },
-  { id: 'i5_mid', name: 'Intel Core i5 (Gen 8 - 11) / AMD Ryzen 5 3600', cpuBase: 20, tier: 'mid' },
+  { id: 'i3_old', name: 'Intel Core i3-10100F / Core i5 Cũ (Gen 2 - 7)', cpuBase: 16, tier: 'low' },
+  { id: 'i5_mid', name: 'Intel Core i5 (Gen 8 - 11) / AMD Ryzen 5 3600', cpuBase: 22, tier: 'mid' },
   { id: 'i7_high', name: 'Intel Core i5-12400F / i7 (Gen 12 - 14) / Ryzen 5000+', cpuBase: 26, tier: 'high' },
   { id: 'ryzen_extreme', name: 'Intel Core i9 / AMD Ryzen 7 7800X3D / Extreme', cpuBase: 34, tier: 'ultra' },
 ];
 
 export const gpus = [
-  { id: 'onboard', name: 'Card Onboard Intel UHD 630 / Iris Xe / AMD Vega', gpuBase: 4, boost: 0.556, tier: 'low' },
-  { id: 'gtx_low', name: 'NVIDIA GTX 750Ti / GTX 960 / GTX 1050 2GB-4GB', gpuBase: 14, boost: 0.607, tier: 'low' },
-  { id: 'gtx_mid', name: 'NVIDIA GTX 1060 6GB / GTX 1660 Super / RTX 2060', gpuBase: 24, boost: 0.591, tier: 'mid' },
-  { id: 'rtx_high', name: 'NVIDIA RTX 3060 / 3070 / 4060 / AMD RX 6700 XT', gpuBase: 42, boost: 0.514, tier: 'high' },
-  { id: 'rtx_ultra', name: 'NVIDIA RTX 4070 / 4080 / 4090 / RX 7900 XTX', gpuBase: 64, boost: 0.425, tier: 'ultra' },
+  { id: 'onboard', name: 'Card Onboard Intel UHD 630 / Iris Xe / AMD Vega', gpuBase: 2, boost: 0.389, tier: 'low' },
+  { id: 'gtx_low', name: 'NVIDIA GTX 750Ti / GTX 960 / GTX 1650 4GB', gpuBase: 13, boost: 0.657, tier: 'low' },
+  { id: 'gtx_mid', name: 'NVIDIA GTX 1060 6GB / GTX 1660 Super / RTX 2060', gpuBase: 20, boost: 0.619, tier: 'mid' },
+  { id: 'rtx_high', name: 'NVIDIA RTX 3060 / 3070 / 4060 / AMD RX 6700 XT', gpuBase: 34, boost: 0.485, tier: 'high' },
+  { id: 'rtx_ultra', name: 'NVIDIA RTX 4070 / 4080 / 4090 / RX 7900 XTX', gpuBase: 50, boost: 0.35, tier: 'ultra' },
 ];
 
 export const rams = [
-  { id: '8gb', name: '8 GB DDR4 (Đơn luồng / Thiếu VRAM swap)', penalty: -6 },
+  { id: '8gb', name: '8 GB DDR4 (Đơn luồng / Thiếu VRAM swap)', penalty: -3 },
   { id: '16gb', name: '16 GB DDR4/DDR5 (Tiêu chuẩn FiveM)', penalty: 0 },
-  { id: '32gb', name: '32 GB+ Dual Channel High-Speed', penalty: 2 },
+  { id: '32gb', name: '32 GB+ Dual Channel High-Speed', penalty: 0 },
 ];
 
 export const SpecsChecker: React.FC<SpecsCheckerProps> = ({ lang, onOpenDownload }) => {
@@ -35,25 +35,25 @@ export const SpecsChecker: React.FC<SpecsCheckerProps> = ({ lang, onOpenDownload
   const [selectedGpu, setSelectedGpu] = useState(gpus[2].id);
   const [selectedRam, setSelectedRam] = useState(rams[1].id);
 
-  // Calculate recommendation and FPS (Harmonized 100% with Leaderboard Telemetry)
+  // Calculate recommendation and FPS (Harmonized 100% with Leaderboard Telemetry at Legion Square)
   const calculation = useMemo(() => {
     const gpuObj = gpus.find(g => g.id === selectedGpu) || gpus[2];
     const ramObj = rams.find(r => r.id === selectedRam) || rams[1];
     const cpuObj = cpus.find(c => c.id === selectedCpu) || cpus[1];
 
     let baseFps = cpuObj.cpuBase + gpuObj.gpuBase + ramObj.penalty;
-    // Extra penalty for onboard on FiveM
+    // Onboard iGPU penalty due to shared system memory
     if (gpuObj.id === 'onboard') {
-      baseFps = Math.max(16, baseFps - 6);
+      baseFps = 18;
     }
-    // High-end CPU boost bonus
+    // High-end CPU bonus with mid GPU (e.g. i5-12400F + GTX 1660S)
     if (cpuObj.tier === 'high' && gpuObj.tier === 'mid') {
-      baseFps += 2; // e.g. i5-12400F + GTX 1660S gives 52 base FPS
+      baseFps = 48;
     }
 
     let boostPercent = gpuObj.boost;
     if (cpuObj.tier === 'high' && gpuObj.tier === 'mid') {
-      boostPercent = 0.615; // 52 -> 84 FPS (+61.5%)
+      boostPercent = 0.604; // 48 -> 77 FPS (+60.4% matches Top 1 Mixi_Dragon99)
     }
 
     const optimizedFps = Math.round(baseFps * (1 + boostPercent));

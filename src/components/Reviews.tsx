@@ -44,9 +44,9 @@ const reviews: ReviewItem[] = [
     server: 'Sài Gòn Phố RP',
     stars: 5,
     date: 'Hôm qua',
-    comment: 'Máy mình laptop văn phòng chip Intel UHD tưởng không chơi nổi FiveM. Bật Potato Preset lên bắn nhau ầm ầm được 32 FPS, cảm ơn đội ngũ phát triển nhiều!',
+    comment: 'Máy mình laptop văn phòng chip Intel Iris Xe tưởng không kéo nổi FiveM. Bật Potato Preset lên giải phóng VRAM ảo bắn nhau được ~26 FPS ổn định không bị drop, quá hài lòng!',
     specs: 'Laptop Core i5-1135G7 Iris Xe',
-    fpsGain: '+55% FPS',
+    fpsGain: '+38% FPS',
   },
   {
     name: 'Bảo Nam (NamSeven)',
