@@ -25,7 +25,7 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenDownlo
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-[#DFEAF4] bg-white/95 backdrop-blur-md shadow-xs">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <div className="max-w-[1480px] mx-auto px-4 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
         
         {/* Brand Logo */}
         <div 

@@ -96,7 +96,7 @@ const topPlayers: PlayerRank[] = [
 export const Leaderboard: React.FC = () => {
   return (
     <section id="bang-xep-hang" className="py-20 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1480px] mx-auto px-4 sm:px-8 lg:px-12">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
