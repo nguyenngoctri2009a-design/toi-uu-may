@@ -2,75 +2,184 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  color-scheme: light !important;
+  --bg: #F4F8FC;
+  --surface: #FFFFFF;
+  --surface-soft: #EDF6FF;
+  --text-primary: #152238;
+  --text-secondary: #64748B;
+  --primary: #0796E5;
+  --primary-dark: #0875C1;
+  --secondary: #00A88A;
+  --border: #DFEAF4;
+}
+
 @layer base {
   *, *::before, *::after {
     box-sizing: border-box;
   }
 
   html {
-    scroll-behavior: auto; /* Allow native 120Hz/240Hz wheel input without interpolation lag */
+    scroll-behavior: auto;
+    background-color: #F4F8FC;
   }
 
   body {
-    background-color: #080a0f;
-    color: #e2e8f0;
+    background-color: #F4F8FC;
+    color: #152238;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     overflow-x: hidden;
     text-rendering: optimizeSpeed;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  }
 }
 
-/* Custom subtle high-perf scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+/* Subtle Dot Matrix Background (Signature T1) */
+.t1-dot-matrix {
+  background-color: #F4F8FC;
+  position: relative;
 }
 
-::-webkit-scrollbar-track {
-  background: #080a0f;
+.t1-dot-matrix::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(#CBD5E1 0.75px, transparent 0.75px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: -1;
+  transform: translateZ(0);
 }
 
-::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 4px;
+/* T1 Signature Gradient Text */
+.t1-hero-gradient {
+  background: linear-gradient(135deg, #0796E5 0%, #00B4D8 45%, #00A88A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+/* T1 3D Tactile Buttons */
+.t1-btn-3d {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  border-radius: 14px;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.15s ease;
+  user-select: none;
+  cursor: pointer;
+  transform: translateZ(0);
 }
 
-/* Ultra high-performance card panels (Opaque / Semi-opaque without expensive GPU blur shaders) */
-.glass-panel {
-  background: #0d121c;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
-  transform: translateZ(0); /* Promote to compositor layer */
-}
-
-.glass-panel-hover {
-  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
-  will-change: transform;
-}
-
-.glass-panel-hover:hover {
-  border-color: rgba(52, 211, 153, 0.35);
-  background: #121824;
-  box-shadow: 0 8px 25px -5px rgba(0, 255, 136, 0.12);
+.t1-btn-3d:hover {
   transform: translateY(-2px) translateZ(0);
 }
 
-.glow-text {
-  text-shadow: 0 0 16px rgba(0, 255, 136, 0.35);
+.t1-btn-3d:active {
+  transform: translateY(1px) translateZ(0);
 }
 
-/* Zero-cost radial ambient glow (pre-rendered GPU radial gradients instead of heavy blur filters) */
-.ambient-glow {
-  background: radial-gradient(circle at 50% 30%, rgba(16, 185, 129, 0.08) 0%, rgba(8, 10, 15, 0) 70%);
-  pointer-events: none;
+.t1-btn-primary {
+  background: linear-gradient(180deg, #18A2F2 0%, #0796E5 100%);
+  color: #FFFFFF;
+  border: 1px solid #0680C4;
+  box-shadow: 0 4px 0 #0569A2, 0 8px 16px rgba(7, 150, 229, 0.25);
 }
 
-/* Content visibility optimization for off-screen rendering speed */
+.t1-btn-primary:hover {
+  background: linear-gradient(180deg, #26ABF8 0%, #089EEF 100%);
+  box-shadow: 0 5px 0 #0569A2, 0 12px 20px rgba(7, 150, 229, 0.35);
+}
+
+.t1-btn-primary:active {
+  box-shadow: 0 1px 0 #0569A2, 0 3px 6px rgba(7, 150, 229, 0.2);
+}
+
+.t1-btn-secondary {
+  background: linear-gradient(180deg, #00C49F 0%, #00A88A 100%);
+  color: #FFFFFF;
+  border: 1px solid #008F75;
+  box-shadow: 0 4px 0 #00735E, 0 8px 16px rgba(0, 168, 138, 0.25);
+}
+
+.t1-btn-secondary:hover {
+  background: linear-gradient(180deg, #08D4AD 0%, #00B695 100%);
+  box-shadow: 0 5px 0 #00735E, 0 12px 20px rgba(0, 168, 138, 0.35);
+}
+
+.t1-btn-surface {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+  color: #1E293B;
+  border: 1px solid #DFEAF4;
+  box-shadow: 0 3px 0 #CBD5E1, 0 6px 12px rgba(15, 23, 42, 0.04);
+}
+
+.t1-btn-surface:hover {
+  background: #FFFFFF;
+  border-color: #BAE6FD;
+  box-shadow: 0 4px 0 #CBD5E1, 0 8px 16px rgba(14, 165, 233, 0.1);
+}
+
+.t1-btn-surface:active {
+  box-shadow: 0 1px 0 #CBD5E1, 0 2px 4px rgba(15, 23, 42, 0.04);
+}
+
+/* T1 3D Neumorphic Card Panels */
+.t1-card {
+  background: #FFFFFF;
+  border: 1px solid #DFEAF4;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+  transform: translateZ(0);
+}
+
+.t1-card-hover:hover {
+  transform: translateY(-2px) translateZ(0);
+  border-color: #BAE6FD;
+  box-shadow: 0 12px 30px -4px rgba(7, 150, 229, 0.12), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
+}
+
+/* T1 Live Badges */
+.t1-pill-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 11.5px;
+  font-weight: 800;
+  font-family: 'Outfit', sans-serif;
+  background: #ECFDF5;
+  color: #00A88A;
+  border: 1px solid #A7F3D0;
+  box-shadow: 0 2px 6px rgba(0, 168, 138, 0.1);
+}
+
+/* T1 Keycap */
+.t1-keycap {
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  border-bottom-width: 2px;
+  border-radius: 6px;
+  color: #475569;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Fast-path scroll performance */
 .section-optimize {
   content-visibility: auto;
   contain-intrinsic-size: 1px 700px;

@@ -9,7 +9,7 @@ interface SpecsCheckerProps {
 }
 
 const cpus = [
-  { id: 'i3_old', name: 'Intel Core i3 / Core i5 (Gen 2 - 7) / Cũ', tier: 'low' },
+  { id: 'i3_old', name: 'Intel Core i3 / Core i5 (Gen 2 - 7) / CPU Cũ', tier: 'low' },
   { id: 'i5_mid', name: 'Intel Core i5 (Gen 8 - 11) / Ryzen 3, 5 3600', tier: 'mid' },
   { id: 'i7_high', name: 'Intel Core i5/i7 (Gen 12 - 14) / Ryzen 5, 7 5000+', tier: 'high' },
   { id: 'ryzen_extreme', name: 'Intel Core i9 / AMD Ryzen 7 7800X3D / Extreme', tier: 'ultra' },
@@ -47,26 +47,23 @@ export const SpecsChecker: React.FC<SpecsCheckerProps> = ({ lang, onOpenDownload
     if (gpuObj.tier === 'high') baseFps = 72;
     if (gpuObj.tier === 'ultra') baseFps = 105;
 
-    // RAM adjustment
     baseFps = Math.max(22, baseFps + ramObj.penalty);
 
-    // Optimized FPS boost
-    let boostPercent = 0.7; // 70% average
-    if (gpuObj.tier === 'low') boostPercent = 0.95; // huge gain from potato preset
+    let boostPercent = 0.7;
+    if (gpuObj.tier === 'low') boostPercent = 0.95;
     if (gpuObj.tier === 'mid') boostPercent = 0.65;
     if (gpuObj.tier === 'high') boostPercent = 0.45;
     if (gpuObj.tier === 'ultra') boostPercent = 0.35;
 
     const optimizedFps = Math.round(baseFps * (1 + boostPercent));
 
-    // Determine recommended preset
-    let recommendedPreset = hardwarePresets[1]; // balanced
+    let recommendedPreset = hardwarePresets[1];
     if (gpuObj.tier === 'low' || selectedRam === '8gb') {
-      recommendedPreset = hardwarePresets[0]; // potato
+      recommendedPreset = hardwarePresets[0];
     } else if (gpuObj.tier === 'high' || cpuObj.tier === 'high') {
-      recommendedPreset = hardwarePresets[2]; // esports
+      recommendedPreset = hardwarePresets[2];
     } else if (gpuObj.tier === 'ultra') {
-      recommendedPreset = hardwarePresets[3]; // ultra
+      recommendedPreset = hardwarePresets[3];
     }
 
     return {
@@ -78,168 +75,144 @@ export const SpecsChecker: React.FC<SpecsCheckerProps> = ({ lang, onOpenDownload
   }, [selectedCpu, selectedGpu, selectedRam]);
 
   return (
-    <section id="specs" className="py-20 bg-dark-base/50 relative border-t border-dark-border">
+    <section id="specs" className="py-20 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/20 text-emerald-400 text-xs font-semibold tracking-wider uppercase mb-3">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#ECFDF5] border border-[#A7F3D0] text-[#00A88A] text-xs font-bold font-heading uppercase tracking-wider mb-3 shadow-xs">
             <Gauge className="w-3.5 h-3.5" />
             <span>{t.badge}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#152238] font-heading tracking-tight mb-4">
             {t.title}
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base">
+          <p className="text-[#64748B] text-sm sm:text-base">
             {t.subtitle}
           </p>
         </div>
 
-        {/* Interactive Matrix Grid */}
+        {/* Matrix Card */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Controls: 7 cols */}
-          <div className="lg:col-span-7 glass-panel rounded-2xl p-6 sm:p-8 space-y-6">
-            <h3 className="text-lg font-bold text-white flex items-center gap-2 border-b border-dark-border pb-4">
-              <Cpu className="w-5 h-5 text-emerald-400" />
-              <span>Lựa Chọn Phần Cứng Đang Sử Dụng</span>
+          {/* Left Form: Select Specs */}
+          <div className="lg:col-span-7 t1-card p-6 sm:p-8 space-y-6">
+            <h3 className="text-lg font-extrabold text-[#152238] font-heading flex items-center gap-2 pb-4 border-b border-[#F1F5F9]">
+              <Cpu className="w-5 h-5 text-[#0796E5]" />
+              <span>Thiết Lập Cấu Hình Máy Bạn Đang Dùng</span>
             </h3>
 
-            {/* CPU Selection */}
+            {/* CPU Select */}
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
-                {t.cpuLabel}
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#475569] mb-2">
+                1. Bộ Xử Lý (CPU)
               </label>
               <select
                 value={selectedCpu}
                 onChange={(e) => setSelectedCpu(e.target.value)}
-                className="w-full bg-dark-card border border-dark-border focus:border-emerald-500 rounded-xl px-4 py-3 text-sm text-slate-100 font-medium focus:outline-none transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-[#DFEAF4] text-[#152238] text-sm font-semibold focus:outline-none focus:border-[#0796E5] focus:bg-white shadow-xs transition-all"
               >
-                {cpus.map(cpu => (
-                  <option key={cpu.id} value={cpu.id}>
-                    {cpu.name}
-                  </option>
+                {cpus.map(c => (
+                  <option key={c.id} value={c.id}>{c.name}</option>
                 ))}
               </select>
             </div>
 
-            {/* GPU Selection */}
+            {/* GPU Select */}
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
-                {t.gpuLabel}
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#475569] mb-2">
+                2. Card Màn Hình (GPU / VGA)
               </label>
               <select
                 value={selectedGpu}
                 onChange={(e) => setSelectedGpu(e.target.value)}
-                className="w-full bg-dark-card border border-dark-border focus:border-emerald-500 rounded-xl px-4 py-3 text-sm text-slate-100 font-medium focus:outline-none transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-[#DFEAF4] text-[#152238] text-sm font-semibold focus:outline-none focus:border-[#0796E5] focus:bg-white shadow-xs transition-all"
               >
-                {gpus.map(gpu => (
-                  <option key={gpu.id} value={gpu.id}>
-                    {gpu.name}
-                  </option>
+                {gpus.map(g => (
+                  <option key={g.id} value={g.id}>{g.name}</option>
                 ))}
               </select>
             </div>
 
-            {/* RAM Selection */}
+            {/* RAM Select */}
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
-                {t.ramLabel}
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#475569] mb-2">
+                3. Dung Lượng Bộ Nhớ (RAM)
               </label>
-              <select
-                value={selectedRam}
-                onChange={(e) => setSelectedRam(e.target.value)}
-                className="w-full bg-dark-card border border-dark-border focus:border-emerald-500 rounded-xl px-4 py-3 text-sm text-slate-100 font-medium focus:outline-none transition-colors"
-              >
-                {rams.map(ram => (
-                  <option key={ram.id} value={ram.id}>
-                    {ram.name}
-                  </option>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {rams.map(r => (
+                  <button
+                    key={r.id}
+                    type="button"
+                    onClick={() => setSelectedRam(r.id)}
+                    className={`px-4 py-3 rounded-xl border text-xs font-bold text-center transition-all ${
+                      selectedRam === r.id
+                        ? 'bg-[#EDF6FF] border-[#0796E5] text-[#0796E5] shadow-xs'
+                        : 'bg-[#F8FAFC] border-[#DFEAF4] text-[#64748B] hover:border-slate-300'
+                    }`}
+                  >
+                    {r.name.split('(')[0].trim()}
+                  </button>
                 ))}
-              </select>
-            </div>
-
-            <div className="pt-2 text-xs text-slate-400 flex items-center gap-2">
-              <Zap className="w-4 h-4 text-emerald-400" />
-              <span>Thuật toán đo đạc dựa trên cơ sở dữ liệu thực nghiệm tại server 300 người chơi.</span>
+              </div>
             </div>
           </div>
 
-          {/* Result Card: 5 cols */}
-          <div className="lg:col-span-5 relative rounded-2xl bg-gradient-to-br from-emerald-500/10 via-dark-card to-dark-surface border border-emerald-500/30 p-6 sm:p-8 shadow-glow-emerald">
-            
-            <div className="text-xs font-mono font-semibold text-emerald-400 uppercase tracking-widest mb-1">
-              {t.calculatedHeader}
-            </div>
-            
-            <div className="text-2xl font-extrabold text-white mb-3">
-              {calculation.recommendedPreset.name}
-            </div>
+          {/* Right Card: Recommendation & Forecast Result */}
+          <div className="lg:col-span-5 t1-card p-6 sm:p-8 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between pb-4 border-b border-[#F1F5F9] mb-6">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#64748B]">
+                  Dự Phóng Hiệu Năng
+                </span>
+                <span className="px-2.5 py-1 rounded-full bg-[#ECFDF5] border border-[#A7F3D0] text-[#00A88A] text-xs font-extrabold font-heading">
+                  +{calculation.gainPercent}% BOOST
+                </span>
+              </div>
 
-            <p className="text-xs text-slate-300 leading-relaxed mb-6">
-              {calculation.recommendedPreset.description}
-            </p>
-
-            {/* Comparison Metrics */}
-            <div className="space-y-4 mb-6">
-              
-              {/* Baseline FPS */}
-              <div>
-                <div className="flex justify-between text-xs text-slate-400 font-medium mb-1">
-                  <span>{t.currentEstimated}</span>
-                  <span className="font-mono text-slate-300 font-bold">{calculation.baseFps} FPS</span>
+              {/* FPS Comparison Gauge */}
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="p-4 rounded-2xl bg-[#F8FAFC] border border-[#DFEAF4] text-center">
+                  <div className="text-xs text-[#64748B] font-bold uppercase tracking-wider mb-1">
+                    Gốc (Chưa Tối Ưu)
+                  </div>
+                  <div className="text-3xl font-extrabold font-heading text-[#64748B]">
+                    {calculation.baseFps} <span className="text-xs font-normal">FPS</span>
+                  </div>
                 </div>
-                <div className="w-full h-2.5 rounded-full bg-dark-base overflow-hidden border border-white/5">
-                  <div 
-                    className="h-full bg-slate-600 rounded-full transition-all duration-500"
-                    style={{ width: `${Math.min(100, (calculation.baseFps / 140) * 100)}%` }}
-                  />
+
+                <div className="p-4 rounded-2xl bg-[#ECFDF5] border border-[#A7F3D0] text-center shadow-xs">
+                  <div className="text-xs text-[#00A88A] font-bold uppercase tracking-wider mb-1">
+                    Sau Tối Ưu
+                  </div>
+                  <div className="text-3xl font-extrabold font-heading text-[#00A88A]">
+                    {calculation.optimizedFps} <span className="text-xs font-normal">FPS</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Optimized FPS */}
-              <div>
-                <div className="flex justify-between text-xs font-semibold text-emerald-300 mb-1">
-                  <span>{t.afterEstimated}</span>
-                  <span className="font-mono text-emerald-400 font-extrabold text-sm">
-                    {calculation.optimizedFps} FPS (+{calculation.gainPercent}%)
-                  </span>
+              {/* Recommended Preset Info */}
+              <div className="p-5 rounded-2xl bg-[#EDF6FF] border border-[#BAE6FD] mb-6">
+                <div className="flex items-center gap-2 text-xs font-bold text-[#0796E5] uppercase tracking-wider mb-2">
+                  <Zap className="w-4 h-4" />
+                  <span>Profile Tối Ưu Khuyên Dùng</span>
                 </div>
-                <div className="w-full h-3 rounded-full bg-dark-base overflow-hidden border border-emerald-500/30 p-0.5">
-                  <div 
-                    className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-500 shadow-glow-emerald"
-                    style={{ width: `${Math.min(100, (calculation.optimizedFps / 140) * 100)}%` }}
-                  />
+                <div className="text-lg font-extrabold font-heading text-[#152238] mb-1">
+                  {calculation.recommendedPreset.name}
                 </div>
-              </div>
-
-            </div>
-
-            {/* Preset Highlights */}
-            <div className="grid grid-cols-2 gap-3 mb-6">
-              <div className="p-3 rounded-xl bg-dark-base/60 border border-dark-border text-left">
-                <div className="text-[11px] text-slate-400">Hiệu Năng Tăng Dự Kiến</div>
-                <div className="text-sm font-bold font-mono text-emerald-400 mt-0.5">
-                  {calculation.recommendedPreset.fpsGain}
-                </div>
-              </div>
-              <div className="p-3 rounded-xl bg-dark-base/60 border border-dark-border text-left">
-                <div className="text-[11px] text-slate-400">Tiết Kiệm Bộ Nhớ</div>
-                <div className="text-sm font-bold font-mono text-teal-300 mt-0.5">
-                  {calculation.recommendedPreset.vramSaved}
-                </div>
+                <p className="text-xs text-[#475569] leading-relaxed">
+                  {calculation.recommendedPreset.description}
+                </p>
               </div>
             </div>
 
-            {/* Direct Action Button */}
             <button
               onClick={onOpenDownload}
-              className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-bold text-sm tracking-wide shadow-glow-emerald hover:shadow-glow-emerald-lg transition-all flex items-center justify-center gap-2 group"
+              className="t1-btn-3d t1-btn-primary w-full py-4 text-sm gap-2"
             >
-              <span>Áp Dụng Preset Này Ngay</span>
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              <span>{t.applyAdvice} {calculation.recommendedPreset.name.split('(')[0].trim()}</span>
+              <ArrowRight className="w-4 h-4" />
             </button>
-
           </div>
 
         </div>

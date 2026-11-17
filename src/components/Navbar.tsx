@@ -22,138 +22,145 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenDownlo
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-dark-border bg-[#080a0f]/95 shadow-md">
+    <header className="sticky top-0 z-40 w-full border-b border-[#DFEAF4] bg-white/95 backdrop-blur-md shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        
         {/* Brand Logo */}
-        <div className="flex items-center gap-3.5 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <div className="relative flex items-center justify-center w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-700 p-0.5 shadow-glow-emerald">
+        <div 
+          className="flex items-center gap-3 cursor-pointer select-none" 
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        >
+          <div className="relative flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-br from-[#0796E5] to-[#00A88A] p-0.5 shadow-md shadow-sky-500/20">
             <img 
               src="/images/logo.png" 
               alt="GTA5VN System Logo" 
-              className="w-full h-full object-contain rounded-lg bg-dark-surface"
+              className="w-full h-full object-contain rounded-[14px] bg-white"
               onError={(e) => {
-                // fallback if image fails
                 (e.currentTarget as HTMLElement).style.display = 'none';
               }}
             />
-            <div className="absolute inset-0 rounded-xl bg-emerald-500/20 blur-[2px] -z-10" />
           </div>
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
-              <span className="font-extrabold text-xl tracking-tight text-white flex items-center">
-                GTA5VN<span className="text-brand-400 ml-1">SYSTEM</span>
+              <span className="font-extrabold text-xl tracking-tight text-[#152238] font-heading flex items-center">
+                GTA5VN<span className="text-[#0796E5] ml-1">SYSTEM</span>
               </span>
-              <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-mono font-semibold rounded-full bg-emerald-950/80 text-emerald-400 border border-emerald-500/30">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[10.5px] font-bold rounded-full bg-[#ECFDF5] text-[#00A88A] border border-[#A7F3D0] shadow-xs">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00A88A] animate-pulse"></span>
                 ONLINE
               </span>
             </div>
-            <span className="text-xs text-slate-400 font-medium tracking-wide">
+            <span className="text-[11.5px] text-[#64748B] font-semibold tracking-wide">
               FiveM eSports Optimization Suite
             </span>
           </div>
         </div>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+        <nav className="hidden md:flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#475569]">
           <button 
             onClick={() => scrollToSection('features')} 
-            className="hover:text-emerald-400 transition-colors focus:outline-none"
+            className="px-3.5 py-2 rounded-xl hover:text-[#0796E5] hover:bg-[#EDF6FF] transition-all"
           >
             {t.features}
           </button>
           <button 
             onClick={() => scrollToSection('specs')} 
-            className="hover:text-emerald-400 transition-colors focus:outline-none"
+            className="px-3.5 py-2 rounded-xl hover:text-[#0796E5] hover:bg-[#EDF6FF] transition-all"
           >
             {t.specs}
           </button>
           <button 
             onClick={() => scrollToSection('telemetry')} 
-            className="hover:text-emerald-400 transition-colors focus:outline-none"
+            className="px-3.5 py-2 rounded-xl hover:text-[#0796E5] hover:bg-[#EDF6FF] transition-all"
           >
             {t.telemetry}
           </button>
           <button 
             onClick={() => scrollToSection('faq')} 
-            className="hover:text-emerald-400 transition-colors focus:outline-none"
+            className="px-3.5 py-2 rounded-xl hover:text-[#0796E5] hover:bg-[#EDF6FF] transition-all"
           >
             {t.faq}
           </button>
         </nav>
 
         {/* Right Actions: Lang Switcher & CTA */}
-        <div className="hidden sm:flex items-center gap-3.5">
+        <div className="hidden sm:flex items-center gap-3">
           {/* Language Toggle */}
           <button
             onClick={onToggleLang}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-dark-border bg-dark-card/60 hover:bg-dark-card text-xs font-semibold text-slate-200 transition-all hover:border-slate-600 focus:outline-none"
+            className="t1-btn-3d t1-btn-surface px-3 py-2 text-xs gap-1.5"
             title="Switch Language"
           >
-            <Globe className="w-3.5 h-3.5 text-emerald-400" />
+            <Globe className="w-3.5 h-3.5 text-[#0796E5]" />
             <span>{lang.toUpperCase()}</span>
           </button>
 
           {/* Download CTA Button */}
           <button
             onClick={onOpenDownload}
-            className="relative group overflow-hidden px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-bold text-sm tracking-wide shadow-glow-emerald hover:shadow-glow-emerald-lg transition-all duration-300 flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98]"
+            className="t1-btn-3d t1-btn-primary px-5 py-2.5 text-xs sm:text-[13px] gap-2 shadow-sm"
           >
-            <Download className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
+            <Download className="w-4 h-4" />
             <span>{t.downloadBtn}</span>
+            <span className="t1-keycap ml-1 text-[9px] bg-sky-700/30 text-white border-sky-400/40">D</span>
           </button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <div className="flex md:hidden items-center gap-2">
+        {/* Mobile Hamburger Toggle */}
+        <div className="flex sm:hidden items-center gap-2">
           <button
             onClick={onToggleLang}
-            className="p-2 rounded-lg border border-dark-border bg-dark-card text-slate-200 text-xs font-bold"
+            className="px-2.5 py-1.5 rounded-lg border border-[#DFEAF4] bg-white text-xs font-bold text-[#475569]"
           >
             {lang.toUpperCase()}
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg border border-dark-border text-slate-300 hover:text-white"
+            className="p-2 rounded-xl bg-white border border-[#DFEAF4] text-[#152238] shadow-xs"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
+
       </div>
 
-      {/* Mobile Dropdown Menu */}
+      {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-dark-border bg-dark-surface/95 backdrop-blur-2xl px-6 py-6 space-y-4">
-          <button 
-            onClick={() => scrollToSection('features')} 
-            className="block w-full text-left py-2 text-base font-medium text-slate-200 hover:text-emerald-400"
+        <div className="sm:hidden border-b border-[#DFEAF4] bg-white px-4 pt-3 pb-6 space-y-2 shadow-lg">
+          <button
+            onClick={() => scrollToSection('features')}
+            className="w-full text-left px-3 py-2.5 rounded-xl text-sm font-bold text-[#1E293B] hover:bg-[#EDF6FF] hover:text-[#0796E5]"
           >
             {t.features}
           </button>
-          <button 
-            onClick={() => scrollToSection('specs')} 
-            className="block w-full text-left py-2 text-base font-medium text-slate-200 hover:text-emerald-400"
+          <button
+            onClick={() => scrollToSection('specs')}
+            className="w-full text-left px-3 py-2.5 rounded-xl text-sm font-bold text-[#1E293B] hover:bg-[#EDF6FF] hover:text-[#0796E5]"
           >
             {t.specs}
           </button>
-          <button 
-            onClick={() => scrollToSection('telemetry')} 
-            className="block w-full text-left py-2 text-base font-medium text-slate-200 hover:text-emerald-400"
+          <button
+            onClick={() => scrollToSection('telemetry')}
+            className="w-full text-left px-3 py-2.5 rounded-xl text-sm font-bold text-[#1E293B] hover:bg-[#EDF6FF] hover:text-[#0796E5]"
           >
             {t.telemetry}
           </button>
-          <button 
-            onClick={() => scrollToSection('faq')} 
-            className="block w-full text-left py-2 text-base font-medium text-slate-200 hover:text-emerald-400"
+          <button
+            onClick={() => scrollToSection('faq')}
+            className="w-full text-left px-3 py-2.5 rounded-xl text-sm font-bold text-[#1E293B] hover:bg-[#EDF6FF] hover:text-[#0796E5]"
           >
             {t.faq}
           </button>
           <div className="pt-2">
             <button
-              onClick={() => { setMobileMenuOpen(false); onOpenDownload(); }}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-bold text-base shadow-glow-emerald"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenDownload();
+              }}
+              className="t1-btn-3d t1-btn-primary w-full py-3 text-sm gap-2"
             >
-              <Download className="w-5 h-5" />
+              <Download className="w-4 h-4" />
               <span>{t.downloadBtn}</span>
             </button>
           </div>

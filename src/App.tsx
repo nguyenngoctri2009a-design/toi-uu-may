@@ -25,7 +25,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-dark-base text-slate-100 flex flex-col font-sans selection:bg-brand-500 selection:text-slate-950">
+    <div className="min-h-screen bg-[#F4F8FC] text-[#152238] flex flex-col font-sans selection:bg-sky-500 selection:text-white relative">
       {/* Top Navbar */}
       <Navbar
         lang={lang}
