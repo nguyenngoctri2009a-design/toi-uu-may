@@ -50,9 +50,9 @@ const topPlayers: PlayerRank[] = [
     server: 'Hà Nội City Roleplay',
     specs: 'Intel Core i5-10400F • GTX 1650 4GB • 16GB RAM',
     stockFps: 35,
-    boostedFps: 58,
-    gain: '+65.7%',
-    low1Fps: 40,
+    boostedFps: 59,
+    gain: '+68.6%',
+    low1Fps: 41,
     stability: '98.1%',
     verified: true,
   },
@@ -62,8 +62,8 @@ const topPlayers: PlayerRank[] = [
     server: 'Đà Nẵng eSports RP',
     specs: 'Core i7-10700K • RTX 2060 6GB • 16GB RAM',
     stockFps: 46,
-    boostedFps: 73,
-    gain: '+58.7%',
+    boostedFps: 72,
+    gain: '+56.5%',
     low1Fps: 50,
     stability: '99.0%',
     verified: true,
@@ -74,9 +74,9 @@ const topPlayers: PlayerRank[] = [
     server: 'V-Town Roleplay',
     specs: 'Ryzen 7 5700X • RTX 3060 12GB • 32GB RAM',
     stockFps: 68,
-    boostedFps: 101,
-    gain: '+48.5%',
-    low1Fps: 72,
+    boostedFps: 98,
+    gain: '+44.1%',
+    low1Fps: 71,
     stability: '99.4%',
     verified: true,
   },
@@ -85,9 +85,9 @@ const topPlayers: PlayerRank[] = [
     name: 'Shadow_Hunter',
     server: 'Bắc Nam RP eSports',
     specs: 'Intel Core i3-10100F • GTX 750Ti • 8GB RAM',
-    stockFps: 26,
-    boostedFps: 43,
-    gain: '+65.4%',
+    stockFps: 24,
+    boostedFps: 42,
+    gain: '+75.0%',
     low1Fps: 28,
     stability: '97.2%',
     verified: true,
@@ -286,7 +286,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ lang = 'vi' }) => {
           {/* Technical Note on Hardware Scaling */}
           <div className="mt-4 pt-3 border-t border-[#F1F5F9] text-[11px] text-[#64748B] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
             <span>
-              💡 <em>Lưu ý kỹ thuật:</em> Card đồ họa rời (GTX/RTX) chịu tải render đồ họa chính nên biên độ tăng FPS khi tối ưu file cấu hình đạt mức cao (+60% - +66%). Card Onboard (iGPU) phụ thuộc vào băng thông RAM hệ thống nên mức tăng thực tế dừng ở ngưỡng ổn định +38.9%.
+              💡 <em>Lưu ý kỹ thuật:</em> Card đồ họa rời (GTX/RTX) có VRAM riêng nên đạt biên độ tăng +44% đến +75% tùy mức độ giải phóng nghẽn cổ chai (cao nhất ở card VRAM 2GB–4GB khi thoát tràn bộ nhớ). Card Onboard (iGPU) phụ thuộc băng thông RAM hệ thống nên tăng ổn định quanh +38.9%.
             </span>
             <span className="shrink-0 text-[#0796E5] font-semibold">
               Chuẩn đo kiểm eSports

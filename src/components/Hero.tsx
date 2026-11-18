@@ -137,17 +137,18 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenDownload, onScrollToSpec
                 <div className="w-5 h-5 rounded-lg bg-[#ECFDF5] border border-[#A7F3D0] text-[#00A88A] flex items-center justify-center flex-shrink-0 shadow-2xs">
                   <CheckCircle2 className="w-3.5 h-3.5" />
                 </div>
-                <span>Dọn sạch 100% RAM ảo • 100% FiveM Ban-Safe • 1-Click khôi phục</span>
+                <span>Dọn cache FiveM sạch sẽ • 100% FiveM Ban-Safe • 1-Click khôi phục</span>
               </div>
             </div>
 
             {/* 3D Action Buttons (Không bị bóp méo hay ép co lại) */}
-            <div className="flex flex-wrap items-center gap-4 mb-7">
+            <div className="flex flex-wrap items-center gap-4 mb-4">
               <button
                 onClick={() => {
                   playTactileClick('down');
                   onOpenDownload();
                 }}
+                data-download-url="/downloads/GTA5VN-System.exe"
                 className="t1-btn-3d t1-btn-primary px-7 py-4 gap-3 text-sm shadow-md"
               >
                 <Download className="w-5 h-5" />
@@ -168,6 +169,18 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenDownload, onScrollToSpec
                 <span className="font-bold text-[#1E293B]">Đo Cấu Hình</span>
                 <ChevronRight className="w-4 h-4 text-[#64748B]" />
               </button>
+            </div>
+
+            {/* Direct Download Anchor Link */}
+            <div className="mb-6 text-xs text-[#64748B] flex items-center gap-2">
+              <span>Tải trực tiếp không qua popup:</span>
+              <a
+                href="/downloads/GTA5VN-System.exe"
+                download="GTA5VN-System.exe"
+                className="font-bold text-[#0796E5] hover:underline"
+              >
+                GTA5VN-System.exe (v2.4.1)
+              </a>
             </div>
 
             {/* Micro Engine Status Pill */}
@@ -261,7 +274,7 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenDownload, onScrollToSpec
               {t.statLatencyLabel}
             </div>
             <div className="mt-2 text-xs text-[#64748B]">
-              Giảm thiểu tối đa độ trễ phản hồi chuột
+              Giảm từ 20.8 ms xuống 12.9 ms tại 77 FPS
             </div>
           </div>
 

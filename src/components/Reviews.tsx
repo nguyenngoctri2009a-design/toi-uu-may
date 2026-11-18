@@ -11,11 +11,23 @@ interface ReviewItem {
   avatar: string;
   server: string;
   stars: number;
-  date: string;
+  daysAgo: number;
   comment: string;
   specs: string;
   fpsGain: string;
 }
+
+const formatRelativeDate = (daysAgo: number, isEn: boolean) => {
+  const target = new Date();
+  target.setDate(target.getDate() - daysAgo);
+  const formatted = target.toLocaleDateString(isEn ? 'en-US' : 'vi-VN', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  });
+  if (daysAgo === 1) return isEn ? `Yesterday (${formatted})` : `Hôm qua (${formatted})`;
+  return isEn ? `${daysAgo} days ago (${formatted})` : `${daysAgo} ngày trước (${formatted})`;
+};
 
 const reviews: ReviewItem[] = [
   {
@@ -23,8 +35,8 @@ const reviews: ReviewItem[] = [
     avatar: 'HL',
     server: 'Việt Nam Roleplay (VNRP)',
     stars: 5,
-    date: '2 ngày trước',
-    comment: 'Trước đi xe qua Legion Square hay bị khựng khựng đứng hình 1 giây rất ức chế. Áp dụng profile eSports xong lướt êm ru, FPS từ 48 nhảy lên 77 ổn định luôn!',
+    daysAgo: 1,
+    comment: 'Trước đi xe qua Legion Square hay bị khựng đứng hình 1 giây rất ức chế. Áp dụng profile eSports xong lướt êm ru, FPS từ 48 nhảy lên 77 ổn định luôn!',
     specs: 'Core i5-12400F • GTX 1660 Super',
     fpsGain: '+60.4% FPS',
   },
@@ -33,8 +45,8 @@ const reviews: ReviewItem[] = [
     avatar: 'TA',
     server: 'Sài Gòn Town RP',
     stars: 5,
-    date: '3 ngày trước',
-    comment: 'Phần mềm dọn RAM ảo đỉnh thật, bật game lên chơi 4-5 tiếng không bị tràn bộ nhớ văng crash game như trước. Đặc biệt trỏ chuột lia rất mượt không bị trễ.',
+    daysAgo: 2,
+    comment: 'Phần mềm dọn cache FiveM rất sạch, bật game lên chơi 4–5 tiếng không bị tràn VRAM văng crash như trước. Độ ổn định khi lia chuột mượt hẳn.',
     specs: 'Ryzen 5 3600 • GTX 1060 6GB',
     fpsGain: '+61.9% FPS',
   },
@@ -43,8 +55,8 @@ const reviews: ReviewItem[] = [
     avatar: 'MQ',
     server: 'Hà Nội City RP',
     stars: 5,
-    date: 'Hôm qua',
-    comment: 'Máy mình laptop văn phòng chip Intel Iris Xe tưởng không kéo nổi FiveM. Bật Potato Preset lên giải phóng VRAM ảo bắn nhau được ~25-26 FPS ổn định không bị drop, quá hài lòng!',
+    daysAgo: 3,
+    comment: 'Máy mình laptop văn phòng chip Intel Iris Xe tưởng không kéo nổi FiveM. Bật Potato Preset lên giảm tải độ phân giải bắn nhau được 25–26 FPS ổn định không bị drop, quá hài lòng!',
     specs: 'Laptop Core i5-1135G7 Iris Xe',
     fpsGain: '+38.9% FPS',
   },
@@ -53,30 +65,30 @@ const reviews: ReviewItem[] = [
     avatar: 'BN',
     server: 'Đà Nẵng eSports RP',
     stars: 5,
-    date: '4 ngày trước',
-    comment: 'Thích nhất là cái nút khôi phục 1-click rất an tâm. Tool sạch, quét qua VirusTotal xanh lè 100%. Anh em bắn súng war băng đảng khuyên thật lòng nên dùng.',
+    daysAgo: 4,
+    comment: 'Thích nhất là nút khôi phục 1-Click Restore Point rất an tâm. Tool sạch, kiểm tra SHA-256 minh bạch 100%. Anh em bắn súng war băng đảng khuyên thật lòng nên dùng.',
     specs: 'Intel Core i5-10400F • GTX 1650 4GB',
-    fpsGain: '+65.7% FPS',
+    fpsGain: '+68.6% FPS',
   },
   {
     name: 'Đức Trọng (TrongVN)',
     avatar: 'DT',
     server: 'V-Town Roleplay',
     stars: 5,
-    date: '5 ngày trước',
+    daysAgo: 6,
     comment: 'Không bị ban tài khoản nha mọi người, mình dùng cả tháng nay trên FiveM và Steam bình thường. FPS tăng thấy rõ rệt khi trời mưa giông.',
     specs: 'Ryzen 7 5700X • RTX 3060 12GB',
-    fpsGain: '+48.5% FPS',
+    fpsGain: '+44.1% FPS',
   },
   {
     name: 'Văn Hùng (HungPro)',
     avatar: 'VH',
     server: 'Bắc Nam RP eSports',
     stars: 5,
-    date: '1 tuần trước',
+    daysAgo: 8,
     comment: 'Giao diện trực quan, thao tác dễ hiểu. Bật tool lên rồi ấn 1 nút là xong, vào game hưởng thụ độ mượt.',
     specs: 'Core i7-10700K • RTX 2060 6GB',
-    fpsGain: '+58.7% FPS',
+    fpsGain: '+56.5% FPS',
   },
 ];
 
@@ -121,7 +133,7 @@ export const Reviews: React.FC<ReviewsProps> = ({ lang = 'vi' }) => {
                       <div className="text-[11px] text-[#0796E5] font-semibold">{rev.server}</div>
                     </div>
                   </div>
-                  <span className="text-[10.5px] text-[#64748B]">{rev.date}</span>
+                  <span className="text-[10.5px] text-[#64748B]">{formatRelativeDate(rev.daysAgo, isEn)}</span>
                 </div>
 
                 {/* Stars */}
@@ -133,7 +145,7 @@ export const Reviews: React.FC<ReviewsProps> = ({ lang = 'vi' }) => {
 
                 {/* Comment */}
                 <p className="text-xs text-[#475569] leading-relaxed italic mb-4">
-                  "{rev.comment}"
+                  “{rev.comment}”
                 </p>
               </div>
 

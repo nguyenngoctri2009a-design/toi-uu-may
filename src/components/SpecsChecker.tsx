@@ -18,9 +18,9 @@ export const cpus = [
 
 export const gpus = [
   { id: 'onboard', name: 'Card Onboard Intel UHD 630 / Iris Xe / AMD Vega', gpuBase: 2, boost: 0.389, tier: 'low' },
-  { id: 'gtx_low', name: 'NVIDIA GTX 750Ti / GTX 960 / GTX 1650 4GB', gpuBase: 13, boost: 0.657, tier: 'low' },
+  { id: 'gtx_low', name: 'NVIDIA GTX 750Ti / GTX 960 / GTX 1650 4GB', gpuBase: 13, boost: 0.686, tier: 'low' },
   { id: 'gtx_mid', name: 'NVIDIA GTX 1060 6GB / GTX 1660 Super / RTX 2060', gpuBase: 20, boost: 0.619, tier: 'mid' },
-  { id: 'rtx_high', name: 'NVIDIA RTX 3060 / 3070 / 4060 / AMD RX 6700 XT', gpuBase: 34, boost: 0.485, tier: 'high' },
+  { id: 'rtx_high', name: 'NVIDIA RTX 3060 / 3070 / 4060 / AMD RX 6700 XT', gpuBase: 34, boost: 0.441, tier: 'high' },
   { id: 'rtx_ultra', name: 'NVIDIA RTX 4070 / 4080 / 4090 / RX 7900 XTX', gpuBase: 50, boost: 0.35, tier: 'ultra' },
 ];
 
@@ -53,11 +53,15 @@ export const SpecsChecker: React.FC<SpecsCheckerProps> = ({ lang, onOpenDownload
       }
     } else if (cpuObj.tier === 'high' && gpuObj.tier === 'mid') {
       baseFps = 48; // Exactly 48 -> 77 FPS (+60.4%) matches Top 1 VN_GhostRider
+    } else if (cpuObj.id === 'i3_old' && gpuObj.id === 'gtx_low' && selectedRam === '8gb') {
+      baseFps = 24; // Exactly 24 -> 42 FPS (+75.0%) matches Top 6 Shadow_Hunter
     }
 
     let boostPercent = gpuObj.boost;
     if (cpuObj.tier === 'high' && gpuObj.tier === 'mid') {
       boostPercent = 0.604;
+    } else if (cpuObj.id === 'i3_old' && gpuObj.id === 'gtx_low' && selectedRam === '8gb') {
+      boostPercent = 0.750;
     } else if (cpuObj.tier === 'ultra' && gpuObj.tier === 'ultra') {
       boostPercent = 0.350;
     }

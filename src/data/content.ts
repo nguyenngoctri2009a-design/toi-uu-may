@@ -20,7 +20,7 @@ export const content = {
       specsCta: 'Kiểm Tra Cấu Hình Của Bạn',
       statFps: '+62%',
       statFpsLabel: 'FPS Trung Bình Tăng',
-      statLatency: '5.4 ms',
+      statLatency: '12.9 ms',
       statLatencyLabel: 'Độ Trễ Khung Hình (Frame-time)',
       statStutter: '-78%',
       statStutterLabel: 'Hiện Tượng Giật Khung (Stutter)',
@@ -33,8 +33,8 @@ export const content = {
       subtitle: 'Không can thiệp file gốc, không rủi ro cấm tài khoản (Ban-safe), tương thích 100% với FiveM, RageMP và GTA V Online.',
       items: [
         {
-          title: 'Thuật Toán Dọn VRAM Tự Động',
-          desc: 'Tự động giải phóng bộ nhớ đệm video khi di chuyển qua các khu vực nặng hạt đồ họa như Legion Square, Garage Center hay bệnh viện.',
+          title: 'Tối Ưu Bộ Nhớ Đệm & Dọn Cache',
+          desc: 'Cấu hình lại giới hạn Texture Budget trong tệp settings.xml và dọn sạch thư mục cache FiveM trước khi khởi chạy, ngăn tràn bộ nhớ VRAM khi di chuyển qua Legion Square hay bệnh viện.',
           tag: 'Smart Cache'
         },
         {
@@ -48,8 +48,8 @@ export const content = {
           tag: 'Presets'
         },
         {
-          title: 'Tối Ưu Gói Mạng (Network Tickrate)',
-          desc: 'Giảm ping nội địa và đồng bộ gói tin UDP FiveM, giúp voice chat mượt mà và giảm tình trạng desync va chạm xe.',
+          title: 'Tối Ưu Tham Số Mạng Windows (QoS)',
+          desc: 'Tinh chỉnh tham số TCP/UDP của card mạng Windows (tắt Nagle’s Algorithm) và ưu tiên băng thông QoS cho FiveM.exe, giúp ổn định ping và giảm desync mà không can thiệp gói tin game.',
           tag: 'NetSync'
         },
         {
@@ -356,7 +356,7 @@ export const hardwarePresets = [
 
 export const benchmarkData = [
   {
-    scenario: 'Legion Square (Khu Trung Tâm 200+ Players - Nặng Hạt Đồ Họa)',
+    scenario: 'Legion Square (Khu Trung Tâm 150+ Players - Nặng Hạt Đồ Họa)',
     stockFps: 48,
     optimizedFps: 77,
     low1PercentStock: 24,
