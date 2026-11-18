@@ -221,7 +221,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ lang = 'vi' }) => {
         </div>
 
         {/* Detailed Ranked Table (T1 Pro Table) */}
-        <div className="t1-card overflow-hidden">
+        <div className="t1-card w-full max-w-full overflow-hidden">
           <div className="p-5 border-b border-[#F1F5F9] flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#F8FAFC]">
             <h3 className="text-base font-extrabold text-[#152238] font-heading flex items-center gap-2">
               <Server className="w-4 h-4 text-[#0796E5]" />
@@ -284,7 +284,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ lang = 'vi' }) => {
           </div>
 
           {/* Technical Note on Hardware Scaling */}
-          <div className="mt-4 pt-3 border-t border-[#F1F5F9] text-[11px] text-[#64748B] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+          <div className="p-4 sm:p-5 border-t border-[#F1F5F9] bg-[#F8FAFC]/60 text-[11px] text-[#64748B] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
             <span>
               💡 <em>Lưu ý kỹ thuật:</em> Card đồ họa rời (GTX/RTX) có VRAM riêng nên đạt biên độ tăng +44% đến +75% tùy mức độ giải phóng nghẽn cổ chai (cao nhất ở card VRAM 2GB–4GB khi thoát tràn bộ nhớ). Card Onboard (iGPU) phụ thuộc băng thông RAM hệ thống nên tăng ổn định quanh +38.9%.
             </span>
