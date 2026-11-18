@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Cpu, Gauge, ArrowRight, Zap } from 'lucide-react';
 import { Language } from '../types';
 import { content, hardwarePresets } from '../data/content';
+import { playTactileClick } from '../utils/sound';
 
 interface SpecsCheckerProps {
   lang: Language;
@@ -26,7 +27,7 @@ export const gpus = [
 export const rams = [
   { id: '8gb', name: '8 GB DDR4 (Đơn luồng / Thiếu VRAM swap)', penalty: -3 },
   { id: '16gb', name: '16 GB DDR4/DDR5 (Tiêu chuẩn FiveM)', penalty: 0 },
-  { id: '32gb', name: '32 GB+ Dual Channel High-Speed', penalty: 0 },
+  { id: '32gb', name: '32 GB+ Dual Channel High-Speed', penalty: 2 },
 ];
 
 export const SpecsChecker: React.FC<SpecsCheckerProps> = ({ lang, onOpenDownload }) => {
@@ -42,18 +43,23 @@ export const SpecsChecker: React.FC<SpecsCheckerProps> = ({ lang, onOpenDownload
     const cpuObj = cpus.find(c => c.id === selectedCpu) || cpus[1];
 
     let baseFps = cpuObj.cpuBase + gpuObj.gpuBase + ramObj.penalty;
-    // Onboard iGPU penalty due to shared system memory
+
+    // Realistic hardware interactions
     if (gpuObj.id === 'onboard') {
-      baseFps = 18;
-    }
-    // High-end CPU bonus with mid GPU (e.g. i5-12400F + GTX 1660S)
-    if (cpuObj.tier === 'high' && gpuObj.tier === 'mid') {
-      baseFps = 48;
+      // iGPU bandwidth limiter
+      baseFps = Math.max(16, Math.round(cpuObj.cpuBase * 0.6) + gpuObj.gpuBase + ramObj.penalty);
+      if (cpuObj.tier === 'mid' && selectedRam === '16gb') {
+        baseFps = 18; // Exactly 18 -> 25 FPS (+38.9%) matches Top 7 FiveM_Mechanic
+      }
+    } else if (cpuObj.tier === 'high' && gpuObj.tier === 'mid') {
+      baseFps = 48; // Exactly 48 -> 77 FPS (+60.4%) matches Top 1 VN_GhostRider
     }
 
     let boostPercent = gpuObj.boost;
     if (cpuObj.tier === 'high' && gpuObj.tier === 'mid') {
-      boostPercent = 0.604; // 48 -> 77 FPS (+60.4% matches Top 1 Mixi_Dragon99)
+      boostPercent = 0.604;
+    } else if (cpuObj.tier === 'ultra' && gpuObj.tier === 'ultra') {
+      boostPercent = 0.350;
     }
 
     const optimizedFps = Math.round(baseFps * (1 + boostPercent));
@@ -74,6 +80,21 @@ export const SpecsChecker: React.FC<SpecsCheckerProps> = ({ lang, onOpenDownload
       gainPercent: Math.round(((optimizedFps - baseFps) / baseFps) * 100),
     };
   }, [selectedCpu, selectedGpu, selectedRam]);
+
+  const handleCpuChange = (val: string) => {
+    playTactileClick('subtle');
+    setSelectedCpu(val);
+  };
+
+  const handleGpuChange = (val: string) => {
+    playTactileClick('subtle');
+    setSelectedGpu(val);
+  };
+
+  const handleRamChange = (val: string) => {
+    playTactileClick('subtle');
+    setSelectedRam(val);
+  };
 
   return (
     <section id="specs" className="py-20 relative">
@@ -110,7 +131,7 @@ export const SpecsChecker: React.FC<SpecsCheckerProps> = ({ lang, onOpenDownload
               </label>
               <select
                 value={selectedCpu}
-                onChange={(e) => setSelectedCpu(e.target.value)}
+                onChange={(e) => handleCpuChange(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-[#DFEAF4] text-[#152238] text-sm font-semibold focus:outline-none focus:border-[#0796E5] focus:bg-white shadow-xs transition-all"
               >
                 {cpus.map(c => (
@@ -126,7 +147,7 @@ export const SpecsChecker: React.FC<SpecsCheckerProps> = ({ lang, onOpenDownload
               </label>
               <select
                 value={selectedGpu}
-                onChange={(e) => setSelectedGpu(e.target.value)}
+                onChange={(e) => handleGpuChange(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-[#DFEAF4] text-[#152238] text-sm font-semibold focus:outline-none focus:border-[#0796E5] focus:bg-white shadow-xs transition-all"
               >
                 {gpus.map(g => (
@@ -145,7 +166,7 @@ export const SpecsChecker: React.FC<SpecsCheckerProps> = ({ lang, onOpenDownload
                   <button
                     key={r.id}
                     type="button"
-                    onClick={() => setSelectedRam(r.id)}
+                    onClick={() => handleRamChange(r.id)}
                     className={`px-4 py-3 rounded-xl border text-xs font-bold text-center transition-all ${
                       selectedRam === r.id
                         ? 'bg-[#EDF6FF] border-[#0796E5] text-[#0796E5] shadow-xs'

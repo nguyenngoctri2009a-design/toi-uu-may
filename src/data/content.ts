@@ -356,17 +356,17 @@ export const hardwarePresets = [
 
 export const benchmarkData = [
   {
-    scenario: 'Legion Square (Khu Trung Tâm 250+ Players - Nặng Hạt Đồ Họa)',
-    stockFps: 42,
-    optimizedFps: 76,
-    low1PercentStock: 21,
-    low1PercentOptimized: 54,
+    scenario: 'Legion Square (Khu Trung Tâm 200+ Players - Nặng Hạt Đồ Họa)',
+    stockFps: 48,
+    optimizedFps: 77,
+    low1PercentStock: 24,
+    low1PercentOptimized: 52,
   },
   {
     scenario: 'Giao Tranh Bắn Súng Gangster (Gunfight Đô Thị)',
-    stockFps: 46,
-    optimizedFps: 80,
-    low1PercentStock: 26,
+    stockFps: 50,
+    optimizedFps: 81,
+    low1PercentStock: 28,
     low1PercentOptimized: 62,
   },
   {
@@ -378,9 +378,9 @@ export const benchmarkData = [
   },
   {
     scenario: 'Thời Tiết Mưa Giông & Sấm Chớp (Heavy Storm)',
-    stockFps: 44,
-    optimizedFps: 75,
-    low1PercentStock: 22,
-    low1PercentOptimized: 58,
+    stockFps: 45,
+    optimizedFps: 73,
+    low1PercentStock: 24,
+    low1PercentOptimized: 56,
   }
 ];

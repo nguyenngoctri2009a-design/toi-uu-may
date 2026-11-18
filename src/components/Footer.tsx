@@ -52,8 +52,9 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
 
         <div className="mt-8 pt-6 border-t border-[#E2E8F0] flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px]">
           <div>{t.copyright}</div>
-          <div className="flex items-center gap-1">
-            <span>Thiết kế chuẩn T1 3D Neumorphic-Glass Hybrid</span>
+          <div className="flex items-center gap-2 text-[#64748B]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00A88A]" />
+            <span>GTA5VN System • Phiên bản eSports v2.4.1 (Build 2026) • Tương thích FiveM Build 3095+</span>
           </div>
         </div>
       </div>

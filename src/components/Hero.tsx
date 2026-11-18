@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Download, Shield, Cpu, Activity, Zap, CheckCircle2, ChevronRight } from 'lucide-react';
+import { Download, Shield, Cpu, Activity, Zap, CheckCircle2, ChevronRight, Gauge, Terminal } from 'lucide-react';
 import { Language } from '../types';
 import { content } from '../data/content';
 import { playTactileClick } from '../utils/sound';
@@ -13,6 +13,7 @@ interface HeroProps {
 export const Hero: React.FC<HeroProps> = ({ lang, onOpenDownload, onScrollToSpecs }) => {
   const t = content[lang].hero;
   const [nativeHz, setNativeHz] = useState<number>(144);
+  const [isOptimized, setIsOptimized] = useState<boolean>(true);
 
   useEffect(() => {
     let frameCount = 0;
@@ -40,6 +41,143 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenDownload, onScrollToSpec
     return () => cancelAnimationFrame(animId);
   }, []);
 
+  const toggleOptimization = () => {
+    playTactileClick('subtle');
+    setIsOptimized(prev => !prev);
+  };
+
+  // Reusable Native Cockpit Simulator (Không dùng ảnh AI lỗi chữ, hoàn toàn vẽ bằng giao diện eSports sắc nét)
+  const renderDashboardPreview = () => (
+    <div className="relative rounded-3xl overflow-hidden border-2 border-[#DFEAF4] shadow-[0_20px_50px_rgba(7,150,229,0.12)] bg-white text-left transition-all">
+      {/* Window Title Bar */}
+      <div className="px-4 sm:px-6 py-3.5 bg-[#F8FAFC] border-b border-[#E2E8F0] flex items-center justify-between">
+        <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-1.5">
+            <span className="w-3 h-3 rounded-full bg-[#EF4444]/80" />
+            <span className="w-3 h-3 rounded-full bg-[#F59E0B]/80" />
+            <span className="w-3 h-3 rounded-full bg-[#10B981]/80" />
+          </div>
+          <span className="text-xs font-mono font-bold text-[#475569] ml-2 flex items-center gap-1.5">
+            <Terminal className="w-3.5 h-3.5 text-[#0796E5]" />
+            <span>GTA5VN-System.exe • Control Center</span>
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[10.5px] font-mono font-bold bg-[#ECFDF5] text-[#00A88A] border border-[#A7F3D0]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00A88A] animate-pulse" />
+            <span>DIRECTX 11/12 HOẠT ĐỘNG</span>
+          </span>
+        </div>
+      </div>
+
+      {/* Main Cockpit Body */}
+      <div className="p-5 sm:p-6 space-y-5 bg-gradient-to-b from-white to-[#F8FAFC]">
+        {/* Interactive Mode Switch */}
+        <div className="flex items-center justify-between p-3 rounded-2xl bg-[#EFF6FF] border border-[#BFDBFE]">
+          <div className="flex items-center gap-2.5">
+            <Gauge className="w-4 h-4 text-[#0796E5]" />
+            <div>
+              <div className="text-xs font-bold text-[#1E40AF]">Kịch Bản: Khu Vực Legion Square (150+ Players)</div>
+              <div className="text-[11px] text-[#3B82F6]">Nhấn chuyển đổi để xem so sánh hiệu năng thực tế</div>
+            </div>
+          </div>
+          <button
+            onClick={toggleOptimization}
+            className={`px-3 py-1.5 rounded-xl text-xs font-black font-heading transition-all shadow-xs ${
+              isOptimized 
+                ? 'bg-[#00A88A] text-white hover:bg-[#009177]' 
+                : 'bg-[#64748B] text-white hover:bg-[#475569]'
+            }`}
+          >
+            {isOptimized ? '✓ ĐÃ TỐI ƯU' : 'CHƯA TỐI ƯU'}
+          </button>
+        </div>
+
+        {/* Live Metrics Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3.5">
+          {/* FPS Gauge */}
+          <div className="p-4 rounded-2xl bg-white border border-[#DFEAF4] shadow-xs">
+            <div className="text-[11px] font-bold text-[#64748B] uppercase tracking-wider mb-1">
+              Khung Hình (FPS)
+            </div>
+            <div className="flex items-baseline gap-2">
+              <span className={`text-3xl sm:text-4xl font-black font-mono tracking-tight transition-all duration-300 ${isOptimized ? 'text-[#00A88A]' : 'text-[#64748B]'}`}>
+                {isOptimized ? '77' : '48'}
+              </span>
+              <span className="text-xs font-bold text-[#64748B]">FPS</span>
+            </div>
+            <div className="mt-2 text-[11px] font-semibold text-[#00A88A]">
+              {isOptimized ? '+60.4% Khung Hình' : 'Mặc Định Gốc'}
+            </div>
+          </div>
+
+          {/* 1% Low Metric */}
+          <div className="p-4 rounded-2xl bg-white border border-[#DFEAF4] shadow-xs">
+            <div className="text-[11px] font-bold text-[#64748B] uppercase tracking-wider mb-1">
+              1% Low Stutter
+            </div>
+            <div className="flex items-baseline gap-2">
+              <span className={`text-3xl sm:text-4xl font-black font-mono tracking-tight transition-all duration-300 ${isOptimized ? 'text-[#0796E5]' : 'text-[#EF4444]'}`}>
+                {isOptimized ? '52' : '24'}
+              </span>
+              <span className="text-xs font-bold text-[#64748B]">FPS</span>
+            </div>
+            <div className="mt-2 text-[11px] font-semibold text-[#0796E5]">
+              {isOptimized ? 'Triệt Tiêu Khựng' : 'Khựng Hình Nặng'}
+            </div>
+          </div>
+
+          {/* VRAM Memory */}
+          <div className="col-span-2 sm:col-span-1 p-4 rounded-2xl bg-white border border-[#DFEAF4] shadow-xs">
+            <div className="text-[11px] font-bold text-[#64748B] uppercase tracking-wider mb-1">
+              Bộ Nhớ VRAM
+            </div>
+            <div className="flex items-baseline gap-2">
+              <span className="text-3xl sm:text-4xl font-black font-mono tracking-tight text-[#152238]">
+                {isOptimized ? '3.4' : '5.2'}
+              </span>
+              <span className="text-xs font-bold text-[#64748B]">GB</span>
+            </div>
+            <div className="mt-2 text-[11px] font-semibold text-[#00A88A]">
+              {isOptimized ? 'Giải Phóng 1.8 GB' : 'Quá Tải Tràn VRAM'}
+            </div>
+          </div>
+        </div>
+
+        {/* Feature Switches Preview */}
+        <div className="grid grid-cols-2 gap-2 text-[11.5px] font-semibold">
+          <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white border border-[#E2E8F0]">
+            <CheckCircle2 className="w-4 h-4 text-[#00A88A] shrink-0" />
+            <span className="text-[#334155]">Smart VRAM Garbage Collector</span>
+          </div>
+          <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white border border-[#E2E8F0]">
+            <CheckCircle2 className="w-4 h-4 text-[#00A88A] shrink-0" />
+            <span className="text-[#334155]">Tối Ưu Luồng CPU Affinity</span>
+          </div>
+          <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white border border-[#E2E8F0]">
+            <CheckCircle2 className="w-4 h-4 text-[#00A88A] shrink-0" />
+            <span className="text-[#334155]">Khóa Giảm Độ Trễ Chuột (Input Lag)</span>
+          </div>
+          <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white border border-[#E2E8F0]">
+            <CheckCircle2 className="w-4 h-4 text-[#00A88A] shrink-0" />
+            <span className="text-[#334155]">NetSync Đồng Bộ Tickrate UDP</span>
+          </div>
+        </div>
+
+        {/* System Bar */}
+        <div className="pt-2 flex items-center justify-between text-[11px] text-[#64748B] border-t border-[#F1F5F9]">
+          <span className="flex items-center gap-1.5">
+            <Shield className="w-3.5 h-3.5 text-[#00A88A]" />
+            <span>FiveM Ban-Safe: 100% Không Sửa File Gốc</span>
+          </span>
+          <span className="font-mono font-bold text-[#0796E5]">
+            v2.4.1 Hotfix eSports
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <section className="relative pt-6 pb-16 lg:pt-10 lg:pb-24">
       {/* Expansive Container: mở rộng chiều ngang 1480px, xóa sạch khoảng trống hai bên */}
@@ -56,20 +194,9 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenDownload, onScrollToSpec
             <span className="text-[#64748B] font-mono text-[11px] font-normal">| {nativeHz}Hz NATIVE</span>
           </div>
 
-          {/* 3D Showcase Banner on Mobile */}
+          {/* Native eSports Control Center Preview on Mobile */}
           <div className="w-full mb-6">
-            <div className="relative rounded-3xl overflow-hidden border-4 border-white shadow-[0_16px_40px_rgba(7,150,229,0.15)] bg-white">
-              <img 
-                src="/images/hero-banner.jpg" 
-                alt="Tối Ưu Máy - Tối Ưu PC Laptop GTA5VN System" 
-                className="w-full h-auto object-cover block select-none"
-                loading="eager"
-              />
-              <div className="absolute bottom-3 left-3 flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white/95 backdrop-blur-md border border-[#DFEAF4] shadow-md text-[11px] font-bold text-[#152238]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00A88A] animate-ping" />
-                <span className="font-heading">CHƠI GAME & LÀM VIỆC MƯỢT HƠN</span>
-              </div>
-            </div>
+            {renderDashboardPreview()}
           </div>
 
           {/* 3D Action Buttons on Mobile */}
@@ -180,21 +307,9 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenDownload, onScrollToSpec
 
           </div>
 
-          {/* Right Column: 3D Showcase Banner (Rộng rãi, tỷ lệ hiển thị cân xứng hoàn hảo) */}
+          {/* Right Column: Native eSports Control Center Preview */}
           <div className="lg:col-span-7 xl:col-span-7">
-            <div className="relative rounded-3xl overflow-hidden border-4 border-white shadow-[0_20px_50px_rgba(7,150,229,0.18)] bg-white transform transition-all duration-300 hover:scale-[1.01]">
-              <img 
-                src="/images/hero-banner.jpg" 
-                alt="Tối Ưu Máy - Tối Ưu PC Laptop GTA5VN System" 
-                className="w-full h-auto object-cover block select-none"
-                loading="eager"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-4 left-4 sm:bottom-5 sm:left-5 flex items-center gap-2 px-4 py-2 rounded-xl bg-white/95 backdrop-blur-md border border-[#DFEAF4] shadow-md text-xs font-bold text-[#152238]">
-                <span className="w-2 h-2 rounded-full bg-[#00A88A] animate-ping" />
-                <span className="font-heading tracking-wide">CHƠI GAME & LÀM VIỆC MƯỢT HƠN</span>
-              </div>
-            </div>
+            {renderDashboardPreview()}
           </div>
 
         </div>

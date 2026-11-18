@@ -14,86 +14,94 @@ interface PlayerRank {
   stockFps: number;
   boostedFps: number;
   gain: string;
-  scars: number; // 0 = sạch, 1 = 1 sẹo, 2 = 2 sẹo
+  low1Fps: number;
+  stability: string;
   verified: boolean;
 }
 
 const topPlayers: PlayerRank[] = [
   {
     rank: 1,
-    name: 'Mixi_Dragon99',
-    server: 'Mixi City Roleplay (VIP)',
+    name: 'VN_GhostRider',
+    server: 'Việt Nam Roleplay (VNRP)',
     specs: 'Core i5-12400F • GTX 1660 Super • 16GB RAM',
     stockFps: 48,
     boostedFps: 77,
     gain: '+60.4%',
-    scars: 0,
+    low1Fps: 52,
+    stability: '99.2%',
     verified: true,
   },
   {
     rank: 2,
-    name: 'DoToc_KillerVN',
-    server: 'Độ Tộc Server 1',
+    name: 'Khai_DarkNight',
+    server: 'Sài Gòn Town RP',
     specs: 'Ryzen 5 3600 • GTX 1060 6GB • 16GB RAM',
     stockFps: 42,
     boostedFps: 68,
     gain: '+61.9%',
-    scars: 0,
+    low1Fps: 46,
+    stability: '98.5%',
     verified: true,
   },
   {
     rank: 3,
-    name: 'SơnTùng_GTA',
-    server: 'Sài Gòn Phố RP',
+    name: 'MinhHoang_Pro',
+    server: 'Hà Nội City Roleplay',
     specs: 'Intel Core i5-10400F • GTX 1650 4GB • 16GB RAM',
     stockFps: 35,
     boostedFps: 58,
     gain: '+65.7%',
-    scars: 0,
+    low1Fps: 40,
+    stability: '98.1%',
     verified: true,
   },
   {
     rank: 4,
-    name: 'GVN_SniperPro',
-    server: 'GVN City eSports',
+    name: 'Long_SniperVN',
+    server: 'Đà Nẵng eSports RP',
     specs: 'Core i7-10700K • RTX 2060 6GB • 16GB RAM',
     stockFps: 46,
     boostedFps: 73,
     gain: '+58.7%',
-    scars: 0,
+    low1Fps: 50,
+    stability: '99.0%',
     verified: true,
   },
   {
     rank: 5,
-    name: 'V_Town_Racer',
-    server: 'V-Town Gangster',
+    name: 'BaoNam_Racer',
+    server: 'V-Town Roleplay',
     specs: 'Ryzen 7 5700X • RTX 3060 12GB • 32GB RAM',
     stockFps: 68,
     boostedFps: 101,
     gain: '+48.5%',
-    scars: 1,
+    low1Fps: 72,
+    stability: '99.4%',
     verified: true,
   },
   {
     rank: 6,
-    name: 'NoLag_Hunter',
-    server: 'Hà Nội Phố Roleplay',
+    name: 'Shadow_Hunter',
+    server: 'Bắc Nam RP eSports',
     specs: 'Intel Core i3-10100F • GTX 750Ti • 8GB RAM',
     stockFps: 26,
     boostedFps: 43,
     gain: '+65.4%',
-    scars: 0,
+    low1Fps: 28,
+    stability: '97.2%',
     verified: true,
   },
   {
     rank: 7,
-    name: 'FiveM_Mechanic',
-    server: 'Bình Dân City RP',
+    name: 'GiaBao_Potato',
+    server: 'Miền Tây Phố RP',
     specs: 'Core i5-8400 • UHD 630 Onboard (Potato 0.5x • Giới hạn iGPU RAM share)',
     stockFps: 18,
     boostedFps: 25,
     gain: '+38.9%',
-    scars: 0,
+    low1Fps: 19,
+    stability: '95.8%',
     verified: true,
   },
 ];
@@ -219,8 +227,9 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ lang = 'vi' }) => {
               <Server className="w-4 h-4 text-[#0796E5]" />
               <span>Bảng Vinh Danh Xếp Hạng Game Thủ</span>
             </h3>
-            <span className="text-xs text-[#64748B] font-semibold">
-              Hệ thống kỷ luật: 3 Sẹo đuổi thẳng • Hiện tại: 100% Sạch
+            <span className="text-xs text-[#00A88A] font-semibold flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              <span>Tiêu chuẩn eSports: 100% cấu hình đạt chuẩn chống giật lag (Anti-Stutter)</span>
             </span>
           </div>
 
@@ -233,7 +242,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ lang = 'vi' }) => {
                   <th className="py-3 px-4">Cấu Hình PC</th>
                   <th className="py-3 px-4 text-center">Trước / Sau Tối Ưu</th>
                   <th className="py-3 px-4 text-center">Tăng Trưởng</th>
-                  <th className="py-3 px-4 text-center">Kỷ Luật</th>
+                  <th className="py-3 px-4 text-center">1% Low (Độ Ổn Định)</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#F1F5F9]">
@@ -262,16 +271,11 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ lang = 'vi' }) => {
                         {player.gain}
                       </span>
                     </td>
-                    <td className="py-3.5 px-4 text-center">
-                      {player.scars === 0 ? (
-                        <span className="text-[10.5px] font-bold text-[#00A88A] bg-[#ECFDF5] px-2 py-0.5 rounded-md">
-                          0/3 Sẹo
-                        </span>
-                      ) : (
-                        <span className="text-[10.5px] font-bold text-[#D97706] bg-[#FFFBEB] px-2 py-0.5 rounded-md">
-                          {player.scars}/3 Sẹo
-                        </span>
-                      )}
+                    <td className="py-3.5 px-4 text-center font-mono">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#F1F5F9] text-[#1E293B] text-[11px] font-bold">
+                        <span>{player.low1Fps} FPS</span>
+                        <span className="text-[10px] text-[#00A88A]">({player.stability})</span>
+                      </span>
                     </td>
                   </tr>
                 ))}

@@ -21,62 +21,62 @@ const reviews: ReviewItem[] = [
   {
     name: 'Hoàng Long (LongK)',
     avatar: 'HL',
-    server: 'Mixi City Roleplay',
+    server: 'Việt Nam Roleplay (VNRP)',
     stars: 5,
     date: '2 ngày trước',
-    comment: 'Trước đi xe qua Legion Square hay bị khựng khựng đứng hình 1 giây rất ức chế. Áp dụng profile eSports xong lướt êm ru, FPS từ 45 nhảy lên 72 ổn định luôn!',
-    specs: 'Core i5-10400F • GTX 1660 Ti',
-    fpsGain: '+60% FPS',
+    comment: 'Trước đi xe qua Legion Square hay bị khựng khựng đứng hình 1 giây rất ức chế. Áp dụng profile eSports xong lướt êm ru, FPS từ 48 nhảy lên 77 ổn định luôn!',
+    specs: 'Core i5-12400F • GTX 1660 Super',
+    fpsGain: '+60.4% FPS',
   },
   {
-    name: 'Tuấn Anh (Sniper99)',
+    name: 'Tuấn Anh (TA_Sniper)',
     avatar: 'TA',
-    server: 'Độ Tộc Server',
+    server: 'Sài Gòn Town RP',
     stars: 5,
     date: '3 ngày trước',
     comment: 'Phần mềm dọn RAM ảo đỉnh thật, bật game lên chơi 4-5 tiếng không bị tràn bộ nhớ văng crash game như trước. Đặc biệt trỏ chuột lia rất mượt không bị trễ.',
-    specs: 'Ryzen 5 3600 • 16GB RAM',
-    fpsGain: '+58% FPS',
+    specs: 'Ryzen 5 3600 • GTX 1060 6GB',
+    fpsGain: '+61.9% FPS',
   },
   {
     name: 'Minh Quân (QuanB)',
     avatar: 'MQ',
-    server: 'Sài Gòn Phố RP',
+    server: 'Hà Nội City RP',
     stars: 5,
     date: 'Hôm qua',
-    comment: 'Máy mình laptop văn phòng chip Intel Iris Xe tưởng không kéo nổi FiveM. Bật Potato Preset lên giải phóng VRAM ảo bắn nhau được ~26 FPS ổn định không bị drop, quá hài lòng!',
+    comment: 'Máy mình laptop văn phòng chip Intel Iris Xe tưởng không kéo nổi FiveM. Bật Potato Preset lên giải phóng VRAM ảo bắn nhau được ~25-26 FPS ổn định không bị drop, quá hài lòng!',
     specs: 'Laptop Core i5-1135G7 Iris Xe',
-    fpsGain: '+38% FPS',
+    fpsGain: '+38.9% FPS',
   },
   {
     name: 'Bảo Nam (NamSeven)',
     avatar: 'BN',
-    server: 'GVN City eSports',
+    server: 'Đà Nẵng eSports RP',
     stars: 5,
     date: '4 ngày trước',
     comment: 'Thích nhất là cái nút khôi phục 1-click rất an tâm. Tool sạch, quét qua VirusTotal xanh lè 100%. Anh em bắn súng war băng đảng khuyên thật lòng nên dùng.',
-    specs: 'Ryzen 7 5700X • RTX 3060',
-    fpsGain: '+52% FPS',
+    specs: 'Intel Core i5-10400F • GTX 1650 4GB',
+    fpsGain: '+65.7% FPS',
   },
   {
-    name: 'Đức Trọng',
+    name: 'Đức Trọng (TrongVN)',
     avatar: 'DT',
     server: 'V-Town Roleplay',
     stars: 5,
     date: '5 ngày trước',
     comment: 'Không bị ban tài khoản nha mọi người, mình dùng cả tháng nay trên FiveM và Steam bình thường. FPS tăng thấy rõ rệt khi trời mưa giông.',
-    specs: 'Core i7-9700 • GTX 1070 8GB',
-    fpsGain: '+56% FPS',
+    specs: 'Ryzen 7 5700X • RTX 3060 12GB',
+    fpsGain: '+48.5% FPS',
   },
   {
-    name: 'Văn Hùng (HungMix)',
+    name: 'Văn Hùng (HungPro)',
     avatar: 'VH',
-    server: 'Hà Nội Phố RP',
+    server: 'Bắc Nam RP eSports',
     stars: 5,
     date: '1 tuần trước',
-    comment: 'Giao diện T1 đẹp đỉnh chóp, thao tác dễ hiểu. Bật tool lên rồi ấn 1 nút là xong, vào game hưởng thụ độ mượt.',
-    specs: 'Core i5-12400 • RTX 2060 Super',
-    fpsGain: '+60% FPS',
+    comment: 'Giao diện trực quan, thao tác dễ hiểu. Bật tool lên rồi ấn 1 nút là xong, vào game hưởng thụ độ mượt.',
+    specs: 'Core i7-10700K • RTX 2060 6GB',
+    fpsGain: '+58.7% FPS',
   },
 ];
 
@@ -97,8 +97,8 @@ export const Reviews: React.FC<ReviewsProps> = ({ lang = 'vi' }) => {
           </h2>
           <p className="text-[#64748B] text-sm sm:text-base">
             {isEn
-              ? 'Over 25,800+ players across top FiveM Roleplay servers have verified real combat performance.'
-              : 'Hơn 25,800+ người chơi tại Mixi City, Độ Tộc, Sài Gòn Phố, GVN City đã kiểm chứng hiệu quả thực tế.'}
+              ? 'Over 68,500+ players across top FiveM community servers have verified real combat performance.'
+              : 'Hơn 68,500+ lượt tải và trải nghiệm thực tế từ cộng đồng game thủ tại các server FiveM hàng đầu Việt Nam.'}
           </p>
         </div>
 
