@@ -130,7 +130,7 @@ export const content = {
         },
         {
           q: 'Phần mềm có hỗ trợ máy cấu hình yếu (Laptop, Card Onboard) không?',
-          a: 'Có, thậm chí đây là nhóm người dùng hưởng lợi nhiều nhất. Với Preset "Potato Mode", phần mềm sẽ tắt các hiệu ứng đổ bóng vô dụng, hạ độ phân giải vân bề mặt và tối ưu lệnh phân trang, giúp laptop văn phòng tăng thêm từ 20-35 FPS.'
+          a: 'Có, thậm chí đây là nhóm người dùng hưởng lợi nhiều nhất về độ ổn định. Với Preset "Potato Mode", phần mềm sẽ tắt các hiệu ứng đổ bóng dư thừa, hạ độ phân giải vân bề mặt và tối ưu lệnh phân trang, giúp laptop văn phòng đạt mức 25-28 FPS ổn định tại khu vực đông người mà không bị giật đứng hình.'
         },
         {
           q: 'Làm thế nào để khôi phục lại cài đặt đồ họa ban đầu nếu không ưng ý?',
