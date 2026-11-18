@@ -24,13 +24,15 @@
     scroll-behavior: auto;
     background-color: #F4F8FC;
     overflow-x: hidden;
+    overflow-x: clip;
     max-width: 100%;
   }
 
-  body {
+  body, #root {
     background-color: #F4F8FC;
     color: #152238;
     overflow-x: hidden;
+    overflow-x: clip;
     max-width: 100%;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     overflow-x: hidden;

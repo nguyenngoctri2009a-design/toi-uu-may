@@ -122,7 +122,7 @@ export const SpecsChecker: React.FC<SpecsCheckerProps> = ({ lang, onOpenDownload
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Left Form: Select Specs */}
-          <div className="lg:col-span-7 t1-card p-6 sm:p-8 space-y-6">
+          <div className="lg:col-span-7 min-w-0 w-full t1-card p-5 sm:p-8 space-y-6">
             <h3 className="text-lg font-extrabold text-[#152238] font-heading flex items-center gap-2 pb-4 border-b border-[#F1F5F9]">
               <Cpu className="w-5 h-5 text-[#0796E5]" />
               <span>Thiết Lập Cấu Hình Máy Bạn Đang Dùng</span>
@@ -185,7 +185,7 @@ export const SpecsChecker: React.FC<SpecsCheckerProps> = ({ lang, onOpenDownload
           </div>
 
           {/* Right Card: Recommendation & Forecast Result */}
-          <div className="lg:col-span-5 t1-card p-6 sm:p-8 flex flex-col justify-between">
+          <div className="lg:col-span-5 min-w-0 w-full t1-card p-5 sm:p-8 flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between pb-4 border-b border-[#F1F5F9] mb-6">
                 <span className="text-xs font-bold uppercase tracking-wider text-[#64748B]">
