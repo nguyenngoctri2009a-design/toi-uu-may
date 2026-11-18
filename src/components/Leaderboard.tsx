@@ -165,7 +165,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({ lang = 'vi' }) => {
           </div>
 
           {/* TOP 1 - HIGHLIGHTED */}
-          <div className="t1-card p-7 border-[#BAE6FD] bg-gradient-to-b from-[#F0F9FF] to-white order-1 md:order-2 relative shadow-lg -translate-y-2">
+          <div className="t1-card p-6 sm:p-7 border-[#BAE6FD] bg-gradient-to-b from-[#F0F9FF] to-white order-1 md:order-2 relative shadow-lg md:-translate-y-2">
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#FBBF24] to-[#F59E0B] text-white text-xs font-black font-heading shadow-md flex items-center gap-1.5">
               <span>🥇</span>
               <span>QUÁN QUÂN TOP 1</span>

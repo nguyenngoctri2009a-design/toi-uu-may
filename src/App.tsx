@@ -37,7 +37,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F4F8FC] text-[#152238] flex flex-col font-sans selection:bg-sky-500 selection:text-white relative">
+    <div className="min-h-screen bg-[#F4F8FC] text-[#152238] flex flex-col font-sans selection:bg-sky-500 selection:text-white relative overflow-x-hidden">
       {/* Top Navbar */}
       <Navbar
         lang={lang}

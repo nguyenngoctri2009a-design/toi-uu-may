@@ -65,37 +65,37 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenDownlo
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[#DFEAF4] bg-white/95 backdrop-blur-md shadow-xs">
-      <div className="max-w-[1480px] mx-auto px-4 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
+      <div className="max-w-[1480px] mx-auto px-3 sm:px-8 lg:px-12 h-16 sm:h-20 flex items-center justify-between gap-2">
         
         {/* Brand Logo & Live Status */}
         <div 
-          className="flex items-center gap-3 cursor-pointer select-none" 
+          className="flex items-center gap-2.5 sm:gap-3 cursor-pointer select-none min-w-0" 
           onClick={() => {
             playTactileClick('up');
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
         >
-          <div className="relative flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-br from-[#0796E5] to-[#00A88A] p-0.5 shadow-md shadow-sky-500/20">
+          <div className="relative flex items-center justify-center w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#0796E5] to-[#00A88A] p-0.5 shadow-md shadow-sky-500/20 shrink-0">
             <img 
               src="/images/logo.png" 
               alt="GTA5VN System Logo" 
-              className="w-full h-full object-contain rounded-[14px] bg-white"
+              className="w-full h-full object-contain rounded-[10px] sm:rounded-[14px] bg-white"
               onError={(e) => {
                 (e.currentTarget as HTMLElement).style.display = 'none';
               }}
             />
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col min-w-0">
             <div className="flex items-center gap-2">
-              <span className="font-black text-xl tracking-tight text-[#152238] font-heading flex items-center">
+              <span className="font-black text-base sm:text-xl tracking-tight text-[#152238] font-heading flex items-center whitespace-nowrap">
                 GTA5VN<span className="text-[#0796E5] ml-1">SYSTEM</span>
               </span>
-              <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[10.5px] font-bold rounded-full bg-[#ECFDF5] text-[#00A88A] border border-[#A7F3D0] shadow-xs">
+              <span className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[10.5px] font-bold rounded-full bg-[#ECFDF5] text-[#00A88A] border border-[#A7F3D0] shadow-xs whitespace-nowrap">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00A88A] animate-pulse"></span>
                 <span>{fps} FPS • {nativeHz}Hz</span>
               </span>
             </div>
-            <span className="text-[11.5px] text-[#64748B] font-semibold tracking-wide">
+            <span className="hidden sm:block text-[11.5px] text-[#64748B] font-semibold tracking-wide truncate">
               FiveM eSports Optimization Suite
             </span>
           </div>
@@ -142,12 +142,12 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenDownlo
         </nav>
 
         {/* Right Actions: Live HUD, Sound Toggle, 1 duy nhất nút Language & Nút Tải Sạch Sẽ */}
-        <div className="flex items-center gap-2.5 sm:gap-3">
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           
           {/* Audio Tactile Sound Toggle */}
           <button
             onClick={handleToggleSound}
-            className={`w-9 h-9 rounded-xl border transition-all flex items-center justify-center shadow-xs focus:outline-none ${
+            className={`hidden sm:flex w-9 h-9 rounded-xl border transition-all items-center justify-center shadow-xs focus:outline-none ${
               soundActive
                 ? 'bg-[#ECFDF5] border-[#A7F3D0] text-[#00A88A]'
                 : 'bg-[#F8FAFC] border-[#DFEAF4] text-[#94A3B8]'
@@ -174,20 +174,20 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, onToggleLang, onOpenDownlo
               playTactileClick('subtle');
               onToggleLang();
             }}
-            className="t1-btn-3d t1-btn-surface px-3 py-2 text-xs font-bold gap-1.5 shadow-2xs"
+            className="t1-btn-3d t1-btn-surface px-2.5 sm:px-3 py-1.5 sm:py-2 text-xs font-bold gap-1 sm:gap-1.5 shadow-2xs shrink-0"
             title="Đổi ngôn ngữ (VI / EN)"
           >
             <Globe className="w-3.5 h-3.5 text-[#0796E5]" />
             <span>{lang.toUpperCase()}</span>
           </button>
 
-          {/* Nút Tải Về Ngay (Đã gỡ bỏ chữ D thừa) */}
+          {/* Nút Tải Về Ngay */}
           <button
             onClick={() => {
               playTactileClick('down');
               onOpenDownload();
             }}
-            className="t1-btn-3d t1-btn-primary px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-bold gap-2 shadow-sm whitespace-nowrap"
+            className="hidden sm:inline-flex t1-btn-3d t1-btn-primary px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-bold gap-2 shadow-sm whitespace-nowrap"
           >
             <Download className="w-4 h-4" />
             <span>{t.downloadBtn}</span>

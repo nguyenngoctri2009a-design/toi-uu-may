@@ -50,34 +50,34 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenDownload, onScrollToSpec
             ================================================================ */}
         <div className="lg:hidden flex flex-col items-center text-center mb-10">
           {/* Top Pill / Live Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ECFDF5] border border-[#A7F3D0] text-[#00A88A] text-xs font-bold font-heading uppercase tracking-wider mb-5 shadow-xs">
-            <span className="w-2 h-2 rounded-full bg-[#00A88A] animate-ping" />
+          <div className="inline-flex flex-wrap items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-[#ECFDF5] border border-[#A7F3D0] text-[#00A88A] text-[10.5px] sm:text-xs font-bold font-heading uppercase tracking-wider mb-5 shadow-xs max-w-full">
+            <span className="w-2 h-2 rounded-full bg-[#00A88A] animate-ping shrink-0" />
             <span>{t.badge}</span>
-            <span className="text-[#64748B] font-mono text-[11px] font-normal">| {nativeHz}Hz NATIVE</span>
+            <span className="text-[#64748B] font-mono text-[10.5px] font-normal">| {nativeHz}Hz</span>
           </div>
 
           {/* 3D Showcase Banner on Mobile */}
           <div className="w-full mb-6">
-            <div className="p-2 sm:p-2.5 rounded-[26px] bg-white border-2 border-[#DFEAF4] shadow-[0_16px_40px_rgba(7,150,229,0.15)]">
-              <div className="px-3 py-2 flex items-center justify-between border-b border-[#F1F5F9] mb-2">
+            <div className="p-1.5 sm:p-2.5 rounded-2xl sm:rounded-[26px] bg-white border-2 border-[#DFEAF4] shadow-[0_12px_30px_rgba(7,150,229,0.12)]">
+              <div className="px-2.5 py-1.5 flex items-center justify-between border-b border-[#F1F5F9] mb-1.5">
                 <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#EF4444]/80" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#F59E0B]/80" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#10B981]/80" />
+                  <span className="w-2 h-2 rounded-full bg-[#EF4444]/80" />
+                  <span className="w-2 h-2 rounded-full bg-[#F59E0B]/80" />
+                  <span className="w-2 h-2 rounded-full bg-[#10B981]/80" />
                 </div>
-                <span className="text-[10px] font-mono font-bold text-[#64748B] tracking-wider uppercase">
+                <span className="text-[9.5px] font-mono font-bold text-[#64748B] tracking-wider uppercase">
                   GTA5VN System • Preview
                 </span>
               </div>
-              <div className="relative rounded-2xl overflow-hidden border border-[#E2E8F0] bg-[#0F172A]">
+              <div className="relative rounded-xl sm:rounded-2xl overflow-hidden border border-[#E2E8F0] bg-[#0F172A]">
                 <img 
                   src="/images/hero-banner.jpg" 
                   alt="Tối Ưu Máy - Tối Ưu PC Laptop GTA5VN System" 
                   className="w-full h-auto object-cover block select-none scale-[1.01]"
                   loading="eager"
                 />
-                <div className="absolute bottom-3 left-3 flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white/95 backdrop-blur-md border border-[#DFEAF4] shadow-md text-[11px] font-bold text-[#152238]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#00A88A] animate-ping" />
+                <div className="absolute bottom-2 left-2 flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/95 backdrop-blur-md border border-[#DFEAF4] shadow-md text-[10px] font-bold text-[#152238]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#00A88A] animate-ping shrink-0" />
                   <span className="font-heading">CHƠI GAME & LÀM VIỆC MƯỢT HƠN</span>
                 </div>
               </div>
@@ -280,52 +280,52 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenDownload, onScrollToSpec
         </div>
 
         {/* Stat Metric Cards (T1 White KPI Panels - Trải đều 4 cột rộng rãi) */}
-        <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           
-          <div className="t1-card t1-card-hover p-6 sm:p-7 text-left">
-            <div className="text-3xl sm:text-4xl font-black font-heading text-[#00A88A] mb-1.5">
+          <div className="t1-card t1-card-hover p-4 sm:p-7 text-left">
+            <div className="text-2xl sm:text-4xl font-black font-heading text-[#00A88A] mb-1">
               {t.statFps}
             </div>
             <div className="text-xs sm:text-sm text-[#1E293B] font-bold">
               {t.statFpsLabel}
             </div>
-            <div className="mt-2 text-xs text-[#64748B]">
+            <div className="mt-1.5 sm:mt-2 text-[11px] sm:text-xs text-[#64748B]">
               Đo lường trên hơn 1,200 cấu hình máy thực tế
             </div>
           </div>
 
-          <div className="t1-card t1-card-hover p-6 sm:p-7 text-left">
-            <div className="text-3xl sm:text-4xl font-black font-heading text-[#0796E5] mb-1.5">
+          <div className="t1-card t1-card-hover p-4 sm:p-7 text-left">
+            <div className="text-2xl sm:text-4xl font-black font-heading text-[#0796E5] mb-1">
               {t.statLatency}
             </div>
             <div className="text-xs sm:text-sm text-[#1E293B] font-bold">
               {t.statLatencyLabel}
             </div>
-            <div className="mt-2 text-xs text-[#64748B]">
+            <div className="mt-1.5 sm:mt-2 text-[11px] sm:text-xs text-[#64748B]">
               Giảm từ 20.8 ms xuống 12.9 ms tại 77 FPS
             </div>
           </div>
 
-          <div className="t1-card t1-card-hover p-6 sm:p-7 text-left">
-            <div className="text-3xl sm:text-4xl font-black font-heading text-[#059669] mb-1.5">
+          <div className="t1-card t1-card-hover p-4 sm:p-7 text-left">
+            <div className="text-2xl sm:text-4xl font-black font-heading text-[#059669] mb-1">
               {t.statStutter}
             </div>
             <div className="text-xs sm:text-sm text-[#1E293B] font-bold">
               {t.statStutterLabel}
             </div>
-            <div className="mt-2 text-xs text-[#64748B]">
+            <div className="mt-1.5 sm:mt-2 text-[11px] sm:text-xs text-[#64748B]">
               Xóa sổ khựng hình khi lia chuột nhanh
             </div>
           </div>
 
-          <div className="t1-card t1-card-hover p-6 sm:p-7 text-left">
-            <div className="text-3xl sm:text-4xl font-black font-heading text-[#152238] mb-1.5">
+          <div className="t1-card t1-card-hover p-4 sm:p-7 text-left">
+            <div className="text-2xl sm:text-4xl font-black font-heading text-[#152238] mb-1">
               {t.statUsers}
             </div>
             <div className="text-xs sm:text-sm text-[#1E293B] font-bold">
               {t.statUsersLabel}
             </div>
-            <div className="mt-2 text-xs text-[#64748B]">
+            <div className="mt-1.5 sm:mt-2 text-[11px] sm:text-xs text-[#64748B]">
               Từ các server FiveM hàng đầu Việt Nam
             </div>
           </div>
