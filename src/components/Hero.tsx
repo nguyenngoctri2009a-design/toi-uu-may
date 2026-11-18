@@ -58,16 +58,28 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenDownload, onScrollToSpec
 
           {/* 3D Showcase Banner on Mobile */}
           <div className="w-full mb-6">
-            <div className="relative rounded-3xl overflow-hidden border-4 border-white shadow-[0_16px_40px_rgba(7,150,229,0.15)] bg-white">
-              <img 
-                src="/images/hero-banner.jpg" 
-                alt="Tối Ưu Máy - Tối Ưu PC Laptop GTA5VN System" 
-                className="w-full h-auto object-cover block select-none"
-                loading="eager"
-              />
-              <div className="absolute bottom-3 left-3 flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white/95 backdrop-blur-md border border-[#DFEAF4] shadow-md text-[11px] font-bold text-[#152238]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#00A88A] animate-ping" />
-                <span className="font-heading">CHƠI GAME & LÀM VIỆC MƯỢT HƠN</span>
+            <div className="p-2 sm:p-2.5 rounded-[26px] bg-white border-2 border-[#DFEAF4] shadow-[0_16px_40px_rgba(7,150,229,0.15)]">
+              <div className="px-3 py-2 flex items-center justify-between border-b border-[#F1F5F9] mb-2">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#EF4444]/80" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#F59E0B]/80" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#10B981]/80" />
+                </div>
+                <span className="text-[10px] font-mono font-bold text-[#64748B] tracking-wider uppercase">
+                  GTA5VN System • Preview
+                </span>
+              </div>
+              <div className="relative rounded-2xl overflow-hidden border border-[#E2E8F0] bg-[#0F172A]">
+                <img 
+                  src="/images/hero-banner.jpg" 
+                  alt="Tối Ưu Máy - Tối Ưu PC Laptop GTA5VN System" 
+                  className="w-full h-auto object-cover block select-none scale-[1.01]"
+                  loading="eager"
+                />
+                <div className="absolute bottom-3 left-3 flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white/95 backdrop-blur-md border border-[#DFEAF4] shadow-md text-[11px] font-bold text-[#152238]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#00A88A] animate-ping" />
+                  <span className="font-heading">CHƠI GAME & LÀM VIỆC MƯỢT HƠN</span>
+                </div>
               </div>
             </div>
           </div>
@@ -193,19 +205,35 @@ export const Hero: React.FC<HeroProps> = ({ lang, onOpenDownload, onScrollToSpec
 
           </div>
 
-          {/* Right Column: 3D Showcase Banner (Rộng rãi, tỷ lệ hiển thị cân xứng hoàn hảo) */}
+          {/* Right Column: 3D Showcase Banner (Rộng rãi, khung viền 3D T1 sắc nét cân đối) */}
           <div className="lg:col-span-7 xl:col-span-7">
-            <div className="relative rounded-3xl overflow-hidden border-4 border-white shadow-[0_20px_50px_rgba(7,150,229,0.18)] bg-white transform transition-all duration-300 hover:scale-[1.01]">
-              <img 
-                src="/images/hero-banner.jpg" 
-                alt="Tối Ưu Máy - Tối Ưu PC Laptop GTA5VN System" 
-                className="w-full h-auto object-cover block select-none"
-                loading="eager"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-4 left-4 sm:bottom-5 sm:left-5 flex items-center gap-2 px-4 py-2 rounded-xl bg-white/95 backdrop-blur-md border border-[#DFEAF4] shadow-md text-xs font-bold text-[#152238]">
-                <span className="w-2 h-2 rounded-full bg-[#00A88A] animate-ping" />
-                <span className="font-heading tracking-wide">CHƠI GAME & LÀM VIỆC MƯỢT HƠN</span>
+            <div className="p-2.5 sm:p-3.5 rounded-[30px] bg-white border-2 border-[#DFEAF4] shadow-[0_24px_60px_rgba(7,150,229,0.16)] transform transition-all duration-300 hover:scale-[1.01]">
+              <div className="px-4 py-2.5 flex items-center justify-between border-b border-[#F1F5F9] mb-2.5">
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-[#EF4444]/85" />
+                  <span className="w-3 h-3 rounded-full bg-[#F59E0B]/85" />
+                  <span className="w-3 h-3 rounded-full bg-[#10B981]/85" />
+                  <span className="ml-2 text-xs font-mono font-bold text-[#475569]">
+                    GTA5VN-System.exe • eSports Suite
+                  </span>
+                </div>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#ECFDF5] border border-[#A7F3D0] text-[10.5px] font-bold text-[#00A88A]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#00A88A] animate-pulse" />
+                  <span>v2.4.1 LIVE</span>
+                </span>
+              </div>
+              <div className="relative rounded-2xl overflow-hidden border border-[#CBD5E1]/70 bg-[#0F172A]">
+                <img 
+                  src="/images/hero-banner.jpg" 
+                  alt="Tối Ưu Máy - Tối Ưu PC Laptop GTA5VN System" 
+                  className="w-full h-auto object-cover block select-none scale-[1.01]"
+                  loading="eager"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-4 left-4 sm:bottom-5 sm:left-5 flex items-center gap-2 px-4 py-2 rounded-xl bg-white/95 backdrop-blur-md border border-[#DFEAF4] shadow-md text-xs font-bold text-[#152238]">
+                  <span className="w-2 h-2 rounded-full bg-[#00A88A] animate-ping" />
+                  <span className="font-heading tracking-wide">CHƠI GAME & LÀM VIỆC MƯỢT HƠN</span>
+                </div>
               </div>
             </div>
           </div>
